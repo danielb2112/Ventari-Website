@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://ventari.eu/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/"/>
+  </url>
+
+  <!-- Tools Hub -->
+  <url>
+    <loc>https://ventari.eu/tools/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Tools DE -->
+  <url>
+    <loc>https://ventari.eu/automatisierungspotenzial-rechner.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/automatisierungspotenzial-rechner.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/automation-potential-calculator-en.html"/>
+  </url>
+  <url>
+    <loc>https://ventari.eu/ki-projektkosten-schaetzer.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-projektkosten-schaetzer.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-project-cost-estimator-en.html"/>
+  </url>
+  <url>
+    <loc>https://ventari.eu/ki-readiness-test.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-readiness-test.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-readiness-test-en.html"/>
+  </url>
+  <url>
+    <loc>https://ventari.eu/eu-ai-act-checker.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/eu-ai-act-checker.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/eu-ai-act-checker-en.html"/>
+  </url>
+
+  <!-- Tools EN -->
+  <url>
+    <loc>https://ventari.eu/automation-potential-calculator-en.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ventari.eu/ai-project-cost-estimator-en.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ventari.eu/ai-readiness-test-en.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ventari.eu/eu-ai-act-checker-en.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Index -->
+  <url>
+    <loc>https://ventari.eu/blog/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Articles -->
+  <url>
+    <loc>https://ventari.eu/blog/eu-ai-act-mittelstand-2026/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ventari.eu/blog/nis2-kmu-betroffen-2026/</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ventari.eu/blog/ki-use-cases-roi-mittelstand/</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ventari.eu/preise.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ventari.eu/pricing.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

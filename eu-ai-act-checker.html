@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <script>try{if(localStorage.getItem("ventari_lang")==="en"){var el=document.querySelector('link[hreflang="en"]');if(el)window.location.replace(el.href);}}catch(e){}</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EU AI Act Checker – Ventari</title>
+  <meta name="description" content="Kostenloser EU AI Act Checker: Ermitteln Sie in wenigen Fragen Ihre Risikostufe und die daraus folgenden Pflichten – kostenfrei von Ventari."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg:       #07080f;
+      --bg2:      #0c0e18;
+      --bg3:      #111320;
+      --surface:  #161828;
+      --surface2: #1c1f35;
+      --blue:     #4a8cff;
+      --blue-dim: #2d5cb8;
+      --blueglow: rgba(74,140,255,0.12);
+      --cyan:     #5dd8e8;
+      --green:    #4ecb71;
+      --amber:    #f5a623;
+      --red:      #ff5c5c;
+      --white:    #f4f6fb;
+      --muted:    #616884;
+      --muted2:   #8b93b3;
+      --border:   rgba(74,140,255,0.14);
+      --border2:  rgba(255,255,255,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 2px; }
+
+    .bg-glow {
+      position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(74,140,255,0.07) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(7,8,15,0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--white); text-decoration: none; }
+    .logo span { color: var(--blue); }
+    .nav-back {
+      font-size: 0.76rem; color: var(--muted2); text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--white); }
+
+    main {
+      position: relative; z-index: 2;
+      max-width: 780px; margin: 0 auto;
+      padding: 9rem 2rem 5rem;
+    }
+
+    .tool-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 1.2rem;
+    }
+    .tool-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+    .tool-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 400;
+      line-height: 1.15; color: var(--white); margin-bottom: 1rem;
+    }
+    .tool-subtitle {
+      font-size: 1rem; color: var(--muted2); max-width: 560px;
+      line-height: 1.7; margin-bottom: 2rem;
+    }
+
+    /* DISCLAIMER */
+    .legal-note {
+      display: flex; gap: 0.7rem; align-items: flex-start;
+      background: rgba(245,166,35,0.07); border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 8px; padding: 0.9rem 1.1rem;
+      margin-bottom: 2.5rem; font-size: 0.78rem; color: var(--muted2); line-height: 1.5;
+    }
+    .legal-note-icon { color: var(--amber); font-size: 0.9rem; margin-top: 0.05rem; flex-shrink: 0; }
+
+    /* PROGRESS */
+    .progress-wrap { margin-bottom: 2.5rem; }
+    .progress-meta { display: flex; justify-content: space-between; margin-bottom: 0.6rem; }
+    .progress-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .progress-count { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+    .progress-track { height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue-dim), var(--blue)); border-radius: 2px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+
+    /* STEP INFO */
+    .step-info {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem;
+    }
+
+    /* QUESTION */
+    .question-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2rem 2rem 1.6rem; margin-bottom: 1.2rem;
+      opacity: 0; transform: translateY(16px);
+      animation: slideIn 0.4s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+    @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
+
+    .question-text {
+      font-size: 1.05rem; font-weight: 500; color: var(--white);
+      line-height: 1.55; margin-bottom: 0.6rem;
+    }
+    .question-hint {
+      font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 1.4rem;
+    }
+
+    .options { display: flex; flex-direction: column; gap: 0.6rem; }
+    .option {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+      background: var(--bg3); border: 1px solid var(--border2);
+      border-radius: 8px; padding: 0.85rem 1rem;
+      cursor: pointer; transition: all 0.2s ease; text-align: left; width: 100%;
+    }
+    .option:hover { border-color: var(--blue); background: var(--blueglow); }
+    .option.selected { border-color: var(--blue); background: rgba(74,140,255,0.1); }
+    .option-dot {
+      width: 18px; height: 18px; min-width: 18px;
+      border-radius: 50%; border: 2px solid var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; transition: all 0.2s;
+    }
+    .option.selected .option-dot { border-color: var(--blue); background: var(--blue); }
+    .option.selected .option-dot::after {
+      content: ''; display: block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--bg);
+    }
+    .option-label { font-weight: 600; font-size: 0.88rem; color: var(--white); margin-bottom: 0.15rem; }
+    .option-desc { font-size: 0.8rem; color: var(--muted2); line-height: 1.4; }
+    .option:hover .option-desc { color: var(--muted2); }
+
+    .btn-row { display: flex; gap: 1rem; margin-top: 1.8rem; align-items: center; }
+    .btn-primary {
+      background: var(--blue); color: var(--bg); border: none; border-radius: 6px;
+      padding: 0.75rem 1.8rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+    .btn-secondary {
+      background: transparent; color: var(--muted2);
+      border: 1px solid var(--border2); border-radius: 6px;
+      padding: 0.75rem 1.4rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-secondary:hover { color: var(--white); border-color: var(--muted); }
+
+    /* RESULT */
+    #result-screen { display: none; opacity: 0; animation: fadeIn 0.6s ease forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* RISK BADGE */
+    .risk-header { text-align: center; margin-bottom: 2.5rem; }
+    .risk-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 1.2rem;
+    }
+    .risk-level-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; padding: 0.3rem 1rem;
+      border-radius: 20px; display: inline-block; margin-bottom: 0.8rem;
+    }
+    .risk-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.9rem; margin-bottom: 0.6rem;
+    }
+    .risk-intro {
+      font-size: 0.95rem; color: var(--muted2);
+      max-width: 540px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* WHAT APPLIES BOX */
+    .applies-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.8rem; margin: 2rem 0;
+    }
+    .applies-title {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1.4rem;
+    }
+
+    /* OBLIGATIONS */
+    .obligation-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .obligation-item {
+      display: flex; gap: 0.9rem; align-items: flex-start;
+      padding: 0.9rem 1rem; border-radius: 8px;
+    }
+    .obl-status {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.2rem 0.55rem;
+      border-radius: 10px; white-space: nowrap; margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .obl-body {}
+    .obl-name { font-size: 0.88rem; font-weight: 600; color: var(--white); margin-bottom: 0.15rem; }
+    .obl-desc { font-size: 0.8rem; color: var(--muted2); line-height: 1.5; }
+
+    /* TIMELINE */
+    .timeline-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.8rem; margin: 1.5rem 0;
+    }
+    .timeline-title {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1.4rem;
+    }
+    .timeline-items { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: flex; gap: 1.2rem; align-items: flex-start; position: relative;
+      padding-bottom: 1.2rem;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot-col {
+      display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
+    }
+    .timeline-dot {
+      width: 10px; height: 10px; border-radius: 50%; margin-top: 4px;
+    }
+    .timeline-line {
+      width: 1px; background: var(--border2); flex: 1; margin-top: 4px;
+    }
+    .timeline-item:last-child .timeline-line { display: none; }
+    .timeline-date { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.15rem; text-transform: uppercase; }
+    .timeline-text { font-size: 0.86rem; color: var(--muted2); line-height: 1.5; }
+    .timeline-text strong { color: var(--white); font-weight: 600; }
+
+    /* NEXT STEPS */
+    .next-steps {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.8rem; margin: 1.5rem 0;
+    }
+    .steps-title {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1.4rem;
+    }
+    .step-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .step-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .step-num {
+      width: 24px; height: 24px; min-width: 24px;
+      border-radius: 50%; background: var(--blueglow);
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem; font-weight: 700; color: var(--blue);
+    }
+    .step-text { font-size: 0.86rem; color: var(--muted2); line-height: 1.5; }
+    .step-text strong { color: var(--white); font-weight: 600; }
+
+    /* CTA */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(74,140,255,0.12), rgba(93,216,232,0.06));
+      border: 1px solid rgba(74,140,255,0.3);
+      border-radius: 12px; padding: 2rem; text-align: center; margin-top: 2rem;
+    }
+    .cta-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .cta-text { font-size: 0.88rem; color: var(--muted2); margin-bottom: 1.4rem; line-height: 1.6; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--blue); color: var(--bg); text-decoration: none;
+      border-radius: 6px; padding: 0.8rem 2rem; font-weight: 600; font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+    .cta-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.8rem; }
+
+    .restart-row { text-align: center; margin-top: 1.5rem; }
+    .restart-btn {
+      background: none; border: none; color: var(--muted);
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+      cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .restart-btn:hover { color: var(--white); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.4rem; }
+      main { padding: 7rem 1.2rem 4rem; }
+      .btn-row { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<nav>
+  <a href="https://ventari.eu" class="logo">Ventar<span>i</span></a>
+  <a href="https://ventari.eu/tools/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M10 12L6 8l4-4"/>
+    </svg>
+    ← Alle Tools
+  </a>
+</nav>
+
+<main>
+
+  <!-- INTRO -->
+  <div id="intro-screen">
+    <div class="tool-eyebrow">Kostenloses Tool</div>
+    <h1 class="tool-title">EU AI Act<br>Checker</h1>
+    <p class="tool-subtitle">
+      Welche Risikostufe gilt für Ihre KI-Systeme – und welche Pflichten folgen daraus? In 8 Fragen zu einer fundierten Ersteinschätzung.
+    </p>
+    <div class="legal-note">
+      <span class="legal-note-icon">⚠</span>
+      <span>Dieses Tool liefert eine strukturierte Ersteinschätzung, ersetzt jedoch keine Rechtsberatung. Für verbindliche Compliance-Bewertungen empfehlen wir juristische Unterstützung.</span>
+    </div>
+    <button class="btn-primary" onclick="startChecker()">
+      Checker starten
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz-screen" style="display:none">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Fortschritt</span>
+        <span class="progress-count" id="prog-count">Frage 1 von 8</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="prog-fill" style="width:12.5%"></div>
+      </div>
+    </div>
+
+    <div class="step-info" id="step-info"></div>
+    <div id="question-area"></div>
+
+    <div class="btn-row">
+      <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>
+        Weiter
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </button>
+      <button class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Zurück</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result-screen">
+    <div class="risk-header">
+      <div class="risk-icon" id="risk-icon"></div>
+      <div class="risk-level-label" id="risk-label"></div>
+      <div class="risk-title" id="risk-title"></div>
+      <p class="risk-intro" id="risk-intro"></p>
+    </div>
+
+    <div class="applies-box">
+      <div class="applies-title">Diese Pflichten gelten für Sie</div>
+      <div class="obligation-list" id="obligation-list"></div>
+    </div>
+
+    <div class="timeline-box">
+      <div class="timeline-title">Relevante Fristen</div>
+      <div class="timeline-items" id="timeline-items"></div>
+    </div>
+
+    <div class="next-steps">
+      <div class="steps-title">Ihre nächsten Schritte</div>
+      <div class="step-list" id="step-list"></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-title">Compliance-Lücken schließen?</div>
+      <p class="cta-text">Wir helfen Ihnen, aus dieser Ersteinschätzung einen konkreten Compliance-Plan zu entwickeln – mit klaren Prioritäten, realistischen Fristen und rechtlicher Absicherung.</p>
+      <a href="https://ventari.eu/#contact" class="cta-btn">
+        Kostenloses Erstgespräch buchen
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <div class="cta-note">Kostenlos · Kein Verkaufsgespräch · 45 Minuten</div>
+    </div>
+
+    <div class="restart-row">
+      <button class="restart-btn" onclick="restart()">Checker neu starten</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// Scoring system:
+// Each answer returns a risk "weight"
+// 0 = kein Risiko, 1 = minimal, 2 = begrenzt, 3 = hoch, 4 = verboten
+// Final risk = max of all weights (worst-case principle)
+
+const QUESTIONS = [
+  {
+    id: "role",
+    section: "Ihre Rolle",
+    text: "In welcher Rolle setzen Sie KI ein?",
+    hint: "Die Pflichten im EU AI Act unterscheiden sich je nach Ihrer Rolle in der KI-Wertschöpfungskette.",
+    options: [
+      { label: "Anbieter (Provider)", desc: "Wir entwickeln oder verkaufen KI-Systeme an andere.", riskWeight: 2 },
+      { label: "Betreiber (Deployer)", desc: "Wir nutzen KI-Systeme von Drittanbietern in unserem Betrieb.", riskWeight: 1 },
+      { label: "Beides", desc: "Wir entwickeln eigene KI und setzen auch Drittanbieter-KI ein.", riskWeight: 2 },
+      { label: "Noch unklar / Wir nutzen noch keine KI", desc: "Wir sind dabei, unsere Rolle zu klären.", riskWeight: 0 }
+    ]
+  },
+  {
+    id: "domain",
+    section: "Anwendungsbereich",
+    text: "In welchem Bereich setzen Sie KI ein?",
+    hint: "Bestimmte Anwendungsgebiete gelten als Hochrisiko-Bereiche nach Anhang III des EU AI Act.",
+    options: [
+      { label: "HR, Personalwesen & Recruiting", desc: "Einstellungsentscheidungen, Leistungsbewertung, Beförderungen.", riskWeight: 3 },
+      { label: "Kritische Infrastruktur", desc: "Energie, Wasser, Verkehr, Finanzsysteme.", riskWeight: 3 },
+      { label: "Bildung & Berufsausbildung", desc: "Bewerberzulassung, Prüfungsbewertung, Lernsysteme.", riskWeight: 3 },
+      { label: "Verwaltung von Leistungen & Diensten", desc: "Sozialleistungen, Kreditwürdigkeitsprüfung, Notfalldienste.", riskWeight: 3 }
+    ]
+  },
+  {
+    id: "domain2",
+    section: "Anwendungsbereich (Fortsetzung)",
+    text: "Oder gilt eher einer dieser Bereiche?",
+    hint: "Wählen Sie den am besten passenden Bereich – auch wenn kein Bereich exakt passt.",
+    options: [
+      { label: "Strafverfolgung, Justiz, Migration", desc: "Behörden, Gerichte, Grenzkontrollen.", riskWeight: 3 },
+      { label: "Medizinprodukte / Gesundheit", desc: "Diagnose, Behandlungsempfehlung, Medizintechnik.", riskWeight: 3 },
+      { label: "Allgemeine Unternehmensprozesse", desc: "Marketing, Kundenservice, Reporting, interne Abläufe.", riskWeight: 1 },
+      { label: "Keiner der genannten Bereiche", desc: "Unser Einsatz fällt in keinen regulierten Bereich.", riskWeight: 0 }
+    ]
+  },
+  {
+    id: "prohibited",
+    section: "Verbotene Praktiken",
+    text: "Wird KI bei Ihnen für eine dieser Zwecke eingesetzt?",
+    hint: "Diese Praktiken sind im EU AI Act vollständig verboten – unabhängig von anderen Faktoren.",
+    options: [
+      { label: "Ja – biometrische Echtzeit-Überwachung im öffentlichen Raum", desc: "Gesichtserkennung, Verhaltensüberwachung an öffentlichen Orten.", riskWeight: 4 },
+      { label: "Ja – Social Scoring durch öffentliche Stellen", desc: "Bewertung von Personen basierend auf sozialem Verhalten.", riskWeight: 4 },
+      { label: "Ja – Manipulation durch unterschwellige Techniken", desc: "Unbewusste Beeinflussung von Entscheidungen.", riskWeight: 4 },
+      { label: "Nein – keines davon trifft zu", desc: "Unser KI-Einsatz fällt nicht unter verbotene Praktiken.", riskWeight: 0 }
+    ]
+  },
+  {
+    id: "gpai",
+    section: "KI-Modell-Typ",
+    text: "Welche Art von KI-System nutzen oder entwickeln Sie?",
+    hint: "General Purpose AI Modelle (GPAI) wie große Sprachmodelle unterliegen eigenen Regeln.",
+    options: [
+      { label: "Großes Sprachmodell (LLM) / Generative KI", desc: "z. B. GPT, Claude, Gemini – direkt oder über API genutzt.", riskWeight: 2 },
+      { label: "Spezialisiertes ML-Modell", desc: "Klassifikation, Regression, Bilderkennung für spezifischen Zweck.", riskWeight: 1 },
+      { label: "Regelbasiertes / klassisches System", desc: "Kein maschinelles Lernen, klare Wenn-Dann-Logik.", riskWeight: 0 },
+      { label: "Wir entwickeln eigene Foundation Models", desc: "Training von Grundlagenmodellen mit großen Datensätzen (> 10^25 FLOP).", riskWeight: 3 }
+    ]
+  },
+  {
+    id: "autonomy",
+    section: "Autonomie & Entscheidungstiefe",
+    text: "Wie stark beeinflusst die KI tatsächliche Entscheidungen?",
+    hint: "Je autonomer und folgenreicher eine KI-Entscheidung ist, desto höher das regulatorische Risiko.",
+    options: [
+      { label: "Unterstützend – Menschen entscheiden immer final", desc: "KI gibt Vorschläge, ein Mensch prüft und genehmigt.", riskWeight: 1 },
+      { label: "Halb-automatisiert – Mensch kann eingreifen", desc: "KI entscheidet oft automatisch, Mensch kann übersteuern.", riskWeight: 2 },
+      { label: "Hoch-automatisiert – KI entscheidet weitgehend autonom", desc: "Kaum menschliche Kontrolle im laufenden Prozess.", riskWeight: 3 },
+      { label: "Kein Einsatz / rein analytisch ohne Wirkung", desc: "KI liefert nur Dashboards oder Analysen ohne Handlungsfolge.", riskWeight: 0 }
+    ]
+  },
+  {
+    id: "data",
+    section: "Daten & Persönlichkeitsrechte",
+    text: "Verarbeitet Ihre KI personenbezogene oder sensible Daten?",
+    hint: "Die Verarbeitung personenbezogener Daten durch KI löst zusätzliche DSGVO-Pflichten aus.",
+    options: [
+      { label: "Ja – besondere Kategorien (Gesundheit, Herkunft, Biometrie…)", desc: "Art. 9 DSGVO-Daten mit erhöhtem Schutzbedarf.", riskWeight: 3 },
+      { label: "Ja – reguläre personenbezogene Daten", desc: "Namen, Adressen, Nutzungsverhalten etc.", riskWeight: 2 },
+      { label: "Nur anonymisierte oder aggregierte Daten", desc: "Kein Personenbezug herstellbar.", riskWeight: 0 },
+      { label: "Keine personenbezogenen Daten", desc: "Rein technische, maschinenbezogene oder öffentliche Daten.", riskWeight: 0 }
+    ]
+  },
+  {
+    id: "scale",
+    section: "Reichweite & Betroffene",
+    text: "Wie viele Personen sind von den KI-Entscheidungen betroffen?",
+    hint: "Größere Reichweite erhöht das Schadenspotenzial und damit die regulatorische Aufmerksamkeit.",
+    options: [
+      { label: "Wenige interne Mitarbeitende (< 50 Personen)", desc: "Begrenzte interne Nutzung.", riskWeight: 1 },
+      { label: "Größere Gruppen intern oder extern (50–500 Personen)", desc: "Mittlere Reichweite.", riskWeight: 2 },
+      { label: "Viele Personen – Kunden, Bürger oder Öffentlichkeit (> 500)", desc: "Breite Wirkung auf externe Personen.", riskWeight: 3 },
+      { label: "Keine Personen betroffen – rein maschinelle Prozesse", desc: "Maschinen-zu-Maschinen ohne Personenwirkung.", riskWeight: 0 }
+    ]
+  }
+];
+
+const RISK_LEVELS = {
+  VERBOTEN: {
+    key: "VERBOTEN",
+    label: "Verbotene Praxis",
+    color: "#ff5c5c",
+    bg: "rgba(255,92,92,0.12)",
+    icon: "🚫",
+    iconBg: "rgba(255,92,92,0.15)",
+    title: "Ihre KI-Praxis fällt unter ein Verbot.",
+    intro: "Mindestens eine Ihrer KI-Anwendungen fällt unter die verbotenen Praktiken des EU AI Act (Art. 5). Diese sind seit dem 2. Februar 2025 in Kraft. Handlungsbedarf besteht sofort – unabhängig von anderen Faktoren.",
+    obligations: [
+      { name: "Sofortige Einstellung", desc: "Die betroffene KI-Praxis muss umgehend eingestellt werden.", status: "Sofort", statusColor: "#ff5c5c", statusBg: "rgba(255,92,92,0.12)", bg: "rgba(255,92,92,0.05)" },
+      { name: "Rechtliche Überprüfung", desc: "Lassen Sie prüfen, ob und wie der Einsatz rechtssicher umgestellt werden kann.", status: "Sofort", statusColor: "#ff5c5c", statusBg: "rgba(255,92,92,0.12)", bg: "rgba(255,92,92,0.05)" },
+      { name: "Interne Dokumentation", desc: "Dokumentieren Sie den Sachverhalt und ergriffene Maßnahmen schriftlich.", status: "Dringend", statusColor: "#f5a623", statusBg: "rgba(245,166,35,0.12)", bg: "rgba(245,166,35,0.05)" }
+    ],
+    timeline: [
+      { date: "2. Feb 2025", text: "<strong>Verbote in Kraft.</strong> Verbotene KI-Praktiken sind seit diesem Datum illegal.", color: "#ff5c5c" },
+      { date: "Heute", text: "<strong>Handlungsbedarf.</strong> Jede weitere Nutzung ist rechtswidrig.", color: "#ff5c5c" }
+    ],
+    steps: [
+      "<strong>Jetzt:</strong> Betroffene Anwendung identifizieren und dokumentieren.",
+      "<strong>Innerhalb 48h:</strong> Rechtliche Beratung einholen.",
+      "<strong>Kurzfristig:</strong> Prüfen, ob ein compliant-er Ersatz möglich ist.",
+      "<strong>Parallel:</strong> Interne Meldung an Geschäftsleitung vorbereiten."
+    ]
+  },
+  HOCH: {
+    key: "HOCH",
+    label: "Hochrisiko-KI",
+    color: "#f5a623",
+    bg: "rgba(245,166,35,0.1)",
+    icon: "⚠️",
+    iconBg: "rgba(245,166,35,0.15)",
+    title: "Sie setzen Hochrisiko-KI ein.",
+    intro: "Ihre KI-Systeme fallen wahrscheinlich unter die Hochrisiko-Kategorie des EU AI Act (Anhang III). Das bedeutet umfangreiche Pflichten – ab August 2026 voll wirksam. Vorbereitung ist jetzt sinnvoll.",
+    obligations: [
+      { name: "Risikomanagement-System", desc: "Kontinuierliches Risikomanagementsystem für den gesamten Lebenszyklus der KI (Art. 9).", status: "Ab Aug 2026", statusColor: "#f5a623", statusBg: "rgba(245,166,35,0.12)", bg: "rgba(245,166,35,0.05)" },
+      { name: "Technische Dokumentation", desc: "Vollständige Dokumentation vor Markteinführung (Art. 11, Anhang IV).", status: "Ab Aug 2026", statusColor: "#f5a623", statusBg: "rgba(245,166,35,0.12)", bg: "rgba(245,166,35,0.05)" },
+      { name: "Menschliche Aufsicht", desc: "Wirksame Möglichkeit menschlicher Kontrolle und Eingriffsmöglichkeit (Art. 14).", status: "Ab Aug 2026", statusColor: "#f5a623", statusBg: "rgba(245,166,35,0.12)", bg: "rgba(245,166,35,0.05)" },
+      { name: "Konformitätsbewertung", desc: "Nachgewiesene Konformität vor Inbetriebnahme – teils mit Notifizierung.", status: "Ab Aug 2026", statusColor: "#f5a623", statusBg: "rgba(245,166,35,0.12)", bg: "rgba(245,166,35,0.05)" },
+      { name: "KI-Kompetenznachweis (Art. 4)", desc: "Mitarbeitende müssen nachweislich im Umgang mit KI geschult sein – gilt bereits jetzt.", status: "Jetzt gültig", statusColor: "#ff5c5c", statusBg: "rgba(255,92,92,0.12)", bg: "rgba(255,92,92,0.05)" },
+      { name: "KI-Inventar erstellen", desc: "Erfassung aller KI-Systeme im Einsatz als Grundlage für alle weiteren Schritte.", status: "Sofort", statusColor: "#4ecb71", statusBg: "rgba(78,203,113,0.12)", bg: "rgba(78,203,113,0.05)" }
+    ],
+    timeline: [
+      { date: "Feb 2025", text: "<strong>KI-Kompetenzpflicht (Art. 4) gilt.</strong> Schulungskonzept dokumentieren.", color: "#ff5c5c" },
+      { date: "Aug 2026", text: "<strong>Hochrisiko-Pflichten greifen vollständig.</strong> Risikomanagement, Dokumentation, Konformität.", color: "#f5a623" },
+      { date: "Ggf. Dez 2027", text: "Mögliche Verlängerung nach EU-Omnibus-Vorschlag – noch nicht beschlossen.", color: "#616884" }
+    ],
+    steps: [
+      "<strong>Jetzt:</strong> KI-Inventar erstellen – alle eingesetzten Systeme erfassen.",
+      "<strong>Q2 2025:</strong> Risikoeinstufung je System (Hochrisiko bestätigt?).",
+      "<strong>Q3–Q4 2025:</strong> Risikomanagement-Framework und Governance-Struktur aufbauen.",
+      "<strong>2026:</strong> Technische Dokumentation und Konformitätsbewertung abschließen.",
+      "<strong>Parallel:</strong> KI-Kompetenznachweis für Mitarbeitende einführen."
+    ]
+  },
+  BEGRENZT: {
+    key: "BEGRENZT",
+    label: "Begrenztes Risiko",
+    color: "#5dd8e8",
+    bg: "rgba(93,216,232,0.1)",
+    icon: "ℹ️",
+    iconBg: "rgba(93,216,232,0.15)",
+    title: "Begrenzte Risikostufe – Transparenzpflichten.",
+    intro: "Ihre KI-Systeme fallen voraussichtlich in die Kategorie 'Begrenztes Risiko'. Keine Hochrisiko-Pflichten, aber konkrete Transparenzanforderungen – insbesondere wenn Nutzer mit KI interagieren, ohne es zu wissen.",
+    obligations: [
+      { name: "Transparenzpflicht (Art. 50)", desc: "Nutzer müssen informiert werden, wenn sie mit einem KI-System interagieren (z. B. Chatbot).", status: "Ab Aug 2026", statusColor: "#5dd8e8", statusBg: "rgba(93,216,232,0.12)", bg: "rgba(93,216,232,0.05)" },
+      { name: "KI-generierte Inhalte kennzeichnen", desc: "Deepfakes, synthetische Audio-/Videoinhalte müssen als KI-generiert markiert sein.", status: "Ab Aug 2026", statusColor: "#5dd8e8", statusBg: "rgba(93,216,232,0.12)", bg: "rgba(93,216,232,0.05)" },
+      { name: "KI-Kompetenznachweis (Art. 4)", desc: "Mitarbeitende müssen nachweislich im Umgang mit KI geschult sein.", status: "Jetzt gültig", statusColor: "#ff5c5c", statusBg: "rgba(255,92,92,0.12)", bg: "rgba(255,92,92,0.05)" },
+      { name: "DSGVO-Konformität prüfen", desc: "Verarbeitung personenbezogener Daten durch KI erfordert geprüfte Rechtsgrundlage.", status: "Jetzt gültig", statusColor: "#ff5c5c", statusBg: "rgba(255,92,92,0.12)", bg: "rgba(255,92,92,0.05)" }
+    ],
+    timeline: [
+      { date: "Feb 2025", text: "<strong>KI-Kompetenzpflicht gilt.</strong> Schulungskonzept dokumentieren.", color: "#ff5c5c" },
+      { date: "Aug 2026", text: "<strong>Transparenzpflichten greifen.</strong> Kennzeichnung und Offenlegungspflichten.", color: "#5dd8e8" }
+    ],
+    steps: [
+      "<strong>Jetzt:</strong> KI-Inventar erstellen – alle Tools und Systeme erfassen.",
+      "<strong>Kurzfristig:</strong> Prüfen, ob KI-Interaktionen gegenüber Nutzern offengelegt sind.",
+      "<strong>2025:</strong> Schulungskonzept für KI-Kompetenzpflicht entwickeln und dokumentieren.",
+      "<strong>2026:</strong> Transparenz-Implementierung abschließen, DSGVO-Dokumentation aktualisieren."
+    ]
+  },
+  MINIMAL: {
+    key: "MINIMAL",
+    label: "Minimales Risiko",
+    color: "#4ecb71",
+    bg: "rgba(78,203,113,0.1)",
+    icon: "✓",
+    iconBg: "rgba(78,203,113,0.15)",
+    title: "Minimales Risiko – entspannte Ausgangslage.",
+    intro: "Ihre KI-Systeme fallen wahrscheinlich in die Kategorie 'Minimales Risiko'. Keine spezifischen gesetzlichen Pflichten – aber eine aktive Prüfung und ein KI-Inventar sind trotzdem empfehlenswert, da sich Ihre KI-Nutzung weiterentwickeln wird.",
+    obligations: [
+      { name: "KI-Inventar empfohlen", desc: "Keine Pflicht, aber gute Praxis: Alle eingesetzten KI-Tools dokumentieren, um bei Veränderungen schnell reagieren zu können.", status: "Empfehlung", statusColor: "#4ecb71", statusBg: "rgba(78,203,113,0.12)", bg: "rgba(78,203,113,0.05)" },
+      { name: "KI-Kompetenznachweis (Art. 4)", desc: "Mitarbeitende, die KI nutzen, müssen nachweislich ausreichend informiert sein – gilt auch bei minimalem Risiko.", status: "Jetzt gültig", statusColor: "#ff5c5c", statusBg: "rgba(255,92,92,0.12)", bg: "rgba(255,92,92,0.05)" },
+      { name: "Freiwillige Verhaltenskodizes", desc: "Anbieter können freiwillige Codes of Conduct für minimalrisiko KI entwickeln.", status: "Optional", statusColor: "#8b93b3", statusBg: "rgba(139,147,179,0.1)", bg: "rgba(139,147,179,0.05)" }
+    ],
+    timeline: [
+      { date: "Feb 2025", text: "<strong>KI-Kompetenzpflicht gilt</strong> – auch bei minimalem Risiko.", color: "#ff5c5c" },
+      { date: "Laufend", text: "Beobachten: Entwickelt sich Ihr KI-Einsatz in Richtung höherer Risikostufen?", color: "#4ecb71" }
+    ],
+    steps: [
+      "<strong>Jetzt:</strong> KI-Inventar anlegen – welche Tools nutzt Ihr Team?",
+      "<strong>Kurzfristig:</strong> Schulungskonzept für KI-Kompetenzpflicht erstellen.",
+      "<strong>Laufend:</strong> Neue KI-Anwendungsfälle vor Einführung kurz prüfen.",
+      "<strong>Optional:</strong> Freiwilligen Code of Conduct für KI-Nutzung etablieren."
+    ]
+  }
+};
+
+let current = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+
+function startChecker() {
+  document.getElementById('intro-screen').style.display = 'none';
+  document.getElementById('quiz-screen').style.display = 'block';
+  renderQ();
+}
+
+function renderQ() {
+  const q = QUESTIONS[current];
+  document.getElementById('prog-count').textContent = `Frage ${current + 1} von ${QUESTIONS.length}`;
+  document.getElementById('prog-fill').style.width = `${((current + 1) / QUESTIONS.length) * 100}%`;
+  document.getElementById('step-info').textContent = q.section;
+  document.getElementById('btn-back').style.display = current > 0 ? 'block' : 'none';
+
+  const area = document.getElementById('question-area');
+  area.innerHTML = '';
+
+  const isLast = current === QUESTIONS.length - 1;
+  const card = document.createElement('div');
+  card.className = 'question-card';
+  card.innerHTML = `
+    <div class="question-text">${q.text}</div>
+    ${q.hint ? `<div class="question-hint">${q.hint}</div>` : ''}
+    <div class="options">
+      ${q.options.map((o, i) => `
+        <button class="option ${answers[current] === i ? 'selected' : ''}" onclick="selectOption(${i})">
+          <div class="option-dot"></div>
+          <div>
+            <div class="option-label">${o.label}</div>
+            <div class="option-desc">${o.desc}</div>
+          </div>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  area.appendChild(card);
+
+  const btn = document.getElementById('btn-next');
+  btn.disabled = answers[current] === null;
+  btn.innerHTML = isLast
+    ? 'Auswertung anzeigen <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>'
+    : 'Weiter <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+}
+
+function selectOption(i) {
+  answers[current] = i;
+  document.querySelectorAll('.option').forEach((el, idx) => {
+    el.classList.toggle('selected', idx === i);
+  });
+  document.getElementById('btn-next').disabled = false;
+}
+
+function nextQ() {
+  if (answers[current] === null) return;
+  if (current < QUESTIONS.length - 1) { current++; renderQ(); }
+  else showResult();
+}
+
+function prevQ() {
+  if (current > 0) { current--; renderQ(); }
+}
+
+function computeRisk() {
+  const weights = answers.map((ans, i) =>
+    ans !== null ? QUESTIONS[i].options[ans].riskWeight : 0
+  );
+  const max = Math.max(...weights);
+  if (max >= 4) return RISK_LEVELS.VERBOTEN;
+  if (max === 3) return RISK_LEVELS.HOCH;
+  if (max === 2) return RISK_LEVELS.BEGRENZT;
+  return RISK_LEVELS.MINIMAL;
+}
+
+function showResult() {
+  document.getElementById('quiz-screen').style.display = 'none';
+  const rs = document.getElementById('result-screen');
+  rs.style.display = 'block';
+
+  const level = computeRisk();
+
+  // Icon
+  const iconEl = document.getElementById('risk-icon');
+  iconEl.textContent = level.icon;
+  iconEl.style.background = level.iconBg;
+  iconEl.style.fontSize = level.key === 'MINIMAL' ? '2.4rem' : '1.8rem';
+
+  // Label
+  const labelEl = document.getElementById('risk-label');
+  labelEl.textContent = level.label;
+  labelEl.style.background = level.bg;
+  labelEl.style.color = level.color;
+  labelEl.style.border = `1px solid ${level.color}44`;
+
+  document.getElementById('risk-title').textContent = level.title;
+  document.getElementById('risk-intro').textContent = level.intro;
+
+  // Obligations
+  document.getElementById('obligation-list').innerHTML = level.obligations.map(o => `
+    <div class="obligation-item" style="background:${o.bg}; border-radius:8px;">
+      <span class="obl-status" style="color:${o.statusColor}; background:${o.statusBg}">${o.status}</span>
+      <div class="obl-body">
+        <div class="obl-name">${o.name}</div>
+        <div class="obl-desc">${o.desc}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Timeline
+  document.getElementById('timeline-items').innerHTML = level.timeline.map(t => `
+    <div class="timeline-item">
+      <div class="timeline-dot-col">
+        <div class="timeline-dot" style="background:${t.color}"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div>
+        <div class="timeline-date">${t.date}</div>
+        <div class="timeline-text">${t.text}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Steps
+  document.getElementById('step-list').innerHTML = level.steps.map((s, i) => `
+    <div class="step-item">
+      <div class="step-num">${i + 1}</div>
+      <div class="step-text">${s}</div>
+    </div>
+  `).join('');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restart() {
+  current = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('quiz-screen').style.display = 'block';
+  renderQ();
+}
+</script>
+</body>
+</html>

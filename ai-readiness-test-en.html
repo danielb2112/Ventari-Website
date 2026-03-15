@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Readiness Test – Ventari</title>
+  <meta name="description" content="Where does your company stand on AI? Free 5-minute test – with a concrete score and actionable recommendations."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#07080f;--bg2:#0c0e18;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--red:#ff5c5c;--white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--blue-dim);border-radius:2px}
+    .bg-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(74,140,255,0.07) 0%,transparent 70%);pointer-events:none;z-index:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(7,8,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--white);text-decoration:none}.logo span{color:var(--blue)}
+    .nav-back{font-size:0.76rem;color:var(--muted2);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}.nav-back:hover{color:var(--white)}
+    main{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:9rem 2rem 5rem}
+    .tool-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:1.2rem}
+    .tool-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--blue)}
+    .tool-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,2.8rem);font-weight:400;line-height:1.15;color:var(--white);margin-bottom:1rem}
+    .tool-subtitle{font-size:1rem;color:var(--muted2);max-width:560px;line-height:1.7;margin-bottom:3rem}
+    .progress-wrap{margin-bottom:2.5rem}
+    .progress-meta{display:flex;justify-content:space-between;margin-bottom:0.6rem}
+    .progress-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+    .progress-count{font-size:0.72rem;color:var(--muted);font-weight:500}
+    .progress-track{height:3px;background:var(--surface2);border-radius:2px;overflow:hidden}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--blue-dim),var(--blue));border-radius:2px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1)}
+    .category-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--blueglow);border:1px solid var(--border);border-radius:20px;padding:0.3rem 0.9rem;font-size:0.72rem;font-weight:600;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.4rem}
+    .question-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem 2rem 1.6rem;margin-bottom:1.2rem;opacity:0;transform:translateY(16px);animation:slideIn 0.4s cubic-bezier(0.4,0,0.2,1) forwards}
+    @keyframes slideIn{to{opacity:1;transform:translateY(0)}}
+    .question-text{font-size:1.05rem;font-weight:500;color:var(--white);line-height:1.55;margin-bottom:1.4rem}
+    .options{display:flex;flex-direction:column;gap:0.6rem}
+    .option{display:flex;align-items:flex-start;gap:0.9rem;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:0.85rem 1rem;cursor:pointer;transition:all 0.2s;text-align:left}
+    .option:hover{border-color:var(--blue);background:var(--blueglow)}
+    .option.selected{border-color:var(--blue);background:rgba(74,140,255,0.1)}
+    .option-dot{width:18px;height:18px;min-width:18px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all 0.2s}
+    .option.selected .option-dot{border-color:var(--blue);background:var(--blue)}
+    .option.selected .option-dot::after{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--bg)}
+    .option-text{font-size:0.9rem;color:var(--muted2);line-height:1.5;transition:color 0.2s}
+    .option.selected .option-text,.option:hover .option-text{color:var(--white)}
+    .btn-row{display:flex;gap:1rem;margin-top:1.8rem;align-items:center}
+    .btn-primary{background:var(--blue);color:var(--bg);border:none;border-radius:6px;padding:0.75rem 1.8rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+    .btn-primary:hover{opacity:0.85;transform:translateY(-1px)}
+    .btn-primary:disabled{opacity:0.3;cursor:not-allowed;transform:none}
+    .btn-secondary{background:transparent;color:var(--muted2);border:1px solid var(--border2);border-radius:6px;padding:0.75rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;cursor:pointer;transition:all 0.2s}
+    .btn-secondary:hover{color:var(--white);border-color:var(--muted)}
+    #result-screen{display:none;opacity:0;animation:fadeIn 0.6s ease forwards}
+    @keyframes fadeIn{to{opacity:1}}
+    .score-ring-wrap{display:flex;justify-content:center;margin-bottom:2.5rem}
+    .score-ring-svg{width:160px;height:160px}
+    .score-ring-track{fill:none;stroke:var(--surface2);stroke-width:10}
+    .score-ring-fill{fill:none;stroke-width:10;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1)}
+    .score-ring-label{font-family:'DM Serif Display',serif;font-size:2.2rem;fill:var(--white);dominant-baseline:middle;text-anchor:middle}
+    .score-ring-sub{font-size:0.7rem;fill:var(--muted);letter-spacing:0.1em;dominant-baseline:middle;text-anchor:middle;font-family:'DM Sans',sans-serif;font-weight:600;text-transform:uppercase}
+    .result-level{text-align:center;margin-bottom:2rem}
+    .level-badge{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0.35rem 1rem;border-radius:20px;margin-bottom:0.9rem}
+    .result-headline{font-family:'DM Serif Display',serif;font-size:1.9rem;font-weight:400;color:var(--white);margin-bottom:0.6rem}
+    .result-intro{font-size:0.95rem;color:var(--muted2);max-width:540px;margin:0 auto;line-height:1.7}
+    .dimensions{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.8rem;margin:2rem 0}
+    .dimensions-title{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem}
+    .dim-row{margin-bottom:1.1rem}.dim-row:last-child{margin-bottom:0}
+    .dim-meta{display:flex;justify-content:space-between;margin-bottom:0.35rem}
+    .dim-name{font-size:0.85rem;color:var(--muted2);font-weight:500}
+    .dim-score{font-size:0.82rem;color:var(--white);font-weight:600}
+    .dim-track{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+    .dim-fill{height:100%;border-radius:2px;width:0;transition:width 1s cubic-bezier(0.4,0,0.2,1)}
+    .insights{display:grid;gap:0.8rem;margin:2rem 0}
+    .insight-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;display:flex;gap:1rem;align-items:flex-start}
+    .insight-icon{width:32px;height:32px;min-width:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem}
+    .insight-title{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:0.2rem}
+    .insight-text{font-size:0.82rem;color:var(--muted2);line-height:1.5}
+    .cta-box{background:linear-gradient(135deg,rgba(74,140,255,0.12),rgba(93,216,232,0.06));border:1px solid rgba(74,140,255,0.3);border-radius:12px;padding:2rem;text-align:center;margin-top:2rem}
+    .cta-title{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:0.5rem}
+    .cta-text{font-size:0.88rem;color:var(--muted2);margin-bottom:1.4rem;line-height:1.6}
+    .cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:var(--bg);text-decoration:none;border-radius:6px;padding:0.8rem 2rem;font-weight:600;font-size:0.9rem;transition:all 0.2s}
+    .cta-btn:hover{opacity:0.85;transform:translateY(-2px)}
+    .cta-note{font-size:0.75rem;color:var(--muted);margin-top:0.8rem}
+    .restart-row{text-align:center;margin-top:1.5rem}
+    .restart-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color 0.2s}
+    .restart-btn:hover{color:var(--white)}
+    @media(max-width:600px){nav{padding:1rem 1.4rem}main{padding:7rem 1.2rem 4rem}.btn-row{flex-direction:column}.btn-primary,.btn-secondary{width:100%;justify-content:center}}
+  </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<nav>
+  <a href="https://ventari.eu" class="logo">Ventar<span>i</span></a>
+  <a href="https://ventari.eu/tools/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>
+    ← All Tools
+  </a>
+</nav>
+<main>
+  <div id="intro-screen">
+    <div class="tool-eyebrow">Free Tool</div>
+    <h1 class="tool-title">AI Readiness<br>Test</h1>
+    <p class="tool-subtitle">10 questions. 5 dimensions. One concrete score – where your company stands on AI and what makes sense as a next step.</p>
+    <button class="btn-primary" onclick="startTest()">Start test <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+  </div>
+
+  <div id="quiz-screen" style="display:none">
+    <div class="progress-wrap">
+      <div class="progress-meta"><span class="progress-label">Progress</span><span class="progress-count" id="prog-count">1 / 10</span></div>
+      <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:10%"></div></div>
+    </div>
+    <div id="category-badge" class="category-badge"></div>
+    <div id="question-area"></div>
+    <div class="btn-row">
+      <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+      <button class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Back</button>
+    </div>
+  </div>
+
+  <div id="result-screen">
+    <div class="score-ring-wrap">
+      <svg class="score-ring-svg" viewBox="0 0 160 160">
+        <circle class="score-ring-track" cx="80" cy="80" r="65"/>
+        <circle class="score-ring-fill" cx="80" cy="80" r="65" id="ring-fill" stroke-dasharray="408.41" stroke-dashoffset="408.41"/>
+        <text class="score-ring-label" x="80" y="74" id="ring-score">0</text>
+        <text class="score-ring-sub" x="80" y="96">of 30</text>
+      </svg>
+    </div>
+    <div class="result-level">
+      <div class="level-badge" id="level-badge"></div>
+      <div class="result-headline" id="result-headline"></div>
+      <p class="result-intro" id="result-intro"></p>
+    </div>
+    <div class="dimensions">
+      <div class="dimensions-title">Score by dimension</div>
+      <div id="dim-bars"></div>
+    </div>
+    <div class="insights" id="insights-area"></div>
+    <!-- Live-chat trigger: only shown for low scores -->
+    <div id="chat-trigger" style="display:none;margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(74,140,255,0.12),rgba(74,140,255,0.04));border:1px solid rgba(74,140,255,0.35);border-radius:14px;padding:1.6rem 2rem;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4a8cff,#5dd8e8);"></div>
+      <div style="display:flex;align-items:flex-start;gap:1.2rem;flex-wrap:wrap;">
+        <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">💬</div>
+        <div style="flex:1;min-width:200px;">
+          <div id="trigger-headline" style="font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;"></div>
+          <p id="trigger-text" style="font-size:0.85rem;color:var(--muted2);line-height:1.6;margin:0 0 1.1rem;"></p>
+          <a href="https://ventari.eu/#contact" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:var(--bg);text-decoration:none;border-radius:6px;padding:0.6rem 1.4rem;font-size:0.85rem;font-weight:600;transition:opacity 0.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+            Book 30 minutes now →
+          </a>
+        </div>
+        <button onclick="document.getElementById('chat-trigger').style.display='none'" style="background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:0;line-height:1;flex-shrink:0;" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div class="cta-box">
+      <div class="cta-title">Ready for the next step?</div>
+      <p class="cta-text">In a 45-minute session we show you which AI measures make concrete sense for your business – no buzzwords, no sales pitch.</p>
+      <a href="https://ventari.eu/#contact" class="cta-btn">Book a free consultation <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <div class="cta-note">Free · No sales pitch · 45 minutes</div>
+    </div>
+    <div class="restart-row"><button class="restart-btn" onclick="restart()">Restart test</button></div>
+  </div>
+</main>
+<script>
+const QUESTIONS = [
+  {category:"Strategy & Leadership",categoryIcon:"◈",dimension:0,text:"How embedded is AI in your company's strategy?",options:[
+    {text:"AI is not on our agenda – no plans.",score:0},
+    {text:"Initial thinking exists, but no concrete strategy.",score:1},
+    {text:"AI is mentioned in our strategy but not yet operationalised.",score:2},
+    {text:"AI has a defined place in our strategy with clear goals and budget.",score:3}
+  ]},
+  {category:"Strategy & Leadership",categoryIcon:"◈",dimension:0,text:"Who is responsible for AI initiatives in your organisation?",options:[
+    {text:"Nobody explicitly – the topic falls between departments.",score:0},
+    {text:"Individual employees drive it informally.",score:1},
+    {text:"One responsible person, but without a dedicated mandate.",score:2},
+    {text:"Clear ownership with mandate and resources (e.g. CDO, AI Lead).",score:3}
+  ]},
+  {category:"Data & Infrastructure",categoryIcon:"▣",dimension:1,text:"How would you describe the quality and accessibility of your company data?",options:[
+    {text:"Data sits in silos, barely structured and hard to access.",score:0},
+    {text:"Some data is structured, but integration and quality are problematic.",score:1},
+    {text:"Key data areas are centralised and well maintained.",score:2},
+    {text:"We have a unified data foundation with clear governance and high quality.",score:3}
+  ]},
+  {category:"Data & Infrastructure",categoryIcon:"▣",dimension:1,text:"What digital infrastructure do you use for your core processes?",options:[
+    {text:"Mostly on-premise systems, lots of manual work, little automation.",score:0},
+    {text:"Mix of legacy and modern systems – integration issues are common.",score:1},
+    {text:"Modern systems in most areas, but not fully connected yet.",score:2},
+    {text:"Cloud-based, integrated infrastructure with APIs and automations.",score:3}
+  ]},
+  {category:"Processes & Automation",categoryIcon:"◎",dimension:2,text:"How digitalised and automated are your business processes?",options:[
+    {text:"Most processes run manually or on paper.",score:0},
+    {text:"Core processes are digital but barely automated.",score:1},
+    {text:"We automate selectively – some areas are well set up.",score:2},
+    {text:"Processes are consistently digitalised and largely automated.",score:3}
+  ]},
+  {category:"Processes & Automation",categoryIcon:"◎",dimension:2,text:"Are AI-powered tools already used in day-to-day work?",options:[
+    {text:"No, AI tools are not used.",score:0},
+    {text:"Individual employees use AI tools privately or informally.",score:1},
+    {text:"Some teams use AI tools officially – without a structured framework.",score:2},
+    {text:"AI tools are embedded in defined processes with clear guidelines.",score:3}
+  ]},
+  {category:"Team & Skills",categoryIcon:"◇",dimension:3,text:"How would you rate your employees' AI literacy?",options:[
+    {text:"AI is a foreign concept for most – no basic understanding.",score:0},
+    {text:"Individual employees have taught themselves the basics.",score:1},
+    {text:"AI knowledge exists in relevant teams, but no systematic upskilling.",score:2},
+    {text:"AI competencies are actively built – with training and clear goals.",score:3}
+  ]},
+  {category:"Team & Skills",categoryIcon:"◇",dimension:3,text:"Does your company have technical expertise for AI implementation?",options:[
+    {text:"No – AI technical skills are not available internally.",score:0},
+    {text:"We have IT competence, but no AI-specific skills.",score:1},
+    {text:"Individual people have technical AI knowledge.",score:2},
+    {text:"We have a team or individual with concrete AI/ML experience.",score:3}
+  ]},
+  {category:"Culture & Change",categoryIcon:"△",dimension:4,text:"How open is your organisation to change and new technologies?",options:[
+    {text:"Change usually meets resistance – the status quo is preferred.",score:0},
+    {text:"Openness exists, but change happens slowly.",score:1},
+    {text:"The organisation is mostly change-ready, with occasional hurdles.",score:2},
+    {text:"Change-readiness is part of our culture – innovation is actively encouraged.",score:3}
+  ]},
+  {category:"Culture & Change",categoryIcon:"△",dimension:4,text:"How does your company handle failed experiments or pilot projects?",options:[
+    {text:"Failure is avoided – experiments rarely happen.",score:0},
+    {text:"Experiments are tolerated, but learning from failure is not systematic.",score:1},
+    {text:"There is room for pilots – insights are shared internally.",score:2},
+    {text:"Mistakes are learning opportunities – iterative work is established.",score:3}
+  ]}
+];
+const DIMENSIONS=[
+  {name:"Strategy & Leadership",color:"#4a8cff",max:6},
+  {name:"Data & Infrastructure",color:"#5dd8e8",max:6},
+  {name:"Processes & Automation",color:"#a78bfa",max:6},
+  {name:"Team & Skills",color:"#4ecb71",max:6},
+  {name:"Culture & Change",color:"#f5a623",max:6}
+];
+const LEVELS=[
+  {min:0,max:9,label:"AI Beginner",color:"#f5a623",bg:"rgba(245,166,35,0.12)",headline:"A solid foundation to start from.",intro:"Your company is at the beginning of its AI journey. That's not a setback – it's the most honest starting point for a structured approach. Companies that use AI sustainably start exactly here: with clarity about the current state.",
+    insights:[
+      {icon:"🎯",title:"Priority 1: Define one use case",text:"Find the single process that costs your team the most time. That's where AI starts – not with strategy.",color:"rgba(245,166,35,0.1)"},
+      {icon:"📊",title:"Priority 2: Build a data foundation",text:"AI is only as good as the data underneath it. A simple data inventory is the first concrete step.",color:"rgba(74,140,255,0.1)"},
+      {icon:"👥",title:"Priority 3: Create awareness",text:"No upskilling needed yet – but a shared basic understanding in the leadership team about what AI can and can't do.",color:"rgba(78,203,113,0.1)"}
+    ]},
+  {min:10,max:18,label:"AI Developer",color:"#5dd8e8",bg:"rgba(93,216,232,0.1)",headline:"On the right track – with clear gaps.",intro:"You've laid the first building blocks. Some areas are well positioned, others are still missing. The risk at this stage: AI initiatives remain isolated solutions instead of scaling systematically. That's exactly what can be addressed now.",
+    insights:[
+      {icon:"🔗",title:"Break down silos",text:"Connect existing initiatives. AI creates impact when use cases are thought across departments.",color:"rgba(93,216,232,0.1)"},
+      {icon:"📋",title:"Introduce governance",text:"Without guidelines for AI usage, risks emerge. A simple AI policy for employees creates clarity.",color:"rgba(74,140,255,0.1)"},
+      {icon:"📈",title:"Make ROI measurable",text:"Define clear KPIs for current AI tools. What can't be measured can't be scaled.",color:"rgba(78,203,113,0.1)"}
+    ]},
+  {min:19,max:25,label:"AI Advanced",color:"#4ecb71",bg:"rgba(78,203,113,0.1)",headline:"Strong position – time to scale.",intro:"You have a solid foundation in most dimensions. AI is no longer a foreign concept in your organisation. Now it's about turning point successes into scalable systems – and closing gaps before competitors exploit them.",
+    insights:[
+      {icon:"⚡",title:"Prioritise scaling",text:"Roll out successful pilots broadly. Which use case has proven it works? Scale that, don't search for a new one.",color:"rgba(78,203,113,0.1)"},
+      {icon:"🏗️",title:"Define AI architecture",text:"With more AI usage, technical dependencies grow. A clear architecture decision (build vs. buy, cloud strategy) protects against vendor lock-in.",color:"rgba(93,216,232,0.1)"},
+      {icon:"🔒",title:"Secure compliance",text:"At this maturity level, EU AI Act compliance becomes relevant. Invest now in an AI inventory and risk classification.",color:"rgba(245,166,35,0.1)"}
+    ]},
+  {min:26,max:30,label:"AI Pioneer",color:"#4a8cff",bg:"rgba(74,140,255,0.12)",headline:"Protect and maintain your lead.",intro:"You are among the best-positioned mid-market companies. AI is no longer an experiment in your organisation. The challenge at this level is different: how do you protect your lead as competitors catch up?",
+    insights:[
+      {icon:"🌐",title:"Build an AI ecosystem",text:"Leading companies invest in external AI partnerships and communities. Knowledge transfer outward strengthens your own position.",color:"rgba(74,140,255,0.1)"},
+      {icon:"🤖",title:"Evaluate Agentic AI",text:"The next step beyond automation is autonomous AI agents. Evaluate which processes are suitable for this.",color:"rgba(93,216,232,0.1)"},
+      {icon:"📜",title:"Compliance as competitive advantage",text:"Certifiable AI compliance (EU AI Act, ISO 42001) is becoming a differentiator in B2B markets. Invest now.",color:"rgba(78,203,113,0.1)"}
+    ]}
+];
+let current=0,answers=new Array(QUESTIONS.length).fill(null);
+function startTest(){document.getElementById('intro-screen').style.display='none';document.getElementById('quiz-screen').style.display='block';renderQ()}
+function renderQ(){
+  const q=QUESTIONS[current];
+  document.getElementById('prog-count').textContent=`${current+1} / ${QUESTIONS.length}`;
+  document.getElementById('prog-fill').style.width=`${((current+1)/QUESTIONS.length)*100}%`;
+  document.getElementById('category-badge').textContent=`${q.categoryIcon}  ${q.category}`;
+  document.getElementById('btn-back').style.display=current>0?'block':'none';
+  const isLast=current===QUESTIONS.length-1;
+  document.getElementById('btn-next').disabled=answers[current]===null;
+  document.getElementById('btn-next').innerHTML=isLast?'Show results <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>':'Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+  const area=document.getElementById('question-area');
+  area.innerHTML='';
+  const card=document.createElement('div');
+  card.className='question-card';
+  card.innerHTML=`<div class="question-text">${q.text}</div><div class="options">${q.options.map((o,i)=>`<button class="option ${answers[current]===i?'selected':''}" onclick="selectOption(${i})"><div class="option-dot"></div><div class="option-text">${o.text}</div></button>`).join('')}</div>`;
+  area.appendChild(card);
+}
+function selectOption(i){answers[current]=i;document.querySelectorAll('.option').forEach((el,idx)=>el.classList.toggle('selected',idx===i));document.getElementById('btn-next').disabled=false}
+function nextQ(){if(answers[current]===null)return;if(current<QUESTIONS.length-1){current++;renderQ();}else showResult()}
+function prevQ(){if(current>0){current--;renderQ()}}
+function showResult(){
+  document.getElementById('quiz-screen').style.display='none';
+  const rs=document.getElementById('result-screen');rs.style.display='block';
+  const totalScore=answers.reduce((sum,ans,i)=>sum+(ans!==null?QUESTIONS[i].options[ans].score:0),0);
+  const dimScores=[0,0,0,0,0];
+  QUESTIONS.forEach((q,i)=>{if(answers[i]!==null)dimScores[q.dimension]+=q.options[answers[i]].score});
+  const level=LEVELS.find(l=>totalScore>=l.min&&totalScore<=l.max);
+  const fill=document.getElementById('ring-fill');
+  fill.style.stroke=level.color;
+  setTimeout(()=>{fill.style.strokeDashoffset=408.41*(1-totalScore/30)},100);
+  let d=0;const step=()=>{if(d<totalScore){d++;document.getElementById('ring-score').textContent=d;setTimeout(step,60)}};setTimeout(step,200);
+  const badge=document.getElementById('level-badge');badge.textContent=level.label;badge.style.background=level.bg;badge.style.color=level.color;badge.style.border=`1px solid ${level.color}44`;
+  document.getElementById('result-headline').textContent=level.headline;
+  document.getElementById('result-intro').textContent=level.intro;
+  document.getElementById('dim-bars').innerHTML=DIMENSIONS.map((d,i)=>`<div class="dim-row"><div class="dim-meta"><span class="dim-name">${d.name}</span><span class="dim-score">${dimScores[i]} / ${d.max}</span></div><div class="dim-track"><div class="dim-fill" id="dim-fill-${i}" style="background:${d.color}"></div></div></div>`).join('');
+  setTimeout(()=>DIMENSIONS.forEach((d,i)=>{const el=document.getElementById(`dim-fill-${i}`);if(el)el.style.width=`${(dimScores[i]/d.max)*100}%`}),200);
+  document.getElementById('insights-area').innerHTML=level.insights.map(ins=>`<div class="insight-card"><div class="insight-icon" style="background:${ins.color}">${ins.icon}</div><div><div class="insight-title">${ins.title}</div><div class="insight-text">${ins.text}</div></div></div>`).join('');
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  // Live-chat trigger for low scores
+  const levelIndex = LEVELS.indexOf(level);
+  const trigger = document.getElementById('chat-trigger');
+  trigger.style.display = 'none';
+  if (levelIndex <= 1) {
+    const messages = [
+      {
+        headline: 'Your AI journey starts here – we guide you from step one.',
+        text: 'Companies at level 1 benefit most from a structured start. In 30 minutes we show you where the biggest lever is – no prior knowledge needed.'
+      },
+      {
+        headline: 'First steps taken – now let\'s accelerate.',
+        text: 'You\'ve already spotted potential. A targeted assessment reveals which quick wins you can realistically achieve in the next 60 days.'
+      }
+    ];
+    const msg = messages[levelIndex];
+    document.getElementById('trigger-headline').textContent = msg.headline;
+    document.getElementById('trigger-text').textContent = msg.text;
+    setTimeout(() => {
+      trigger.style.display = 'block';
+      trigger.style.opacity = '0';
+      trigger.style.transform = 'translateY(8px)';
+      trigger.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      requestAnimationFrame(() => {
+        trigger.style.opacity = '1';
+        trigger.style.transform = 'translateY(0)';
+      });
+    }, 1500);
+  }
+
+}
+function restart(){current=0;answers=new Array(QUESTIONS.length).fill(null);document.getElementById('result-screen').style.display='none';document.getElementById('quiz-screen').style.display='block';renderQ()}
+</script>
+</body>
+</html>

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <script>try{if(localStorage.getItem("ventari_lang")==="en"){var el=document.querySelector('link[hreflang="en"]');if(el)window.location.replace(el.href);}}catch(e){}</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KI-Readiness-Test – Ventari</title>
+  <meta name="description" content="Wo steht Ihr Unternehmen bei KI? Kostenloser Test in 5 Minuten – mit konkretem Score und Handlungsempfehlungen."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg:       #07080f;
+      --bg2:      #0c0e18;
+      --bg3:      #111320;
+      --surface:  #161828;
+      --surface2: #1c1f35;
+      --blue:     #4a8cff;
+      --blue-dim: #2d5cb8;
+      --blueglow: rgba(74,140,255,0.12);
+      --cyan:     #5dd8e8;
+      --green:    #4ecb71;
+      --amber:    #f5a623;
+      --red:      #ff5c5c;
+      --white:    #f4f6fb;
+      --muted:    #616884;
+      --muted2:   #8b93b3;
+      --border:   rgba(74,140,255,0.14);
+      --border2:  rgba(255,255,255,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 2px; }
+
+    /* BG GLOW */
+    .bg-glow {
+      position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(74,140,255,0.07) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(7,8,15,0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem; color: var(--white); text-decoration: none;
+    }
+    .logo span { color: var(--blue); }
+    .nav-back {
+      font-size: 0.76rem; color: var(--muted2); text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--white); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* MAIN */
+    main {
+      position: relative; z-index: 2;
+      max-width: 780px; margin: 0 auto;
+      padding: 9rem 2rem 5rem;
+    }
+
+    /* HEADER */
+    .tool-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 1.2rem;
+    }
+    .tool-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 1px;
+      background: var(--blue);
+    }
+    .tool-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 400; line-height: 1.15;
+      color: var(--white); margin-bottom: 1rem;
+    }
+    .tool-subtitle {
+      font-size: 1rem; color: var(--muted2);
+      max-width: 560px; line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    /* PROGRESS */
+    .progress-wrap {
+      margin-bottom: 2.5rem;
+    }
+    .progress-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.6rem;
+    }
+    .progress-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .progress-count {
+      font-size: 0.72rem; color: var(--muted); font-weight: 500;
+    }
+    .progress-track {
+      height: 3px; background: var(--surface2); border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; background: linear-gradient(90deg, var(--blue-dim), var(--blue));
+      border-radius: 2px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* CATEGORY BADGE */
+    .category-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--blueglow); border: 1px solid var(--border);
+      border-radius: 20px; padding: 0.3rem 0.9rem;
+      font-size: 0.72rem; font-weight: 600; color: var(--blue);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+
+    /* QUESTION CARD */
+    .question-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2rem 1.6rem;
+      margin-bottom: 1.2rem;
+      opacity: 0; transform: translateY(16px);
+      animation: slideIn 0.4s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+    @keyframes slideIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-text {
+      font-size: 1.05rem; font-weight: 500;
+      color: var(--white); line-height: 1.55;
+      margin-bottom: 1.4rem;
+    }
+
+    /* OPTIONS */
+    .options { display: flex; flex-direction: column; gap: 0.6rem; }
+    .option {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+      background: var(--bg3); border: 1px solid var(--border2);
+      border-radius: 8px; padding: 0.85rem 1rem;
+      cursor: pointer; transition: all 0.2s ease;
+      text-align: left;
+    }
+    .option:hover {
+      border-color: var(--blue); background: var(--blueglow);
+    }
+    .option.selected {
+      border-color: var(--blue);
+      background: rgba(74,140,255,0.1);
+    }
+    .option-dot {
+      width: 18px; height: 18px; min-width: 18px;
+      border-radius: 50%; border: 2px solid var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; transition: all 0.2s;
+    }
+    .option.selected .option-dot {
+      border-color: var(--blue);
+      background: var(--blue);
+    }
+    .option.selected .option-dot::after {
+      content: ''; display: block;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--bg);
+    }
+    .option-text {
+      font-size: 0.9rem; color: var(--muted2);
+      line-height: 1.5; transition: color 0.2s;
+    }
+    .option.selected .option-text { color: var(--white); }
+    .option:hover .option-text { color: var(--white); }
+
+    /* BUTTONS */
+    .btn-row {
+      display: flex; gap: 1rem; margin-top: 1.8rem; align-items: center;
+    }
+    .btn-primary {
+      background: var(--blue); color: var(--bg);
+      border: none; border-radius: 6px;
+      padding: 0.75rem 1.8rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-primary:disabled {
+      opacity: 0.3; cursor: not-allowed; transform: none;
+    }
+    .btn-secondary {
+      background: transparent; color: var(--muted2);
+      border: 1px solid var(--border2); border-radius: 6px;
+      padding: 0.75rem 1.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 500; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { color: var(--white); border-color: var(--muted); }
+
+    /* RESULT */
+    #result-screen {
+      display: none;
+      opacity: 0; animation: fadeIn 0.6s ease forwards;
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    .score-ring-wrap {
+      display: flex; justify-content: center; margin-bottom: 2.5rem;
+    }
+    .score-ring-svg { width: 160px; height: 160px; }
+    .score-ring-track {
+      fill: none; stroke: var(--surface2); stroke-width: 10;
+    }
+    .score-ring-fill {
+      fill: none; stroke-width: 10;
+      stroke-linecap: round;
+      transform: rotate(-90deg); transform-origin: center;
+      transition: stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .score-ring-label {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem; fill: var(--white);
+      dominant-baseline: middle; text-anchor: middle;
+    }
+    .score-ring-sub {
+      font-size: 0.7rem; fill: var(--muted); letter-spacing: 0.1em;
+      dominant-baseline: middle; text-anchor: middle;
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .result-level {
+      text-align: center; margin-bottom: 2rem;
+    }
+    .level-badge {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; padding: 0.35rem 1rem;
+      border-radius: 20px; margin-bottom: 0.9rem;
+    }
+    .result-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.9rem; font-weight: 400;
+      color: var(--white); margin-bottom: 0.6rem;
+    }
+    .result-intro {
+      font-size: 0.95rem; color: var(--muted2); max-width: 540px;
+      margin: 0 auto; line-height: 1.7;
+    }
+
+    /* DIMENSION BARS */
+    .dimensions {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.8rem;
+      margin: 2rem 0;
+    }
+    .dimensions-title {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+    .dim-row { margin-bottom: 1.1rem; }
+    .dim-row:last-child { margin-bottom: 0; }
+    .dim-meta {
+      display: flex; justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+    .dim-name { font-size: 0.85rem; color: var(--muted2); font-weight: 500; }
+    .dim-score { font-size: 0.82rem; color: var(--white); font-weight: 600; }
+    .dim-track {
+      height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden;
+    }
+    .dim-fill {
+      height: 100%; border-radius: 2px;
+      width: 0; transition: width 1s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* INSIGHTS */
+    .insights {
+      display: grid; gap: 0.8rem; margin: 2rem 0;
+    }
+    .insight-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem 1.4rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .insight-icon {
+      width: 32px; height: 32px; min-width: 32px;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+    }
+    .insight-body {}
+    .insight-title { font-size: 0.88rem; font-weight: 600; color: var(--white); margin-bottom: 0.2rem; }
+    .insight-text { font-size: 0.82rem; color: var(--muted2); line-height: 1.5; }
+
+    /* CTA BOX */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(74,140,255,0.12), rgba(93,216,232,0.06));
+      border: 1px solid rgba(74,140,255,0.3);
+      border-radius: 12px; padding: 2rem;
+      text-align: center; margin-top: 2rem;
+    }
+    .cta-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; margin-bottom: 0.5rem;
+    }
+    .cta-text { font-size: 0.88rem; color: var(--muted2); margin-bottom: 1.4rem; line-height: 1.6; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--blue); color: var(--bg);
+      text-decoration: none; border-radius: 6px;
+      padding: 0.8rem 2rem; font-weight: 600; font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+    .cta-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.8rem; }
+
+    /* RESET */
+    .restart-row {
+      text-align: center; margin-top: 1.5rem;
+    }
+    .restart-btn {
+      background: none; border: none; color: var(--muted);
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+      cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .restart-btn:hover { color: var(--white); }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.4rem; }
+      main { padding: 7rem 1.2rem 4rem; }
+      .option { padding: 0.75rem 0.85rem; }
+      .btn-row { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<nav>
+  <a href="https://ventari.eu" class="logo">Ventar<span>i</span></a>
+  <a href="https://ventari.eu/tools/" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M10 12L6 8l4-4"/>
+    </svg>
+    ← Alle Tools
+  </a>
+</nav>
+
+<main>
+
+  <!-- INTRO -->
+  <div id="intro-screen">
+    <div class="tool-eyebrow">Kostenloses Tool</div>
+    <h1 class="tool-title">KI-Readiness-<br>Test</h1>
+    <p class="tool-subtitle">
+      10 Fragen. 5 Dimensionen. Ein konkreter Score – wo Ihr Unternehmen bei KI steht und was als nächstes sinnvoll ist.
+    </p>
+    <button class="btn-primary" onclick="startTest()">
+      Test starten
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz-screen" style="display:none">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Fortschritt</span>
+        <span class="progress-count" id="prog-count">1 / 10</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="prog-fill" style="width:10%"></div>
+      </div>
+    </div>
+
+    <div id="category-badge" class="category-badge"></div>
+    <div id="question-area"></div>
+
+    <div class="btn-row">
+      <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>
+        Weiter
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 8h10M9 4l4 4-4 4"/>
+        </svg>
+      </button>
+      <button class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Zurück</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result-screen">
+    <div class="score-ring-wrap">
+      <svg class="score-ring-svg" viewBox="0 0 160 160" id="ring-svg">
+        <circle class="score-ring-track" cx="80" cy="80" r="65"/>
+        <circle class="score-ring-fill" cx="80" cy="80" r="65" id="ring-fill"
+          stroke-dasharray="408.41" stroke-dashoffset="408.41"/>
+        <text class="score-ring-label" x="80" y="74" id="ring-score">0</text>
+        <text class="score-ring-sub" x="80" y="96">von 30</text>
+      </svg>
+    </div>
+
+    <div class="result-level">
+      <div class="level-badge" id="level-badge"></div>
+      <div class="result-headline" id="result-headline"></div>
+      <p class="result-intro" id="result-intro"></p>
+    </div>
+
+    <div class="dimensions">
+      <div class="dimensions-title">Auswertung nach Dimension</div>
+      <div id="dim-bars"></div>
+    </div>
+
+    <div class="insights" id="insights-area"></div>
+
+    <!-- Live-Chat-Trigger: only shown for low scores (injected via JS) -->
+    <div id="chat-trigger" style="display:none;margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(74,140,255,0.12),rgba(74,140,255,0.04));border:1px solid rgba(74,140,255,0.35);border-radius:14px;padding:1.6rem 2rem;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4a8cff,#5dd8e8);"></div>
+      <div style="display:flex;align-items:flex-start;gap:1.2rem;flex-wrap:wrap;">
+        <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">💬</div>
+        <div style="flex:1;min-width:200px;">
+          <div id="trigger-headline" style="font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;"></div>
+          <p id="trigger-text" style="font-size:0.85rem;color:var(--muted2);line-height:1.6;margin:0 0 1.1rem;"></p>
+          <a href="https://ventari.eu/#contact" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:var(--bg);text-decoration:none;border-radius:6px;padding:0.6rem 1.4rem;font-size:0.85rem;font-weight:600;transition:opacity 0.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+            Jetzt 30 Minuten buchen →
+          </a>
+        </div>
+        <button onclick="document.getElementById('chat-trigger').style.display='none'" style="background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:0;line-height:1;flex-shrink:0;" aria-label="Schließen">✕</button>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-title">Bereit für den nächsten Schritt?</div>
+      <p class="cta-text">In einem 45-minütigen Gespräch zeigen wir Ihnen, welche KI-Maßnahmen für Ihr Unternehmen konkret sinnvoll sind – ohne Buzzwords, ohne Verkaufsdruck.</p>
+      <a href="https://ventari.eu/#contact" class="cta-btn">
+        Kostenloses Erstgespräch buchen
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 8h10M9 4l4 4-4 4"/>
+        </svg>
+      </a>
+      <div class="cta-note">Kostenlos · Kein Verkaufsgespräch · 45 Minuten</div>
+    </div>
+
+    <div class="restart-row">
+      <button class="restart-btn" onclick="restart()">Test neu starten</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const QUESTIONS = [
+  {
+    category: "Strategie & Führung",
+    categoryIcon: "◈",
+    dimension: 0,
+    text: "Wie verankert ist KI in Ihrer Unternehmensstrategie?",
+    options: [
+      { text: "KI ist kein Thema – wir haben keine Pläne dazu.", score: 0 },
+      { text: "Es gibt erste Überlegungen, aber keine konkrete Strategie.", score: 1 },
+      { text: "KI ist in unserer Strategie erwähnt, aber noch nicht operationalisiert.", score: 2 },
+      { text: "KI hat einen festen Platz in unserer Strategie mit definierten Zielen und Budget.", score: 3 }
+    ]
+  },
+  {
+    category: "Strategie & Führung",
+    categoryIcon: "◈",
+    dimension: 0,
+    text: "Wer trägt die Verantwortung für KI-Initiativen in Ihrem Unternehmen?",
+    options: [
+      { text: "Niemand explizit – das Thema liegt zwischen den Stühlen.", score: 0 },
+      { text: "Einzelne Mitarbeitende treiben es informell voran.", score: 1 },
+      { text: "Es gibt eine verantwortliche Person, aber ohne dediziertes Mandat.", score: 2 },
+      { text: "Es gibt eine klare Verantwortung mit Mandat und Ressourcen (z. B. CDO, KI-Lead).", score: 3 }
+    ]
+  },
+  {
+    category: "Daten & Infrastruktur",
+    categoryIcon: "▣",
+    dimension: 1,
+    text: "Wie würden Sie die Qualität und Zugänglichkeit Ihrer Unternehmensdaten beschreiben?",
+    options: [
+      { text: "Daten liegen verteilt in Silos, kaum strukturiert und schlecht zugänglich.", score: 0 },
+      { text: "Einige Daten sind strukturiert, aber Integration und Qualität sind problematisch.", score: 1 },
+      { text: "Wichtige Datenbereiche sind zentralisiert und gut gepflegt.", score: 2 },
+      { text: "Wir haben eine einheitliche Datenbasis, klare Governance und hohe Qualität.", score: 3 }
+    ]
+  },
+  {
+    category: "Daten & Infrastruktur",
+    categoryIcon: "▣",
+    dimension: 1,
+    text: "Welche digitale Infrastruktur nutzen Sie für Ihre Kernprozesse?",
+    options: [
+      { text: "Überwiegend lokale Systeme, viel manuelle Arbeit, kaum Automatisierung.", score: 0 },
+      { text: "Mix aus alten und modernen Systemen – Integrationsprobleme sind alltäglich.", score: 1 },
+      { text: "Moderne Systeme in den meisten Bereichen, aber noch nicht vollständig vernetzt.", score: 2 },
+      { text: "Cloudbasierte, integrierte Infrastruktur mit API-Anbindungen und Automatisierungen.", score: 3 }
+    ]
+  },
+  {
+    category: "Prozesse & Automatisierung",
+    categoryIcon: "◎",
+    dimension: 2,
+    text: "Wie stark sind Ihre Geschäftsprozesse bereits digitalisiert und automatisiert?",
+    options: [
+      { text: "Die meisten Prozesse laufen manuell oder papierbasiert.", score: 0 },
+      { text: "Kern­prozesse sind digital, aber wenig automatisiert.", score: 1 },
+      { text: "Wir automatisieren selektiv – manche Bereiche sind gut aufgestellt.", score: 2 },
+      { text: "Prozesse sind durchgängig digitalisiert und weitgehend automatisiert.", score: 3 }
+    ]
+  },
+  {
+    category: "Prozesse & Automatisierung",
+    categoryIcon: "◎",
+    dimension: 2,
+    text: "Setzen Sie bereits KI-gestützte Tools im Arbeitsalltag ein?",
+    options: [
+      { text: "Nein, KI-Tools werden nicht eingesetzt.", score: 0 },
+      { text: "Einzelne Mitarbeitende nutzen KI-Tools privat oder informell.", score: 1 },
+      { text: "Einige Teams nutzen KI-Tools offiziell – ohne strukturierten Rahmen.", score: 2 },
+      { text: "KI-Tools sind in definierten Prozessen verankert, mit klaren Richtlinien.", score: 3 }
+    ]
+  },
+  {
+    category: "Team & Kompetenzen",
+    categoryIcon: "◇",
+    dimension: 3,
+    text: "Wie schätzen Sie das KI-Wissen Ihrer Mitarbeitenden ein?",
+    options: [
+      { text: "KI ist für die meisten ein Fremdwort – kein Grundverständnis vorhanden.", score: 0 },
+      { text: "Einzelne Mitarbeitende haben sich autodidaktisch eingearbeitet.", score: 1 },
+      { text: "Es gibt KI-Kenntnisse in relevanten Teams, aber kein systematisches Upskilling.", score: 2 },
+      { text: "KI-Kompetenzen werden aktiv aufgebaut – mit Schulungen und klaren Zielen.", score: 3 }
+    ]
+  },
+  {
+    category: "Team & Kompetenzen",
+    categoryIcon: "◇",
+    dimension: 3,
+    text: "Verfügt Ihr Unternehmen über technische Expertise für KI-Implementierungen?",
+    options: [
+      { text: "Nein – technische KI-Kompetenz ist intern nicht vorhanden.", score: 0 },
+      { text: "Wir haben IT-Kompetenz, aber keine KI-spezifischen Fähigkeiten.", score: 1 },
+      { text: "Einzelne Personen haben technische KI-Kenntnisse.", score: 2 },
+      { text: "Wir haben ein Team oder Einzelperson mit konkreter KI-/ML-Erfahrung.", score: 3 }
+    ]
+  },
+  {
+    category: "Kultur & Veränderung",
+    categoryIcon: "△",
+    dimension: 4,
+    text: "Wie offen ist Ihre Organisation gegenüber Veränderungen und neuen Technologien?",
+    options: [
+      { text: "Veränderungen stoßen meist auf Widerstand – der Status quo wird bevorzugt.", score: 0 },
+      { text: "Offenheit ist vorhanden, aber Veränderungen passieren langsam.", score: 1 },
+      { text: "Die Organisation ist überwiegend veränderungsbereit, mit gelegentlichen Hürden.", score: 2 },
+      { text: "Veränderungsbereitschaft ist Teil unserer Kultur – Innovation wird aktiv gefördert.", score: 3 }
+    ]
+  },
+  {
+    category: "Kultur & Veränderung",
+    categoryIcon: "△",
+    dimension: 4,
+    text: "Wie geht Ihr Unternehmen mit gescheiterten Experimenten oder Pilotprojekten um?",
+    options: [
+      { text: "Scheitern wird vermieden – Experimente finden kaum statt.", score: 0 },
+      { text: "Experimente werden toleriert, aber Lernen aus Fehlern ist nicht systematisch.", score: 1 },
+      { text: "Es gibt Raum für Piloten – Erkenntnisse werden intern geteilt.", score: 2 },
+      { text: "Fehler sind Lernchancen – iteratives Arbeiten ist etabliert.", score: 3 }
+    ]
+  }
+];
+
+const DIMENSIONS = [
+  { name: "Strategie & Führung", color: "#4a8cff", max: 6 },
+  { name: "Daten & Infrastruktur", color: "#5dd8e8", max: 6 },
+  { name: "Prozesse & Automatisierung", color: "#a78bfa", max: 6 },
+  { name: "Team & Kompetenzen", color: "#4ecb71", max: 6 },
+  { name: "Kultur & Veränderung", color: "#f5a623", max: 6 }
+];
+
+const LEVELS = [
+  {
+    min: 0, max: 9,
+    label: "KI-Einsteiger",
+    color: "#f5a623",
+    bg: "rgba(245,166,35,0.12)",
+    headline: "Solide Basis für den Anfang.",
+    intro: "Ihr Unternehmen steht am Anfang der KI-Reise. Das ist kein Rückstand – sondern die ehrlichste Ausgangslage für einen strukturierten Start. Die Unternehmen, die KI nachhaltig nutzen, beginnen genau hier: mit Klarheit über den Ist-Zustand.",
+    insights: [
+      { icon: "🎯", title: "Priorität 1: Einen Use Case definieren", text: "Suchen Sie den einen Prozess, der Ihr Team am meisten Zeit kostet. Dort beginnt KI – nicht bei der Strategie.", color: "rgba(245,166,35,0.1)" },
+      { icon: "📊", title: "Priorität 2: Datenbasis schaffen", text: "KI ist nur so gut wie die Daten, die ihr zugrunde liegen. Ein einfaches Dateninventar ist der erste konkrete Schritt.", color: "rgba(74,140,255,0.1)" },
+      { icon: "👥", title: "Priorität 3: Bewusstsein schaffen", text: "Kein Upskilling nötig – aber ein gemeinsames Grundverständnis im Führungsteam, was KI kann und was nicht.", color: "rgba(78,203,113,0.1)" }
+    ]
+  },
+  {
+    min: 10, max: 18,
+    label: "KI-Entwickler",
+    color: "#5dd8e8",
+    bg: "rgba(93,216,232,0.1)",
+    headline: "Auf gutem Weg – mit klaren Lücken.",
+    intro: "Sie haben erste Bausteine gelegt. Einzelne Bereiche sind gut aufgestellt, andere fehlen noch. Das Risiko in dieser Phase: KI-Initiativen bleiben Insellösungen, statt systematisch zu skalieren. Genau das lässt sich jetzt adressieren.",
+    insights: [
+      { icon: "🔗", title: "Silos aufbrechen", text: "Vernetzen Sie vorhandene Initiativen. KI entfaltet Wirkung, wenn Use Cases über Abteilungen hinweg gedacht werden.", color: "rgba(93,216,232,0.1)" },
+      { icon: "📋", title: "Governance einführen", text: "Ohne Richtlinien für KI-Nutzung entstehen Risiken. Eine einfache KI-Policy für Mitarbeitende schafft Klarheit.", color: "rgba(74,140,255,0.1)" },
+      { icon: "📈", title: "ROI messbar machen", text: "Definieren Sie für laufende KI-Tools klare KPIs. Was nicht messbar ist, lässt sich nicht skalieren.", color: "rgba(78,203,113,0.1)" }
+    ]
+  },
+  {
+    min: 19, max: 25,
+    label: "KI-Fortgeschrittener",
+    color: "#4ecb71",
+    bg: "rgba(78,203,113,0.1)",
+    headline: "Starke Position – Zeit zu skalieren.",
+    intro: "Sie haben in den meisten Dimensionen eine solide Grundlage. KI ist kein Fremdwort mehr in Ihrem Unternehmen. Jetzt geht es darum, aus punktuellen Erfolgen skalierbare Systeme zu machen – und die Lücken zu schließen, bevor der Wettbewerb sie nutzt.",
+    insights: [
+      { icon: "⚡", title: "Skalierung priorisieren", text: "Erfolgreiche Piloten breit ausrollen. Welcher Use Case hat bewiesen, dass er funktioniert? Den skalieren, nicht neu suchen.", color: "rgba(78,203,113,0.1)" },
+      { icon: "🏗️", title: "KI-Architektur definieren", text: "Mit mehr KI-Einsatz steigen technische Abhängigkeiten. Eine klare Architekturentscheidung (Build vs. Buy, Cloud-Strategie) schützt vor Vendor Lock-in.", color: "rgba(93,216,232,0.1)" },
+      { icon: "🔒", title: "Compliance sichern", text: "Bei diesem Reifegrad wird EU AI Act Compliance relevant. Investieren Sie jetzt in ein KI-Inventar und Risikoeinstufung.", color: "rgba(245,166,35,0.1)" }
+    ]
+  },
+  {
+    min: 26, max: 30,
+    label: "KI-Vorreiter",
+    color: "#4a8cff",
+    bg: "rgba(74,140,255,0.12)",
+    headline: "Vorsprung sichern und halten.",
+    intro: "Sie gehören zu den am besten aufgestellten Mittelstandsunternehmen in Deutschland. KI ist in Ihrer Organisation kein Experiment mehr. Die Herausforderung auf diesem Level ist eine andere: Wie sichern Sie Ihren Vorsprung, wenn der Wettbewerb aufholt?",
+    insights: [
+      { icon: "🌐", title: "KI-Ökosystem aufbauen", text: "Führende Unternehmen investieren in externe KI-Partnerschaften und Communities. Wissenstransfer nach außen stärkt die eigene Position.", color: "rgba(74,140,255,0.1)" },
+      { icon: "🤖", title: "Agentic AI evaluieren", text: "Der nächste Schritt nach Automatisierung sind autonome KI-Agenten. Evaluieren Sie, welche Prozesse dafür geeignet sind.", color: "rgba(93,216,232,0.1)" },
+      { icon: "📜", title: "Compliance als Wettbewerbsvorteil", text: "Zertifizierbare KI-Compliance (EU AI Act, ISO 42001) wird zum Differenziator im B2B-Markt. Investieren Sie jetzt.", color: "rgba(78,203,113,0.1)" }
+    ]
+  }
+];
+
+let current = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+
+function startTest() {
+  document.getElementById('intro-screen').style.display = 'none';
+  document.getElementById('quiz-screen').style.display = 'block';
+  renderQ();
+}
+
+function renderQ() {
+  const q = QUESTIONS[current];
+  document.getElementById('prog-count').textContent = `${current + 1} / ${QUESTIONS.length}`;
+  document.getElementById('prog-fill').style.width = `${((current + 1) / QUESTIONS.length) * 100}%`;
+  document.getElementById('category-badge').textContent = `${q.categoryIcon}  ${q.category}`;
+  document.getElementById('btn-back').style.display = current > 0 ? 'block' : 'none';
+
+  const area = document.getElementById('question-area');
+  area.innerHTML = '';
+
+  const card = document.createElement('div');
+  card.className = 'question-card';
+  card.innerHTML = `
+    <div class="question-text">${q.text}</div>
+    <div class="options" id="options-wrap">
+      ${q.options.map((o, i) => `
+        <button class="option ${answers[current] === i ? 'selected' : ''}" onclick="selectOption(${i})">
+          <div class="option-dot"></div>
+          <div class="option-text">${o.text}</div>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  area.appendChild(card);
+
+  document.getElementById('btn-next').disabled = answers[current] === null;
+  document.getElementById('btn-next').textContent = current === QUESTIONS.length - 1 ? 'Auswertung anzeigen' : 'Weiter';
+  if (current === QUESTIONS.length - 1) {
+    document.getElementById('btn-next').innerHTML = 'Auswertung anzeigen <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+  } else {
+    document.getElementById('btn-next').innerHTML = 'Weiter <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+  }
+}
+
+function selectOption(i) {
+  answers[current] = i;
+  document.querySelectorAll('.option').forEach((el, idx) => {
+    el.classList.toggle('selected', idx === i);
+  });
+  document.getElementById('btn-next').disabled = false;
+}
+
+function nextQ() {
+  if (answers[current] === null) return;
+  if (current < QUESTIONS.length - 1) {
+    current++;
+    renderQ();
+  } else {
+    showResult();
+  }
+}
+
+function prevQ() {
+  if (current > 0) { current--; renderQ(); }
+}
+
+function showResult() {
+  document.getElementById('quiz-screen').style.display = 'none';
+  const rs = document.getElementById('result-screen');
+  rs.style.display = 'block';
+
+  // compute scores
+  const totalScore = answers.reduce((sum, ans, i) => sum + (ans !== null ? QUESTIONS[i].options[ans].score : 0), 0);
+
+  const dimScores = [0, 0, 0, 0, 0];
+  QUESTIONS.forEach((q, i) => {
+    if (answers[i] !== null) dimScores[q.dimension] += q.options[answers[i]].score;
+  });
+
+  const level = LEVELS.find(l => totalScore >= l.min && totalScore <= l.max);
+
+  // ring
+  const circumference = 408.41;
+  const pct = totalScore / 30;
+  const fill = document.getElementById('ring-fill');
+  fill.style.stroke = level.color;
+  setTimeout(() => {
+    fill.style.strokeDashoffset = circumference * (1 - pct);
+  }, 100);
+
+  // animate score number
+  let displayed = 0;
+  const target = totalScore;
+  const step = () => {
+    if (displayed < target) {
+      displayed++;
+      document.getElementById('ring-score').textContent = displayed;
+      setTimeout(step, 60);
+    }
+  };
+  setTimeout(step, 200);
+
+  // level badge
+  const badge = document.getElementById('level-badge');
+  badge.textContent = level.label;
+  badge.style.background = level.bg;
+  badge.style.color = level.color;
+  badge.style.border = `1px solid ${level.color}44`;
+
+  document.getElementById('result-headline').textContent = level.headline;
+  document.getElementById('result-intro').textContent = level.intro;
+
+  // dimension bars
+  const barsEl = document.getElementById('dim-bars');
+  barsEl.innerHTML = DIMENSIONS.map((d, i) => `
+    <div class="dim-row">
+      <div class="dim-meta">
+        <span class="dim-name">${d.name}</span>
+        <span class="dim-score">${dimScores[i]} / ${d.max}</span>
+      </div>
+      <div class="dim-track">
+        <div class="dim-fill" id="dim-fill-${i}" style="background:${d.color}"></div>
+      </div>
+    </div>
+  `).join('');
+
+  setTimeout(() => {
+    DIMENSIONS.forEach((d, i) => {
+      const el = document.getElementById(`dim-fill-${i}`);
+      if (el) el.style.width = `${(dimScores[i] / d.max) * 100}%`;
+    });
+  }, 200);
+
+  // insights
+  const insightsEl = document.getElementById('insights-area');
+  insightsEl.innerHTML = level.insights.map(ins => `
+    <div class="insight-card">
+      <div class="insight-icon" style="background:${ins.color}">${ins.icon}</div>
+      <div class="insight-body">
+        <div class="insight-title">${ins.title}</div>
+        <div class="insight-text">${ins.text}</div>
+      </div>
+    </div>
+  `).join('');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Live-chat trigger for low scores (Einsteiger = index 0, Entwickler = index 1)
+  const levelIndex = LEVELS.indexOf(level);
+  const trigger = document.getElementById('chat-trigger');
+  trigger.style.display = 'none';
+  if (levelIndex <= 1) {
+    const messages = [
+      { // Einsteiger (0–9)
+        headline: 'Ihr Einstieg in KI – wir begleiten Sie ab Schritt 1.',
+        text: 'Unternehmen auf Stufe 1 profitieren am meisten von einem strukturierten Start. In 30 Minuten zeigen wir Ihnen, wo der größte Hebel liegt – ohne Vorwissen nötig.'
+      },
+      { // Entwickler (10–18)
+        headline: 'Erste Schritte gemacht – jetzt das Tempo erhöhen.',
+        text: 'Sie haben bereits Potenzial erkannt. Ein gezieltes Assessment zeigt, welche Quick Wins Sie in den nächsten 60 Tagen realistisch umsetzen können.'
+      }
+    ];
+    const msg = messages[levelIndex];
+    document.getElementById('trigger-headline').textContent = msg.headline;
+    document.getElementById('trigger-text').textContent = msg.text;
+    setTimeout(() => {
+      trigger.style.display = 'block';
+      trigger.style.opacity = '0';
+      trigger.style.transform = 'translateY(8px)';
+      trigger.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      requestAnimationFrame(() => {
+        trigger.style.opacity = '1';
+        trigger.style.transform = 'translateY(0)';
+      });
+    }, 1500);
+  }
+}
+
+function restart() {
+  current = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('result-screen').style.opacity = '0';
+  document.getElementById('result-screen').style.animation = 'none';
+  document.getElementById('quiz-screen').style.display = 'block';
+  renderQ();
+  setTimeout(() => {
+    document.getElementById('result-screen').style.animation = '';
+  }, 100);
+}
+</script>
+</body>
+</html>

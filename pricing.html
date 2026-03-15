@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing & Packages – Ventari AI Automation & Compliance Studio</title>
+  <meta name="description" content="Transparent pricing for AI projects: AI Opportunity Assessment from €4,900, Automation projects, EU AI Act Compliance Sprints, Fractional AI Officer and retainer packages. Fixed price, no surprises."/>
+  <link rel="canonical" href="https://ventari.eu/pricing.html"/>
+  <link rel="alternate" hreflang="de" href="https://ventari.eu/preise.html"/>
+  <link rel="alternate" hreflang="en" href="https://ventari.eu/pricing.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap"/>
+  <style>
+    :root {
+      --bg: #07080f; --bg2: #0c0e1a; --bg3: #111320; --surface: #13162a;
+      --blue: #4a8cff; --blue-dim: #2d5cb8; --blueglow: rgba(74,140,255,0.12);
+      --cyan: #5dd8e8; --white: #f4f6fb; --muted: #616884; --muted2: #8b93b3;
+      --border: rgba(74,140,255,0.12); --border2: rgba(255,255,255,0.06);
+      --green: #4ecd82; --amber: #f5a623; --orange: #ff6b35;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 2px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(7,8,15,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--white); text-decoration: none; }
+    .logo span { color: var(--blue); }
+    .nav-back { color: var(--muted2); text-decoration: none; font-size: 0.78rem; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-cta { background: var(--blue); color: var(--bg); padding: 0.5rem 1.2rem; border-radius: 5px; text-decoration: none; font-size: 0.78rem; font-weight: 500; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .pricing-hero { padding: 9rem 6vw 5rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+    .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 400; line-height: 1.1; max-width: 700px; margin: 0 auto 1.5rem; }
+    .accent { color: var(--blue); }
+    .hero-sub { color: var(--muted2); font-size: 1rem; font-weight: 300; line-height: 1.85; max-width: 560px; margin: 0 auto 1rem; }
+    .hero-note { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--muted); background: var(--bg3); border: 1px solid var(--border); border-radius: 100px; padding: 0.4rem 1rem; margin-top: 1rem; }
+    .hero-note-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+    /* SECTION */
+    section { padding: 5rem 6vw; max-width: 1200px; margin: 0 auto; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .section-sub { color: var(--muted2); font-size: 0.9rem; font-weight: 300; margin-bottom: 3rem; max-width: 520px; }
+    .section-eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; }
+    hr.divider { border: none; border-top: 1px solid var(--border2); margin: 0; }
+
+    /* ENTRY PACKAGES */
+    .entry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border2); border: 1px solid var(--border2); border-radius: 14px; overflow: hidden; }
+    .entry-card { background: var(--bg2); padding: 2.2rem 2rem; position: relative; transition: background 0.25s; }
+    .entry-card:hover { background: var(--bg3); }
+    .entry-card.featured { background: var(--bg3); border-left: 1px solid rgba(74,140,255,0.25); border-right: 1px solid rgba(74,140,255,0.25); }
+    .entry-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #4a8cff, #5dd8e8); }
+    .entry-badge { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 100px; margin-bottom: 1rem; }
+    .eb-standard { background: rgba(255,255,255,0.05); color: var(--muted2); }
+    .eb-recommended { background: rgba(74,140,255,0.15); color: var(--blue); }
+    .eb-large { background: rgba(93,216,232,0.1); color: var(--cyan); }
+    .entry-name { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.4rem; color: var(--white); }
+    .entry-tagline { font-size: 0.82rem; color: var(--muted2); margin-bottom: 1.5rem; font-weight: 300; }
+    .entry-price { margin-bottom: 1.5rem; }
+    .price-val { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--white); }
+    .price-unit { font-size: 0.78rem; color: var(--muted); margin-left: 0.3rem; }
+    .price-note { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+    .entry-delivers { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+    .entry-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 2rem; }
+    .entry-bullets li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.84rem; color: var(--muted2); }
+    .entry-bullets li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 0.5rem; }
+    .entry-cta { display: block; text-align: center; padding: 0.75rem 1.5rem; border-radius: 6px; font-size: 0.84rem; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+    .cta-primary { background: var(--blue); color: var(--bg); }
+    .cta-primary:hover { opacity: 0.85; }
+    .cta-secondary { background: transparent; color: var(--muted2); border: 1px solid var(--border2); }
+    .cta-secondary:hover { border-color: var(--blue); color: var(--white); }
+
+    /* AUTOMATION PROJECTS */
+    .project-table { width: 100%; border-collapse: collapse; }
+    .project-table th { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.8rem 1.2rem; text-align: left; border-bottom: 1px solid var(--border2); }
+    .project-table td { padding: 1.1rem 1.2rem; font-size: 0.86rem; color: var(--muted2); border-bottom: 1px solid var(--border2); vertical-align: top; }
+    .project-table tr:last-child td { border-bottom: none; }
+    .project-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .project-name { color: var(--white); font-weight: 500; }
+    .project-price { color: var(--white); font-family: 'DM Serif Display', serif; font-size: 1.05rem; white-space: nowrap; }
+    .project-duration { color: var(--blue); font-size: 0.78rem; }
+    .complexity-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 0.3rem; }
+    .c1 { background: var(--green); }
+    .c2 { background: var(--amber); }
+    .c3 { background: var(--orange); }
+
+    /* COMPLIANCE SPRINTS */
+    .sprint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .sprint-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.25s; }
+    .sprint-card:hover { border-color: rgba(74,140,255,0.3); }
+    .sprint-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .sprint-name { font-family: 'DM Serif Display', serif; font-size: 1.15rem; margin-bottom: 0.3rem; }
+    .sprint-tagline { font-size: 0.82rem; color: var(--muted2); margin-bottom: 1.2rem; font-weight: 300; }
+    .sprint-price { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--white); margin-bottom: 0.3rem; }
+    .sprint-duration { font-size: 0.75rem; color: var(--muted); margin-bottom: 1.2rem; }
+    .sprint-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .sprint-bullets li { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.82rem; color: var(--muted2); }
+    .sprint-bullets li::before { content: '✓'; color: var(--green); font-size: 0.7rem; flex-shrink: 0; margin-top: 0.2rem; }
+
+    /* RETAINER */
+    .retainer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border2); border: 1px solid var(--border2); border-radius: 14px; overflow: hidden; }
+    .retainer-card { background: var(--bg2); padding: 2rem; transition: background 0.25s; }
+    .retainer-card:hover { background: var(--bg3); }
+    .retainer-tier { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+    .retainer-name { font-family: 'DM Serif Display', serif; font-size: 1.15rem; margin-bottom: 0.3rem; }
+    .retainer-price { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--white); margin: 0.8rem 0 0.2rem; }
+    .retainer-interval { font-size: 0.75rem; color: var(--muted); }
+    .retainer-sep { border: none; border-top: 1px solid var(--border2); margin: 1.2rem 0; }
+    .retainer-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .retainer-bullets li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.82rem; color: var(--muted2); }
+    .retainer-bullets li::before { content: '–'; color: var(--muted); flex-shrink: 0; }
+    .retainer-note { font-size: 0.72rem; color: var(--muted); margin-top: 1rem; font-style: italic; }
+
+    /* FAQ */
+    .price-faq { display: flex; flex-direction: column; gap: 0; }
+    .pfaq-item { border-bottom: 1px solid var(--border2); cursor: pointer; }
+    .pfaq-q { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; font-size: 0.9rem; font-weight: 500; color: var(--white); }
+    .pfaq-arrow { color: var(--muted); font-size: 0.7rem; transition: transform 0.2s; }
+    .pfaq-item.open .pfaq-arrow { transform: rotate(180deg); color: var(--blue); }
+    .pfaq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .pfaq-item.open .pfaq-a { max-height: 200px; }
+    .pfaq-a p { padding: 0 0 1.2rem; font-size: 0.86rem; color: var(--muted2); line-height: 1.75; font-weight: 300; }
+
+    /* CTA BOX */
+    .bottom-cta { background: linear-gradient(135deg, rgba(74,140,255,0.1), rgba(93,216,232,0.05)); border: 1px solid rgba(74,140,255,0.25); border-radius: 16px; padding: 3.5rem; text-align: center; margin: 0 6vw 5rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+    .bottom-cta h2 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 1rem; }
+    .bottom-cta p { color: var(--muted2); font-size: 0.92rem; font-weight: 300; max-width: 480px; margin: 0 auto 2rem; line-height: 1.8; }
+    .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--blue); color: var(--bg); border: none; padding: 0.9rem 2.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.25s; }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--muted2); border: 1px solid var(--border2); padding: 0.9rem 2.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; border-radius: 5px; text-decoration: none; display: inline-block; transition: all 0.25s; }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--white); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border2); padding: 2rem 6vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; }
+    .footer-logo span { color: var(--blue); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--muted); font-size: 0.78rem; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { color: var(--muted); font-size: 0.72rem; }
+
+    @media (max-width: 1100px) {
+      nav { padding: 1.2rem 2rem; }
+      .pricing-hero, section { padding-left: 2rem; padding-right: 2rem; }
+      .entry-grid { grid-template-columns: 1fr; }
+      .sprint-grid { grid-template-columns: 1fr; }
+      .retainer-grid { grid-template-columns: 1fr; }
+      .bottom-cta { margin-left: 2rem; margin-right: 2rem; padding: 2.5rem 2rem; }
+    }
+    .schnellcheck-box { background: var(--bg2); border: 1px solid rgba(93,216,232,0.2); border-radius: 14px; padding: 2rem 2.2rem; display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
+    .schnellcheck-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #5dd8e8, #4a8cff); }
+    .schnellcheck-price-big { font-family: 'DM Serif Display', serif; font-size: 2.8rem; color: var(--white); line-height: 1; }
+    .schnellcheck-price-note { font-size: 0.78rem; color: var(--muted2); margin-top: 0.3rem; }
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .project-table thead { display: none; }
+      .project-table td { display: block; padding: 0.5rem 0; border: none; }
+      .project-table tr { padding: 1rem; border-bottom: 1px solid var(--border2); display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="https://ventari.eu/" class="logo">ventari<span>.</span></a>
+  <div style="display:flex;align-items:center;gap:1.5rem;">
+    <a href="https://ventari.eu/" class="nav-back">← ← Back to Website</a>
+    <a href="https://ventari.eu/#contact" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="pricing-hero">
+  <div class="eyebrow"><span class="eyebrow-dot"></span>Pricing & Pakete</div>
+  <h1>Transparente Preise.<br/><span class="accent">Kein Stundensatz-Roulette.</span></h1>
+  <p class="hero-sub">Every project starts with a fixed-price assessment. What follows is planned together – with clear milestones and no surprises.</p>
+  <div class="hero-note"><span class="hero-note-dot"></span>All prices excl. VAT · Custom projects on request</div>
+</div>
+
+<!-- EARLY PARTNER BANNER -->
+<div style="background:linear-gradient(135deg,rgba(74,140,255,0.08) 0%,rgba(93,216,232,0.06) 100%);border:1px solid rgba(74,140,255,0.25);border-radius:14px;padding:1.5rem 2rem;margin-bottom:0;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+  <div style="flex:1;min-width:260px;">
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:var(--cyan);text-transform:uppercase;margin-bottom:0.4rem;">Early Partner Programme · 3 spots available</div>
+    <div style="font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;">We are in our launch phase and looking for <span style="color:var(--cyan);">3 reference partners.</span></div>
+    <div style="font-size:0.84rem;color:var(--muted2);line-height:1.6;">Early Partners receive a <strong style="color:var(--white);">30&thinsp;% discount</strong> on all services – in exchange for honest feedback and permission to use the project as an anonymised case study. No catch, no fine print.</div>
+  </div>
+  <a href="https://ventari.eu/#contact" style="background:var(--blue);color:#fff;text-decoration:none;padding:0.7rem 1.4rem;border-radius:8px;font-size:0.88rem;font-weight:600;white-space:nowrap;flex-shrink:0;">Apply now →</a>
+</div>
+
+<hr class="divider"/>
+
+<!-- EINSTIEG: AI OPPORTUNITY ASSESSMENT -->
+<section>
+  <div class="section-eyebrow">Entry Point</div>
+  <h2 class="section-title">AI Opportunity Assessment</h2>
+  <p class="section-sub">Der risikolose Startpunkt. In 2–3 Tagen wissen Sie genau, wo KI hilft, was es kostet und wie Sie starten.</p>
+  <div style="margin-bottom:2.5rem;">
+    <div class="section-eyebrow" style="color:var(--cyan);">New: Zero-risk entry point</div>
+    <h3 style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--white);margin:0.5rem 0 1rem;">AI Quick Scan</h3>
+    <div class="schnellcheck-box">
+      <div style="flex:1;min-width:220px;">
+        <div style="font-size:0.9rem;font-weight:600;color:var(--cyan);margin-bottom:0.6rem;">Half-day analysis · no commitment · no deliverable pressure</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.45rem;">
+          <li style="font-size:0.88rem;color:var(--muted2);display:flex;gap:0.6rem;"><span style="color:var(--cyan);">→</span> 3–4 hours with your team (remote or on-site)</li>
+          <li style="font-size:0.88rem;color:var(--muted2);display:flex;gap:0.6rem;"><span style="color:var(--cyan);">→</span> First assessment: where does AI pay off, where not?</li>
+          <li style="font-size:0.88rem;color:var(--muted2);display:flex;gap:0.6rem;"><span style="color:var(--cyan);">→</span> EU AI Act relevance for your organisation</li>
+          <li style="font-size:0.88rem;color:var(--muted2);display:flex;gap:0.6rem;"><span style="color:var(--cyan);">→</span> Short written summary (2 pages)</li>
+          <li style="font-size:0.88rem;color:var(--muted2);display:flex;gap:0.6rem;"><span style="color:var(--cyan);">→</span> 50 % credited if you proceed to an Assessment</li>
+        </ul>
+      </div>
+      <div style="text-align:center;flex-shrink:0;">
+        <div class="schnellcheck-price-big">2.500 €</div>
+        <div class="schnellcheck-price-note">Fixed price · excl. VAT</div>
+        <a href="https://ventari.eu/#contact" style="display:inline-block;margin-top:1rem;background:var(--cyan);color:#07080f;text-decoration:none;padding:0.6rem 1.3rem;border-radius:8px;font-size:0.85rem;font-weight:700;">Book Quick Scan</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="entry-grid">
+    <div class="entry-card">
+      <span class="entry-badge eb-standard">Small Team</span>
+      <div class="entry-name">Assessment S</div>
+      <div class="entry-tagline">Up to 50 employees, 1–2 focus processes</div>
+      <div class="entry-price">
+        <div class="price-val">4.900 €</div>
+        <div class="price-note">Fixed price · 2 days on-site or remote</div>
+      </div>
+      <div class="entry-delivers">Included in the result</div>
+      <ul class="entry-bullets">
+        <li>Prioritised use case list (Top 3)</li>
+        <li>Effort and ROI estimate</li>
+        <li>Initial compliance assessment</li>
+        <li>Technical feasibility analysis</li>
+        <li>30-minute follow-up call</li>
+      </ul>
+      <a href="https://ventari.eu/#contact" class="entry-cta cta-secondary">Enquire</a>
+    </div>
+    <div class="entry-card featured">
+      <span class="entry-badge eb-recommended">Recommended</span>
+      <div class="entry-name">Assessment M</div>
+      <div class="entry-tagline">50–200 employees, multiple departments</div>
+      <div class="entry-price">
+        <div class="price-val">9.900 €</div>
+        <div class="price-note">Fixed price · 2–3 days, structured workshop</div>
+      </div>
+      <div class="entry-delivers">Im Ergebnis enthalten</div>
+      <ul class="entry-bullets">
+        <li>Complete process map with AI potential</li>
+        <li>Prioritised roadmap with milestones</li>
+        <li>Technologie-Empfehlung & Architektur-Skizze</li>
+        <li>EU AI Act pre-assessment</li>
+        <li>Calculated project proposal for step 2</li>
+        <li>Executive summary for decision-makers</li>
+      </ul>
+      <a href="https://ventari.eu/#contact" class="entry-cta cta-primary">Request now</a>
+    </div>
+    <div class="entry-card">
+      <span class="entry-badge eb-large">Enterprise</span>
+      <div class="entry-name">Assessment L</div>
+      <div class="entry-tagline">200–500 employees, complex system landscape</div>
+      <div class="entry-price">
+        <div class="price-val">17.500 €</div>
+        <div class="price-note">Fixed price · 3–5 days, multiple stakeholders</div>
+      </div>
+      <div class="entry-delivers">Im Ergebnis enthalten</div>
+      <ul class="entry-bullets">
+        <li>Company-wide AI readiness analysis</li>
+        <li>Complete governance framework</li>
+        <li>Detailed EU AI Act check of all systems</li>
+        <li>Investment plan with budget framework</li>
+        <li>Change management recommendations</li>
+        <li>Presentation to management/board</li>
+      </ul>
+      <a href="https://ventari.eu/#contact" class="entry-cta cta-secondary">Anfragen</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- AUTOMATISIERUNGS-PROJEKTE -->
+<section>
+  <div class="section-eyebrow">Implementation</div>
+  <h2 class="section-title">AI Automation & Integration</h2>
+  <p class="section-sub">Fixed-price projects by complexity. Every project starts after an assessment – no implementation without strategy.</p>
+
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:12px;overflow:hidden;">
+    <table class="project-table">
+      <thead>
+        <tr>
+          <th>Project Type</th>
+          <th>Typical Solution</th>
+          <th>Investment</th>
+          <th>Timeline</th>
+          <th>Complexity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="project-name">Workflow Automation</div>
+            <div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem;">1–2 processes</div>
+          </td>
+          <td>Email triage, document processing, CRM updates</td>
+          <td><div class="project-price">18.000 – 32.000 €</div></td>
+          <td><div class="project-duration">4–6 Wochen</div></td>
+          <td><span class="complexity-dot c1"></span>Low</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="project-name">AI Knowledge Assistant</div>
+            <div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem;">RAG / internal documents</div>
+          </td>
+          <td>Internal knowledge base, FAQ automation, support bot</td>
+          <td><div class="project-price">22.000 – 42.000 €</div></td>
+          <td><div class="project-duration">6–8 Wochen</div></td>
+          <td><span class="complexity-dot c2"></span>Medium</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="project-name">Sales & Marketing Automation</div>
+            <div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem;">CRM + AI</div>
+          </td>
+          <td>Lead qualification, proposal generation, follow-up automation</td>
+          <td><div class="project-price">28.000 – 55.000 €</div></td>
+          <td><div class="project-duration">8–12 Wochen</div></td>
+          <td><span class="complexity-dot c2"></span>Mittel</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="project-name">AI Platform / Multiple Processes</div>
+            <div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem;">Enterprise Integration</div>
+          </td>
+          <td>Company-wide AI infrastructure, ERP/CRM integration, multi-agent</td>
+          <td><div class="project-price">55.000 – 120.000 €</div></td>
+          <td><div class="project-duration">3–6 Monate</div></td>
+          <td><span class="complexity-dot c3"></span>High</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:0.75rem;color:var(--muted);margin-top:1rem;">All prices are fixed after assessment. Individuelle Komplexität kann abweichen – wir kalkulieren transparent nach dem Assessment.</p>
+</section>
+
+<hr class="divider"/>
+
+<!-- COMPLIANCE SPRINTS -->
+<section>
+  <div class="section-eyebrow">Compliance</div>
+  <h2 class="section-title">AI Governance & Compliance Sprints</h2>
+  <p class="section-sub">Legal certainty as a package, not an open-ended mandate. Our legal expert (Dr. iur., specialised in EU AI Act) delivers in clearly defined sprints.</p>
+
+  <div class="sprint-grid">
+    <div class="sprint-card">
+      <div class="sprint-icon">🛡️</div>
+      <div class="sprint-name">EU AI Act Compliance Sprint</div>
+      <div class="sprint-tagline">Vollständige Bestandsaufnahme & Risikobewertung</div>
+      <div class="sprint-price">11.900 €</div>
+      <div class="sprint-duration">Fixed price · 2–3 weeks</div>
+      <ul class="sprint-bullets">
+        <li>Complete AI inventory of your company</li>
+        <li>Risk classification under EU AI Act</li>
+        <li>Gap analysis against all requirements</li>
+        <li>Prioritised action plan</li>
+        <li>Compliance documentation (baseline)</li>
+      </ul>
+    </div>
+    <div class="sprint-card">
+      <div class="sprint-icon">📋</div>
+      <div class="sprint-name">AI Governance Framework</div>
+      <div class="sprint-tagline">Policies, processes and responsibilities</div>
+      <div class="sprint-price">14.900 €</div>
+      <div class="sprint-duration">Fixed price · 3–4 weeks</div>
+      <ul class="sprint-bullets">
+        <li>AI policy for your company</li>
+        <li>GDPR-compliant data protection concepts</li>
+        <li>Rollen & Verantwortlichkeiten (AI Officer)</li>
+        <li>Risk management processes</li>
+        <li>Employee training (half-day)</li>
+      </ul>
+    </div>
+    <div class="sprint-card">
+      <div class="sprint-icon">⚡</div>
+      <div class="sprint-name">KI-Strategietag</div>
+      <div class="sprint-tagline">Fast-track for decision-makers</div>
+      <div class="sprint-price">3.900 €</div>
+      <div class="sprint-duration">Fixed price · 1 day on-site</div>
+      <ul class="sprint-bullets">
+        <li>Halbtagsworkshop mit Strategie & Tech</li>
+        <li>Halbtagsworkshop mit Legal & Compliance</li>
+        <li>Decision matrix: make vs. buy</li>
+        <li>Initial EU AI Act relevance assessment</li>
+        <li>Written summary</li>
+      </ul>
+    </div>
+    <div class="sprint-card" style="border-color:rgba(74,140,255,0.25);">
+      <div class="sprint-icon">🔄</div>
+      <div class="sprint-name">NIS2 + EU AI Act Kombi-Sprint</div>
+      <div class="sprint-tagline">Both regulations in one pass</div>
+      <div class="sprint-price">on request</div>
+      <div class="sprint-duration">Individual calculation · typically cheaper than two separate sprints</div>
+      <ul class="sprint-bullets">
+        <li>NIS2-Betroffenheitsprüfung & Gap-Analyse</li>
+        <li>EU AI Act risk assessment</li>
+        <li>Kombimaßnahmen (ISMS & AI Governance)</li>
+        <li>BSI-Registrierung & Dokumentation</li>
+        <li>Management training (personal liability)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- KI-BEAUFTRAGTER -->
+<section>
+  <div class="section-eyebrow">Fractional Service</div>
+  <h2 class="section-title">Fractional AI Officer</h2>
+  <p class="section-sub">EU AI Act Art. 4 requires demonstrable AI competence in your organisation – but not a full-time hire. Our Fractional AI Officer takes over governance, training and compliance responsibility on a monthly basis.</p>
+
+  <div class="sprint-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="sprint-card">
+      <div class="sprint-icon">🎯</div>
+      <div class="sprint-name">Basic</div>
+      <div class="sprint-tagline">Cover your AI competency obligations</div>
+      <div class="sprint-price">1.900 €</div>
+      <div class="sprint-duration">per month · ½ day/month on-site or remote</div>
+      <ul class="sprint-bullets">
+        <li>Ongoing EU AI Act monitoring</li>
+        <li>AI inventory & use-case register</li>
+        <li>Staff training documentation (Art. 4)</li>
+        <li>Monthly compliance status report</li>
+      </ul>
+    </div>
+    <div class="sprint-card" style="background:var(--bg3);border-color:rgba(74,140,255,0.2);">
+      <div class="sprint-icon">🤝</div>
+      <div class="sprint-name">Professional</div>
+      <div class="sprint-tagline">Governance + strategic guidance</div>
+      <div class="sprint-price">2.900 €</div>
+      <div class="sprint-duration">per month · 1 day/month on-site + remote support</div>
+      <ul class="sprint-bullets">
+        <li>Everything in Basic</li>
+        <li>AI policy & guidelines maintenance</li>
+        <li>Management briefing & liability coverage</li>
+        <li>GDPR/EU AI Act change management</li>
+        <li>Point of contact for regulatory queries</li>
+      </ul>
+    </div>
+    <div class="sprint-card">
+      <div class="sprint-icon">🏆</div>
+      <div class="sprint-name">Executive</div>
+      <div class="sprint-tagline">Full external AI leadership</div>
+      <div class="sprint-price">4.900 €</div>
+      <div class="sprint-duration">per month · 2 days/month + hotline</div>
+      <ul class="sprint-bullets">
+        <li>Everything in Professional</li>
+        <li>Strategic AI roadmap ownership</li>
+        <li>Vendor & tool audit</li>
+        <li>Board / shareholder reporting</li>
+        <li>Priority response time: 4h</li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-size:0.75rem;color:var(--muted);margin-top:1rem;">Minimum term 3 months, then monthly cancellation. Combination with Compliance Sprint recommended.</p>
+</section>
+
+<hr class="divider"/>
+
+<!-- RETAINER -->
+<section>
+  <div class="section-eyebrow">Ongoing Support</div>
+  <h2 class="section-title">Wartung & Weiterentwicklung</h2>
+  <p class="section-sub">After implementation, AI systems need maintenance. Our retainer packages keep your solution performant, secure and compliant.</p>
+
+  <div class="retainer-grid">
+    <div class="retainer-card">
+      <div class="retainer-tier">Essential</div>
+      <div class="retainer-name">Monitor</div>
+      <div style="font-size:0.82rem;color:var(--muted2);font-weight:300;">For stable, low-change AI solutions</div>
+      <div class="retainer-price">2.200 €</div>
+      <div class="retainer-interval">per month · cancel anytime</div>
+      <hr class="retainer-sep"/>
+      <ul class="retainer-bullets">
+        <li>Performance-Monitoring & Alerts</li>
+        <li>Monthly status report</li>
+        <li>Minor corrections (< 2h/month)</li>
+        <li>Compliance newsletter (EU AI Act updates)</li>
+        <li>Response time: 24h</li>
+      </ul>
+    </div>
+    <div class="retainer-card" style="background:var(--bg3);border-color:rgba(74,140,255,0.2);">
+      <div class="retainer-tier">Standard</div>
+      <div class="retainer-name">Evolve</div>
+      <div style="font-size:0.82rem;color:var(--muted2);font-weight:300;">For actively used systems requiring optimisation</div>
+      <div class="retainer-price">3.500 €</div>
+      <div class="retainer-interval">pro Monat · flexibel kündbar</div>
+      <hr class="retainer-sep"/>
+      <ul class="retainer-bullets">
+        <li>Everything in Monitor</li>
+        <li>Monthly optimisation session (4h)</li>
+        <li>Prompt and model updates</li>
+        <li>Ongoing GDPR/EU AI Act review</li>
+        <li>Quarterly call (strategy review)</li>
+        <li>Response time: 12h</li>
+      </ul>
+    </div>
+    <div class="retainer-card">
+      <div class="retainer-tier">Premium</div>
+      <div class="retainer-name">Scale</div>
+      <div style="font-size:0.82rem;color:var(--muted2);font-weight:300;">For growing solutions with expansion needs</div>
+      <div class="retainer-price">5.000 €</div>
+      <div class="retainer-interval">pro Monat · flexibel kündbar</div>
+      <hr class="retainer-sep"/>
+      <ul class="retainer-bullets">
+        <li>Everything in Evolve</li>
+        <li>10h development budget/month</li>
+        <li>New feature development prioritised</li>
+        <li>Dedicated point of contact</li>
+        <li>Monthly management briefing</li>
+        <li>Response time: 4h</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PREIS-FAQ -->
+<section>
+  <div class="section-eyebrow">Frequently Asked Questions</div>
+  <h2 class="section-title" style="margin-bottom:2rem;">Preise & Konditionen</h2>
+
+  <div class="price-faq">
+    <div class="pfaq-item" onclick="this.classList.toggle('open')">
+      <div class="pfaq-q">Why does every project start with an assessment? <span class="pfaq-arrow">▼</span></div>
+      <div class="pfaq-a"><p>Because we don't want to build a solution that misses your real processes. The assessment is simultaneously analysis, risk check, and planning foundation – preventing costly mistakes. The fixed price gives you certainty before larger budgets are committed.</p></div>
+    </div>
+    <div class="pfaq-item" onclick="this.classList.toggle('open')">
+      <div class="pfaq-q">Can I credit the assessment against a later project? <span class="pfaq-arrow">▼</span></div>
+      <div class="pfaq-a"><p>Yes. If you commission an implementation project within 60 days of the assessment, we credit 50% of the assessment price against the project budget.</p></div>
+    </div>
+    <div class="pfaq-item" onclick="this.classList.toggle('open')">
+      <div class="pfaq-q">What are the payment terms? <span class="pfaq-arrow">▼</span></div>
+      <div class="pfaq-a"><p>For assessments: 50% on order, 50% on completion. For larger projects: milestone-based billing in 3–4 tranches. Retainer: monthly in advance, cancellable with 4 weeks notice.</p></div>
+    </div>
+    <div class="pfaq-item" onclick="this.classList.toggle('open')">
+      <div class="pfaq-q">What happens if the project costs more than planned? <span class="pfaq-arrow">▼</span></div>
+      <div class="pfaq-a"><p>For fixed-price projects: nothing. The agreed price stands. If scope changes, we discuss it openly – no hidden hours, no retrospective surcharges. That's why we always start with a careful assessment.</p></div>
+    </div>
+    <div class="pfaq-item" onclick="this.classList.toggle('open')">
+      <div class="pfaq-q">Do you work with companies outside Baden-Baden? <span class="pfaq-arrow">▼</span></div>
+      <div class="pfaq-a"><p>Yes, throughout Germany and the DACH region. Assessments can be conducted fully remotely. For on-site appointments we calculate travel costs separately – no flat fees.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <h2>Can't find the right package?</h2>
+  <p>Every company is different. In a 30-minute call we'll find out together what makes sense for you – no sales pressure.</p>
+  <div class="cta-row">
+    <a href="https://ventari.eu/#contact" class="btn-primary">Book a free initial call</a>
+    <a href="https://ventari.eu/" class="btn-secondary">← Back to Website</a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">ventari<span>.</span></span>
+  <div class="footer-links">
+    <a href="https://ventari.eu/#impressum" onclick="window.location='https://ventari.eu/#impressum'">Legal Notice</a>
+    <a href="https://ventari.eu/#privacy">Privacy</a>
+    <a href="https://ventari.eu/pricing.html">Preise</a>
+  </div>
+  <span class="footer-copy">© 2026 Ventari. All rights reserved.</span>
+</footer>
+
+</body>
+</html>

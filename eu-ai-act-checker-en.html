@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EU AI Act Checker – Ventari</title>
+  <meta name="description" content="Free EU AI Act Checker: Find out your risk level and resulting obligations in a few questions – free from Ventari."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#07080f;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--red:#ff5c5c;--white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--blue-dim);border-radius:2px}
+    .bg-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(74,140,255,0.07) 0%,transparent 70%);pointer-events:none;z-index:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(7,8,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--white);text-decoration:none}.logo span{color:var(--blue)}
+    .nav-back{font-size:0.76rem;color:var(--muted2);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}.nav-back:hover{color:var(--white)}
+    main{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:9rem 2rem 5rem}
+    .tool-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:1.2rem}
+    .tool-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--blue)}
+    .tool-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,2.8rem);font-weight:400;line-height:1.15;color:var(--white);margin-bottom:1rem}
+    .tool-subtitle{font-size:1rem;color:var(--muted2);max-width:560px;line-height:1.7;margin-bottom:2rem}
+    .legal-note{display:flex;gap:0.7rem;align-items:flex-start;background:rgba(245,166,35,0.07);border:1px solid rgba(245,166,35,0.2);border-radius:8px;padding:0.9rem 1.1rem;margin-bottom:2.5rem;font-size:0.78rem;color:var(--muted2);line-height:1.5}
+    .legal-note-icon{color:var(--amber);font-size:0.9rem;margin-top:0.05rem;flex-shrink:0}
+    .progress-wrap{margin-bottom:2.5rem}
+    .progress-meta{display:flex;justify-content:space-between;margin-bottom:0.6rem}
+    .progress-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+    .progress-count{font-size:0.72rem;color:var(--muted);font-weight:500}
+    .progress-track{height:3px;background:var(--surface2);border-radius:2px;overflow:hidden}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--blue-dim),var(--blue));border-radius:2px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1)}
+    .step-info{font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+    .question-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem 2rem 1.6rem;margin-bottom:1.2rem;opacity:0;transform:translateY(16px);animation:slideIn 0.4s cubic-bezier(0.4,0,0.2,1) forwards}
+    @keyframes slideIn{to{opacity:1;transform:translateY(0)}}
+    .question-text{font-size:1.05rem;font-weight:500;color:var(--white);line-height:1.55;margin-bottom:0.6rem}
+    .question-hint{font-size:0.82rem;color:var(--muted);line-height:1.5;margin-bottom:1.4rem}
+    .options{display:flex;flex-direction:column;gap:0.6rem}
+    .option{display:flex;align-items:flex-start;gap:0.9rem;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:0.85rem 1rem;cursor:pointer;transition:all 0.2s;text-align:left;width:100%}
+    .option:hover{border-color:var(--blue);background:var(--blueglow)}
+    .option.selected{border-color:var(--blue);background:rgba(74,140,255,0.1)}
+    .option-dot{width:18px;height:18px;min-width:18px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all 0.2s}
+    .option.selected .option-dot{border-color:var(--blue);background:var(--blue)}
+    .option.selected .option-dot::after{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--bg)}
+    .option-label{font-weight:600;font-size:0.88rem;color:var(--white);margin-bottom:0.15rem}
+    .option-desc{font-size:0.8rem;color:var(--muted2);line-height:1.4}
+    .btn-row{display:flex;gap:1rem;margin-top:1.8rem;align-items:center}
+    .btn-primary{background:var(--blue);color:var(--bg);border:none;border-radius:6px;padding:0.75rem 1.8rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+    .btn-primary:hover{opacity:0.85;transform:translateY(-1px)}
+    .btn-primary:disabled{opacity:0.3;cursor:not-allowed;transform:none}
+    .btn-secondary{background:transparent;color:var(--muted2);border:1px solid var(--border2);border-radius:6px;padding:0.75rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;cursor:pointer;transition:all 0.2s}
+    .btn-secondary:hover{color:var(--white);border-color:var(--muted)}
+    #result-screen{display:none;opacity:0;animation:fadeIn 0.6s ease forwards}
+    @keyframes fadeIn{to{opacity:1}}
+    .risk-header{text-align:center;margin-bottom:2.5rem}
+    .risk-icon{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1.2rem}
+    .risk-level-label{font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:0.3rem 1rem;border-radius:20px;display:inline-block;margin-bottom:0.8rem}
+    .risk-title{font-family:'DM Serif Display',serif;font-size:1.9rem;margin-bottom:0.6rem}
+    .risk-intro{font-size:0.95rem;color:var(--muted2);max-width:540px;margin:0 auto;line-height:1.7}
+    .applies-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.8rem;margin:2rem 0}
+    .applies-title{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem}
+    .obligation-list{display:flex;flex-direction:column;gap:0.8rem}
+    .obligation-item{display:flex;gap:0.9rem;align-items:flex-start;padding:0.9rem 1rem;border-radius:8px}
+    .obl-status{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:10px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+    .obl-name{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:0.15rem}
+    .obl-desc{font-size:0.8rem;color:var(--muted2);line-height:1.5}
+    .timeline-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.8rem;margin:1.5rem 0}
+    .timeline-title{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem}
+    .timeline-items{display:flex;flex-direction:column;gap:0}
+    .timeline-item{display:flex;gap:1.2rem;align-items:flex-start;position:relative;padding-bottom:1.2rem}
+    .timeline-item:last-child{padding-bottom:0}
+    .timeline-dot-col{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+    .timeline-dot{width:10px;height:10px;border-radius:50%;margin-top:4px}
+    .timeline-line{width:1px;background:var(--border2);flex:1;margin-top:4px}
+    .timeline-item:last-child .timeline-line{display:none}
+    .timeline-date{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.15rem;text-transform:uppercase}
+    .timeline-text{font-size:0.86rem;color:var(--muted2);line-height:1.5}
+    .timeline-text strong{color:var(--white);font-weight:600}
+    .next-steps{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.8rem;margin:1.5rem 0}
+    .steps-title{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem}
+    .step-list{display:flex;flex-direction:column;gap:0.75rem}
+    .step-item{display:flex;gap:1rem;align-items:flex-start}
+    .step-num{width:24px;height:24px;min-width:24px;border-radius:50%;background:var(--blueglow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;color:var(--blue)}
+    .step-text{font-size:0.86rem;color:var(--muted2);line-height:1.5}
+    .step-text strong{color:var(--white);font-weight:600}
+    .cta-box{background:linear-gradient(135deg,rgba(74,140,255,0.12),rgba(93,216,232,0.06));border:1px solid rgba(74,140,255,0.3);border-radius:12px;padding:2rem;text-align:center;margin-top:2rem}
+    .cta-title{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:0.5rem}
+    .cta-text{font-size:0.88rem;color:var(--muted2);margin-bottom:1.4rem;line-height:1.6}
+    .cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:var(--bg);text-decoration:none;border-radius:6px;padding:0.8rem 2rem;font-weight:600;font-size:0.9rem;transition:all 0.2s}
+    .cta-btn:hover{opacity:0.85;transform:translateY(-2px)}
+    .cta-note{font-size:0.75rem;color:var(--muted);margin-top:0.8rem}
+    .restart-row{text-align:center;margin-top:1.5rem}
+    .restart-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color 0.2s}
+    .restart-btn:hover{color:var(--white)}
+    @media(max-width:600px){nav{padding:1rem 1.4rem}main{padding:7rem 1.2rem 4rem}.btn-row{flex-direction:column}.btn-primary,.btn-secondary{width:100%;justify-content:center}}
+  </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<nav>
+  <a href="https://ventari.eu" class="logo">Ventar<span>i</span></a>
+  <a href="https://ventari.eu/tools/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>
+    ← All Tools
+  </a>
+</nav>
+<main>
+  <div id="intro-screen">
+    <div class="tool-eyebrow">Free Tool</div>
+    <h1 class="tool-title">EU AI Act<br>Checker</h1>
+    <p class="tool-subtitle">Which risk level applies to your AI systems – and what obligations follow? 8 questions to a well-founded initial assessment.</p>
+    <div class="legal-note">
+      <span class="legal-note-icon">⚠</span>
+      <span>This tool provides a structured initial assessment but does not replace legal advice. For binding compliance evaluations, we recommend professional legal support.</span>
+    </div>
+    <button class="btn-primary" onclick="startChecker()">Start checker <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+  </div>
+
+  <div id="quiz-screen" style="display:none">
+    <div class="progress-wrap">
+      <div class="progress-meta"><span class="progress-label">Progress</span><span class="progress-count" id="prog-count">Question 1 of 8</span></div>
+      <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:12.5%"></div></div>
+    </div>
+    <div class="step-info" id="step-info"></div>
+    <div id="question-area"></div>
+    <div class="btn-row">
+      <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+      <button class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Back</button>
+    </div>
+  </div>
+
+  <div id="result-screen">
+    <div class="risk-header">
+      <div class="risk-icon" id="risk-icon"></div>
+      <div class="risk-level-label" id="risk-label"></div>
+      <div class="risk-title" id="risk-title"></div>
+      <p class="risk-intro" id="risk-intro"></p>
+    </div>
+    <div class="applies-box">
+      <div class="applies-title">Obligations that apply to you</div>
+      <div class="obligation-list" id="obligation-list"></div>
+    </div>
+    <div class="timeline-box">
+      <div class="timeline-title">Key deadlines</div>
+      <div class="timeline-items" id="timeline-items"></div>
+    </div>
+    <div class="next-steps">
+      <div class="steps-title">Your next steps</div>
+      <div class="step-list" id="step-list"></div>
+    </div>
+    <div class="cta-box">
+      <div class="cta-title">Close compliance gaps?</div>
+      <p class="cta-text">We help you turn this initial assessment into a concrete compliance plan – with clear priorities, realistic timelines and legal backing.</p>
+      <a href="https://ventari.eu/#contact" class="cta-btn">Book a free consultation <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <div class="cta-note">Free · No sales pitch · 45 minutes</div>
+    </div>
+    <div class="restart-row"><button class="restart-btn" onclick="restart()">Restart checker</button></div>
+  </div>
+</main>
+<script>
+const QUESTIONS=[
+  {id:"role",section:"Your Role",text:"In what role do you use AI?",hint:"Obligations under the EU AI Act differ depending on your role in the AI value chain.",options:[
+    {label:"Provider",desc:"We develop or sell AI systems to others.",riskWeight:2},
+    {label:"Deployer",desc:"We use AI systems from third-party providers in our operations.",riskWeight:1},
+    {label:"Both",desc:"We develop our own AI and also use third-party AI.",riskWeight:2},
+    {label:"Unclear / We don't use AI yet",desc:"We are still clarifying our role.",riskWeight:0}
+  ]},
+  {id:"domain",section:"Application Area",text:"In which area do you use AI?",hint:"Certain application areas are classified as high-risk under Annex III of the EU AI Act.",options:[
+    {label:"HR, Personnel & Recruitment",desc:"Hiring decisions, performance evaluation, promotions.",riskWeight:3},
+    {label:"Critical Infrastructure",desc:"Energy, water, transport, financial systems.",riskWeight:3},
+    {label:"Education & Vocational Training",desc:"Applicant admission, exam assessment, learning systems.",riskWeight:3},
+    {label:"Administration of Benefits & Services",desc:"Social benefits, credit scoring, emergency services.",riskWeight:3}
+  ]},
+  {id:"domain2",section:"Application Area (continued)",text:"Or does one of these areas apply?",hint:"Choose the most applicable area – even if none matches exactly.",options:[
+    {label:"Law Enforcement, Justice, Migration",desc:"Authorities, courts, border controls.",riskWeight:3},
+    {label:"Medical Devices / Healthcare",desc:"Diagnosis, treatment recommendations, medical technology.",riskWeight:3},
+    {label:"General Business Processes",desc:"Marketing, customer service, reporting, internal operations.",riskWeight:1},
+    {label:"None of the above",desc:"Our use case doesn't fall into any regulated area.",riskWeight:0}
+  ]},
+  {id:"prohibited",section:"Prohibited Practices",text:"Is AI used in your organisation for any of these purposes?",hint:"These practices are completely banned under the EU AI Act – regardless of other factors.",options:[
+    {label:"Yes – real-time biometric surveillance in public spaces",desc:"Facial recognition, behaviour monitoring in public areas.",riskWeight:4},
+    {label:"Yes – social scoring by public authorities",desc:"Evaluating individuals based on social behaviour.",riskWeight:4},
+    {label:"Yes – manipulation through subliminal techniques",desc:"Unconscious influencing of decisions.",riskWeight:4},
+    {label:"No – none of these apply",desc:"Our AI usage does not fall under prohibited practices.",riskWeight:0}
+  ]},
+  {id:"gpai",section:"AI Model Type",text:"Which type of AI system do you use or develop?",hint:"General Purpose AI models (GPAI) such as large language models have their own rules.",options:[
+    {label:"Large Language Model (LLM) / Generative AI",desc:"e.g. GPT, Claude, Gemini – used directly or via API.",riskWeight:2},
+    {label:"Specialised ML model",desc:"Classification, regression, image recognition for a specific purpose.",riskWeight:1},
+    {label:"Rule-based / classical system",desc:"No machine learning, clear if-then logic.",riskWeight:0},
+    {label:"We develop our own foundation models",desc:"Training of foundation models with large datasets (> 10^25 FLOP).",riskWeight:3}
+  ]},
+  {id:"autonomy",section:"Autonomy & Decision Depth",text:"How much does AI influence actual decisions?",hint:"The more autonomous and consequential an AI decision, the higher the regulatory risk.",options:[
+    {label:"Supportive – humans always decide finally",desc:"AI makes suggestions, a human reviews and approves.",riskWeight:1},
+    {label:"Semi-automated – human can intervene",desc:"AI often decides automatically, human can override.",riskWeight:2},
+    {label:"Highly automated – AI decides largely autonomously",desc:"Little human control in the running process.",riskWeight:3},
+    {label:"No deployment / purely analytical without impact",desc:"AI only provides dashboards or analysis without consequential action.",riskWeight:0}
+  ]},
+  {id:"data",section:"Data & Privacy",text:"Does your AI process personal or sensitive data?",hint:"Processing of personal data by AI triggers additional GDPR obligations.",options:[
+    {label:"Yes – special categories (health, origin, biometrics…)",desc:"Art. 9 GDPR data with heightened protection needs.",riskWeight:3},
+    {label:"Yes – regular personal data",desc:"Names, addresses, usage behaviour, etc.",riskWeight:2},
+    {label:"Only anonymised or aggregated data",desc:"No personal reference can be established.",riskWeight:0},
+    {label:"No personal data",desc:"Purely technical, machine-related or public data.",riskWeight:0}
+  ]},
+  {id:"scale",section:"Reach & Affected Persons",text:"How many people are affected by the AI decisions?",hint:"Greater reach increases damage potential and therefore regulatory scrutiny.",options:[
+    {label:"Few internal employees (< 50 people)",desc:"Limited internal use.",riskWeight:1},
+    {label:"Larger groups internally or externally (50–500 people)",desc:"Medium reach.",riskWeight:2},
+    {label:"Many people – customers, citizens or the public (> 500)",desc:"Wide impact on external persons.",riskWeight:3},
+    {label:"No persons affected – purely machine processes",desc:"Machine-to-machine without personal impact.",riskWeight:0}
+  ]}
+];
+
+const RISK_LEVELS={
+  PROHIBITED:{key:"PROHIBITED",label:"Prohibited Practice",color:"#ff5c5c",bg:"rgba(255,92,92,0.12)",icon:"🚫",iconBg:"rgba(255,92,92,0.15)",
+    title:"Your AI practice falls under a prohibition.",
+    intro:"At least one of your AI applications falls under the prohibited practices of the EU AI Act (Art. 5). These have been in force since 2 February 2025. Immediate action is required – regardless of other factors.",
+    obligations:[
+      {name:"Immediate cessation",desc:"The affected AI practice must be stopped immediately.",status:"Immediate",statusColor:"#ff5c5c",statusBg:"rgba(255,92,92,0.12)",bg:"rgba(255,92,92,0.05)"},
+      {name:"Legal review",desc:"Have a legal expert assess whether and how the use can be restructured compliantly.",status:"Immediate",statusColor:"#ff5c5c",statusBg:"rgba(255,92,92,0.12)",bg:"rgba(255,92,92,0.05)"},
+      {name:"Internal documentation",desc:"Document the situation and measures taken in writing.",status:"Urgent",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"}
+    ],
+    timeline:[
+      {date:"2 Feb 2025",text:"<strong>Prohibitions in force.</strong> Prohibited AI practices have been illegal since this date.",color:"#ff5c5c"},
+      {date:"Today",text:"<strong>Action required.</strong> Any further use is unlawful.",color:"#ff5c5c"}
+    ],
+    steps:["<strong>Now:</strong> Identify and document the affected application.","<strong>Within 48h:</strong> Seek legal advice.","<strong>Short-term:</strong> Assess whether a compliant alternative is possible.","<strong>In parallel:</strong> Prepare internal notification to management."]
+  },
+  HIGH:{key:"HIGH",label:"High-Risk AI",color:"#f5a623",bg:"rgba(245,166,35,0.1)",icon:"⚠️",iconBg:"rgba(245,166,35,0.15)",
+    title:"You are operating high-risk AI.",
+    intro:"Your AI systems likely fall under the high-risk category of the EU AI Act (Annex III). This means extensive obligations – fully effective from August 2026. Preparation now is worthwhile.",
+    obligations:[
+      {name:"Risk management system",desc:"Continuous risk management system for the entire lifecycle of the AI (Art. 9).",status:"From Aug 2026",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
+      {name:"Technical documentation",desc:"Complete documentation before market launch (Art. 11, Annex IV).",status:"From Aug 2026",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
+      {name:"Human oversight",desc:"Effective possibility of human control and intervention (Art. 14).",status:"From Aug 2026",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
+      {name:"Conformity assessment",desc:"Demonstrated conformity before deployment – in some cases with notification.",status:"From Aug 2026",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
+      {name:"AI literacy obligation (Art. 4)",desc:"Employees must have demonstrably sufficient training in working with AI – already in force.",status:"In force now",statusColor:"#ff5c5c",statusBg:"rgba(255,92,92,0.12)",bg:"rgba(255,92,92,0.05)"},
+      {name:"Create AI inventory",desc:"Record all AI systems in use – the foundation for all further steps.",status:"Immediately",statusColor:"#4ecb71",statusBg:"rgba(78,203,113,0.12)",bg:"rgba(78,203,113,0.05)"}
+    ],
+    timeline:[
+      {date:"Feb 2025",text:"<strong>AI literacy obligation (Art. 4) applies.</strong> Document training concept.",color:"#ff5c5c"},
+      {date:"Aug 2026",text:"<strong>High-risk obligations fully applicable.</strong> Risk management, documentation, conformity.",color:"#f5a623"},
+      {date:"Possibly Dec 2027",text:"Potential extension under EU Omnibus proposal – not yet adopted.",color:"#616884"}
+    ],
+    steps:["<strong>Now:</strong> Create AI inventory – record all systems in use.","<strong>Q2 2025:</strong> Risk classification per system (high-risk confirmed?).","<strong>Q3–Q4 2025:</strong> Build risk management framework and governance structure.","<strong>2026:</strong> Complete technical documentation and conformity assessment.","<strong>In parallel:</strong> Introduce AI literacy programme for employees."]
+  },
+  LIMITED:{key:"LIMITED",label:"Limited Risk",color:"#5dd8e8",bg:"rgba(93,216,232,0.1)",icon:"ℹ️",iconBg:"rgba(93,216,232,0.15)",
+    title:"Limited risk level – transparency obligations apply.",
+    intro:"Your AI systems likely fall into the 'Limited Risk' category. No high-risk obligations, but concrete transparency requirements – especially if users interact with AI without knowing it.",
+    obligations:[
+      {name:"Transparency obligation (Art. 50)",desc:"Users must be informed when they interact with an AI system (e.g. chatbot).",status:"From Aug 2026",statusColor:"#5dd8e8",statusBg:"rgba(93,216,232,0.12)",bg:"rgba(93,216,232,0.05)"},
+      {name:"Label AI-generated content",desc:"Deepfakes, synthetic audio/video content must be marked as AI-generated.",status:"From Aug 2026",statusColor:"#5dd8e8",statusBg:"rgba(93,216,232,0.12)",bg:"rgba(93,216,232,0.05)"},
+      {name:"AI literacy obligation (Art. 4)",desc:"Employees must have demonstrably sufficient training in working with AI.",status:"In force now",statusColor:"#ff5c5c",statusBg:"rgba(255,92,92,0.12)",bg:"rgba(255,92,92,0.05)"},
+      {name:"GDPR compliance check",desc:"Processing of personal data by AI requires a verified legal basis.",status:"In force now",statusColor:"#ff5c5c",statusBg:"rgba(255,92,92,0.12)",bg:"rgba(255,92,92,0.05)"}
+    ],
+    timeline:[
+      {date:"Feb 2025",text:"<strong>AI literacy obligation applies.</strong> Document training concept.",color:"#ff5c5c"},
+      {date:"Aug 2026",text:"<strong>Transparency obligations apply.</strong> Labelling and disclosure requirements.",color:"#5dd8e8"}
+    ],
+    steps:["<strong>Now:</strong> Create AI inventory – capture all tools and systems.","<strong>Short-term:</strong> Check whether AI interactions are disclosed to users.","<strong>2025:</strong> Develop and document training concept for AI literacy obligation.","<strong>2026:</strong> Complete transparency implementation, update GDPR documentation."]
+  },
+  MINIMAL:{key:"MINIMAL",label:"Minimal Risk",color:"#4ecb71",bg:"rgba(78,203,113,0.1)",icon:"✓",iconBg:"rgba(78,203,113,0.15)",
+    title:"Minimal risk – relaxed starting position.",
+    intro:"Your AI systems likely fall into the 'Minimal Risk' category. No specific legal obligations – but a proactive review and AI inventory are still recommended, as your AI usage will evolve over time.",
+    obligations:[
+      {name:"AI inventory recommended",desc:"No obligation, but good practice: document all AI tools in use to react quickly when things change.",status:"Recommended",statusColor:"#4ecb71",statusBg:"rgba(78,203,113,0.12)",bg:"rgba(78,203,113,0.05)"},
+      {name:"AI literacy obligation (Art. 4)",desc:"Employees who use AI must be demonstrably sufficiently informed – applies even at minimal risk.",status:"In force now",statusColor:"#ff5c5c",statusBg:"rgba(255,92,92,0.12)",bg:"rgba(255,92,92,0.05)"},
+      {name:"Voluntary codes of conduct",desc:"Providers can develop voluntary codes of conduct for minimal-risk AI.",status:"Optional",statusColor:"#8b93b3",statusBg:"rgba(139,147,179,0.1)",bg:"rgba(139,147,179,0.05)"}
+    ],
+    timeline:[
+      {date:"Feb 2025",text:"<strong>AI literacy obligation applies</strong> – even at minimal risk.",color:"#ff5c5c"},
+      {date:"Ongoing",text:"Monitor: Is your AI usage evolving towards higher risk levels?",color:"#4ecb71"}
+    ],
+    steps:["<strong>Now:</strong> Create AI inventory – which tools does your team use?","<strong>Short-term:</strong> Develop training concept for AI literacy obligation.","<strong>Ongoing:</strong> Briefly assess new AI use cases before introduction.","<strong>Optional:</strong> Establish a voluntary code of conduct for AI usage."]
+  }
+};
+
+let current=0,answers=new Array(QUESTIONS.length).fill(null);
+function startChecker(){document.getElementById('intro-screen').style.display='none';document.getElementById('quiz-screen').style.display='block';renderQ()}
+function renderQ(){
+  const q=QUESTIONS[current];
+  document.getElementById('prog-count').textContent=`Question ${current+1} of ${QUESTIONS.length}`;
+  document.getElementById('prog-fill').style.width=`${((current+1)/QUESTIONS.length)*100}%`;
+  document.getElementById('step-info').textContent=q.section;
+  document.getElementById('btn-back').style.display=current>0?'block':'none';
+  const isLast=current===QUESTIONS.length-1;
+  const btn=document.getElementById('btn-next');
+  btn.disabled=answers[current]===null;
+  btn.innerHTML=isLast?'Show results <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>':'Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+  const area=document.getElementById('question-area');
+  area.innerHTML=`<div class="question-card"><div class="question-text">${q.text}</div>${q.hint?`<div class="question-hint">${q.hint}</div>`:''}<div class="options">${q.options.map((o,i)=>`<button class="option ${answers[current]===i?'selected':''}" onclick="selectOption(${i})"><div class="option-dot"></div><div><div class="option-label">${o.label}</div><div class="option-desc">${o.desc}</div></div></button>`).join('')}</div></div>`;
+}
+function selectOption(i){answers[current]=i;document.querySelectorAll('.option').forEach((el,idx)=>el.classList.toggle('selected',idx===i));document.getElementById('btn-next').disabled=false}
+function nextQ(){if(answers[current]===null)return;if(current<QUESTIONS.length-1){current++;renderQ();}else showResult()}
+function prevQ(){if(current>0){current--;renderQ()}}
+function computeRisk(){
+  const weights=answers.map((ans,i)=>ans!==null?QUESTIONS[i].options[ans].riskWeight:0);
+  const max=Math.max(...weights);
+  if(max>=4)return RISK_LEVELS.PROHIBITED;
+  if(max===3)return RISK_LEVELS.HIGH;
+  if(max===2)return RISK_LEVELS.LIMITED;
+  return RISK_LEVELS.MINIMAL;
+}
+function showResult(){
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('result-screen').style.display='block';
+  const level=computeRisk();
+  const iconEl=document.getElementById('risk-icon');iconEl.textContent=level.icon;iconEl.style.background=level.iconBg;
+  const labelEl=document.getElementById('risk-label');labelEl.textContent=level.label;labelEl.style.background=level.bg;labelEl.style.color=level.color;labelEl.style.border=`1px solid ${level.color}44`;
+  document.getElementById('risk-title').textContent=level.title;
+  document.getElementById('risk-intro').textContent=level.intro;
+  document.getElementById('obligation-list').innerHTML=level.obligations.map(o=>`<div class="obligation-item" style="background:${o.bg};border-radius:8px"><span class="obl-status" style="color:${o.statusColor};background:${o.statusBg}">${o.status}</span><div><div class="obl-name">${o.name}</div><div class="obl-desc">${o.desc}</div></div></div>`).join('');
+  document.getElementById('timeline-items').innerHTML=level.timeline.map(t=>`<div class="timeline-item"><div class="timeline-dot-col"><div class="timeline-dot" style="background:${t.color}"></div><div class="timeline-line"></div></div><div><div class="timeline-date">${t.date}</div><div class="timeline-text">${t.text}</div></div></div>`).join('');
+  document.getElementById('step-list').innerHTML=level.steps.map((s,i)=>`<div class="step-item"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join('');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function restart(){current=0;answers=new Array(QUESTIONS.length).fill(null);document.getElementById('result-screen').style.display='none';document.getElementById('quiz-screen').style.display='block';renderQ()}
+</script>
+</body>
+</html>

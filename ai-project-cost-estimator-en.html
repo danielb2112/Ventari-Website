@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Project Cost Estimator – Ventari</title>
+  <meta name="description" content="What does an AI project really cost? Our free estimator delivers realistic cost ranges based on real market data – for SMEs and Mittelstand companies."/>
+  <link rel="canonical" href="https://ventari.eu/ai-project-cost-estimator-en.html"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#07080f;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--blue-dim);border-radius:2px}
+    .bg-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(74,140,255,0.07) 0%,transparent 70%);pointer-events:none;z-index:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(7,8,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--white);text-decoration:none}.logo span{color:var(--blue)}
+    .nav-back{font-size:0.76rem;color:var(--muted2);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}.nav-back:hover{color:var(--white)}
+    main{position:relative;z-index:2;max-width:820px;margin:0 auto;padding:9rem 2rem 5rem}
+    .tool-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:1.2rem}
+    .tool-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--blue)}
+    .tool-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,2.8rem);font-weight:400;line-height:1.15;color:var(--white);margin-bottom:1rem}
+    .tool-subtitle{font-size:1rem;color:var(--muted2);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
+    .section-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.6rem;margin-bottom:1rem}
+    .sec-title{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem}
+    @media(max-width:600px){.field-grid{grid-template-columns:1fr}}
+    .field{display:flex;flex-direction:column;gap:0.35rem}
+    label{font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+    select{background:var(--bg3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='none' stroke='%238b93b3' stroke-width='2'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 0.9rem center;border:1px solid var(--border2);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.65rem 2.2rem 0.65rem 0.9rem;width:100%;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none}
+    select option{background:var(--bg3)}
+    select:focus{border-color:var(--blue)}
+    .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+    @media(max-width:500px){.check-grid{grid-template-columns:1fr}}
+    .check-item{display:flex;align-items:center;gap:0.6rem;background:var(--bg3);border:1px solid var(--border2);border-radius:7px;padding:0.6rem 0.8rem;cursor:pointer;transition:all 0.2s}
+    .check-item:hover{border-color:var(--blue)}
+    .check-item.checked{border-color:var(--blue);background:rgba(74,140,255,0.1)}
+    .check-box{width:16px;height:16px;min-width:16px;border-radius:4px;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+    .check-item.checked .check-box{border-color:var(--blue);background:var(--blue)}
+    .check-box-tick{display:none;color:var(--bg);font-size:0.65rem;font-weight:900}
+    .check-item.checked .check-box-tick{display:block}
+    .check-label{font-size:0.83rem;color:var(--muted2);transition:color 0.2s}
+    .check-item.checked .check-label,.check-item:hover .check-label{color:var(--white)}
+    .btn-primary{background:var(--blue);color:var(--bg);border:none;border-radius:6px;padding:0.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem;margin-top:0.5rem}
+    .btn-primary:hover{opacity:0.85;transform:translateY(-1px)}
+    #results{display:none;opacity:0;animation:fadeIn 0.5s ease forwards}
+    @keyframes fadeIn{to{opacity:1}}
+    .total-banner{background:linear-gradient(135deg,rgba(74,140,255,0.15),rgba(93,216,232,0.08));border:1px solid rgba(74,140,255,0.3);border-radius:14px;padding:2rem;text-align:center;margin-bottom:1.5rem}
+    .total-label{font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue);margin-bottom:0.4rem}
+    .total-range{font-family:'DM Serif Display',serif;font-size:2.6rem;font-weight:400;color:var(--white);line-height:1.1;margin-bottom:0.3rem}
+    .total-sub{font-size:0.82rem;color:var(--muted2)}
+    .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+    @media(max-width:580px){.kpi-row{grid-template-columns:1fr}}
+    .kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;text-align:center}
+    .kpi-val{font-family:'DM Serif Display',serif;font-size:1.6rem;font-weight:400;margin-bottom:0.2rem}
+    .kpi-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+    .breakdown-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+    .breakdown-title{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:1.2rem 1.4rem 0.8rem}
+    .cost-row{display:flex;align-items:center;gap:1rem;padding:0.75rem 1.4rem;border-top:1px solid var(--border2)}
+    .cost-bar-wrap{flex:1;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+    .cost-bar{height:100%;border-radius:3px;transition:width 0.8s cubic-bezier(0.4,0,0.2,1)}
+    .cost-name{font-size:0.84rem;color:var(--muted2);width:200px;min-width:100px}
+    .cost-amount{font-size:0.84rem;font-weight:600;color:var(--white);min-width:100px;text-align:right}
+    .benchmark-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:1.5rem}
+    .benchmark-title{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+    .bench-row{display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:0.65rem}.bench-row:last-child{margin-bottom:0}
+    .bench-dot{width:8px;height:8px;min-width:8px;border-radius:50%;margin-top:0.42rem}
+    .bench-text{font-size:0.85rem;color:var(--muted2);line-height:1.5}
+    .bench-text strong{color:var(--white);font-weight:600}
+    .disclaimer{background:rgba(245,166,35,0.07);border:1px solid rgba(245,166,35,0.18);border-radius:8px;padding:0.9rem 1.1rem;font-size:0.78rem;color:var(--muted2);line-height:1.5;margin-bottom:1.5rem}
+    .disclaimer strong{color:var(--amber)}
+    .cta-box{background:linear-gradient(135deg,rgba(74,140,255,0.12),rgba(93,216,232,0.06));border:1px solid rgba(74,140,255,0.3);border-radius:12px;padding:2rem;text-align:center}
+    .cta-title{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:0.5rem}
+    .cta-text{font-size:0.88rem;color:var(--muted2);margin-bottom:1.4rem;line-height:1.6}
+    .cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:var(--bg);text-decoration:none;border-radius:6px;padding:0.8rem 2rem;font-weight:600;font-size:0.9rem;transition:all 0.2s}
+    .cta-btn:hover{opacity:0.85;transform:translateY(-2px)}
+    .cta-note{font-size:0.75rem;color:var(--muted);margin-top:0.8rem}
+    .restart-row{text-align:center;margin-top:1rem}
+    .restart-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color 0.2s}
+    .restart-btn:hover{color:var(--white)}
+    @media(max-width:600px){nav{padding:1rem 1.4rem}main{padding:7rem 1.2rem 4rem}}
+  </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<nav>
+  <a href="https://ventari.eu" class="logo">Ventar<span>i</span></a>
+  <a href="https://ventari.eu/tools/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>
+    ← All Tools
+  </a>
+</nav>
+<main>
+  <div id="form-screen">
+    <div class="tool-eyebrow">Free Calculator</div>
+    <h1 class="tool-title">AI Project<br>Cost Estimator</h1>
+    <p class="tool-subtitle">What does an AI project realistically cost? Based on real market data – with cost breakdown and payback benchmark.</p>
+    <div class="section-card">
+      <div class="sec-title">Project Type & Scope</div>
+      <div class="field-grid">
+        <div class="field">
+          <label>Type of AI project</label>
+          <select id="f-typ">
+            <option value="automation_simple">Simple Automation (n8n / Make)</option>
+            <option value="automation_complex">Complex Workflow Automation</option>
+            <option value="chatbot">AI Chatbot / Customer Service Agent</option>
+            <option value="rag">RAG System / Knowledge Base</option>
+            <option value="document_ai">Document Processing / AI Extraction</option>
+            <option value="analytics">Predictive Analytics / Forecasting</option>
+            <option value="custom_llm">Custom LLM Integration / AI Assistant</option>
+            <option value="full_platform">Full AI Platform / Multiple Use Cases</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Project complexity</label>
+          <select id="f-komplexitaet">
+            <option value="low">Low – clear scope, few systems</option>
+            <option value="mid" selected>Medium – multiple systems, moderate customisation</option>
+            <option value="high">High – many systems, high specificity</option>
+            <option value="very_high">Very high – core system, strategically critical</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Implementation approach</label>
+          <select id="f-ansatz">
+            <option value="agency">External agency / service provider</option>
+            <option value="freelancer">Freelancer</option>
+            <option value="inhouse">Internal team (already in place)</option>
+            <option value="hybrid">Hybrid: internal + external support</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Company size</label>
+          <select id="f-groesse">
+            <option value="small">1–50 employees</option>
+            <option value="mid" selected>51–250 employees</option>
+            <option value="large">251–1,000 employees</option>
+            <option value="enterprise">Over 1,000 employees</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="sec-title">What is included in the project?</div>
+      <div class="check-grid">
+        <div class="check-item" onclick="toggleCheck(this,'discovery')"><div class="check-box"><span class="check-box-tick">✓</span></div><span class="check-label">Discovery & Concept</span></div>
+        <div class="check-item checked" onclick="toggleCheck(this,'development')"><div class="check-box"><span class="check-box-tick">✓</span></div><span class="check-label">Development & Integration</span></div>
+        <div class="check-item checked" onclick="toggleCheck(this,'testing')"><div class="check-box"><span class="check-box-tick">✓</span></div><span class="check-label">Testing & QA</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'training')"><div class="check-box"><span class="check-box-tick">✓</span></div><span class="check-label">Employee Training</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'compliance')"><div class="check-box"><span class="check-box-tick">✓</span></div><span class="check-label">Compliance & Documentation</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'maintenance')"><div class="check-box"><span class="check-box-tick">✓</span></div><span class="check-label">Maintenance & Support (1 year)</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'change')"><div class="check-box"><span class="check-box-tick">✓</span></div><span class="check-label">Change Management</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'infra')"><div class="check-box"><span class="check-box-tick">✓</span></div><span class="check-label">Cloud Infrastructure (1 year)</span></div>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="estimate()">Estimate costs <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+  </div>
+
+  <div id="results">
+    <div class="total-banner">
+      <div class="total-label">Estimated Project Costs</div>
+      <div class="total-range" id="total-range">-</div>
+      <div class="total-sub">Based on European market data · Conservative range</div>
+    </div>
+    <div class="kpi-row" id="kpi-row"></div>
+    <div class="breakdown-box">
+      <div class="breakdown-title">Cost breakdown</div>
+      <div id="cost-rows"></div>
+    </div>
+    <div class="benchmark-box">
+      <div class="benchmark-title">Market benchmarks for this project type</div>
+      <div id="benchmarks"></div>
+    </div>
+    <div class="disclaimer"><strong>Note:</strong> This estimate is based on experience from comparable European projects. Actual costs depend on your specific requirements, the chosen provider and your internal prerequisites. Use these figures as a reference for an initial budget conversation.</div>
+    <div class="cta-box">
+      <div class="cta-title">Compare concrete proposals?</div>
+      <p class="cta-text">We give you an honest assessment of what your project realistically costs – and which approach offers the best value for money.</p>
+      <a href="https://ventari.eu/#contact" class="cta-btn">Book a free consultation <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <div class="cta-note">Free · No sales pitch · 45 minutes</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.4rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <div style="font-size:0.85rem;color:var(--muted2);">See Ventari fixed prices for your project →</div>
+      <a href="https://ventari.eu/pricing.html" style="font-size:0.82rem;color:var(--blue);text-decoration:none;white-space:nowrap;border:1px solid rgba(74,140,255,0.3);border-radius:6px;padding:0.3rem 0.8rem;">Pricing & Packages ↗</a>
+    </div>
+    <div class="restart-row"><button class="restart-btn" onclick="restart()">New estimate</button></div>
+  </div>
+</main>
+<script>
+const PROJECT_BASE={
+  automation_simple:{low:8000,high:22000,days:[3,8],label:'Simple Automation'},
+  automation_complex:{low:15000,high:45000,days:[6,16],label:'Complex Automation'},
+  chatbot:{low:18000,high:55000,days:[8,20],label:'AI Chatbot'},
+  rag:{low:22000,high:70000,days:[10,24],label:'RAG System'},
+  document_ai:{low:18000,high:60000,days:[8,20],label:'Document AI'},
+  analytics:{low:25000,high:80000,days:[12,28],label:'Predictive Analytics'},
+  custom_llm:{low:30000,high:90000,days:[14,32],label:'Custom LLM Integration'},
+  full_platform:{low:65000,high:220000,days:[20,60],label:'AI Platform'},
+};
+const COMPLEXITY={low:1.0,mid:1.35,high:1.8,very_high:2.4};
+const APPROACH={agency:1.2,freelancer:0.75,inhouse:0.5,hybrid:0.9};
+const SIZE={small:0.85,mid:1.0,large:1.25,enterprise:1.6};
+const SCOPE_FACTORS={
+  discovery:{low:0.08,high:0.12,label:'Discovery & Concept',color:'#4a8cff'},
+  development:{low:0.35,high:0.45,label:'Development & Integration',color:'#5dd8e8'},
+  testing:{low:0.08,high:0.12,label:'Testing & QA',color:'#a78bfa'},
+  training:{low:0.04,high:0.07,label:'Employee Training',color:'#4ecb71'},
+  compliance:{low:0.04,high:0.07,label:'Compliance & Documentation',color:'#f5a623'},
+  maintenance:{low:0.10,high:0.18,label:'Maintenance & Support (1 yr)',color:'#ff8a8a'},
+  change:{low:0.03,high:0.06,label:'Change Management',color:'#c4b5fd'},
+  infra:{low:0.03,high:0.08,label:'Cloud Infrastructure (1 yr)',color:'#6ee7b7'},
+};
+const BENCHMARKS={
+  automation_simple:['Freelancer day rate (EU): <strong>€600–900</strong>','SaaS subscription: <strong>€200–800/month</strong>','Typical project duration: <strong>3–6 weeks</strong>'],
+  automation_complex:['Agency day rate (EU): <strong>€1,000–1,600</strong>','Avg. hours for complex workflows: <strong>80–200 hours</strong>','Typical project duration: <strong>2–4 months</strong>'],
+  chatbot:['GPT-4 API costs (avg): <strong>€50–500/month</strong> for SMEs','Integration with existing systems: <strong>30–40% of costs</strong>','Typical project duration: <strong>6–12 weeks</strong>'],
+  rag:['Vector store infrastructure: <strong>€100–400/month</strong>','Content preparation & embedding: <strong>20–40% of costs</strong>','Typical project duration: <strong>8–14 weeks</strong>'],
+  document_ai:['AI specialist day rate (EU): <strong>€1,100–1,500</strong>','OCR + LLM combination: often cheaper than custom dev','Typical project duration: <strong>6–12 weeks</strong>'],
+  analytics:['Data preparation often <strong>40–50% of total effort</strong>','ML Ops infrastructure: <strong>€300–1,500/month</strong>','Typical project duration: <strong>3–6 months</strong>'],
+  custom_llm:['LLM API costs: <strong>€0.01–0.06 per 1,000 tokens</strong>','Fine-tuning typically costs <strong>€20,000–60,000</strong> one-time','Typical project duration: <strong>3–6 months</strong>'],
+  full_platform:['Multi-year TCO often <strong>2–4x higher</strong> than initial project','AI platform agencies (EU): <strong>€1,200–2,000/day</strong>','Typical project duration: <strong>5–14 months</strong>'],
+};
+const checked=new Set(['development','testing']);
+function toggleCheck(el,key){el.classList.toggle('checked');if(el.classList.contains('checked'))checked.add(key);else checked.delete(key)}
+function estimate(){
+  const typ=document.getElementById('f-typ').value;
+  const komp=document.getElementById('f-komplexitaet').value;
+  const ansatz=document.getElementById('f-ansatz').value;
+  const groesse=document.getElementById('f-groesse').value;
+  const base=PROJECT_BASE[typ];
+  const mult=COMPLEXITY[komp]*APPROACH[ansatz]*SIZE[groesse];
+  let costs=[];let totalLow=0,totalHigh=0;
+  checked.forEach(key=>{
+    const sf=SCOPE_FACTORS[key];if(!sf)return;
+    const cLow=base.low*mult*sf.low;const cHigh=base.high*mult*sf.high;
+    totalLow+=cLow;totalHigh+=cHigh;
+    costs.push({...sf,low:cLow,high:cHigh,key});
+  });
+  if(totalLow<base.low*mult*0.35){totalLow=base.low*mult*0.35;totalHigh=base.high*mult*0.35}
+  const fmtK=n=>n>=10000?'€'+Math.round(n/1000)+'K':'€'+Math.round(n/100)*100;
+  document.getElementById('form-screen').style.display='none';
+  document.getElementById('results').style.display='block';
+  document.getElementById('total-range').textContent=`${fmtK(totalLow)} – ${fmtK(totalHigh)}`;
+  const daysLow=base.days[0]*COMPLEXITY[komp];const daysHigh=base.days[1]*COMPLEXITY[komp];
+  document.getElementById('kpi-row').innerHTML=`<div class="kpi-card"><div class="kpi-val" style="color:var(--cyan)">${daysLow.toFixed(0)}–${daysHigh.toFixed(0)} days</div><div class="kpi-label">Typical duration</div></div><div class="kpi-card"><div class="kpi-val" style="color:var(--green)">3–8 months</div><div class="kpi-label">Avg. payback period</div></div><div class="kpi-card"><div class="kpi-val" style="color:var(--amber)">${fmtK(totalHigh*0.1)}–${fmtK(totalHigh*0.2)}</div><div class="kpi-label">Annual operating costs</div></div>`;
+  const maxCost=Math.max(...costs.map(c=>c.high));
+  document.getElementById('cost-rows').innerHTML=costs.sort((a,b)=>b.high-a.high).map(c=>`<div class="cost-row"><div class="cost-name">${c.label}</div><div class="cost-bar-wrap"><div class="cost-bar" id="bar-${c.key}" style="background:${c.color};width:0%"></div></div><div class="cost-amount">${fmtK(c.low)}–${fmtK(c.high)}</div></div>`).join('');
+  setTimeout(()=>costs.forEach(c=>{const el=document.getElementById(`bar-${c.key}`);if(el)el.style.width=Math.round((c.high/maxCost)*100)+'%'}),150);
+  document.getElementById('benchmarks').innerHTML=(BENCHMARKS[typ]||[]).map(b=>`<div class="bench-row"><div class="bench-dot" style="background:var(--blue)"></div><div class="bench-text">${b}</div></div>`).join('');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function restart(){document.getElementById('results').style.display='none';document.getElementById('form-screen').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
+</script>
+</body>
+</html>

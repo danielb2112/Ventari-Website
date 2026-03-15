@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO -->
+  <title>Ventari – KI-Automatisierung & Compliance | Deutschlandweit</title>
+  <meta name="description" content="Ventari: KI-Strategie, Automatisierung und EU AI Act Compliance aus einer Hand – für KMU und Mittelstand. Festpreis-Einstieg ab €4.900."/>
+  <meta name="keywords" content="KI Beratung, AI Automation, EU AI Act Compliance, DSGVO KI, AI Consulting Deutschland, Prozessautomatisierung, LLM Integration, Cloud AWS Azure, n8n Make Automation, KI Mittelstand Deutschland, KI Beratung DACH"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://ventari.eu"/>
+
+  <!-- Hreflang für DE/EN -->
+  <link rel="alternate" hreflang="de" href="https://ventari.eu"/>
+  <link rel="alternate" hreflang="en" href="https://ventari.eu"/>
+  <link rel="alternate" hreflang="x-default" href="https://ventari.eu"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ventari – KI-Automatisierung & Compliance für den Mittelstand"/>
+  <meta property="og:description" content="KI-Strategie, Automatisierung und EU AI Act Compliance aus einer Hand – für KMU und Mittelstand. Festpreis-Einstieg, technische Umsetzung, rechtssicher."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://ventari.eu"/>
+  <meta property="og:image" content="https://ventari.eu/og-image.png"/>
+  <meta property="og:locale" content="de_DE"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Ventari – KI-Automatisierung & Compliance"/>
+  <meta name="twitter:description" content="KI-Strategie, Automatisierung und EU AI Act Compliance aus einer Hand – für KMU und Mittelstand."/>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Ventari",
+    "description": "AI Automation & Compliance Studio – KI-Strategie, technische Umsetzung und EU AI Act Compliance für KMU und Mittelstand.",
+    "url": "https://ventari.eu",
+    "email": "hello@ventari.eu",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Baden-Baden",
+      "addressCountry": "DE"
+    },
+    "areaServed": ["DE", "AT", "CH"],
+    "serviceType": ["AI Consulting", "AI Automation", "EU AI Act Compliance", "GDPR Consulting"],
+    "knowsLanguage": ["de", "en"]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:wght@400&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg:       #07080f;
+      --bg2:      #0c0e18;
+      --bg3:      #111320;
+      --surface:  #161828;
+      --blue:     #4a8cff;
+      --blue-dim: #2d5cb8;
+      --blueglow: rgba(74,140,255,0.12);
+      --cyan:     #5dd8e8;
+      --white:    #f4f6fb;
+      --muted:    #616884;
+      --muted2:   #8b93b3;
+      --border:   rgba(74,140,255,0.12);
+      --border2:  rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 2px; }
+
+    /* CANVAS */
+    #network-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; opacity: 0.5;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      transition: all 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(7,8,15,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; color: var(--white); text-decoration: none; font-weight: 400;
+    }
+    .logo span { color: var(--blue); }
+    .nav-right { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: var(--muted2); text-decoration: none;
+      font-size: 0.76rem; font-weight: 500; transition: color 0.2s; white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--blue) !important; color: var(--bg) !important;
+      padding: 0.45rem 1.1rem !important; border-radius: 4px; font-weight: 500 !important;
+      font-size: 0.76rem !important;
+    }
+    .nav-cta:hover { opacity: 0.85 !important; }
+    .lang-switcher {
+      display: flex; align-items: center; gap: 2px;
+      background: var(--bg3); border: 1px solid var(--border2); border-radius: 6px; padding: 3px;
+    }
+    .lang-btn {
+      background: none; border: none; color: var(--muted);
+      font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.08em; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active { background: var(--blue); color: var(--bg); }
+    .lang-btn:not(.active):hover { color: var(--white); }
+
+    /* Z-LAYER */
+    section, .strip, .quote-section, footer { position: relative; z-index: 2; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; padding: 8rem 4rem 5rem;
+      position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 1.8rem;
+      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .hero-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--blue); box-shadow: 0 0 8px var(--blue);
+      animation: pulseDot 2.5s ease-in-out infinite; flex-shrink: 0;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 7vw, 6.5rem); font-weight: 400;
+      line-height: 1.05; letter-spacing: -0.01em; max-width: 860px;
+      color: var(--white);
+      opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+    }
+    h1 .accent {
+      color: var(--white);
+    }
+    .hero-sub {
+      margin-top: 2rem; max-width: 540px;
+      color: var(--muted2); font-size: 1rem; font-weight: 300; line-height: 1.85;
+      opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+    }
+    .hero-problems {
+      margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s 0.75s forwards;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(74,140,255,0.08); border: 1px solid var(--border);
+      border-radius: 100px; padding: 0.35rem 0.9rem;
+      font-size: 0.72rem; font-weight: 500; color: var(--muted2);
+    }
+    .hero-pill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .hero-actions {
+      margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+    }
+    .btn-primary {
+      background: var(--blue); color: var(--bg); border: none;
+      padding: 0.9rem 2.2rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 500; border-radius: 5px;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: all 0.25s ease;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent; color: var(--muted2);
+      border: 1px solid var(--border2); padding: 0.9rem 2.2rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 400;
+      border-radius: 5px; cursor: pointer; text-decoration: none;
+      display: inline-block; transition: all 0.25s ease;
+    }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--white); }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 4rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      color: var(--muted); font-size: 0.68rem; letter-spacing: 0.18em;
+      text-transform: uppercase; opacity: 0; animation: fadeUp 0.8s 1.1s forwards;
+    }
+    .scroll-line { width: 36px; height: 1px; background: linear-gradient(to right, var(--blue), transparent); }
+
+    /* STRIP */
+    .strip {
+      background: var(--bg2);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .strip-item {
+      padding: 1.8rem 2.5rem; border-right: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-icon { width: 32px; height: 32px; flex-shrink: 0; color: var(--blue); }
+    .strip-label { font-size: 0.78rem; color: var(--muted2); line-height: 1.5; }
+    .strip-label strong { display: block; color: var(--white); font-size: 0.85rem; font-weight: 500; margin-bottom: 0.1rem; }
+
+    /* SECTIONS */
+    section { padding: 7rem 4rem; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 1.2rem;
+    }
+    .eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 400;
+      line-height: 1.1; letter-spacing: -0.01em; max-width: 680px; color: var(--white);
+    }
+    h2 .accent {
+      color: var(--white);
+    }
+
+    /* PROBLEM SECTION */
+    #problem { background: var(--bg); }
+    .problem-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 4rem; }
+    .problem-intro { color: var(--muted2); font-size: 0.95rem; font-weight: 300; line-height: 1.85; }
+    .problem-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border2); }
+    .problem-card {
+      background: var(--bg2); padding: 2rem 2.5rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      transition: background 0.3s;
+    }
+    .problem-card:hover { background: var(--bg3); }
+    .problem-num {
+      font-family: 'DM Serif Display', serif; font-size: 2rem;
+      color: var(--blue); opacity: 0.25; line-height: 1; flex-shrink: 0; width: 36px;
+    }
+    .problem-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--white); }
+    .problem-card p { font-size: 0.83rem; font-weight: 300; color: var(--muted2); line-height: 1.75; }
+
+    /* SERVICES */
+    #services { background: var(--bg2); }
+    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap; }
+    .services-intro { max-width: 400px; color: var(--muted2); font-size: 0.9rem; font-weight: 300; line-height: 1.85; }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border2); }
+    .service-card {
+      background: var(--bg2); padding: 2.8rem;
+      position: relative; overflow: hidden; transition: background 0.3s;
+    }
+    .service-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+    }
+    .service-card:hover { background: var(--bg3); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-num { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; color: var(--blue); text-transform: uppercase; margin-bottom: 1.5rem; }
+    .service-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.55rem; font-weight: 400; margin-bottom: 0.8rem; line-height: 1.2; color: var(--white); }
+    .service-card p { color: var(--muted2); font-size: 0.87rem; font-weight: 300; line-height: 1.85; margin-bottom: 1.6rem; }
+    .service-includes { margin-bottom: 1.5rem; }
+    .service-includes-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+    .service-bullets { display: flex; flex-direction: column; gap: 0.35rem; }
+    .service-bullet {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.8rem; font-weight: 400; color: var(--muted2);
+    }
+    .service-bullet::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tool-inline-hint { display: inline-flex; align-items: center; gap: .3rem; font-size: .78rem; font-weight: 500; color: var(--blue); text-decoration: none; margin-top: .9rem; opacity: .8; transition: opacity .2s; }
+    .tool-inline-hint:hover { opacity: 1; }
+    .tag {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.08em;
+      padding: 0.28rem 0.65rem; border-radius: 100px;
+      border: 1px solid var(--border); color: var(--muted2);
+      background: rgba(74,140,255,0.05); transition: all 0.2s;
+    }
+    .service-card:hover .tag { border-color: rgba(74,140,255,0.3); color: var(--blue); }
+
+    /* AUDIT HIGHLIGHT */
+    .audit-section { background: var(--bg); }
+    .audit-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 3.5rem; margin-top: 4rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .audit-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(74,140,255,0.1); border: 1px solid var(--border);
+      border-radius: 100px; padding: 0.4rem 1rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem;
+    }
+    .audit-card h3 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; line-height: 1.2; color: var(--white); margin-bottom: 1rem; }
+    .audit-card p { color: var(--muted2); font-size: 0.9rem; font-weight: 300; line-height: 1.85; margin-bottom: 2rem; }
+    .audit-steps { display: flex; flex-direction: column; gap: 1px; background: var(--border2); }
+    .audit-step {
+      background: var(--bg2); padding: 1.2rem 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .audit-step-num { color: var(--blue); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; flex-shrink: 0; margin-top: 0.1rem; }
+    .audit-step-text strong { display: block; font-size: 0.85rem; font-weight: 500; color: var(--white); margin-bottom: 0.15rem; }
+    .audit-step-text p { font-size: 0.78rem; font-weight: 300; color: var(--muted2); line-height: 1.6; }
+
+    /* EXPERTISE */
+    #expertise { background: var(--bg2); }
+    .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border2); margin-top: 4rem; }
+    .expertise-card { background: var(--bg2); padding: 2.5rem; transition: background 0.3s; }
+    .expertise-card:hover { background: var(--bg3); }
+    .expertise-icon { width: 40px; height: 40px; color: var(--blue); margin-bottom: 1.2rem; }
+    .expertise-card h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.6rem; color: var(--white); }
+    .expertise-card p { font-size: 0.83rem; font-weight: 300; line-height: 1.75; color: var(--muted2); }
+    .expertise-highlight { color: var(--blue); font-weight: 500; }
+
+    /* TEAM */
+    .team-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 6rem; align-items: start; margin-top: 4rem; }
+    .team-text { display: flex; flex-direction: column; gap: 1.5rem; }
+    .team-para { color: var(--muted2); font-size: 0.95rem; font-weight: 300; line-height: 1.9; }
+    .cred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: .5rem; }
+    .cred-card { padding: 1.3rem 1.4rem 1.3rem 1rem; border-bottom: 1px solid var(--border2); border-right: 1px solid var(--border2); position: relative; transition: background .2s; }
+    .cred-card:nth-child(even) { border-right: none; }
+    .cred-card:nth-last-child(-n+2) { border-bottom: none; }
+    .cred-card:hover { background: rgba(74,140,255,.04); }
+    .cred-line { position: absolute; left: 0; top: 1.3rem; bottom: 1.3rem; width: 2px; background: transparent; transition: background .2s; }
+    .cred-card:hover .cred-line { background: var(--blue); }
+    .cred-card strong { display: block; font-size: .8rem; font-weight: 600; color: var(--white); line-height: 1.4; margin-bottom: .35rem; }
+    .cred-card span { font-size: .72rem; font-weight: 300; color: var(--muted); line-height: 1.55; }
+    .team-closing { color: var(--white); font-weight: 400; }
+    .team-pillars { display: flex; flex-direction: column; gap: 0; position: sticky; top: 8rem; }
+    .team-pillar { padding: 1.2rem 0 1.2rem 1.2rem; border-bottom: 1px solid var(--border2); position: relative; transition: padding-left 0.3s ease; }
+    .team-pillar:first-child { border-top: 1px solid var(--border2); }
+    .team-pillar:hover { padding-left: 1.8rem; }
+    .team-pillar-line { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 2px; height: 0; background: var(--blue); transition: height 0.3s ease; }
+    .team-pillar:hover .team-pillar-line { height: 60%; }
+    .team-pillar strong { display: block; font-size: 0.85rem; font-weight: 600; color: var(--white); margin-bottom: 0.2rem; }
+    .team-pillar span { font-size: 0.75rem; font-weight: 300; color: var(--muted); }
+
+    /* WHY */
+    #why { background: var(--bg); }
+    .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; margin-top: 4rem; }
+    .why-intro { color: var(--muted2); font-size: 0.95rem; font-weight: 300; line-height: 1.85; margin-top: 1.5rem; }
+    .why-list { display: flex; flex-direction: column; }
+    .why-item {
+      display: flex; gap: 1.5rem; padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border2); transition: padding-left 0.3s;
+    }
+    .why-item:first-child { border-top: 1px solid var(--border2); }
+    .why-item:hover { padding-left: 0.5rem; }
+    .why-item-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--blueglow); border: 1px solid var(--border);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      color: var(--blue); margin-top: 0.1rem;
+    }
+    .why-item h4 { font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 0.35rem; }
+    .why-item p { font-size: 0.83rem; font-weight: 300; color: var(--muted2); line-height: 1.75; }
+
+    /* QUOTE */
+    .quote-section {
+      padding: 6rem 4rem; background: var(--bg2);
+      border-top: 1px solid var(--border2); border-bottom: 1px solid var(--border2);
+      text-align: center;
+    }
+    blockquote {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 400;
+      line-height: 1.45; max-width: 820px; margin: 0 auto; color: var(--white);
+    }
+    blockquote .accent {
+      color: var(--white);
+    }
+    .quote-author { margin-top: 1.8rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+    /* CONTACT */
+    #contact { background: var(--bg); }
+    .contact-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 6rem; align-items: start; margin-top: 4rem; }
+    .contact-desc { color: var(--muted2); font-size: 0.9rem; font-weight: 300; line-height: 1.85; margin: 1.5rem 0 2.5rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-item { display: flex; align-items: center; gap: 0.9rem; color: var(--muted2); font-size: 0.85rem; font-weight: 300; }
+    .contact-item svg { color: var(--blue); flex-shrink: 0; }
+    .form-group { display: flex; flex-direction: column; gap: 0.9rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      background: var(--bg3); border: 1px solid var(--border2); color: var(--white);
+      padding: 0.95rem 1.1rem; font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; font-weight: 300; border-radius: 5px;
+      outline: none; transition: border-color 0.25s; width: 100%;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+    .form-group select option { background: var(--bg3); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      background: var(--blue); color: var(--bg); border: none;
+      padding: 0.95rem 2rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 500; border-radius: 5px;
+      cursor: pointer; width: 100%; margin-top: 0.3rem; transition: all 0.25s ease;
+    }
+    .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border2);
+      padding: 2.5rem 4rem; display: flex;
+      justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--blue); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulseDot { 0%,100% { box-shadow: 0 0 6px var(--blue); transform: scale(1); } 50% { box-shadow: 0 0 14px var(--blue); transform: scale(1.3); } }
+    [data-i18n] { transition: opacity 0.18s ease; }
+    body.lang-switching [data-i18n] { opacity: 0; }
+    .js-ready .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .js-ready .reveal.visible { opacity: 1; transform: none; }
+    .js-ready .reveal-delay-1 { transition-delay: 0.1s; }
+    .js-ready .reveal-delay-2 { transition-delay: 0.2s; }
+    .js-ready .reveal-delay-3 { transition-delay: 0.3s; }
+
+    
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+      z-index: 300; width: 40px; height: 40px; border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.07); }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px; background: var(--white);
+      transition: transform 0.32s cubic-bezier(.77,0,.18,1), opacity 0.2s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* MOBILE MENU OVERLAY */
+    .mobile-menu {
+      position: fixed; inset: 0;
+      background: rgba(7,8,15,0.97);
+      backdrop-filter: blur(24px);
+      z-index: 250;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu-close {
+      position: absolute; top: 1.2rem; right: 1.5rem;
+      background: rgba(255,255,255,0.07); border: 1px solid var(--border);
+      color: var(--white); font-size: 1.1rem; width: 40px; height: 40px;
+      border-radius: 10px; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; transition: background 0.2s;
+    }
+    .mobile-menu-close:hover { background: rgba(255,255,255,0.14); }
+    .mobile-menu nav-logo-m {
+      position: absolute; top: 1.4rem; left: 1.8rem;
+      font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--white);
+    }
+    .mobile-menu a {
+      font-size: 1.55rem; font-family: 'DM Serif Display', serif;
+      color: var(--muted2); text-decoration: none;
+      padding: 0.7rem 2rem; text-align: center;
+      transition: color 0.2s, transform 0.2s;
+      transform: translateY(12px);
+      opacity: 0;
+      transition: color 0.2s, opacity 0.25s, transform 0.3s;
+    }
+    .mobile-menu.open a { opacity: 1; transform: translateY(0); }
+    .mobile-menu a:nth-child(2) { transition-delay: 0.04s; }
+    .mobile-menu a:nth-child(3) { transition-delay: 0.08s; }
+    .mobile-menu a:nth-child(4) { transition-delay: 0.12s; }
+    .mobile-menu a:nth-child(5) { transition-delay: 0.16s; }
+    .mobile-menu a:nth-child(6) { transition-delay: 0.20s; }
+    .mobile-menu a:nth-child(7) { transition-delay: 0.24s; }
+    .mobile-menu a:nth-child(8) { transition-delay: 0.28s; }
+    .mobile-menu a:hover { color: var(--white); }
+    .mobile-menu .m-cta {
+      font-size: 0.9rem !important; font-family: 'DM Sans', sans-serif !important;
+      background: var(--blue) !important; color: var(--bg) !important;
+      padding: 0.85rem 2.5rem !important; border-radius: 8px;
+      font-weight: 600 !important; margin-top: 0.5rem;
+      transition: opacity 0.2s, opacity 0.25s, transform 0.3s !important;
+    }
+    .mobile-menu .m-cta:hover { opacity: 0.85 !important; color: var(--bg) !important; }
+    .mobile-menu .lang-switcher {
+      margin-top: 2rem;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.25s 0.32s, transform 0.3s 0.32s;
+    }
+    .mobile-menu.open .lang-switcher { opacity: 1; transform: translateY(0); }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-top: 1px solid var(--border2); border-bottom: 1px solid var(--border2);
+      background: var(--bg2); position: relative; z-index: 2;
+    }
+    .stat-item { padding: 2rem 2.5rem; border-right: 1px solid var(--border2); text-align: center; }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--white); display: block; }
+    .stat-label { font-size: 0.72rem; color: var(--muted2); font-weight: 300; margin-top: 0.2rem; display: block; }
+
+    /* TECH LOGOS */
+    .tech-section {
+      padding: 3rem 4rem; background: var(--bg);
+      border-bottom: 1px solid var(--border2); position: relative; z-index: 2;
+    }
+    .tech-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 1.8rem; }
+    .tech-logos { display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+    .tech-logo { font-size: 0.78rem; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; opacity: 0.5; transition: opacity 0.3s; display: flex; align-items: center; gap: 0.5rem; }
+    .tech-logo:hover { opacity: 1; color: var(--white); }
+    .tech-logo svg { width: 18px; height: 18px; }
+
+    /* FAQ */
+    #faq { background: var(--bg2); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border2); margin-top: 3.5rem; }
+    .faq-item { background: var(--bg2); padding: 2rem 2.5rem; cursor: pointer; transition: background 0.3s; }
+    .faq-item:hover { background: var(--bg3); }
+    .faq-q { font-size: 0.92rem; font-weight: 600; color: var(--white); display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
+    .faq-q svg { flex-shrink: 0; color: var(--blue); transition: transform 0.3s; margin-top: 2px; }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a { font-size: 0.85rem; font-weight: 300; color: var(--muted2); line-height: 1.8; margin-top: 0.9rem; display: none; }
+    .faq-item.open .faq-a { display: block; }
+
+    @media (max-width: 1100px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .stats-bar { grid-template-columns: repeat(2,1fr); }
+      .faq-grid { grid-template-columns: 1fr; }
+      .tech-section { padding: 2rem; }
+      .tech-logos { gap: 1.8rem; }
+      .team-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .team-pillars { position: static; }
+      .cred-grid { grid-template-columns: 1fr; }
+      .cred-card:nth-child(even) { border-right: none; }
+      .cred-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--border2); }
+      .cred-card:last-child { border-bottom: none; }
+      #hero, section, .quote-section, footer { padding-left: 2rem; padding-right: 2rem; }
+      .hero-scroll { left: 2rem; }
+      .strip { grid-template-columns: repeat(2, 1fr); }
+      .services-grid, .expertise-grid { grid-template-columns: 1fr; }
+      .problem-layout, .why-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .audit-card { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; padding: 2rem; }
+      .services-header { flex-direction: column; align-items: flex-start; }
+      .score-steps { grid-template-columns: 1fr 1fr; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .tools-teaser { grid-template-columns: 1fr !important; max-width: 100% !important; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .gap-row { flex-direction: column; gap: 0; }
+      .gap-vs { transform: rotate(90deg); }
+    }
+  </style>
+
+  <!-- NEW SECTION STYLES -->
+  <style>
+  /* ── MARKET GAP BANNER ── */
+  .gap-banner { margin: 2.5rem 0 0; padding: 2rem 2.4rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; }
+  .gap-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .gap-block { flex: 1; min-width: 140px; }
+  .gap-num { font-family: 'DM Serif Display', serif; font-size: 3.4rem; line-height: 1; }
+  .gap-num.hi { color: var(--blue); }
+  .gap-num.lo { color: var(--muted2); }
+  .gap-desc { font-size: .82rem; color: var(--muted2); margin-top: .3rem; line-height: 1.4; max-width: 200px; }
+  .gap-vs { font-size: 1.4rem; color: var(--muted); padding: 0 .5rem; }
+  .gap-note { margin-top: 1.2rem; font-size: .84rem; color: var(--muted2); border-left: 2px solid var(--blue); padding-left: 1rem; line-height: 1.5; }
+
+
+
+    .blog-card { cursor: pointer; }
+
+
+  /* ── LEGAL MODALS ── */
+  .legal-modal { display: none; position: fixed; inset: 0; background: rgba(7,8,15,.85); backdrop-filter: blur(6px); z-index: 500; padding: 2rem; overflow-y: auto; }
+  .legal-modal.open { display: flex; align-items: flex-start; justify-content: center; }
+  .legal-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 18px; max-width: 760px; width: 100%; margin: auto; }
+  .legal-header { display: flex; justify-content: space-between; align-items: center; padding: 2rem 2.5rem 1.5rem; border-bottom: 1px solid var(--border2); }
+  .legal-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; }
+  .legal-close { background: none; border: none; color: var(--muted); font-size: 1.2rem; cursor: pointer; padding: .3rem .6rem; border-radius: 6px; transition: color .2s; }
+  .legal-close:hover { color: var(--white); }
+  .legal-body { padding: 2rem 2.5rem 2.5rem; color: var(--muted2); font-size: .88rem; line-height: 1.8; }
+  .legal-body h3 { color: var(--white); font-size: .95rem; font-weight: 600; margin: 1.8rem 0 .6rem; }
+  .legal-body h3:first-child { margin-top: 0; }
+  .legal-body a { color: var(--blue); text-decoration: none; }
+  .legal-body a:hover { text-decoration: underline; }
+  .legal-body strong { color: var(--white); }
+  @media (max-width: 768px) {
+    .legal-modal { padding: 1rem; }
+    .legal-body, .legal-header { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+
+  /* ── COUNTDOWN BANNER ── */
+  .countdown-banner {
+    background: linear-gradient(90deg, rgba(74,140,255,0.07), rgba(93,216,232,0.04));
+    border-top: 1px solid var(--border2); border-bottom: 1px solid var(--border2);
+    padding: 0.75rem 4rem; display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;
+    position: relative; z-index: 2;
+  }
+  .countdown-left { display: flex; align-items: center; gap: 0.7rem; font-size: 0.78rem; color: var(--muted2); }
+  .countdown-dot { width: 7px; height: 7px; border-radius: 50%; background: #ff6b35; box-shadow: 0 0 8px #ff6b35; animation: pulseDot 1.8s ease-in-out infinite; flex-shrink: 0; }
+  .countdown-label { font-weight: 600; color: var(--white); }
+  .countdown-units { display: flex; gap: 0.6rem; align-items: center; }
+  .countdown-unit { background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; padding: 0.3rem 0.7rem; text-align: center; min-width: 52px; }
+  .countdown-num { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--white); line-height: 1; display: block; }
+  .countdown-sub { font-size: 0.58rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-top: 0.15rem; }
+  .countdown-sep { color: var(--muted); font-size: 1rem; }
+  .countdown-cta { font-size: 0.75rem; color: var(--blue); text-decoration: none; font-weight: 500; border: 1px solid rgba(74,140,255,0.3); border-radius: 5px; padding: 0.35rem 0.9rem; transition: background 0.2s; }
+  .countdown-cta:hover { background: rgba(74,140,255,0.1); }
+  @media (max-width: 1100px) { .countdown-banner { padding: 0.75rem 2rem; } }
+  @media (max-width: 600px) { .countdown-banner { flex-direction: column; align-items: flex-start; } .countdown-cta { display: none; } }
+
+  /* ── PARTNER LOGOS ── */
+  .partner-section {
+    padding: 1.6rem 4rem; border-bottom: 1px solid var(--border2);
+    display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+    position: relative; z-index: 2;
+  }
+  .partner-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+  .partner-logos { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; flex: 1; }
+  .partner-logo { display: flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; font-weight: 500; color: var(--muted); opacity: 0.5; transition: opacity 0.2s; letter-spacing: 0.02em; }
+  .partner-logo:hover { opacity: 0.85; }
+  .partner-logo svg { width: 15px; height: 15px; flex-shrink: 0; }
+  @media (max-width: 1100px) { .partner-section { padding: 1.4rem 2rem; } .partner-logos { gap: 1.4rem; } }
+  @media (max-width: 600px) { .partner-label { display: none; } .partner-logos { gap: 1.1rem; } }
+
+  /* ── PROCESS FLOW ── */
+  #process { padding: 7rem 6vw; max-width: 1200px; margin: 0 auto; }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3.5rem; position: relative; }
+  .process-steps::before { content: ''; position: absolute; top: 27px; left: 13%; right: 13%; height: 1px; background: linear-gradient(90deg, rgba(74,140,255,0.6), rgba(74,140,255,0.1)); z-index: 0; }
+  .process-step { text-align: center; padding: 0 1rem; position: relative; z-index: 1; }
+  .process-icon { width: 54px; height: 54px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; transition: border-color .25s, background .25s; position: relative; }
+  .process-icon::before { content: attr(data-num); position: absolute; top: -5px; right: -5px; width: 18px; height: 18px; border-radius: 50%; background: var(--blue); color: var(--bg); font-size: 0.6rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .process-step:hover .process-icon { border-color: rgba(74,140,255,0.45); background: rgba(74,140,255,0.06); }
+  .process-icon svg { width: 22px; height: 22px; stroke: var(--blue); fill: none; stroke-width: 1.5; }
+  .process-step-badge { display: inline-block; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.18rem 0.6rem; border-radius: 100px; margin-bottom: 0.6rem; }
+  .pb-strategy { background: rgba(74,140,255,0.12); color: #4a8cff; }
+  .pb-compliance { background: rgba(255,107,53,0.1); color: #ff8c42; }
+  .pb-tech { background: rgba(93,216,232,0.1); color: #5dd8e8; }
+  .pb-success { background: rgba(78,205,130,0.1); color: #4ecd82; }
+  .process-step-title { font-family: 'DM Serif Display', serif; font-size: 1.05rem; font-weight: 400; color: var(--white); margin-bottom: 0.45rem; }
+  .process-step-sub { font-size: 0.8rem; color: var(--muted2); line-height: 1.55; }
+  @media (max-width: 1100px) { .process-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; } .process-steps::before { display: none; } }
+  @media (max-width: 600px) { .process-steps { grid-template-columns: 1fr; gap: 2rem; } }
+
+  /* ── READINESS SCORE ── */
+  #readiness { padding: 7rem 6vw; max-width: 1200px; margin: 0 auto; }
+  .score-intro { max-width: 600px; margin-bottom: 3.5rem; }
+  .score-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+  .score-step { background: var(--bg3); border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem 1.5rem; position: relative; overflow: hidden; transition: border-color .25s; }
+  .score-step:hover { border-color: rgba(74,140,255,.4); }
+  .score-step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .score-step.s1::before { background: #616884; }
+  .score-step.s2::before { background: #4a8cff; }
+  .score-step.s3::before { background: #5dd8e8; }
+  .score-step.s4::before { background: linear-gradient(90deg, #4a8cff, #5dd8e8); }
+  .score-level { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .8rem; }
+  .score-name { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: .8rem; }
+  .score-name.s4 { background: linear-gradient(90deg, #4a8cff, #5dd8e8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .score-desc { font-size: .83rem; color: var(--muted2); line-height: 1.6; }
+  .score-cta { margin-top: 3rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .score-cta p { color: var(--muted2); font-size: .9rem; max-width: 420px; }
+
+  /* ── TOOLS SECTION ── */
+  #tools { padding: 7rem 6vw; max-width: 1200px; margin: 0 auto; }
+  .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .tool-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; position: relative; overflow: hidden; }
+  .tool-card::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top right, rgba(74,140,255,.06), transparent 60%); pointer-events: none; }
+  .tool-badge { display: inline-block; background: rgba(74,140,255,.12); color: var(--blue); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .8rem; border-radius: 100px; margin-bottom: 1.2rem; }
+  .tool-card h3 { font-size: 1.3rem; margin-bottom: .8rem; }
+  .tool-card p { color: var(--muted2); font-size: .88rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .tool-steps { display: flex; flex-direction: column; gap: .5rem; }
+  .tool-step { display: flex; align-items: center; gap: .8rem; font-size: .84rem; color: var(--muted2); }
+  .tool-step-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; flex-shrink: 0; }
+  .tools-teaser-item { background: var(--bg3); padding: 1.1rem 1.4rem; display: flex; align-items: center; gap: .8rem; font-size: .85rem; color: var(--muted2); border-bottom: 1px solid var(--border2); transition: background .2s, color .2s; cursor: default; }
+  .tools-teaser-item:hover { background: var(--bg2); color: var(--white); }
+  .tools-teaser-item span { font-weight: 400; }
+  .tool-coming { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.8rem; font-size: .8rem; color: var(--muted); background: var(--bg2); border: 1px solid var(--border2); padding: .4rem 1rem; border-radius: 100px; }
+  .tool-coming-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; animation: pulse 1.5s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  /* ── BLOG SECTION ── */
+  #blog { padding: 7rem 6vw; max-width: 1200px; margin: 0 auto; }
+  .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .blog-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color .25s, transform .25s; cursor: pointer; }
+  .blog-card:hover { border-color: rgba(74,140,255,.35); transform: translateY(-3px); }
+  .blog-img { height: 140px; background: linear-gradient(135deg, var(--bg2), var(--surface)); display: flex; align-items: center; justify-content: center; }
+  .blog-img svg { width: 40px; height: 40px; opacity: .25; }
+  .blog-body { padding: 1.5rem; }
+  .blog-tag { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: .6rem; }
+  .blog-title { font-size: 1rem; font-weight: 600; line-height: 1.4; margin-bottom: .7rem; }
+  .blog-excerpt { font-size: .83rem; color: var(--muted2); line-height: 1.6; margin-bottom: 1.2rem; }
+  .blog-meta { display: flex; align-items: center; gap: .8rem; font-size: .78rem; color: var(--muted); }
+  .blog-meta span::after { content: '·'; margin-left: .8rem; }
+  .blog-meta span:last-child::after { content: ''; }
+  .blog-more { color: var(--blue); font-size: .88rem; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: .4rem; transition: gap .2s; }
+  .blog-more:hover { gap: .7rem; }
+
+  @media (max-width: 768px) {
+    .score-steps { grid-template-columns: 1fr 1fr; }
+    .tools-grid { grid-template-columns: 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    #readiness, #tools, #blog { padding: 5rem 2rem; }
+  }
+  @media (max-width: 480px) {
+    .score-steps { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+
+<canvas id="network-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">ventari<span>.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#services" data-i18n="nav.services">Leistungen</a></li>
+      <li><a href="#readiness" data-i18n="nav.readiness">Readiness</a></li>
+      <li><a href="#tools" data-i18n="nav.tools">Tools</a></li>
+      <li><a href="#blog" data-i18n="nav.blog">Insights</a></li>
+      <li><a href="#expertise" data-i18n="nav.expertise">Team</a></li>
+      <li><a href="#why" data-i18n="nav.why">Warum wir</a></li>
+      <li><a href="preise.html" data-href-de="preise.html" data-href-en="pricing.html" data-i18n="nav.pricing">Preise</a></li>
+      <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Kontakt</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMobile()" aria-label="Menü schließen">✕</button>
+  <a href="#services" data-i18n="nav.services" onclick="closeMobile()">Leistungen</a>
+  <a href="#readiness" data-i18n="nav.readiness" onclick="closeMobile()">Readiness Score</a>
+  <a href="#tools" data-i18n="nav.tools" onclick="closeMobile()">Kostenlose Tools</a>
+  <a href="#blog" data-i18n="nav.blog" onclick="closeMobile()">Insights</a>
+  <a href="#expertise" data-i18n="nav.expertise" onclick="closeMobile()">Team</a>
+  <a href="#why" data-i18n="nav.why" onclick="closeMobile()">Warum wir</a>
+  <a href="#contact" class="m-cta" data-i18n="nav.cta" onclick="closeMobile()">Kontakt</a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="de" onclick="closeMobile()">DE</button>
+    <button class="lang-btn" data-lang="en" onclick="closeMobile()">EN</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow"><div class="hero-dot"></div><span data-i18n="hero.eyebrow">AI Automation & Compliance Studio</span></div>
+  <h1 data-i18n="hero.h1">KI, die wirklich <span class="accent">funktioniert.</span><br/>Sicher, messbar, produktiv.</h1>
+  <p class="hero-sub" data-i18n="hero.sub">Strategie, Umsetzung und EU AI Act Compliance – aus einer Hand. Kein Koordinieren zwischen Dienstleistern, keine rechtlichen Überraschungen, keine Blindflüge.</p>
+  <div class="hero-problems">
+    <div class="hero-pill"><div class="hero-pill-dot"></div><span data-i18n="pill.1">Zu viel Arbeit, zu wenig Zeit</span></div>
+    <div class="hero-pill"><div class="hero-pill-dot"></div><span data-i18n="pill.2">KI-Projekte die nicht starten</span></div>
+    <div class="hero-pill"><div class="hero-pill-dot"></div><span data-i18n="pill.3">Rechtliche Unsicherheit</span></div>
+  </div>
+  <div class="hero-actions">
+    <a href="#contact" id="cta-hero" class="btn-primary" data-i18n="hero.cta1">30-Minuten-Gespräch buchen</a>
+    <a href="#services" class="btn-secondary" data-i18n="hero.cta2">Leistungen ansehen</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span data-i18n="hero.scroll">Entdecken</span></div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar" style="position:relative;z-index:2;">
+  <div class="stat-item reveal">
+    <span class="stat-num" data-i18n="stat.1.num">3</span>
+    <span class="stat-label" data-i18n="stat.1.label">Kerndisziplinen unter einem Dach</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <span class="stat-num" data-i18n="stat.2.num">6</span>
+    <span class="stat-label" data-i18n="stat.2.label">Kompetenzfelder im Team</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <span class="stat-num" data-i18n="stat.3.num">24h</span>
+    <span class="stat-label" data-i18n="stat.3.label">Reaktionszeit garantiert</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <span class="stat-num" data-i18n="stat.4.num">100%</span>
+    <span class="stat-label" data-i18n="stat.4.label">EU-konform – DSGVO & AI Act</span>
+  </div>
+</div>
+
+<!-- COUNTDOWN BANNER -->
+<div class="countdown-banner">
+  <div class="countdown-left">
+    <div class="countdown-dot"></div>
+    <span data-i18n="cd.label"><span class="countdown-label">EU AI Act</span> – Vollständige Durchsetzung für Hochrisiko-Systeme in:</span>
+  </div>
+  <div class="countdown-units" id="countdown-units">
+    <div class="countdown-unit"><span class="countdown-num" id="cd-days">--</span><span class="countdown-sub" data-i18n="cd.days">Tage</span></div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-unit"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-sub" data-i18n="cd.hours">Std</span></div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-unit"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-sub" data-i18n="cd.mins">Min</span></div>
+  </div>
+  <a href="eu-ai-act-checker.html" class="countdown-cta" data-href-de="eu-ai-act-checker.html" data-href-en="eu-ai-act-checker-en.html" data-i18n="cd.cta">Bin ich betroffen? →</a>
+  <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:0.8rem;max-width:560px;line-height:1.5;" data-i18n="cd.omnibus"></div>
+</div>
+
+<!-- PARTNER LOGOS -->
+<div class="partner-section">
+  <span class="partner-label" data-i18n="partner.label">Technologie-Partner</span>
+  <div class="partner-logos">
+    <div class="partner-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.527 2.79L7.87 16.634l2.01.847 1.574-3.736h3.638l1.574 3.736 2.01-.847L13.527 2.79zm0 3.483l1.31 3.107h-2.62l1.31-3.107zM6.015 5.413C4.29 7.173 3.25 9.577 3.25 12.23c0 5.109 3.874 9.326 8.841 9.842v-2.015c-3.857-.502-6.841-3.802-6.841-7.827 0-2.1.8-4.01 2.11-5.46L6.015 5.413zm11.97 0l-1.345 1.357c1.31 1.45 2.11 3.36 2.11 5.46 0 4.025-2.984 7.325-6.84 7.827v2.015c4.967-.516 8.84-4.733 8.84-9.842 0-2.653-1.04-5.057-2.765-6.817z"/></svg>AWS</div>
+    <div class="partner-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.05 4.24l.65 1.86H21v13H3V6.1h6.48l.72-1.86h2.85M12 2H9L7.5 6H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-4.5L15 2h-3z"/></svg>Microsoft Azure</div>
+    <div class="partner-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Google Cloud</div>
+    <div class="partner-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>OpenAI</div>
+    <div class="partner-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>n8n</div>
+    <div class="partner-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>Make</div>
+    <div class="partner-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>LangChain</div>
+  </div>
+</div>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item reveal">
+    <svg class="strip-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="16" cy="16" r="7"/><circle cx="16" cy="16" r="13" stroke-dasharray="3 3"/><line x1="16" y1="3" x2="16" y2="9"/><line x1="16" y1="23" x2="16" y2="29"/><line x1="3" y1="16" x2="9" y2="16"/><line x1="23" y1="16" x2="29" y2="16"/></svg>
+    <div class="strip-label"><strong data-i18n="strip.1.title">AI Opportunity Assessment</strong><span data-i18n="strip.1.sub">Use Cases & Roadmap</span></div>
+  </div>
+  <div class="strip-item reveal reveal-delay-1">
+    <svg class="strip-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="12" width="7" height="7" rx="1"/><rect x="12" y="6" width="7" height="7" rx="1"/><rect x="12" y="19" width="7" height="7" rx="1"/><rect x="21" y="12" width="7" height="7" rx="1"/><line x1="10" y1="15.5" x2="12" y2="15.5"/><line x1="19" y1="9.5" x2="21" y2="13"/><line x1="19" y1="22.5" x2="21" y2="19"/><line x1="15.5" y1="13" x2="15.5" y2="19"/></svg>
+    <div class="strip-label"><strong data-i18n="strip.2.title">AI Automation & Integration</strong><span data-i18n="strip.2.sub">Workflows, Tools, APIs</span></div>
+  </div>
+  <div class="strip-item reveal reveal-delay-2">
+    <svg class="strip-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="7" y="3" width="18" height="26" rx="2"/><line x1="11" y1="10" x2="21" y2="10"/><line x1="11" y1="15" x2="21" y2="15"/><line x1="11" y1="20" x2="17" y2="20"/></svg>
+    <div class="strip-label"><strong data-i18n="strip.3.title">AI Governance & Compliance</strong><span data-i18n="strip.3.sub">EU AI Act, DSGVO</span></div>
+  </div>
+  <div class="strip-item reveal reveal-delay-3">
+    <svg class="strip-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 20a7 7 0 1 1 0-10 5 5 0 1 1 10 0 5 5 0 0 1 0 10z"/><line x1="12" y1="23" x2="12" y2="28"/><line x1="20" y1="23" x2="20" y2="28"/><line x1="8" y1="28" x2="24" y2="28"/></svg>
+    <div class="strip-label"><strong data-i18n="strip.4.title">Cloud-Infrastruktur</strong><span data-i18n="strip.4.sub">AWS, Azure, GCP</span></div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="eyebrow reveal" data-i18n="problem.eyebrow">Der Markt heute</div>
+  <h2 class="reveal" data-i18n="problem.h2">Drei Gründe, warum<br/><span class="accent">KI-Projekte scheitern.</span><br/>die <span class="accent">Unternehmen bremsen.</span></h2>
+  <div class="problem-layout">
+    <p class="problem-intro reveal" data-i18n="problem.intro">Die meisten Geschäftsführer wissen, dass KI ihrem Unternehmen helfen könnte. Nur wenige wissen wo anfangen – und noch weniger haben jemanden, der Strategie, Technik und Recht gleichzeitig im Griff hat.</p>
+    <div class="gap-banner reveal">
+      <div class="gap-row">
+        <div class="gap-block">
+          <div class="gap-num hi" data-i18n="gap.num1">86%</div>
+          <div class="gap-desc" data-i18n="gap.desc1">der KMU erkennen KI als geschäftskritisch</div>
+        </div>
+        <div class="gap-vs">→</div>
+        <div class="gap-block">
+          <div class="gap-num lo" data-i18n="gap.num2">23%</div>
+          <div class="gap-desc" data-i18n="gap.desc2">haben KI-Projekte erfolgreich umgesetzt</div>
+        </div>
+      </div>
+      <div class="gap-note" data-i18n="gap.note">63 Punkte Umsetzungslücke – das ist der Markt, für den Ventari gebaut wurde. Quelle: Mittelstand Digital Studie 2025</div>
+    </div>
+    <div class="problem-cards">
+      <div class="problem-card reveal">
+        <div class="problem-num">01</div>
+        <div>
+          <h4 data-i18n="prob.1.title">Kein klarer Einstiegspunkt</h4>
+          <p data-i18n="prob.1.p">Wo fängt man an? Welche Prozesse lohnen sich? Die meisten Unternehmen investieren in einen Use Case der nicht passt – oder warten so lang, dass die Konkurrenz überholt.</p>
+        </div>
+      </div>
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="problem-num">02</div>
+        <div>
+          <h4 data-i18n="prob.2.title">Integration ist schwieriger als erwartet</h4>
+          <p data-i18n="prob.2.p">KI muss in bestehende Systeme eingebunden werden – CRM, ERP, E-Mail, Datenbanken. Das ist technisch anspruchsvoll und überfordert interne Teams ohne KI-Erfahrung.</p>
+        </div>
+      </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="problem-num">03</div>
+        <div>
+          <h4 data-i18n="prob.3.title">Datenschutz und Haftung ungeklärt</h4>
+          <p data-i18n="prob.3.p">Darf ich KI überhaupt einsetzen? Was passiert mit Kundendaten? Wer haftet bei Fehlern? EU AI Act und DSGVO schaffen Unsicherheit – und wer das am Ende nachrüstet, zahlt doppelt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="eyebrow reveal" data-i18n="services.eyebrow">Leistungen</div>
+      <h2 class="reveal" data-i18n="services.h2">Was wir für Sie<br/><span class="accent">konkret tun.</span><br/><span class="accent">Aus einer Hand.</span></h2>
+    </div>
+    <p class="services-intro reveal" data-i18n="services.intro">Von der Analyse bis zur fertigen Lösung – alles aus einer Hand. Kein Abstimmen zwischen drei verschiedenen Dienstleistern, kein Projekt das auf halbem Weg stecken bleibt.</p>
+  </div>
+  <div class="services-grid">
+    <!-- S1 -->
+    <div class="service-card reveal">
+      <div class="service-num" data-i18n="s1.num">01 — AI Opportunity Assessment</div>
+      <h3 data-i18n="s1.h3">Wir zeigen Ihnen,<br/>wo KI wirklich hilft.<br/>Code geschrieben wird</h3>
+      <p data-i18n="s1.p">In 2–3 Tagen schauen wir uns Ihre Prozesse an und sagen Ihnen genau, wo Automatisierung Zeit und Kosten spart. Mit Aufwandsschätzung und Prioritäten. Festpreis, keine Überraschungen.</p>
+      <div class="service-includes">
+        <div class="service-includes-title" data-i18n="s.delivers">Ergebnis</div>
+        <div class="service-bullets">
+          <div class="service-bullet" data-i18n="s1.b1">Priorisierte AI-Use-Case-Liste</div>
+          <div class="service-bullet" data-i18n="s1.b2">Risiko- und Nutzenbewertung</div>
+          <div class="service-bullet" data-i18n="s1.b3">Konkrete Projektroadmap</div>
+          <div class="service-bullet" data-i18n="s1.b4">Erste Compliance-Einschätzung</div>
+        </div>
+      </div>
+      <div class="service-tags"><span class="tag" data-i18n="s1.t1">2–3 Tage</span><span class="tag" data-i18n="s1.t2">Workshop-Format</span><span class="tag">Festpreis</span></div>
+      <a href="automatisierungspotenzial-rechner.html" class="tool-inline-hint" data-href-de="automatisierungspotenzial-rechner.html" data-href-en="automation-potential-calculator-en.html" data-i18n="s1.tool">📊 Vorab: Einsparpotenzial berechnen →</a>
+    </div>
+    <!-- S2 -->
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num" data-i18n="s2.num">02 — AI Automation & Integration</div>
+      <h3 data-i18n="s2.h3">Wir bauen die Lösung –<br/>und integrieren sie.<br/>Prozessen läuft</h3>
+      <p data-i18n="s2.p">Kein Proof-of-Concept, das nach drei Monaten im Regal liegt. Wir bauen Automatisierungen die wirklich laufen – eingebunden in Ihre bestehenden Systeme, ohne dass Ihr Team sich um die Technik kümmern muss.</p>
+      <div class="service-includes">
+        <div class="service-includes-title" data-i18n="s.examples">Typische Lösungen</div>
+        <div class="service-bullets">
+          <div class="service-bullet" data-i18n="s2.b1">Automatische Bearbeitung eingehender Anfragen</div>
+          <div class="service-bullet" data-i18n="s2.b2">KI durchsucht interne Dokumente und beantwortet Fragen</div>
+          <div class="service-bullet" data-i18n="s2.b3">Angebote, Follow-ups und CRM-Updates automatisiert</div>
+          <div class="service-bullet" data-i18n="s2.b4">Datenauswertung und Reporting ohne manuellen Aufwand</div>
+        </div>
+      </div>
+      <div class="service-tags"><span class="tag">LLM</span><span class="tag">n8n / Make</span><span class="tag">AWS / Azure / GCP</span><span class="tag">API-Integration</span></div>
+    </div>
+    <!-- S3 -->
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num" data-i18n="s3.num">03 — AI Governance & Compliance</div>
+      <h3 data-i18n="s3.h3">Kein Datenschutz-Problem<br/>nach dem Launch.<br/>Anfang an</h3>
+      <p data-i18n="s3.p">Unser Rechtsexperte sorgt dafür, dass Ihr KI-Einsatz von Anfang an DSGVO-konform und EU AI Act-ready ist. Kein Nachbessern, keine Abmahnungen, keine offenen Haftungsfragen.</p>
+      <div class="service-includes">
+        <div class="service-includes-title" data-i18n="s.delivers">Ergebnis</div>
+        <div class="service-bullets">
+          <div class="service-bullet" data-i18n="s3.b1">AI-Richtlinien & Governance-Framework</div>
+          <div class="service-bullet" data-i18n="s3.b2">DSGVO-konforme Datenschutzkonzepte</div>
+          <div class="service-bullet" data-i18n="s3.b3">EU AI Act Compliance-Dokumentation</div>
+          <div class="service-bullet" data-i18n="s3.b4">Risikobewertung & Haftungsklarheit</div>
+        </div>
+      </div>
+      <div class="service-tags"><span class="tag">EU AI Act</span><span class="tag">DSGVO</span><span class="tag">IT-Recht</span><span class="tag">Governance</span></div>
+      <a href="eu-ai-act-checker.html" class="tool-inline-hint" data-href-de="eu-ai-act-checker.html" data-href-en="eu-ai-act-checker-en.html" data-i18n="s3.tool">🛡️ Jetzt Risikoklasse prüfen →</a>
+    </div>
+    <!-- S4 -->
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-num" data-i18n="s4.num">04 — Wartung & Weiterentwicklung</div>
+      <h3 data-i18n="s4.h3">Wir bleiben dabei –<br/>auch nach dem Start.</h3>
+      <p data-i18n="s4.p">KI-Systeme brauchen Pflege. Wir überwachen die Performance, passen bei Bedarf an und stellen sicher, dass die Lösung mit Ihrem Unternehmen mitwächst.</p>
+      <div class="service-includes">
+        <div class="service-includes-title" data-i18n="s.includes">Bestandteile</div>
+        <div class="service-bullets">
+          <div class="service-bullet" data-i18n="s4.b1">Monitoring & Performance-Tracking</div>
+          <div class="service-bullet" data-i18n="s4.b2">Monatliche Optimierungsrunden</div>
+          <div class="service-bullet" data-i18n="s4.b3">Laufende Compliance-Überprüfung</div>
+          <div class="service-bullet" data-i18n="s4.b4">Skalierung bei wachsender Nutzung</div>
+        </div>
+      </div>
+      <div class="service-tags"><span class="tag" data-i18n="s4.t1">Monatliche Betreuung</span><span class="tag" data-i18n="s4.t2">Flexibel kündbar</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT HIGHLIGHT -->
+<section class="audit-section">
+  <div class="audit-card reveal">
+    <div>
+      <div class="audit-badge" data-i18n="audit.badge">Einstieg</div>
+      <h3 data-i18n="audit.h3">Der einfachste Einstieg: der AI Audit</h3>
+      <p data-i18n="audit.p">In 2–3 Tagen wissen Sie genau, welche Prozesse sich für Automatisierung eignen, was es kostet und was Sie dadurch gewinnen. Festpreis, kein Risiko.</p>
+      <a href="#contact" id="cta-audit" class="btn-primary" data-i18n="audit.cta">AI Audit anfragen</a>
+      <a href="ki-projektkosten-schaetzer.html" class="tool-inline-hint" style="margin-top:.8rem;display:inline-block;" data-href-de="ki-projektkosten-schaetzer.html" data-href-en="ai-project-cost-estimator-en.html" data-i18n="audit.tool">🧮 Was würde das kosten? Jetzt schätzen →</a>
+    </div>
+    <div class="audit-steps">
+      <div class="audit-step">
+        <div class="audit-step-num">Tag 1</div>
+        <div class="audit-step-text"><strong data-i18n="audit.day1.title">Analyse</strong><p data-i18n="audit.day1.p">Prozesse, Daten und bestehende Systeme verstehen</p></div>
+      </div>
+      <div class="audit-step">
+        <div class="audit-step-num">Tag 2</div>
+        <div class="audit-step-text"><strong data-i18n="audit.day2.title">Bewertung</strong><p data-i18n="audit.day2.p">Use Cases priorisieren, Risiken und Nutzen abwägen</p></div>
+      </div>
+      <div class="audit-step">
+        <div class="audit-step-num">Tag 3</div>
+        <div class="audit-step-text"><strong data-i18n="audit.day3.title">Roadmap</strong><p data-i18n="audit.day3.p">Konkrete nächste Schritte mit Aufwand und ROI-Schätzung</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS FLOW -->
+<section id="process">
+  <p class="eyebrow reveal" data-i18n="process.eyebrow">So arbeiten wir</p>
+  <h2 class="reveal" data-i18n="process.h2">Vom ersten Gespräch zur<br/><span class="accent">laufenden KI-Lösung.</span></h2>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="process-icon" data-num="1">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <div class="process-step-badge pb-strategy" data-i18n="process.b1">Strategie</div>
+      <div class="process-step-title" data-i18n="process.t1">AI Opportunity Assessment</div>
+      <div class="process-step-sub" data-i18n="process.s1">Wir analysieren Ihre Prozesse, identifizieren Potenziale und liefern eine priorisierte Roadmap. 2–3 Tage, Festpreis.</div>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <div class="process-icon" data-num="2">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="process-step-badge pb-compliance" data-i18n="process.b2">Compliance</div>
+      <div class="process-step-title" data-i18n="process.t2">Legal & Governance Check</div>
+      <div class="process-step-sub" data-i18n="process.s2">Unser Rechtsexperte prüft EU AI Act- und DSGVO-Anforderungen – parallel zur Strategie, nicht nachträglich.</div>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="process-icon" data-num="3">
+        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <div class="process-step-badge pb-tech" data-i18n="process.b3">Umsetzung</div>
+      <div class="process-step-title" data-i18n="process.t3">Automation & Integration</div>
+      <div class="process-step-sub" data-i18n="process.s3">Wir bauen und integrieren die Lösung in Ihre bestehenden Systeme – produktionsreif, nicht als Prototyp.</div>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="process-icon" data-num="4">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="process-step-badge pb-success" data-i18n="process.b4">Betrieb</div>
+      <div class="process-step-title" data-i18n="process.t4">Monitoring & Weiterentwicklung</div>
+      <div class="process-step-sub" data-i18n="process.s4">Laufendes Monitoring, Compliance-Updates und Skalierung – wir bleiben Partner, nicht nur Dienstleister.</div>
+    </div>
+  </div>
+</section>
+
+<!-- READINESS SCORE -->
+<section id="readiness">
+  <div class="score-intro">
+    <div class="eyebrow reveal" data-i18n="score.eyebrow">Ventari AI Readiness Score</div>
+    <h2 class="reveal" data-i18n="score.h2">Wo steht Ihr Unternehmen<br/><span class="accent">wirklich?</span></h2>
+    <p class="reveal" style="color:var(--muted2);margin-top:1rem;line-height:1.75;" data-i18n="score.intro">Unser proprietäres 4-Stufen-Framework bewertet KI-Reife, Datenstatus und Compliance-Lage – und zeigt genau, was als nächstes zu tun ist.</p>
+  </div>
+  <div class="score-steps">
+    <div class="score-step s1 reveal">
+      <div class="score-level" data-i18n="score.l1">Stufe 1</div>
+      <div class="score-name" data-i18n="score.n1">Starter</div>
+      <div class="score-desc" data-i18n="score.d1">KI ist bekannt, aber noch nicht im Einsatz. Daten sind vorhanden, aber unstrukturiert. Compliance-Themen noch ungeklärt.</div>
+    </div>
+    <div class="score-step s2 reveal reveal-delay-1">
+      <div class="score-level" data-i18n="score.l2">Stufe 2</div>
+      <div class="score-name" data-i18n="score.n2">Explorer</div>
+      <div class="score-desc" data-i18n="score.d2">Erste KI-Tools im Einsatz. Einzelne Prozesse automatisiert. Datenstrategie beginnt zu formen. Compliance punktuell adressiert.</div>
+    </div>
+    <div class="score-step s3 reveal reveal-delay-2">
+      <div class="score-level" data-i18n="score.l3">Stufe 3</div>
+      <div class="score-name" data-i18n="score.n3">Practitioner</div>
+      <div class="score-desc" data-i18n="score.d3">KI systematisch in Kernprozesse integriert. Saubere Datenbasis. EU AI Act und DSGVO aktiv gemanagt. Klare KPIs.</div>
+    </div>
+    <div class="score-step s4 reveal reveal-delay-3">
+      <div class="score-level" data-i18n="score.l4">Stufe 4</div>
+      <div class="score-name s4" data-i18n="score.n4">AI Native</div>
+      <div class="score-desc" data-i18n="score.d4">KI ist Teil der Unternehmens-DNA. Continuous Learning, automatische Compliance-Überwachung, skalierbare Architektur.</div>
+    </div>
+  </div>
+  <div class="score-cta reveal">
+    <p data-i18n="score.cta.p">Wir bestimmen Ihren Score im AI Opportunity Assessment – und zeigen den direkten Weg zur nächsten Stufe.</p>
+    <a href="#contact" class="btn-primary" data-i18n="score.cta.btn">Score ermitteln lassen</a>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="eyebrow reveal" data-i18n="expertise.eyebrow">Das Team</div>
+  <h2 class="reveal" data-i18n="expertise.h2">Wir bringen zusammen,<br/>was KI-Projekte wirklich brauchen.</h2>
+  <div class="team-layout">
+    <div class="team-text">
+      <p class="team-para reveal" data-i18n="team.intro">Kein Beratungshaus, keine reine Agentur. Ein Studio aus Praktikern, die KI-Systeme gebaut, skaliert und verantwortet haben – in Konzernen, Startups und auf internationalem Parkett.</p>
+      <div class="cred-grid">
+        <div class="cred-card reveal">
+          <div class="cred-line"></div>
+          <strong data-i18n="cred.1.title">KI-Empfehlungssysteme im Produktivbetrieb</strong>
+          <span data-i18n="cred.1.sub">Cloud-native, täglich von Millionen Nutzern genutzt – Medien & Technologie</span>
+        </div>
+        <div class="cred-card reveal reveal-delay-1">
+          <div class="cred-line"></div>
+          <strong data-i18n="cred.2.title">Verteidigungstechnologie auf Regierungsebene</strong>
+          <span data-i18n="cred.2.sub">DARPA OFFSET Sprint 2 – autonome KI-Systeme für kritische Infrastruktur</span>
+        </div>
+        <div class="cred-card reveal">
+          <div class="cred-line"></div>
+          <strong data-i18n="cred.3.title">Hollywood & Immersive AI</strong>
+          <span data-i18n="cred.3.sub">Jurassic World VR, Warner Bros. Web3 – KI-Systeme für globale Produktionen</span>
+        </div>
+        <div class="cred-card reveal reveal-delay-1">
+          <div class="cred-line"></div>
+          <strong data-i18n="cred.4.title">KI-Plattform für 40+ Hochschulen</strong>
+          <span data-i18n="cred.4.sub">RAG-basiert, live an LMU, TUM, KIT und WU Wien – ausgezeichnet von Wirtschaftswoche</span>
+        </div>
+        <div class="cred-card reveal">
+          <div class="cred-line"></div>
+          <strong data-i18n="cred.5.title">EU AI Act & Compliance-Forschung</strong>
+          <span data-i18n="cred.5.sub">Doktorarbeit zu KI-Integration, spezialisiert auf EU AI Act, DSGVO & IT-Sicherheitsrecht</span>
+        </div>
+        <div class="cred-card reveal reveal-delay-1">
+          <div class="cred-line"></div>
+          <strong data-i18n="cred.6.title">Enterprise-Infrastruktur & Konzern-PM</strong>
+          <span data-i18n="cred.6.sub">AWS, Azure, GCP – Systemintegration in Konzernumgebungen (Automotive, Medien)</span>
+        </div>
+      </div>
+    </div>
+    <div class="team-pillars reveal">
+      <div class="team-pillar">
+        <div class="team-pillar-line"></div>
+        <strong data-i18n="tp.1.title">Automobilindustrie</strong>
+        <span data-i18n="tp.1.sub">Konzern-PM & Systemintegration</span>
+      </div>
+      <div class="team-pillar">
+        <div class="team-pillar-line"></div>
+        <strong data-i18n="tp.2.title">Verteidigungstechnologie</strong>
+        <span data-i18n="tp.2.sub">Regierungsebene & Zukunftstechnologien</span>
+      </div>
+      <div class="team-pillar">
+        <div class="team-pillar-line"></div>
+        <strong data-i18n="tp.3.title">Hollywood & Immersive Tech</strong>
+        <span data-i18n="tp.3.sub">Globale Produktionen, VR, AI-Systeme</span>
+      </div>
+      <div class="team-pillar">
+        <div class="team-pillar-line"></div>
+        <strong data-i18n="tp.4.title">KI-Forschung & Akademie</strong>
+        <span data-i18n="tp.4.sub">Datenwissenschaft & AI-Recht</span>
+      </div>
+      <div class="team-pillar">
+        <div class="team-pillar-line"></div>
+        <strong data-i18n="tp.5.title">Startup & Unternehmertum</strong>
+        <span data-i18n="tp.5.sub">Gründung, Investment, internationales Wachstum</span>
+      </div>
+      <div class="team-pillar">
+        <div class="team-pillar-line"></div>
+        <strong data-i18n="tp.6.title">Cloud & Infrastruktur</strong>
+        <span data-i18n="tp.6.sub">AWS, Azure, GCP – Enterprise-Maßstab</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <blockquote class="reveal" data-i18n="quote.text">KI ist kein Selbstzweck. Uns interessiert eine einzige Frage: <span class="accent">Wie viel Zeit spart Ihr Team dadurch jeden Tag?</span><span class="accent">messbaren Nutzen im Unternehmen zu schaffen.</span></blockquote>
+  <p class="quote-author reveal reveal-delay-1" data-i18n="quote.author">Ventari – AI Automation & Compliance Studio</p>
+</div>
+
+<!-- WHY -->
+<section id="why">
+  <div class="eyebrow reveal" data-i18n="why.eyebrow">Warum Ventari</div>
+  <h2 class="reveal" data-i18n="why.h2">Was uns von anderen<br/><span class="accent">unterscheidet.</span></h2>
+  <div class="why-layout">
+    <div>
+      <p class="why-intro reveal" data-i18n="why.intro">Der Unterschied zeigt sich nicht im Pitch – sondern wenn das Projekt läuft.</p>
+    </div>
+    <div class="why-list">
+      <div class="why-item reveal">
+        <div class="why-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h4 data-i18n="w1.title">Strategie, Tech und Recht aus einer Hand</h4><p data-i18n="w1.p">IT-Agenturen bauen, was man ihnen aufträgt. Klassische Berater liefern Folien. Wir tun beides – und stellen sicher, dass es am Ende rechtssicher läuft. Kein Koordinieren, keine Reibungsverluste.</p></div>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h4 data-i18n="w2.title">Festpreis-Einstieg, keine Open-End-Projekte</h4><p data-i18n="w2.p">Jedes Projekt startet mit einem AI Audit zum transparenten Festpreis. Danach klare Meilensteine, keine Stundensätze ohne Deckel – Sie wissen immer, was Sie bekommen.</p></div>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h4 data-i18n="w3.title">Compliance ist Architektur, keine Nacharbeit</h4><p data-i18n="w3.p">Unser Rechtsexperte ist von Tag 1 dabei. EU AI Act und DSGVO werden nicht im Nachhinein eingefügt – sie bestimmen, wie das System gebaut wird. Keine Überraschungen nach dem Launch.</p></div>
+      </div>
+      <div class="why-item reveal reveal-delay-3">
+        <div class="why-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h4 data-i18n="w4.title">Wir messen uns an Ihren Ergebnissen</h4><p data-i18n="w4.p">Kein Projekt ohne vorab definierte Erfolgskennzahlen. Zeitersparnis, Fehlerquoten, Prozessdurchlaufzeit – wir benennen konkrete Zahlen und stehen dazu.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="eyebrow reveal" data-i18n="faq.eyebrow">Häufige Fragen</div>
+  <h2 class="reveal" data-i18n="faq.h2">Was Entscheider<br/>wissen wollen.</h2>
+  <div class="faq-grid">
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-i18n="faq.1.q">Was kostet ein Projekt bei Ventari?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a"><span data-i18n="faq.1.a">Wir starten immer mit einem AI Audit zu einem transparenten Festpreis. Größere Automations- und Integrationsprojekte werden individuell kalkuliert – abhängig von Komplexität, Systemlandschaft und Zeitrahmen. Im Erstgespräch erhalten Sie eine erste Einschätzung.</span><br/><a href="ki-projektkosten-schaetzer.html" class="tool-inline-hint" style="margin-top:.6rem;display:inline-block;" data-href-de="ki-projektkosten-schaetzer.html" data-href-en="ai-project-cost-estimator-en.html" data-i18n="faq.1.tool">🧮 Erste Orientierung: KI-Projektkosten schätzen →</a></div>
+    </div>
+    <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-i18n="faq.2.q">Sind wir als Unternehmen zu klein?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a" data-i18n="faq.2.a">Nein. Unsere Methoden sind skalierbar. Entscheidend ist nicht die Unternehmensgröße, sondern ob Sie Prozesse und Daten haben, bei denen KI Hebel entfalten kann. Das klären wir gemeinsam im kostenlosen Erstgespräch.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-i18n="faq.3.q">Was passiert mit unseren Unternehmensdaten?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a" data-i18n="faq.3.a">Datenschutz ist keine Checkbox, sondern Architekturprinzip. Alle Lösungen werden DSGVO-konform konzipiert – wahlweise auf deutschen oder europäischen Cloud-Servern. Unser Rechtsexperte begleitet jedes Projekt von Anfang an.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-i18n="faq.4.q">Wie lange dauert ein typisches Projekt?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a" data-i18n="faq.4.a">Der AI Audit dauert 2–3 Tage. Kleinere Automationen sind in 4–8 Wochen live. Komplexere Systeme mit tiefer Integration planen wir auf 3–6 Monate. Wir definieren Meilensteine im Voraus – kein Open-End-Consulting.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-i18n="faq.5.q">Brauchen wir eine interne IT-Abteilung?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a" data-i18n="faq.5.a">Nein. Wir übernehmen die gesamte technische Umsetzung und übergeben am Ende ein System, das Ihr Team eigenständig nutzen kann. Optional begleiten wir Sie langfristig mit einem monatlichen Wartungspaket.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-i18n="faq.6.q">Was unterscheidet Ventari von einer klassischen IT-Agentur?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a" data-i18n="faq.6.a">Klassische IT-Agenturen bauen, was man ihnen aufträgt. Wir beginnen mit der Frage: Was bringt wirklich Mehrwert? Strategie, Umsetzung und Rechtssicherheit kommen bei uns aus einer Hand – ohne Silos, ohne Schnittstellenverluste.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-i18n="faq.7.q">Bin ich vom EU AI Act betroffen – und was muss ich tun?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a"><span data-i18n="faq.7.a">Das hängt davon ab, welche KI-Systeme Sie einsetzen oder entwickeln. Viele Mittelstandsunternehmen sind betroffen, ohne es zu wissen – insbesondere in den Bereichen HR, Kreditwesen, Sicherheitstechnik und kritische Infrastruktur. Hochrisiko-Systeme müssen dokumentiert, auditiert und registriert werden. Bußgelder bei Verstößen: bis zu 7 % des weltweiten Jahresumsatzes.</span><br/><a href="eu-ai-act-checker.html" class="tool-inline-hint" style="margin-top:.6rem;display:inline-block;" data-href-de="eu-ai-act-checker.html" data-href-en="eu-ai-act-checker-en.html" data-i18n="faq.7.tool">🛡️ Jetzt kostenlos Risikoklasse prüfen →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="eyebrow reveal" data-i18n="tools.eyebrow">Kostenlose Tools</div>
+  <h2 class="reveal" data-i18n="tools.h2">Sofortige Einschätzung.<br/><span class="accent">Kostenlos. Online.</span></h2>
+  <p class="reveal" style="color:var(--muted2);max-width:560px;line-height:1.8;margin:1.2rem auto 0;" data-i18n="tools.sub">Vier kostenlose Tools – von der Einsparpotenzial-Berechnung über den KI-Projektkosten-Schätzer bis zum EU AI Act Checker. Sofort nutzbar, kein Login.</p>
+  <div class="tools-teaser reveal" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:12px;overflow:hidden;max-width:680px;margin:2.5rem auto 0;">
+    <div class="tools-teaser-item">💰<span data-i18n="tools.t1">Automatisierungspotenzial-Rechner</span></div>
+    <div class="tools-teaser-item">🧮<span data-i18n="tools.t2">KI-Projektkosten-Schätzer</span></div>
+    <div class="tools-teaser-item" style="border-bottom:none;">⚡<span data-i18n="tools.t3">KI-Readiness-Test</span></div>
+    <div class="tools-teaser-item" style="border-bottom:none;">🛡️<span data-i18n="tools.t4">EU AI Act Checker</span></div>
+  </div>
+  <div style="text-align:center;margin-top:2rem;">
+    <a href="/tools/" class="btn-primary" data-i18n="tools.cta">Alle Tools ansehen →</a>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="blog-header">
+    <div>
+      <div class="eyebrow reveal" data-i18n="blog.eyebrow">Insights</div>
+      <h2 class="reveal" data-i18n="blog.h2">KI & Compliance.<br/><span class="accent">Praxisnah erklärt.</span></h2>
+    </div>
+    <a href="#blog" class="blog-more reveal" data-i18n="blog.more">Alle Artikel <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+  <div class="blog-grid">
+    <a class="blog-card reveal" href="/blog/eu-ai-act-mittelstand-2026/" style="display:block;text-decoration:none;color:inherit;">
+      <div class="blog-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div>
+      <div class="blog-body">
+        <div class="blog-tag" data-i18n="blog.tag.compliance">EU AI Act</div>
+        <div class="blog-title" data-i18n="blog.1.title">Was der EU AI Act konkret für Ihr Unternehmen bedeutet</div>
+        <div class="blog-excerpt" data-i18n="blog.1.excerpt">Ab August 2026 drohen Bußgelder bis zu 7 % des Jahresumsatzes. Wir erklären, wer betroffen ist, was jetzt zu tun ist – und was häufig missverstanden wird.</div>
+        <div class="blog-meta"><span data-i18n="blog.1.date">März 2026</span><span data-i18n="blog.read">5 min Lesezeit</span></div>
+      </div>
+    </a>
+    <a class="blog-card reveal reveal-delay-1" href="/blog/nis2-kmu-betroffen-2026/" style="display:block;text-decoration:none;color:inherit;">
+      <div class="blog-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="blog-body">
+        <div class="blog-tag" data-i18n="blog.tag.nis2">NIS2</div>
+        <div class="blog-title" data-i18n="blog.2.title">NIS2: Bin ich als KMU wirklich betroffen?</div>
+        <div class="blog-excerpt" data-i18n="blog.2.excerpt">Seit Dezember 2025 gilt das Gesetz – aber viele Unternehmen wissen noch nicht, ob sie betroffen sind. Wir klären auf und zeigen, wie Sie in 30 Minuten Klarheit bekommen.</div>
+        <div class="blog-meta"><span data-i18n="blog.2.date">Februar 2026</span><span data-i18n="blog.read">4 min Lesezeit</span></div>
+      </div>
+    </a>
+    <a class="blog-card reveal reveal-delay-2" href="/blog/ki-use-cases-roi-mittelstand/" style="display:block;text-decoration:none;color:inherit;">
+      <div class="blog-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></div>
+      <div class="blog-body">
+        <div class="blog-tag" data-i18n="blog.tag.automation">Automatisierung</div>
+        <div class="blog-title" data-i18n="blog.3.title">5 KI-Use-Cases mit schnellem ROI für den Mittelstand</div>
+        <div class="blog-excerpt" data-i18n="blog.3.excerpt">Nicht jede KI-Investition dauert Monate. Diese fünf Anwendungsfälle lassen sich innerhalb von 4–8 Wochen umsetzen und zeigen sofortige Wirkung auf Effizienz und Kosten.</div>
+        <div class="blog-meta"><span data-i18n="blog.3.date">Januar 2026</span><span data-i18n="blog.read">6 min Lesezeit</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="eyebrow reveal" data-i18n="contact.eyebrow">Kontakt</div>
+  <h2 class="reveal" data-i18n="contact.h2">Finden wir gemeinsam<br/><span class='accent'>heraus, was möglich ist.</span><br/><span class="accent">die wirklich liefert?</span></h2>
+  <div class="contact-layout">
+    <div>
+      <p class="contact-desc reveal" data-i18n="contact.desc">30 Minuten, kein Verkaufsgespräch. Wir hören zu, stellen ein paar Fragen zu Ihren Prozessen – und sagen Ihnen direkt, ob und wo wir helfen können.</p>
+      <div class="contact-info">
+        <div class="contact-item reveal"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afc7cac3c3c0efd9cac1dbceddc681cada">[email&#160;protected]</a></span></div>
+        <div class="contact-item reveal reveal-delay-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="contact.location">Deutschlandweit – Hauptsitz Baden-Baden</span></div>
+        <div class="contact-item reveal reveal-delay-2"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="contact.response">Antwort innerhalb von 24 Stunden</span></div>
+      </div>
+    </div>
+    <div class="form-group reveal">
+      <div class="form-row">
+        <input type="text" data-i18n-placeholder="form.first" placeholder="Vorname"/>
+        <input type="text" data-i18n-placeholder="form.last" placeholder="Nachname"/>
+      </div>
+      <input type="email" data-i18n-placeholder="form.email" placeholder="E-Mail-Adresse"/>
+      <input type="text" data-i18n-placeholder="form.company" placeholder="Unternehmen"/>
+      <!-- honeypot: hidden from humans, bots fill this in -->
+      <input type="text" name="website" id="hp-field" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true"/>
+      <select>
+        <option value="" disabled selected data-i18n="form.topic">Thema auswählen …</option>
+        <option data-i18n="form.opt1">AI Opportunity Assessment</option>
+        <option data-i18n="form.opt2">AI Automation & Integration</option>
+        <option data-i18n="form.opt3">AI Governance & Compliance</option>
+        <option data-i18n="form.opt5">NIS2 Compliance</option>
+        <option data-i18n="form.opt4">Allgemeine Anfrage</option>
+      </select>
+      <textarea data-i18n-placeholder="form.message" placeholder="Was beschäftigt Sie gerade? Kurze Skizze genügt …"></textarea>
+      <button class="form-submit" data-i18n="form.submit">Gespräch buchen →</button>
+    </div>
+  </div>
+</section>
+
+<!-- IMPRESSUM MODAL -->
+<div id="modal-impressum" class="legal-modal" onclick="if(event.target===this)closeLegal('impressum')">
+  <div class="legal-box">
+    <div class="legal-header">
+      <h2>Impressum</h2>
+      <button class="legal-close" onclick="closeLegal('impressum')">✕</button>
+    </div>
+    <div class="legal-body">
+      <h3>Angaben gemäß § 5 TMG</h3>
+      <p><strong>Daniel Baran</strong><br/>
+      Heiligensteinstraße 11<br/>76534 Baden-Baden (Neuweier)<br/>Deutschland</p>
+
+      <h3>Kontakt</h3>
+      <p>E-Mail: <a href="/cdn-cgi/l/email-protection#3c54595050537c4a5952485d4e55125949"><span class="__cf_email__" data-cfemail="fd9598919192bd8b9893899c8f94d39888">[email&#160;protected]</span></a></p>
+
+      <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+      <p>Daniel Baran<br/>
+      Heiligensteinstraße 11<br/>76534 Baden-Baden (Neuweier)</p>
+
+      <h3>Hinweis zur Unternehmensform</h3>
+      <p>Diese Website wird im Rahmen einer gewerblichen Tätigkeit als Einzelperson betrieben. Eine Eintragung ins Handelsregister ist derzeit in Vorbereitung.</p>
+
+      <h3>Streitschlichtung</h3>
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+      <h3>Haftung für Inhalte</h3>
+      <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+
+      
+    </div>
+  </div>
+</div>
+
+<!-- DATENSCHUTZ MODAL -->
+<div id="modal-privacy" class="legal-modal" onclick="if(event.target===this)closeLegal('privacy')">
+  <div class="legal-box">
+    <div class="legal-header">
+      <h2>Datenschutzerklärung</h2>
+      <button class="legal-close" onclick="closeLegal('privacy')">✕</button>
+    </div>
+    <div class="legal-body">
+      <h3>1. Verantwortlicher</h3>
+      <p>Verantwortlicher im Sinne der DSGVO ist:<br/><strong>Daniel Baran</strong><br/>Heiligensteinstraße 11<br/>76534 Baden-Baden (Neuweier)<br/>Deutschland<br/>E-Mail: <a href="/cdn-cgi/l/email-protection#6b030e0707042b1d0e051f0a1902450e1e"><span class="__cf_email__" data-cfemail="9ff7faf3f3f0dfe9faf1ebfeedf6b1faea">[email&#160;protected]</span></a></p>
+
+      <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
+      <p>Wir erheben personenbezogene Daten nur, soweit dies zur Bereitstellung unserer Dienste erforderlich ist. Beim Besuch dieser Website werden automatisch technische Daten durch den Hosting-Anbieter verarbeitet (siehe Abschnitt Hosting).</p>
+
+      <h3>3. Kontaktformular</h3>
+      <p>Wenn Sie uns über das Kontaktformular eine Nachricht senden, verarbeiten wir folgende Daten: Vor- und Nachname, E-Mail-Adresse, Unternehmensname, Nachrichteninhalt. Diese Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben oder für Werbezwecke genutzt. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Kommunikation). Die Daten werden gelöscht, sobald sie für die Erreichung des Zwecks nicht mehr notwendig sind – in der Regel nach 12 Monaten.</p>
+
+      <h3>4. E-Mail-Versand über Resend</h3>
+      <p>Nachrichten aus dem Kontaktformular werden über den Dienst Resend (Resend Inc., 2261 Market Street #5394, San Francisco, CA 94114, USA) weitergeleitet. Resend ist SOC 2 Type II zertifiziert. Die Übermittlung erfolgt verschlüsselt. Es besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Weitere Informationen: <a href="https://resend.com/privacy" target="_blank" rel="noopener">resend.com/privacy</a>.</p>
+
+      <h3>5. Hosting & Infrastruktur</h3>
+      <p>Diese Website wird über Cloudflare Pages gehostet (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA). Cloudflare verarbeitet dabei technisch notwendige Verbindungsdaten (IP-Adresse, Zeitstempel, aufgerufene Seiten) im Rahmen der Bereitstellung des Dienstes. Die Übertragung in die USA erfolgt auf Basis von Standardvertragsklauseln gemäß Art. 46 DSGVO. Weitere Informationen: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>.</p>
+
+      <h3>6. Cookies und Tracking</h3>
+      <p>Diese Website verwendet keine eigenen Cookies und kein Tracking. Es werden keine Analyse- oder Werbedienste eingesetzt.</p>
+
+      <h3>7. Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch (Art. 21 DSGVO). Zur Ausübung dieser Rechte wenden Sie sich bitte an: <a href="/cdn-cgi/l/email-protection#8ae2efe6e6e5cafcefe4feebf8e3a4efff"><span class="__cf_email__" data-cfemail="1c74797070735c6a7972687d6e75327969">[email&#160;protected]</span></a>. Sie haben zudem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren.</p>
+
+      <h3>8. Aktualität</h3>
+      <p>Diese Datenschutzerklärung ist aktuell gültig. Durch die Weiterentwicklung der Website oder aufgrund geänderter gesetzlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern.</p>
+
+      
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">ventari<span>.</span></a>
+  <div class="footer-links">
+    <a href="#" onclick="openLegal('impressum');return false;" data-i18n="footer.imprint">Impressum</a>
+    <a href="#" onclick="openLegal('privacy');return false;" data-i18n="footer.privacy">Datenschutz</a>
+  </div>
+  <span class="footer-copy" data-i18n="footer.copy">© 2026 Ventari. Alle Rechte vorbehalten.</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── CALENDLY ── */
+/* 👉 Hier deine Calendly-URL eintragen, sobald du einen Account hast: */
+const CALENDLY_URL = ''; // z.B. 'https://calendly.com/ventari/30min'
+
+function openCalendly(e) {
+  if (!CALENDLY_URL) return; // kein Link → Standard-Verhalten (scrollt zu #contact)
+  e.preventDefault();
+  window.open(CALENDLY_URL, '_blank', 'noopener');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  ['cta-hero', 'cta-audit'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', openCalendly);
+  });
+  document.querySelectorAll('.cta-calendly').forEach(el => {
+    el.addEventListener('click', openCalendly);
+  });
+});
+
+/* ── TRANSLATIONS ── */
+const T = {
+de: {
+    "stat.1.num":"3","stat.1.label":"Kerndisziplinen unter einem Dach",
+  "stat.2.num":"6","stat.2.label":"Kompetenzfelder im Team",
+  "stat.3.num":"24h","stat.3.label":"Reaktionszeit garantiert",
+  "stat.4.num":"100%","stat.4.label":"EU-konform – DSGVO & AI Act",
+  "tech.label":"Technologie-Stack",
+  "faq.eyebrow":"Häufige Fragen","faq.h2":"Was Entscheider<br/>wissen wollen.",
+  "faq.1.q":"Was kostet ein Projekt bei Ventari?",
+  "faq.1.a":"Wir starten immer mit einem AI Audit zu einem transparenten Festpreis. Größere Automations- und Integrationsprojekte werden individuell kalkuliert – abhängig von Komplexität, Systemlandschaft und Zeitrahmen. Im Erstgespräch erhalten Sie eine erste Einschätzung.",
+  "faq.2.q":"Sind wir als Unternehmen zu klein?",
+  "faq.2.a":"Nein. Unsere Methoden sind skalierbar. Entscheidend ist nicht die Unternehmensgröße, sondern ob Sie Prozesse und Daten haben, bei denen KI Hebel entfalten kann. Das klären wir gemeinsam im kostenlosen Erstgespräch.",
+  "faq.3.q":"Was passiert mit unseren Unternehmensdaten?",
+  "faq.3.a":"Datenschutz ist keine Checkbox, sondern Architekturprinzip. Alle Lösungen werden DSGVO-konform konzipiert – wahlweise auf deutschen oder europäischen Cloud-Servern. Unser Rechtsexperte begleitet jedes Projekt von Anfang an.",
+  "faq.4.q":"Wie lange dauert ein typisches Projekt?",
+  "faq.4.a":"Der AI Audit dauert 2–3 Tage. Kleinere Automationen sind in 4–8 Wochen live. Komplexere Systeme mit tiefer Integration planen wir auf 3–6 Monate. Wir definieren Meilensteine im Voraus – kein Open-End-Consulting.",
+  "faq.5.q":"Brauchen wir eine interne IT-Abteilung?",
+  "faq.5.a":"Nein. Wir übernehmen die gesamte technische Umsetzung und übergeben am Ende ein System, das Ihr Team eigenständig nutzen kann. Optional begleiten wir Sie langfristig mit einem monatlichen Wartungspaket.",
+  "faq.6.q":"Was unterscheidet Ventari von einer klassischen IT-Agentur?",
+  "faq.6.a":"Klassische IT-Agenturen bauen, was man ihnen aufträgt. Wir beginnen mit der Frage: Was bringt wirklich Mehrwert? Strategie, Umsetzung und Rechtssicherheit kommen bei uns aus einer Hand – ohne Silos, ohne Schnittstellenverluste.",
+  "faq.7.q":"Bin ich vom EU AI Act betroffen – und was muss ich tun?",
+  "faq.7.a":"Das hängt davon ab, welche KI-Systeme Sie einsetzen oder entwickeln. Viele Mittelstandsunternehmen sind betroffen, ohne es zu wissen – insbesondere in den Bereichen HR, Kreditwesen, Sicherheitstechnik und kritische Infrastruktur. Hochrisiko-Systeme müssen dokumentiert, auditiert und registriert werden. Bußgelder bei Verstößen: bis zu 7 % des weltweiten Jahresumsatzes.",
+  "faq.7.tool":"🛡️ Jetzt kostenlos Risikoklasse prüfen →",
+  "nav.services":"Leistungen","nav.readiness":"Readiness","nav.tools":"Tools","nav.blog":"Insights","nav.expertise":"Team","nav.why":"Warum wir","nav.pricing":"Preise","nav.cta":"Kontakt",
+  "cd.label":"<span class=\"countdown-label\">EU AI Act</span> – Vollständige Durchsetzung für Hochrisiko-Systeme in:","cd.days":"Tage","cd.hours":"Std","cd.mins":"Min","cd.cta":"Bin ich betroffen? →","cd.omnibus":"Digital Omnibus-Vorschlag könnte Fristen auf Dez. 2027 verschieben – gilt erst nach Verabschiedung. Empfehlung: Jetzt mit August 2026 planen.","partner.label":"Technologie-Partner","process.eyebrow":"So arbeiten wir","process.h2":"Vom ersten Gespräch zur<br/><span class=\"accent\">laufenden KI-Lösung.</span>","process.b1":"Strategie","process.t1":"AI Opportunity Assessment","process.s1":"Wir analysieren Ihre Prozesse, identifizieren Potenziale und liefern eine priorisierte Roadmap. 2–3 Tage, Festpreis.","process.b2":"Compliance","process.t2":"Legal & Governance Check","process.s2":"Unser Rechtsexperte prüft EU AI Act- und DSGVO-Anforderungen – parallel zur Strategie, nicht nachträglich.","process.b3":"Umsetzung","process.t3":"Automation & Integration","process.s3":"Wir bauen und integrieren die Lösung in Ihre bestehenden Systeme – produktionsreif, nicht als Prototyp.","process.b4":"Betrieb","process.t4":"Monitoring & Weiterentwicklung","process.s4":"Laufendes Monitoring, Compliance-Updates und Skalierung – wir bleiben Partner, nicht nur Dienstleister.","hero.eyebrow":"AI Automation & Compliance Studio",
+  "hero.h1":'KI, die wirklich funktioniert.<br/><span class="accent">Sicher, messbar, produktiv.</span>',
+  "hero.sub":"Strategie, Umsetzung und EU AI Act Compliance – aus einer Hand. Kein Koordinieren zwischen Dienstleistern, keine rechtlichen Überraschungen, keine Blindflüge.",
+  "pill.1":"Zu viel Arbeit, zu wenig Zeit","pill.2":"KI-Projekte die nicht starten","pill.3":"Rechtliche Unsicherheit",
+  "hero.cta1":"30-Minuten-Gespräch buchen","hero.cta2":"Leistungen ansehen","hero.scroll":"Entdecken",
+  "strip.1.title":"AI Opportunity Assessment","strip.1.sub":"Use Cases & Roadmap",
+  "strip.2.title":"AI Automation & Integration","strip.2.sub":"Workflows, Tools, APIs",
+  "strip.3.title":"AI Governance & Compliance","strip.3.sub":"EU AI Act, DSGVO",
+  "strip.4.title":"Cloud-Infrastruktur","strip.4.sub":"AWS, Azure, GCP",
+  "problem.eyebrow":"Der Markt heute",
+  "problem.h2":'Drei Gründe, warum<br/><span class="accent">KI-Projekte scheitern.</span>',
+  "problem.intro":"Die meisten Geschäftsführer wissen, dass KI ihrem Unternehmen helfen könnte. Nur wenige wissen wo anfangen – und noch weniger haben jemanden, der Strategie, Technik und Recht gleichzeitig im Griff hat.",
+  "prob.1.title":"Kein klarer Einstiegspunkt","prob.1.p":"Wo fängt man an? Welche Prozesse lohnen sich? Die meisten Unternehmen investieren in einen Use Case der nicht passt – oder warten so lang, dass die Konkurrenz überholt.",
+  "prob.2.title":"Integration ist schwieriger als erwartet","prob.2.p":"KI muss in bestehende Systeme eingebunden werden – CRM, ERP, E-Mail, Datenbanken. Das ist technisch anspruchsvoll und überfordert interne Teams ohne KI-Erfahrung.",
+  "prob.3.title":"Datenschutz und Haftung ungeklärt","prob.3.p":"Darf ich KI überhaupt einsetzen? Was passiert mit Kundendaten? Wer haftet bei Fehlern? EU AI Act und DSGVO schaffen Unsicherheit – und wer das am Ende nachrüstet, zahlt doppelt.",
+  "services.eyebrow":"Leistungen",
+  "services.h2":'Was wir für Sie<br/><span class="accent">konkret tun.</span>',
+  "services.intro":"Von der Analyse bis zur fertigen Lösung – alles aus einer Hand. Kein Abstimmen zwischen drei verschiedenen Dienstleistern, kein Projekt das auf halbem Weg stecken bleibt.",
+  "s1.num":"01 — AI Opportunity Assessment","s1.h3":"Wir zeigen Ihnen,<br/>wo KI wirklich hilft.",
+  "s1.p":"In 2–3 Tagen schauen wir uns Ihre Prozesse an und sagen Ihnen genau, wo Automatisierung Zeit und Kosten spart. Mit Aufwandsschätzung und Prioritäten. Festpreis, keine Überraschungen.",
+  "s.delivers":"Ergebnis","s.examples":"Typische Lösungen","s.includes":"Bestandteile",
+  "s1.b1":"Priorisierte AI-Use-Case-Liste","s1.b2":"Risiko- und Nutzenbewertung","s1.b3":"Konkrete Projektroadmap","s1.b4":"Erste Compliance-Einschätzung",
+  "s1.t1":"2–3 Tage","s1.t2":"Workshop-Format",
+  "s2.num":"02 — AI Automation & Integration","s2.h3":"Wir bauen die Lösung –<br/>und integrieren sie.",
+  "s2.p":"Kein Proof-of-Concept, das nach drei Monaten im Regal liegt. Wir bauen Automatisierungen die wirklich laufen – eingebunden in Ihre bestehenden Systeme, ohne dass Ihr Team sich um die Technik kümmern muss.",
+  "s2.b1":"Automatische Bearbeitung eingehender Anfragen","s2.b2":"KI durchsucht interne Dokumente und beantwortet Fragen","s2.b3":"Angebote, Follow-ups und CRM-Updates automatisiert","s2.b4":"Datenauswertung und Reporting ohne manuellen Aufwand",
+  "s3.num":"03 — AI Governance & Compliance","s3.h3":"Kein Datenschutz-Problem<br/>nach dem Launch.",
+  "s3.p":"Unser Rechtsexperte sorgt dafür, dass Ihr KI-Einsatz von Anfang an DSGVO-konform und EU AI Act-ready ist. Kein Nachbessern, keine Abmahnungen, keine offenen Haftungsfragen.",
+  "s3.b1":"AI-Richtlinien & Governance-Framework","s3.b2":"DSGVO-konforme Datenschutzkonzepte","s3.b3":"EU AI Act Compliance-Dokumentation","s3.b4":"Risikobewertung & Haftungsklarheit",
+  "s4.num":"04 — Wartung & Weiterentwicklung","s4.h3":"Wir bleiben dabei –<br/>auch nach dem Start.",
+  "s4.p":"KI-Systeme brauchen Pflege. Wir überwachen die Performance, passen bei Bedarf an und stellen sicher, dass die Lösung mit Ihrem Unternehmen mitwächst.",
+  "s4.b1":"Monitoring & Performance-Tracking","s4.b2":"Monatliche Optimierungsrunden","s4.b3":"Laufende Compliance-Überprüfung","s4.b4":"Skalierung bei wachsender Nutzung",
+  "s4.t1":"Monatliche Betreuung","s4.t2":"Flexibel kündbar",
+  "audit.badge":"Einstieg","audit.h3":"Der einfachste Einstieg: der AI Audit","audit.cta":"AI Audit anfragen",
+  "audit.p":"In 2–3 Tagen wissen Sie genau, welche Prozesse sich für Automatisierung eignen, was es kostet und was Sie dadurch gewinnen. Festpreis, kein Risiko.",
+  "audit.day1.title":"Analyse","audit.day1.p":"Prozesse, Daten und bestehende Systeme verstehen",
+  "audit.day2.title":"Bewertung","audit.day2.p":"Use Cases priorisieren, Risiken und Nutzen abwägen",
+  "audit.day3.title":"Roadmap","audit.day3.p":"Konkrete nächste Schritte mit Aufwand und ROI-Schätzung",
+  "expertise.eyebrow":"Das Team",
+  "expertise.h2":"Wir bringen zusammen, was KI-Projekte wirklich brauchen.",
+  "team.intro":"Kein Beratungshaus, keine reine Agentur. Ein Studio aus Praktikern, die KI-Systeme gebaut, skaliert und verantwortet haben – in Konzernen, Startups und auf internationalem Parkett.",
+  "cred.1.title":"KI-Empfehlungssysteme im Produktivbetrieb","cred.1.sub":"Cloud-native, täglich von Millionen Nutzern genutzt – Medien & Technologie",
+  "cred.2.title":"Verteidigungstechnologie auf Regierungsebene","cred.2.sub":"DARPA OFFSET Sprint 2 – autonome KI-Systeme für kritische Infrastruktur",
+  "cred.3.title":"Hollywood & Immersive AI","cred.3.sub":"Jurassic World VR, Warner Bros. Web3 – KI-Systeme für globale Produktionen",
+  "cred.4.title":"KI-Plattform für 40+ Hochschulen","cred.4.sub":"RAG-basiert, live an LMU, TUM, KIT und WU Wien – ausgezeichnet von Wirtschaftswoche",
+  "cred.5.title":"EU AI Act & Compliance-Forschung","cred.5.sub":"Doktorarbeit zu KI-Integration, spezialisiert auf EU AI Act, DSGVO & IT-Sicherheitsrecht",
+  "cred.6.title":"Enterprise-Infrastruktur & Konzern-PM","cred.6.sub":"AWS, Azure, GCP – Systemintegration in Konzernumgebungen (Automotive, Medien)",
+  "tp.1.title":"Automobilindustrie","tp.1.sub":"Konzern-PM & Systemintegration",
+  "tp.2.title":"Verteidigungstechnologie","tp.2.sub":"Regierungsebene & Zukunftstechnologien",
+  "tp.3.title":"Hollywood & Immersive Tech","tp.3.sub":"Globale Produktionen, VR, AI-Systeme",
+  "tp.4.title":"KI-Forschung & Akademie","tp.4.sub":"Datenwissenschaft & AI-Recht",
+  "tp.5.title":"Startup & Unternehmertum","tp.5.sub":"Gründung, Investment, internationales Wachstum",
+  "tp.6.title":"Cloud & Infrastruktur","tp.6.sub":"AWS, Azure, GCP – Enterprise-Maßstab",
+  "quote.text":'KI ist kein Selbstzweck. Uns interessiert eine einzige Frage: <span class="accent">Wie viel Zeit spart Ihr Team dadurch jeden Tag?</span>',
+  "quote.author":"Ventari – AI Automation & Compliance Studio",
+  "why.eyebrow":"Warum Ventari",
+  "why.h2":'Was uns von anderen<br/><span class="accent">unterscheidet.</span>',
+  "why.intro":"Der Unterschied zeigt sich nicht im Pitch – sondern wenn das Projekt läuft.",
+  "w1.title":"Strategie, Tech und Recht aus einer Hand","w1.p":"IT-Agenturen bauen, was man ihnen aufträgt. Klassische Berater liefern Folien. Wir tun beides – und stellen sicher, dass es am Ende rechtssicher läuft. Kein Koordinieren, keine Reibungsverluste.",
+  "w2.title":"Festpreis-Einstieg, keine Open-End-Projekte","w2.p":"Jedes Projekt startet mit einem AI Audit zum transparenten Festpreis. Danach klare Meilensteine, keine Stundensätze ohne Deckel – Sie wissen immer, was Sie bekommen.",
+  "w3.title":"Compliance ist Architektur, keine Nacharbeit","w3.p":"Unser Rechtsexperte ist von Tag 1 dabei. EU AI Act und DSGVO werden nicht im Nachhinein eingefügt – sie bestimmen, wie das System gebaut wird. Keine Überraschungen nach dem Launch.",
+  "w4.title":"Wir messen uns an Ihren Ergebnissen","w4.p":"Kein Projekt ohne vorab definierte Erfolgskennzahlen. Zeitersparnis, Fehlerquoten, Prozessdurchlaufzeit – wir benennen konkrete Zahlen und stehen dazu.",
+  "contact.eyebrow":"Kontakt",
+  "contact.h2":"Finden wir gemeinsam<br/><span class='accent'>heraus, was möglich ist.</span>",
+  "contact.desc":"30 Minuten, kein Verkaufsgespräch. Wir hören zu, stellen ein paar Fragen zu Ihren Prozessen – und sagen Ihnen direkt, ob und wo wir helfen können.",
+  "contact.location":"Deutschlandweit – Hauptsitz Baden-Baden","contact.response":"Antwort innerhalb von 24 Stunden",
+  "form.first":"Vorname","form.last":"Nachname","form.email":"E-Mail-Adresse","form.company":"Unternehmen",
+  "form.topic":"Thema auswählen …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt5":"NIS2 Compliance","form.opt4":"Allgemeine Anfrage",
+  "form.message":"Was beschäftigt Sie gerade? Kurze Skizze genügt …",
+  "form.submit":"Gespräch buchen →","form.success":"✓ Vielen Dank – wir melden uns!",
+  "footer.imprint":"Impressum","footer.privacy":"Datenschutz","footer.copy":"© 2026 Ventari. Alle Rechte vorbehalten.",
+  "gap.num1":"86%","gap.desc1":"der KMU erkennen KI als geschäftskritisch","gap.num2":"23%","gap.desc2":"haben KI-Projekte erfolgreich umgesetzt","gap.note":"63 Punkte Umsetzungslücke – das ist der Markt, für den Ventari gebaut wurde. Quelle: Mittelstand Digital Studie 2025",
+  "nis2.alert":"In Kraft seit 6. Dezember 2025 – ohne Übergangsfrist",
+  "nis2.h2":'NIS2 ist jetzt Pflicht.<br/><span class="accent">Handeln Sie jetzt.</span>',
+  "nis2.intro":"Das NIS2-Umsetzungsgesetz ist seit dem 6. Dezember 2025 in Deutschland in Kraft – ohne Übergangsfrist. Rund 29.500 Unternehmen sind direkt betroffen, und indirekt fast jedes KMU, das als Lieferant oder Dienstleister für größere Auftraggeber tätig ist.",
+  "nis2.f1.title":"Unternehmen direkt betroffen","nis2.f1.sub":"In 18 Sektoren: Energie, Gesundheit, IT, Logistik, Produktion u.a.",
+  "nis2.f2.title":"Euro Bußgeld – oder 2 % Jahresumsatz","nis2.f2.sub":"Geschäftsführer haften persönlich mit Privatvermögen",
+  "nis2.f3.title":"Meldepflicht bei Sicherheitsvorfällen","nis2.f3.sub":"BSI-Registrierung und Incident-Response-Prozesse Pflicht",
+  "nis2.box.h3":"Was Ventari für Sie übernimmt",
+  "nis2.c1":"Betroffenheitsprüfung: Sind Sie wirklich betroffen?","nis2.c2":"Gap-Analyse gegen alle NIS2-Anforderungen","nis2.c3":"Risikomanagement-Framework aufsetzen","nis2.c4":"BSI-Registrierung und Meldeprozesse einrichten","nis2.c5":"Geschäftsführer-Schulung (persönliche Haftung)","nis2.c6":"NIS2 + EU AI Act Kombi-Sprint möglich",
+  "nis2.cta":"Jetzt NIS2-Check anfragen",
+  "score.eyebrow":"Ventari AI Readiness Score","score.h2":'Wo steht Ihr Unternehmen<br/><span class="accent">wirklich?</span>',
+  "score.intro":"Unser proprietäres 4-Stufen-Framework bewertet KI-Reife, Datenstatus und Compliance-Lage – und zeigt genau, was als nächstes zu tun ist.",
+  "score.l1":"Stufe 1","score.n1":"Starter","score.d1":"KI ist bekannt, aber noch nicht im Einsatz. Daten sind vorhanden, aber unstrukturiert. Compliance-Themen noch ungeklärt.",
+  "score.l2":"Stufe 2","score.n2":"Explorer","score.d2":"Erste KI-Tools im Einsatz. Einzelne Prozesse automatisiert. Datenstrategie beginnt zu formen. Compliance punktuell adressiert.",
+  "score.l3":"Stufe 3","score.n3":"Practitioner","score.d3":"KI systematisch in Kernprozesse integriert. Saubere Datenbasis. EU AI Act und DSGVO aktiv gemanagt. Klare KPIs.",
+  "score.l4":"Stufe 4","score.n4":"AI Native","score.d4":"KI ist Teil der Unternehmens-DNA. Continuous Learning, automatische Compliance-Überwachung, skalierbare Architektur.",
+  "score.cta.p":"Wir bestimmen Ihren Score im AI Opportunity Assessment – und zeigen den direkten Weg zur nächsten Stufe.",
+  "score.cta.btn":"Score ermitteln lassen",
+  "tools.eyebrow":"Kostenlose Tools","tools.h2":'Sofortige Einschätzung.<br/><span class="accent">Kostenlos. Online.</span>',
+  "tools.sub":"Vier kostenlose Tools – von der Einsparpotenzial-Berechnung über den KI-Projektkosten-Schätzer bis zum EU AI Act Checker. Sofort nutzbar, kein Login.",
+  "tools.t1":"Automatisierungspotenzial-Rechner","tools.t2":"KI-Projektkosten-Schätzer","tools.t3":"KI-Readiness-Test","tools.t4":"EU AI Act Checker",
+  "tools.cta":"Alle Tools ansehen →","tools.all":"Alle 4 Tools ansehen →",
+  "toolF.badge":"Neu – jetzt live","toolF.h3":"Automatisierungspotenzial-Rechner",
+  "toolF.p":"Tragen Sie Ihre zeitintensivsten Prozesse ein und erhalten Sie sofort konkrete Euro-Zahlen: Was spart KI-Automatisierung in Ihrem Unternehmen pro Jahr?",
+  "toolF.s1":"Einsparpotenzial in € pro Jahr","toolF.s2":"ROI-Zeitraum und Break-even-Punkt","toolF.s3":"Priorisierung nach Hebel-Wirkung",
+  "toolF.cta.de":"🇩🇪 Deutsch starten →","toolF.cta.en":"🇬🇧 English",
+  "toolF.eg1":"Ø Einsparpotenzial / Jahr","toolF.eg2":"Dauer · 100 % kostenlos",
+  "tool.live":"Kostenlos & live","tool1.cta":"Jetzt testen →","tool2.cta":"Checker starten →",
+  "tool1.h3":"KI-Readiness-Selbsttest","tool1.p":"10 Fragen. 5 Minuten. Sie erhalten Ihren persönlichen Ventari AI Readiness Score (Stufe 1–4) sowie konkrete erste Empfehlungen – vollautomatisch und ohne Erstgespräch.",
+  "tool1.s1":"10 Fragen zu Prozessen, Daten & Compliance","tool1.s2":"Automatische Score-Berechnung (Stufe 1–4)","tool1.s3":"Konkrete Handlungsempfehlungen direkt im Ergebnis",
+  "tool2.h3":"EU AI Act Compliance-Checker","tool2.p":"Geben Sie 5–6 Parameter ein (Branche, KI-Systeme im Einsatz, Mitarbeiterzahl) und erhalten Sie sofort eine Einschätzung Ihrer Hochrisiko-Einstufung nach EU AI Act – inklusive nächster Pflichtschritte.",
+  "tool2.s1":"Branche & eingesetzte KI-Systeme angeben","tool2.s2":"Automatische Risikoklassifizierung nach EU AI Act","tool2.s3":"Sofortige Einschätzung: Hochrisiko oder nicht?",
+  "s1.tool":"📊 Vorab: Einsparpotenzial berechnen →",
+  "s3.tool":"🛡️ Jetzt Risikoklasse prüfen →",
+  "audit.tool":"🧮 Was würde das kosten? Jetzt schätzen →",
+  "faq.1.tool":"🧮 Erste Orientierung: KI-Projektkosten schätzen →",
+  "blog.eyebrow":"Insights","blog.h2":'KI & Compliance.<br/><span class="accent">Praxisnah erklärt.</span>',
+  "blog.more":"Alle Artikel","blog.tag.compliance":"EU AI Act","blog.tag.nis2":"NIS2","blog.tag.automation":"Automatisierung","blog.read":"Lesezeit",
+  "blog.1.title":"Was der EU AI Act konkret für Ihr Unternehmen bedeutet","blog.1.excerpt":"Ab August 2026 drohen Bußgelder bis zu 7 % des Jahresumsatzes. Wir erklären, wer betroffen ist, was jetzt zu tun ist – und was häufig missverstanden wird.","blog.1.date":"März 2026",
+  "blog.2.title":"NIS2: Bin ich als KMU wirklich betroffen?","blog.2.excerpt":"Seit Dezember 2025 gilt das Gesetz – aber viele Unternehmen wissen noch nicht, ob sie betroffen sind. Wir klären auf und zeigen, wie Sie in 30 Minuten Klarheit bekommen.","blog.2.date":"Februar 2026",
+  "blog.3.title":"5 KI-Use-Cases mit schnellem ROI für den Mittelstand","blog.3.excerpt":"Nicht jede KI-Investition dauert Monate. Diese fünf Anwendungsfälle lassen sich innerhalb von 4–8 Wochen umsetzen und zeigen sofortige Wirkung auf Effizienz und Kosten.","blog.3.date":"Januar 2026"
+},
+en: {
+    "stat.1.num":"3","stat.1.label":"Core disciplines under one roof",
+  "stat.2.num":"6","stat.2.label":"Areas of expertise in the team",
+  "stat.3.num":"24h","stat.3.label":"Response time guaranteed",
+  "stat.4.num":"100%","stat.4.label":"EU-compliant – GDPR & AI Act",
+  "tech.label":"Technology Stack",
+  "faq.eyebrow":"FAQs","faq.h2":"What decision-makers<br/>want to know.",
+  "faq.1.q":"What does a project with Ventari cost?",
+  "faq.1.a":"We always start with an AI Audit at a transparent fixed price. Larger automation and integration projects are individually scoped – based on complexity, system landscape and timeline. You will receive a first estimate during the free initial consultation.",
+  "faq.2.q":"Is our company too small?",
+  "faq.2.a":"No. Our methods are scalable. What matters is not company size, but whether you have processes and data where AI can create leverage. We will clarify this together in the free initial consultation.",
+  "faq.3.q":"What happens to our company data?",
+  "faq.3.a":"Data protection is not a checkbox – it is an architecture principle. All solutions are designed to be GDPR-compliant, optionally hosted on German or European cloud servers. Our legal expert is involved in every project from day one.",
+  "faq.4.q":"How long does a typical project take?",
+  "faq.4.a":"The AI Audit takes 2–3 days. Smaller automations are live in 4–8 weeks. More complex systems with deep integration are planned over 3–6 months. We define milestones upfront – no open-ended consulting.",
+  "faq.5.q":"Do we need an internal IT department?",
+  "faq.5.a":"No. We handle the entire technical implementation and hand over a system your team can operate independently. Optionally, we stay with you long-term through a monthly maintenance package.",
+  "faq.6.q":"What sets Ventari apart from a traditional IT agency?",
+  "faq.6.a":"Traditional IT agencies build what they are asked to build. We start with the question: what actually creates value? Strategy, implementation and legal certainty come from one source – no silos, no interface losses.",
+  "faq.7.q":"Am I affected by the EU AI Act – and what do I need to do?",
+  "faq.7.a":"It depends on which AI systems you use or develop. Many Mittelstand companies are affected without knowing it – particularly in HR, credit assessment, security technology and critical infrastructure. High-risk systems must be documented, audited and registered. Fines for non-compliance: up to 7% of global annual turnover.",
+  "faq.7.tool":"🛡️ Check your risk class for free now →",
+  "nav.services":"Services","nav.readiness":"Readiness","nav.tools":"Tools","nav.blog":"Insights","nav.expertise":"Team","nav.why":"Why us","nav.pricing":"Pricing","nav.cta":"Contact",
+  "cd.label":"<span class=\"countdown-label\">EU AI Act</span> – Full enforcement for high-risk systems in:","cd.days":"Days","cd.hours":"Hrs","cd.mins":"Min","cd.cta":"Am I affected? →","cd.omnibus":"Digital Omnibus proposal may shift deadlines to Dec. 2027 – only once formally adopted. Recommendation: plan for August 2026 now.","partner.label":"Technology Partners","process.eyebrow":"How we work","process.h2":"From first call to<br/><span class=\"accent\">running AI solution.</span>","process.b1":"Strategy","process.t1":"AI Opportunity Assessment","process.s1":"We analyse your processes, identify potential and deliver a prioritised roadmap. 2–3 days, fixed price.","process.b2":"Compliance","process.t2":"Legal & Governance Check","process.s2":"Our legal expert checks EU AI Act and GDPR requirements – in parallel with strategy, never as an afterthought.","process.b3":"Implementation","process.t3":"Automation & Integration","process.s3":"We build and integrate the solution into your existing systems – production-ready, not a prototype.","process.b4":"Operations","process.t4":"Monitoring & Development","process.s4":"Ongoing monitoring, compliance updates and scaling – we stay a partner, not just a vendor.","hero.eyebrow":"AI Automation & Compliance Studio",
+  "hero.h1":'AI that actually delivers.<br/><span class="accent">Concrete. Measurable. Secure.</span>',
+  "hero.sub":"Strategy, implementation and EU AI Act compliance – from one source. No coordination overhead, no legal surprises, no guesswork.",
+  "pill.1":"Too much work, too little time","pill.2":"AI projects that never start","pill.3":"Legal uncertainty",
+  "hero.cta1":"Book a 30-minute call","hero.cta2":"Explore services","hero.scroll":"Discover",
+  "strip.1.title":"AI Opportunity Assessment","strip.1.sub":"Use cases & roadmap",
+  "strip.2.title":"AI Automation & Integration","strip.2.sub":"Workflows, tools, APIs",
+  "strip.3.title":"AI Governance & Compliance","strip.3.sub":"EU AI Act, GDPR",
+  "strip.4.title":"Cloud Infrastructure","strip.4.sub":"AWS, Azure, GCP",
+  "problem.eyebrow":"The market today",
+  "problem.h2":'Three reasons why<br/><span class="accent">AI projects fail.</span>',
+  "problem.intro":"Most managing directors know AI could help their business. Few know where to start – and even fewer have someone who can handle strategy, technology and compliance at the same time.",
+  "prob.1.title":"No clear starting point","prob.1.p":"Where do you begin? Which processes are worth automating? Most businesses invest in the wrong use case – or wait so long the competition pulls ahead.",
+  "prob.2.title":"Integration is harder than expected","prob.2.p":"AI needs to connect to existing systems – CRM, ERP, email, databases. That is technically demanding and quickly overwhelms internal teams without AI experience.",
+  "prob.3.title":"Data protection and liability unresolved","prob.3.p":"Can we even use AI? What happens to customer data? Who is liable for mistakes? The EU AI Act and GDPR create real uncertainty – and retrofitting compliance later costs double.",
+  "services.eyebrow":"Services",
+  "services.h2":'What we concretely<br/><span class="accent">do for you.</span>',
+  "services.intro":"From analysis to finished solution – everything from one source. No coordinating between three different vendors, no project that stalls halfway through.",
+  "s1.num":"01 — AI Opportunity Assessment","s1.h3":"We show you exactly<br/>where AI helps.",
+  "s1.p":"In 2–3 days we look at your processes and tell you precisely where automation saves time and money. With effort estimates and priorities. Fixed price, no surprises.",
+  "s.delivers":"Deliverables","s.examples":"Typical solutions","s.includes":"Includes",
+  "s1.b1":"Prioritised AI use case list","s1.b2":"Risk and benefit assessment","s1.b3":"Concrete project roadmap","s1.b4":"Initial compliance assessment",
+  "s1.t1":"2–3 days","s1.t2":"Workshop format",
+  "s2.num":"02 — AI Automation & Integration","s2.h3":"We build the solution –<br/>and integrate it.",
+  "s2.p":"No proof-of-concept sitting on a shelf after three months. We build automations that actually run – connected to your existing systems, without your team worrying about the technology.",
+  "s2.b1":"Automated handling of incoming requests","s2.b2":"AI searches internal documents and answers questions","s2.b3":"Quotes, follow-ups and CRM updates automated","s2.b4":"Data analysis and reporting without manual effort",
+  "s3.num":"03 — AI Governance & Compliance","s3.h3":"No data protection problem<br/>after launch.",
+  "s3.p":"Our legal expert ensures your AI deployment is GDPR-compliant and EU AI Act-ready from the start. No retrofitting, no warnings, no open liability questions.",
+  "s3.b1":"AI policies & governance framework","s3.b2":"GDPR-compliant data protection concepts","s3.b3":"EU AI Act compliance documentation","s3.b4":"Risk assessment & liability clarity",
+  "s4.num":"04 — Maintenance & Development","s4.h3":"We stay involved –<br/>even after launch.",
+  "s4.p":"AI systems need maintenance. We monitor performance, adjust when needed, and make sure the solution grows with your business.",
+  "s4.b1":"Monitoring & performance tracking","s4.b2":"Monthly optimisation rounds","s4.b3":"Ongoing compliance review","s4.b4":"Scaling as usage grows",
+  "s4.t1":"Monthly retainer","s4.t2":"Cancel anytime",
+  "audit.badge":"Getting started","audit.h3":"The easiest starting point: the AI Audit","audit.cta":"Request AI Audit",
+  "audit.p":"In 2–3 days you will know exactly which processes are worth automating, what it costs and what you gain. Fixed price, no risk.",
+  "audit.day1.title":"Analysis","audit.day1.p":"Understand processes, data and existing systems",
+  "audit.day2.title":"Assessment","audit.day2.p":"Prioritise use cases, weigh risks and benefits",
+  "audit.day3.title":"Roadmap","audit.day3.p":"Concrete next steps with effort and ROI estimates",
+  "expertise.eyebrow":"The Team",
+  "expertise.h2":"We bring together what AI projects truly need.",
+  "team.intro":"Not a consultancy, not a pure agency. A studio of practitioners who have built, scaled and taken responsibility for AI systems – in corporations, startups and on the international stage.",
+  "cred.1.title":"AI recommendation systems in production","cred.1.sub":"Cloud-native, used by millions of users daily – media & technology",
+  "cred.2.title":"Defence technology at government level","cred.2.sub":"DARPA OFFSET Sprint 2 – autonomous AI systems for critical infrastructure",
+  "cred.3.title":"Hollywood & Immersive AI","cred.3.sub":"Jurassic World VR, Warner Bros. Web3 – AI systems for global productions",
+  "cred.4.title":"AI platform for 40+ universities","cred.4.sub":"RAG-based, live at LMU, TUM, KIT and WU Vienna – recognised by Wirtschaftswoche",
+  "cred.5.title":"EU AI Act & compliance research","cred.5.sub":"Doctoral research on AI integration, specialised in EU AI Act, GDPR & IT security law",
+  "cred.6.title":"Enterprise infrastructure & corporate PM","cred.6.sub":"AWS, Azure, GCP – systems integration in enterprise environments (automotive, media)",
+  "tp.1.title":"Automotive Industry","tp.1.sub":"Corporate PM & system integration",
+  "tp.2.title":"Defence Technology","tp.2.sub":"Government level & future technologies",
+  "tp.3.title":"Hollywood & Immersive Tech","tp.3.sub":"Global productions, VR, AI systems",
+  "tp.4.title":"AI Research & Academia","tp.4.sub":"Data science & AI law",
+  "tp.5.title":"Startup & Entrepreneurship","tp.5.sub":"Founding, investment, international growth",
+  "tp.6.title":"Cloud & Infrastructure","tp.6.sub":"AWS, Azure, GCP – enterprise scale",
+  "quote.text":'AI is not an end in itself. We care about one question: <span class="accent">how much time does your team save every day?</span>',
+  "quote.author":"Ventari – AI Automation & Compliance Studio",
+  "why.eyebrow":"Why Ventari",
+  "why.h2":'What sets us<br/><span class="accent">apart.</span>',
+  "why.intro":"The difference doesn't show up in the pitch – it shows up when the project is running.",
+  "w1.title":"Strategy, tech and law from one source","w1.p":"IT agencies build what they're told. Classic consultants deliver slides. We do both – and make sure it runs compliantly at the end. No coordination overhead, no friction between vendors.",
+  "w2.title":"Fixed-price entry, no open-ended projects","w2.p":"Every project starts with an AI Audit at a transparent fixed price. Then clear milestones, no hourly rates without a cap – you always know what you're getting.",
+  "w3.title":"Compliance is architecture, not an afterthought","w3.p":"Our legal expert is involved from day 1. EU AI Act and GDPR aren't retrofitted – they shape how the system is built. No surprises after launch.",
+  "w4.title":"We are measured by your results","w4.p":"No project without pre-defined success metrics. Time savings, error rates, process throughput – we name concrete numbers upfront and commit to them.",
+  "contact.eyebrow":"Contact",
+  "contact.h2":"Let us find out<br/><span class='accent'>what is possible for you.</span>",
+  "contact.desc":"30 minutes, no sales pitch. We listen, ask a few questions about your processes – and tell you straight whether and where we can help.",
+  "contact.location":"Nationwide – based in Baden-Baden","contact.response":"Response within 24 hours",
+  "form.first":"First name","form.last":"Last name","form.email":"Email address","form.company":"Company",
+  "form.topic":"Select a topic …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt5":"NIS2 Compliance","form.opt4":"General enquiry",
+  "form.message":"What's on your mind? A brief sketch is enough …",
+  "form.submit":"Book a call →","form.success":"✓ Thank you – we'll be in touch!",
+  "footer.imprint":"Imprint","footer.privacy":"Privacy Policy","footer.copy":"© 2026 Ventari. All rights reserved.",
+  "gap.num1":"86%","gap.desc1":"of SMEs recognise AI as business-critical","gap.num2":"23%","gap.desc2":"have successfully implemented AI projects","gap.note":"A 63-point implementation gap – that is the market Ventari was built for. Source: Mittelstand Digital Study 2025",
+  "nis2.alert":"In force since 6 December 2025 – no transition period",
+  "nis2.h2":'NIS2 is now mandatory.<br/><span class="accent">Act now.</span>',
+  "nis2.intro":"The NIS2 Implementation Act has been in force in Germany since 6 December 2025 – with no transition period. Around 29,500 companies are directly affected, and indirectly almost every SME that acts as a supplier or service provider for larger clients.",
+  "nis2.f1.title":"Companies directly affected","nis2.f1.sub":"Across 18 sectors: energy, healthcare, IT, logistics, manufacturing and more",
+  "nis2.f2.title":"Euro fine – or 2% of annual revenue","nis2.f2.sub":"Managing directors are personally liable with their private assets",
+  "nis2.f3.title":"Reporting obligation for security incidents","nis2.f3.sub":"BSI registration and incident response processes are mandatory",
+  "nis2.box.h3":"What Ventari handles for you",
+  "nis2.c1":"Applicability check: are you actually affected?","nis2.c2":"Gap analysis against all NIS2 requirements","nis2.c3":"Set up a risk management framework","nis2.c4":"BSI registration and incident reporting processes","nis2.c5":"Management training (personal liability)","nis2.c6":"NIS2 + EU AI Act combined sprint available",
+  "nis2.cta":"Request NIS2 check now",
+  "score.eyebrow":"Ventari AI Readiness Score","score.h2":'Where does your company<br/><span class="accent">really stand?</span>',
+  "score.intro":"Our proprietary 4-level framework assesses AI maturity, data readiness and compliance status – and shows exactly what needs to happen next.",
+  "score.l1":"Level 1","score.n1":"Starter","score.d1":"AI is known but not yet in use. Data exists but is unstructured. Compliance questions still unresolved.",
+  "score.l2":"Level 2","score.n2":"Explorer","score.d2":"First AI tools in use. Individual processes automated. Data strategy starting to take shape. Compliance addressed in places.",
+  "score.l3":"Level 3","score.n3":"Practitioner","score.d3":"AI systematically integrated into core processes. Clean data foundation. EU AI Act and GDPR actively managed. Clear KPIs.",
+  "score.l4":"Level 4","score.n4":"AI Native","score.d4":"AI is part of the company DNA. Continuous learning, automated compliance monitoring, scalable architecture.",
+  "score.cta.p":"We determine your score in the AI Opportunity Assessment – and show you the direct path to the next level.",
+  "score.cta.btn":"Get your score assessed",
+  "tools.eyebrow":"Free Tools","tools.h2":'Instant clarity.<br/><span class="accent">Free. Online.</span>',
+  "tools.sub":"Four free tools – from calculating automation savings to the EU AI Act Checker. Ready to use, no login required.",
+  "tools.t1":"Automation Potential Calculator","tools.t2":"AI Project Cost Estimator","tools.t3":"AI Readiness Test","tools.t4":"EU AI Act Checker",
+  "tools.cta":"View all tools →","tools.all":"View all 4 tools →",
+  "toolF.badge":"New – now live","toolF.h3":"Automation Potential Calculator",
+  "toolF.p":"Enter your most time-intensive processes and instantly get concrete euro figures: how much does AI automation save your company per year?",
+  "toolF.s1":"Savings potential in € per year","toolF.s2":"ROI timeline and break-even point","toolF.s3":"Prioritisation by impact",
+  "toolF.cta.de":"🇩🇪 Deutsch","toolF.cta.en":"🇬🇧 Start in English →",
+  "toolF.eg1":"Ø savings potential / year","toolF.eg2":"Duration · 100% free",
+  "tool.live":"Free & live","tool1.cta":"Start test →","tool2.cta":"Start checker →",
+  "tool1.h3":"AI Readiness Self-Test","tool1.p":"10 questions. 5 minutes. You receive your personal Ventari AI Readiness Score (level 1–4) plus concrete first recommendations – fully automated, no consultation required.",
+  "tool1.s1":"10 questions on processes, data & compliance","tool1.s2":"Automatic score calculation (levels 1–4)","tool1.s3":"Concrete recommendations delivered directly in the result",
+  "tool2.h3":"EU AI Act Compliance Checker","tool2.p":"Enter 5–6 parameters (industry, AI systems in use, headcount) and immediately receive an assessment of your high-risk classification under the EU AI Act – including your next mandatory steps.",
+  "tool2.s1":"Enter your industry & AI systems in use","tool2.s2":"Automatic risk classification under EU AI Act","tool2.s3":"Instant verdict: high-risk or not?",
+  "s1.tool":"📊 Pre-check: Calculate your savings potential →",
+  "s3.tool":"🛡️ Check your risk class now →",
+  "audit.tool":"🧮 What would this cost? Get an estimate →",
+  "faq.1.tool":"🧮 First orientation: estimate your AI project cost →",
+  "blog.eyebrow":"Insights","blog.h2":'AI & Compliance.<br/><span class="accent">Explained practically.</span>',
+  "blog.more":"All articles","blog.tag.compliance":"EU AI Act","blog.tag.nis2":"NIS2","blog.tag.automation":"Automation","blog.read":"read",
+  "blog.1.title":"What the EU AI Act means concretely for your business","blog.1.excerpt":"From August 2026, fines of up to 7% of annual revenue are possible. We explain who is affected, what to do now – and what is frequently misunderstood.","blog.1.date":"March 2026",
+  "blog.2.title":"NIS2: Am I as an SME really affected?","blog.2.excerpt":"The law has been in force since December 2025 – but many businesses still don't know whether they are affected. We clarify and show how to get clarity in 30 minutes.","blog.2.date":"February 2026",
+  "blog.3.title":"5 AI use cases with fast ROI for the Mittelstand","blog.3.excerpt":"Not every AI investment takes months. These five use cases can be implemented within 4–8 weeks and show an immediate impact on efficiency and costs.","blog.3.date":"January 2026"
+}
+};
+
+let lang = (function() {
+  try { return localStorage.getItem('ventari_lang') || 'de'; } catch(e) { return 'de'; }
+})();
+function applyLang(l) {
+  const t = T[l];
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(el => { if (t[el.dataset.i18n] !== undefined) el.innerHTML = t[el.dataset.i18n]; });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { if (t[el.dataset.i18nPlaceholder] !== undefined) el.placeholder = t[el.dataset.i18nPlaceholder]; });
+  document.querySelectorAll('[data-href-de]').forEach(el => { el.href = l === 'en' ? el.dataset.hrefEn : el.dataset.hrefDe; });
+}
+function switchLang(l) {
+  if (l === lang) return; lang = l;
+  try { localStorage.setItem('ventari_lang', l); } catch(e) {}
+  document.body.classList.add('lang-switching');
+  setTimeout(() => { applyLang(l); document.body.classList.remove('lang-switching'); }, 180);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+}
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => switchLang(b.dataset.lang)));
+// Apply saved language on load (if not default DE)
+if (lang !== 'de') {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  applyLang(lang);
+}
+
+/* ── NEURAL NETWORK ── */
+const canvas = document.getElementById('network-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, nodes = [];
+const mouse = { x: -9999, y: -9999 };
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+function initNodes() {
+  nodes = Array.from({ length: 90 }, () => ({
+    x: Math.random()*W, y: Math.random()*H,
+    vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)*.3,
+    r: Math.random()*1.6+.6, baseAlpha: Math.random()*.35+.1
+  }));
+}
+function tick() {
+  ctx.clearRect(0,0,W,H);
+  const MR = 220;
+  nodes.forEach(n => {
+    const dx=n.x-mouse.x, dy=n.y-mouse.y, d=Math.sqrt(dx*dx+dy*dy);
+    if(d<MR&&d>0){const f=(1-d/MR)*55; n.x+=(dx/d)*f*.013; n.y+=(dy/d)*f*.013;}
+    n.x+=n.vx; n.y+=n.vy;
+    if(n.x<0||n.x>W){n.vx*=-1;n.x=Math.max(0,Math.min(W,n.x));}
+    if(n.y<0||n.y>H){n.vy*=-1;n.y=Math.max(0,Math.min(H,n.y));}
+  });
+  for(let i=0;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++){
+    const a=nodes[i],b=nodes[j],dist=Math.hypot(a.x-b.x,a.y-b.y);
+    if(dist>=155)continue;
+    const t=1-dist/155;
+    const mNear=Math.hypot(a.x-mouse.x,a.y-mouse.y)<MR||Math.hypot(b.x-mouse.x,b.y-mouse.y)<MR;
+    const alpha=t*(mNear?.42:.13);
+    const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
+    g.addColorStop(0,`rgba(74,140,255,${alpha})`); g.addColorStop(1,`rgba(93,216,232,${alpha*.6})`);
+    ctx.beginPath(); ctx.strokeStyle=g; ctx.lineWidth=mNear?.75:.35;
+    ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+  }
+  nodes.forEach(n=>{
+    const md=Math.hypot(n.x-mouse.x,n.y-mouse.y), MR=220;
+    const boost=md<MR?1+(1-md/MR)*2.8:1;
+    const alpha=Math.min(n.baseAlpha*boost,.95);
+    if(boost>1.4){ctx.beginPath();ctx.arc(n.x,n.y,n.r*boost*3,0,Math.PI*2);ctx.fillStyle=`rgba(74,140,255,${alpha*.08})`;ctx.fill();}
+    ctx.beginPath();ctx.arc(n.x,n.y,n.r*(boost>1?boost*.9:1),0,Math.PI*2);
+    ctx.fillStyle=`rgba(74,140,255,${alpha})`;ctx.fill();
+  });
+  requestAnimationFrame(tick);
+}
+resize(); initNodes(); tick();
+window.addEventListener('resize',()=>{resize();initNodes();});
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+window.addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999;});
+window.addEventListener('touchmove',e=>{mouse.x=e.touches[0].clientX;mouse.y=e.touches[0].clientY;},{passive:true});
+
+/* ── NAV ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+/* ── REVEAL ── */
+document.body.classList.add('js-ready');
+/* ── HAMBURGER ── */
+const ham = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.contains('open');
+  if (isOpen) { closeMobile(); } else { openMobile(); }
+});
+function openMobile() {
+  ham.classList.add('open');
+  mobileMenu.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobile() {
+  ham.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeMobile(); closeLegal('impressum'); closeLegal('privacy'); }
+});
+// also update mobile menu lang buttons
+document.querySelectorAll('.mobile-menu .lang-btn').forEach(b => b.addEventListener('click', () => {
+  switchLang(b.dataset.lang);
+  document.querySelectorAll('.lang-btn').forEach(x => x.classList.toggle('active', x.dataset.lang === b.dataset.lang));
+}));
+
+/* ── FAQ ── */
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── FORM ── */
+/* ── COUNTDOWN ── */
+(function() {
+  const deadline = new Date('2026-08-02T00:00:00Z');
+  function tick() {
+    const now = new Date();
+    const diff = deadline - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '0';
+      document.getElementById('cd-mins').textContent = '0';
+      return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 30000);
+})();
+
+const _formLoadTime = Date.now();
+document.querySelector('.form-submit').addEventListener('click', async function(e) {
+  e.preventDefault();
+  const btn = this;
+
+  // Honeypot: if filled, silently pretend success
+  if (document.getElementById('hp-field')?.value) {
+    btn.textContent = T[lang]['form.success'];
+    btn.style.background = '#2d5cb8';
+    return;
+  }
+
+  // Timing check: bots submit in < 2 seconds
+  if (Date.now() - _formLoadTime < 2000) {
+    btn.textContent = T[lang]['form.success'];
+    btn.style.background = '#2d5cb8';
+    return;
+  }
+
+  const data = {
+    first:   document.querySelectorAll('input[type=text]')[0]?.value.trim() || '',
+    last:    document.querySelectorAll('input[type=text]')[1]?.value.trim() || '',
+    email:   document.querySelector('input[type=email]')?.value.trim() || '',
+    company: document.querySelectorAll('input[type=text]')[2]?.value.trim() || '',
+    topic:   document.querySelector('select')?.value || '',
+    message: document.querySelector('textarea')?.value.trim() || '',
+  };
+
+  if (!data.email || !data.message) {
+    btn.textContent = lang === 'de' ? 'Bitte E-Mail & Nachricht ausfüllen' : 'Please fill in email & message';
+    btn.style.background = '#c0392b';
+    setTimeout(() => { btn.innerHTML = T[lang]['form.submit']; btn.style.background = ''; }, 3000);
+    return;
+  }
+
+  btn.textContent = lang === 'de' ? 'Wird gesendet …' : 'Sending …';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://ventari-contact.YOUR_SUBDOMAIN.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      btn.textContent = T[lang]['form.success'];
+      btn.style.background = '#2d5cb8';
+      document.querySelectorAll('input, textarea').forEach(el => el.value = '');
+      document.querySelector('select').selectedIndex = 0;
+    } else { throw new Error(); }
+  } catch {
+    btn.textContent = lang === 'de' ? 'Fehler – bitte direkt mailen' : 'Error – please email us directly'
+    btn.style.background = '#c0392b';
+    setTimeout(() => { btn.innerHTML = T[lang]['form.submit']; btn.style.background = ''; btn.disabled = false; }, 3500);
+  }
+});
+</script>
+</body>
+</html>

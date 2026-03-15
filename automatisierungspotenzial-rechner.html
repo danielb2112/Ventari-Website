@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <script>try{if(localStorage.getItem("ventari_lang")==="en"){var el=document.querySelector('link[hreflang="en"]');if(el)window.location.replace(el.href);}}catch(e){}</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Automatisierungspotenzial-Rechner – Ventari</title>
+  <meta name="description" content="Kostenloser Automatisierungspotenzial-Rechner: Berechnen Sie in Minuten, was KI-Automatisierung Ihrem Unternehmen pro Jahr einspart – mit konkreten Euro-Zahlen."/>
+  <link rel="canonical" href="https://ventari.eu/automatisierungspotenzial-rechner.html"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:#07080f;--bg2:#0c0e18;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;
+      --blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);
+      --cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;
+      --white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;
+      --border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--blue-dim);border-radius:2px}
+    .bg-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(74,140,255,0.07) 0%,transparent 70%);pointer-events:none;z-index:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(7,8,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--white);text-decoration:none}
+    .logo span{color:var(--blue)}
+    .nav-back{font-size:0.76rem;color:var(--muted2);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}
+    .nav-back:hover{color:var(--white)}
+    main{position:relative;z-index:2;max-width:800px;margin:0 auto;padding:9rem 2rem 5rem}
+    .tool-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:1.2rem}
+    .tool-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--blue)}
+    .tool-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,2.8rem);font-weight:400;line-height:1.15;color:var(--white);margin-bottom:1rem}
+    .tool-subtitle{font-size:1rem;color:var(--muted2);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
+
+    /* PROCESS ROWS */
+    .section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+    .process-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:0.8rem}
+    .process-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
+    .process-name{font-size:0.9rem;font-weight:600;color:var(--white)}
+    .remove-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;transition:color 0.2s;padding:0.2rem}
+    .remove-btn:hover{color:var(--red,#ff5c5c)}
+    .process-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem}
+    @media(max-width:600px){.process-inputs{grid-template-columns:1fr}}
+    .field{display:flex;flex-direction:column;gap:0.35rem}
+    label{font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+    .input-wrap{position:relative;display:flex;align-items:center}
+    input[type=number]{
+      background:var(--bg3);border:1px solid var(--border2);border-radius:7px;
+      color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.92rem;
+      padding:0.65rem 0.9rem;width:100%;outline:none;transition:border-color 0.2s;
+      -moz-appearance:textfield;
+    }
+    input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+    input[type=number]:focus{border-color:var(--blue)}
+    .input-unit{position:absolute;right:0.8rem;font-size:0.75rem;color:var(--muted);pointer-events:none}
+    select{
+      background:var(--bg3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='none' stroke='%238b93b3' stroke-width='2'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 0.9rem center;
+      border:1px solid var(--border2);border-radius:7px;
+      color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.92rem;
+      padding:0.65rem 2.2rem 0.65rem 0.9rem;width:100%;outline:none;
+      transition:border-color 0.2s;-webkit-appearance:none;appearance:none;
+    }
+    select option{background:var(--bg3)}
+    select:focus{border-color:var(--blue)}
+
+    /* GLOBAL FIELDS */
+    .global-section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:1.5rem}
+    .global-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+    @media(max-width:600px){.global-grid{grid-template-columns:1fr}}
+
+    .add-btn{
+      background:none;border:1px dashed rgba(74,140,255,0.3);border-radius:8px;
+      color:var(--blue);font-family:'DM Sans',sans-serif;font-size:0.85rem;
+      font-weight:500;cursor:pointer;padding:0.75rem;width:100%;
+      transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.4rem;
+      margin-bottom:1.5rem;
+    }
+    .add-btn:hover{border-color:var(--blue);background:var(--blueglow)}
+
+    .btn-primary{background:var(--blue);color:var(--bg);border:none;border-radius:6px;padding:0.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+    .btn-primary:hover{opacity:0.85;transform:translateY(-1px)}
+
+    /* RESULTS */
+    #results{display:none;opacity:0;animation:fadeIn 0.5s ease forwards}
+    @keyframes fadeIn{to{opacity:1}}
+
+    .big-number-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+    @media(max-width:580px){.big-number-row{grid-template-columns:1fr}}
+    .big-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;text-align:center}
+    .big-card-val{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;margin-bottom:0.2rem}
+    .big-card-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+    .big-card-sub{font-size:0.75rem;color:var(--muted2);margin-top:0.2rem}
+
+    .breakdown-table{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+    .breakdown-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:0;background:var(--surface2);padding:0.75rem 1.2rem;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+    .breakdown-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:0;padding:0.85rem 1.2rem;border-top:1px solid var(--border2);font-size:0.85rem}
+    .breakdown-row:hover{background:rgba(255,255,255,0.02)}
+    .col-name{color:var(--white);font-weight:500}
+    .col-val{color:var(--muted2);text-align:right}
+    .col-highlight{color:var(--green);font-weight:600;text-align:right}
+    @media(max-width:600px){
+      .breakdown-header,.breakdown-row{grid-template-columns:2fr 1fr 1fr;font-size:0.78rem}
+      .col-val:nth-child(3),.col-val:nth-child(4){display:none}
+      .breakdown-header span:nth-child(3),.breakdown-header span:nth-child(4){display:none}
+    }
+
+    .insight-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+    @media(max-width:580px){.insight-row{grid-template-columns:1fr}}
+    .insight-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem}
+    .insight-title{font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+    .insight-val{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--white);margin-bottom:0.2rem}
+    .insight-desc{font-size:0.8rem;color:var(--muted2);line-height:1.5}
+
+    .cta-box{background:linear-gradient(135deg,rgba(74,140,255,0.12),rgba(93,216,232,0.06));border:1px solid rgba(74,140,255,0.3);border-radius:12px;padding:2rem;text-align:center;margin-top:1.5rem}
+    .cta-title{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:0.5rem}
+    .cta-text{font-size:0.88rem;color:var(--muted2);margin-bottom:1.4rem;line-height:1.6}
+    .cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:var(--bg);text-decoration:none;border-radius:6px;padding:0.8rem 2rem;font-weight:600;font-size:0.9rem;transition:all 0.2s}
+    .cta-btn:hover{opacity:0.85;transform:translateY(-2px)}
+    .cta-note{font-size:0.75rem;color:var(--muted);margin-top:0.8rem}
+    .restart-row{text-align:center;margin-top:1rem}
+    .restart-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color 0.2s}
+    .restart-btn:hover{color:var(--white)}
+  </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<nav>
+  <a href="https://ventari.eu" class="logo">Ventar<span>i</span></a>
+  <a href="https://ventari.eu/tools/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>
+    ← Alle Tools
+  </a>
+</nav>
+<main>
+  <div id="form-screen">
+    <div class="tool-eyebrow">Kostenloser Rechner</div>
+    <h1 class="tool-title">Automatisierungs­potenzial-Rechner</h1>
+    <p class="tool-subtitle">Tragen Sie Ihre zeitintensivsten Prozesse ein – der Rechner zeigt, was KI-Automatisierung pro Jahr einsparen kann.</p>
+
+    <div class="global-section">
+      <div class="section-label" style="margin-bottom:0.8rem">Unternehmensparameter</div>
+      <div class="global-grid">
+        <div class="field">
+          <label>Durchschnittlicher Stundensatz (intern)</label>
+          <div class="input-wrap">
+            <input type="number" id="stundensatz" value="55" min="10" max="500"/>
+            <span class="input-unit">€/h</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Arbeitstage pro Jahr</label>
+          <div class="input-wrap">
+            <input type="number" id="arbeitstage" value="220" min="100" max="365"/>
+            <span class="input-unit">Tage</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Ihre Prozesse</div>
+    <div id="processes-container"></div>
+    <button class="add-btn" onclick="addProcess()">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg>
+      Weiteren Prozess hinzufügen
+    </button>
+
+    <button class="btn-primary" onclick="calculate()">
+      Potenzial berechnen
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </button>
+  </div>
+
+  <div id="results">
+    <div class="section-label" style="margin-bottom:1.2rem">Ihr Automatisierungspotenzial</div>
+    <div class="big-number-row" id="big-numbers"></div>
+    <div class="breakdown-table">
+      <div class="breakdown-header">
+        <span>Prozess</span>
+        <span style="text-align:right">Std/Wo</span>
+        <span style="text-align:right">Std/Jahr</span>
+        <span style="text-align:right">Kosten/Jahr</span>
+        <span style="text-align:right">Ersparnis</span>
+      </div>
+      <div id="breakdown-rows"></div>
+    </div>
+    <div class="insight-row" id="insight-row"></div>
+    <div class="cta-box">
+      <div class="cta-title">Potenzial konkret umsetzen?</div>
+      <p class="cta-text">Wir zeigen Ihnen, welche Prozesse sich am schnellsten automatisieren lassen und was der erste Schritt kostet.</p>
+      <a href="https://ventari.eu/#contact" class="cta-btn">Kostenloses Erstgespräch buchen <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <div class="cta-note">Kostenlos · Kein Verkaufsgespräch · 45 Minuten</div>
+    </div>
+    <div class="share-row" id="share-row" style="margin-top:1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <span style="font-size:0.8rem;color:var(--muted)">Ergebnis teilen:</span>
+      <button id="share-linkedin" onclick="shareLinkedIn()" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(10,102,194,0.15);border:1px solid rgba(10,102,194,0.35);color:#4a8cff;border-radius:6px;padding:0.5rem 1.1rem;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.2s;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Auf LinkedIn teilen
+      </button>
+      <button id="share-copy" onclick="copyResult()" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.05);border:1px solid var(--border2);color:var(--muted2);border-radius:6px;padding:0.5rem 1.1rem;font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;transition:all 0.2s;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Ergebnis kopieren
+      </button>
+    </div>
+    <div class="restart-row"><button class="restart-btn" onclick="restart()">Neue Berechnung</button></div>
+  </div>
+</main>
+
+<script>
+const AUTO_RATES = { 'Hoch (70–80%)': 0.75, 'Mittel (40–60%)': 0.5, 'Niedrig (20–35%)': 0.275 };
+
+const DEFAULTS = [
+  { name: 'Eingangspost & E-Mail-Verarbeitung', stunden: 8, auto: 'Hoch (70–80%)' },
+  { name: 'Reporting & Controlling', stunden: 5, auto: 'Mittel (40–60%)' },
+  { name: 'Angebotserstellung', stunden: 6, auto: 'Mittel (40–60%)' },
+];
+
+let processCount = 0;
+
+function addProcess(defaults={}) {
+  processCount++;
+  const id = processCount;
+  const div = document.createElement('div');
+  div.className = 'process-card';
+  div.id = `proc-${id}`;
+  div.innerHTML = `
+    <div class="process-header">
+      <div class="process-name">Prozess ${id}</div>
+      <button class="remove-btn" onclick="removeProcess(${id})" title="Entfernen">×</button>
+    </div>
+    <div class="process-inputs">
+      <div class="field" style="grid-column:1/-1">
+        <label>Prozessname</label>
+        <input type="text" value="${defaults.name||''}" placeholder="z. B. Angebotserstellung" style="background:var(--bg3);border:1px solid var(--border2);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.65rem 0.9rem;width:100%;outline:none;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border2)'" id="name-${id}"/>
+      </div>
+      <div class="field">
+        <label>Stunden/Woche</label>
+        <div class="input-wrap">
+          <input type="number" id="hrs-${id}" value="${defaults.stunden||4}" min="0.5" max="200" step="0.5"/>
+          <span class="input-unit">h</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Anzahl Mitarbeitende</label>
+        <div class="input-wrap">
+          <input type="number" id="ma-${id}" value="1" min="1" max="500"/>
+          <span class="input-unit">MA</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Automatisierbarkeit</label>
+        <select id="auto-${id}">
+          <option ${(defaults.auto||'')==='Hoch (70–80%)'?'selected':''}>Hoch (70–80%)</option>
+          <option ${(defaults.auto||'')==='Mittel (40–60%)'?'selected':''}>Mittel (40–60%)</option>
+          <option ${(defaults.auto||'')==='Niedrig (20–35%)'?'selected':''}>Niedrig (20–35%)</option>
+        </select>
+      </div>
+    </div>
+  `;
+  document.getElementById('processes-container').appendChild(div);
+}
+
+function removeProcess(id) {
+  const el = document.getElementById(`proc-${id}`);
+  if (el) el.remove();
+}
+
+function calculate() {
+  const stundensatz = parseFloat(document.getElementById('stundensatz').value) || 55;
+  const arbeitstage = parseInt(document.getElementById('arbeitstage').value) || 220;
+  const wochen = arbeitstage / 5;
+
+  const procs = [];
+  document.querySelectorAll('[id^="proc-"]').forEach(el => {
+    const id = el.id.replace('proc-','');
+    const name = document.getElementById(`name-${id}`)?.value || `Prozess ${id}`;
+    const hrs = parseFloat(document.getElementById(`hrs-${id}`)?.value) || 0;
+    const ma = parseInt(document.getElementById(`ma-${id}`)?.value) || 1;
+    const autoKey = document.getElementById(`auto-${id}`)?.value || 'Mittel (40–60%)';
+    const rate = AUTO_RATES[autoKey] || 0.5;
+    const hrsJahr = hrs * ma * wochen;
+    const kostenJahr = hrsJahr * stundensatz;
+    const ersparnis = kostenJahr * rate;
+    procs.push({ name, hrs, ma, hrsJahr, kostenJahr, ersparnis, rate });
+  });
+
+  if (!procs.length) return;
+
+  const totalHrsJahr = procs.reduce((s,p)=>s+p.hrsJahr,0);
+  const totalKosten = procs.reduce((s,p)=>s+p.kostenJahr,0);
+  const totalErsparnis = procs.reduce((s,p)=>s+p.ersparnis,0);
+  const totalHrsFreigesetzt = procs.reduce((s,p)=>s+p.hrsJahr*p.rate,0);
+
+  document.getElementById('form-screen').style.display='none';
+  document.getElementById('results').style.display='block';
+
+  const fmt = n => n >= 1000 ? (n/1000).toFixed(1).replace('.',',')+'k' : Math.round(n).toLocaleString('de-DE');
+  const fmtEur = n => n >= 10000 ? Math.round(n/1000)+'K €' : Math.round(n).toLocaleString('de-DE')+' €';
+
+  document.getElementById('big-numbers').innerHTML = `
+    <div class="big-card">
+      <div class="big-card-val" style="color:var(--green)">${fmtEur(totalErsparnis)}</div>
+      <div class="big-card-label">Jahrespotenzial</div>
+      <div class="big-card-sub">Konservative Schätzung</div>
+    </div>
+    <div class="big-card">
+      <div class="big-card-val" style="color:var(--cyan)">${fmt(totalHrsFreigesetzt)} h</div>
+      <div class="big-card-label">Stunden freigesetzt/Jahr</div>
+      <div class="big-card-sub">Für Wertschöpfung nutzbar</div>
+    </div>
+    <div class="big-card">
+      <div class="big-card-val" style="color:var(--blue)">${Math.round(totalErsparnis/stundensatz/wochen)} h</div>
+      <div class="big-card-label">Freigesetzte Std/Woche</div>
+      <div class="big-card-sub">Ø über alle Prozesse</div>
+    </div>
+  `;
+
+  document.getElementById('breakdown-rows').innerHTML = procs.map(p=>`
+    <div class="breakdown-row">
+      <span class="col-name">${p.name}</span>
+      <span class="col-val">${(p.hrs*p.ma).toFixed(1)} h</span>
+      <span class="col-val">${Math.round(p.hrsJahr).toLocaleString('de-DE')} h</span>
+      <span class="col-val">${fmtEur(p.kostenJahr)}</span>
+      <span class="col-highlight">${fmtEur(p.ersparnis)}</span>
+    </div>
+  `).join('');
+
+  const bestProc = [...procs].sort((a,b)=>b.ersparnis-a.ersparnis)[0];
+  const paybackMonths = Math.round((totalErsparnis * 0.3) / (totalErsparnis / 12));
+
+  document.getElementById('insight-row').innerHTML = `
+    <div class="insight-card">
+      <div class="insight-title">Größtes Einzelpotenzial</div>
+      <div class="insight-val">${bestProc.name.length>22 ? bestProc.name.slice(0,22)+'…' : bestProc.name}</div>
+      <div class="insight-desc">${fmtEur(bestProc.ersparnis)} Ersparnis/Jahr – empfohlener Startpunkt für die Automatisierung.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-title">Typische Amortisation</div>
+      <div class="insight-val">3–6 Monate</div>
+      <div class="insight-desc">Bei einem Implementierungsaufwand von ca. ${fmtEur(totalErsparnis*0.25)}–${fmtEur(totalErsparnis*0.4)} amortisiert sich das Projekt in unter einem halben Jahr.</div>
+    </div>
+  `;
+
+  window._shareData = { totalErsparnis, totalHrsFreigesetzt, bestProc };
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function shareLinkedIn() {
+  const d = window._shareData;
+  if (!d) return;
+  const eur = d.totalErsparnis >= 10000 ? Math.round(d.totalErsparnis/1000)+'K €' : Math.round(d.totalErsparnis).toLocaleString('de-DE')+' €';
+  const hrs = Math.round(d.totalHrsFreigesetzt);
+  const text = `Ich habe gerade mein Automatisierungspotenzial berechnet:\n\n💡 ${eur} Einsparung pro Jahr\n⏱ ${hrs} Stunden freigesetzt/Jahr\n🚀 Größtes Potenzial: ${d.bestProc.name}\n\nKostenlos berechnen auf ventari.eu →`;
+  const url = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://ventari.eu/automatisierungspotenzial-rechner.html') + '&summary=' + encodeURIComponent(text);
+  window.open(url, '_blank', 'width=600,height=500');
+}
+
+function copyResult() {
+  const d = window._shareData;
+  if (!d) return;
+  const eur = d.totalErsparnis >= 10000 ? Math.round(d.totalErsparnis/1000)+'K €' : Math.round(d.totalErsparnis).toLocaleString('de-DE')+' €';
+  const hrs = Math.round(d.totalHrsFreigesetzt);
+  const text = `Automatisierungspotenzial meines Unternehmens:\n\n• ${eur} Einsparung/Jahr\n• ${hrs} Stunden/Jahr freigesetzt\n• Größtes Potenzial: ${d.bestProc.name}\n\nKostenlos berechnen: ventari.eu/automatisierungspotenzial-rechner.html`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('share-copy');
+    const orig = btn.innerHTML;
+    btn.textContent = '✓ Kopiert!';
+    btn.style.color = '#4caf50';
+    setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; }, 2000);
+  });
+}
+
+function restart() {
+  document.getElementById('results').style.display='none';
+  document.getElementById('form-screen').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Init with defaults
+DEFAULTS.forEach(d => addProcess(d));
+</script>
+</body>
+</html>

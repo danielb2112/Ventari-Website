@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Automation Potential Calculator – Ventari</title>
+  <meta name="description" content="Free automation potential calculator: find out in minutes how much AI automation saves your company per year – with concrete euro figures."/>
+  <link rel="canonical" href="https://ventari.eu/automation-potential-calculator-en.html"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#07080f;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--blue-dim);border-radius:2px}
+    .bg-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(74,140,255,0.07) 0%,transparent 70%);pointer-events:none;z-index:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(7,8,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--white);text-decoration:none}.logo span{color:var(--blue)}
+    .nav-back{font-size:0.76rem;color:var(--muted2);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}.nav-back:hover{color:var(--white)}
+    main{position:relative;z-index:2;max-width:800px;margin:0 auto;padding:9rem 2rem 5rem}
+    .tool-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:1.2rem}
+    .tool-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--blue)}
+    .tool-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,2.8rem);font-weight:400;line-height:1.15;color:var(--white);margin-bottom:1rem}
+    .tool-subtitle{font-size:1rem;color:var(--muted2);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
+    .section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+    .process-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:0.8rem}
+    .process-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
+    .process-name{font-size:0.9rem;font-weight:600;color:var(--white)}
+    .remove-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;transition:color 0.2s;padding:0.2rem}
+    .remove-btn:hover{color:#ff5c5c}
+    .process-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem}
+    @media(max-width:600px){.process-inputs{grid-template-columns:1fr}}
+    .field{display:flex;flex-direction:column;gap:0.35rem}
+    label{font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+    .input-wrap{position:relative;display:flex;align-items:center}
+    input[type=number]{background:var(--bg3);border:1px solid var(--border2);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.92rem;padding:0.65rem 0.9rem;width:100%;outline:none;transition:border-color 0.2s;-moz-appearance:textfield}
+    input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+    input[type=number]:focus{border-color:var(--blue)}
+    .input-unit{position:absolute;right:0.8rem;font-size:0.75rem;color:var(--muted);pointer-events:none}
+    select{background:var(--bg3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='none' stroke='%238b93b3' stroke-width='2'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 0.9rem center;border:1px solid var(--border2);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.92rem;padding:0.65rem 2.2rem 0.65rem 0.9rem;width:100%;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none}
+    select option{background:var(--bg3)}
+    select:focus{border-color:var(--blue)}
+    .global-section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:1.5rem}
+    .global-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+    @media(max-width:600px){.global-grid{grid-template-columns:1fr}}
+    .add-btn{background:none;border:1px dashed rgba(74,140,255,0.3);border-radius:8px;color:var(--blue);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;cursor:pointer;padding:0.75rem;width:100%;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.4rem;margin-bottom:1.5rem}
+    .add-btn:hover{border-color:var(--blue);background:var(--blueglow)}
+    .btn-primary{background:var(--blue);color:var(--bg);border:none;border-radius:6px;padding:0.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+    .btn-primary:hover{opacity:0.85;transform:translateY(-1px)}
+    #results{display:none;opacity:0;animation:fadeIn 0.5s ease forwards}
+    @keyframes fadeIn{to{opacity:1}}
+    .big-number-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+    @media(max-width:580px){.big-number-row{grid-template-columns:1fr}}
+    .big-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;text-align:center}
+    .big-card-val{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;margin-bottom:0.2rem}
+    .big-card-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+    .big-card-sub{font-size:0.75rem;color:var(--muted2);margin-top:0.2rem}
+    .breakdown-table{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+    .breakdown-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:0;background:var(--surface2);padding:0.75rem 1.2rem;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+    .breakdown-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:0;padding:0.85rem 1.2rem;border-top:1px solid var(--border2);font-size:0.85rem}
+    .breakdown-row:hover{background:rgba(255,255,255,0.02)}
+    .col-name{color:var(--white);font-weight:500}.col-val{color:var(--muted2);text-align:right}.col-highlight{color:var(--green);font-weight:600;text-align:right}
+    @media(max-width:600px){.breakdown-header,.breakdown-row{grid-template-columns:2fr 1fr 1fr;font-size:0.78rem}.col-val:nth-child(3),.col-val:nth-child(4){display:none}.breakdown-header span:nth-child(3),.breakdown-header span:nth-child(4){display:none}}
+    .insight-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+    @media(max-width:580px){.insight-row{grid-template-columns:1fr}}
+    .insight-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem}
+    .insight-title{font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+    .insight-val{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--white);margin-bottom:0.2rem}
+    .insight-desc{font-size:0.8rem;color:var(--muted2);line-height:1.5}
+    .cta-box{background:linear-gradient(135deg,rgba(74,140,255,0.12),rgba(93,216,232,0.06));border:1px solid rgba(74,140,255,0.3);border-radius:12px;padding:2rem;text-align:center;margin-top:1.5rem}
+    .cta-title{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:0.5rem}
+    .cta-text{font-size:0.88rem;color:var(--muted2);margin-bottom:1.4rem;line-height:1.6}
+    .cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:var(--bg);text-decoration:none;border-radius:6px;padding:0.8rem 2rem;font-weight:600;font-size:0.9rem;transition:all 0.2s}
+    .cta-btn:hover{opacity:0.85;transform:translateY(-2px)}
+    .cta-note{font-size:0.75rem;color:var(--muted);margin-top:0.8rem}
+    .restart-row{text-align:center;margin-top:1rem}
+    .restart-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color 0.2s}
+    .restart-btn:hover{color:var(--white)}
+    @media(max-width:600px){nav{padding:1rem 1.4rem}main{padding:7rem 1.2rem 4rem}}
+  </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<nav>
+  <a href="https://ventari.eu" class="logo">Ventar<span>i</span></a>
+  <a href="https://ventari.eu/tools/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>
+    ← All Tools
+  </a>
+</nav>
+<main>
+  <div id="form-screen">
+    <div class="tool-eyebrow">Free Calculator</div>
+    <h1 class="tool-title">Automation<br>Potential Calculator</h1>
+    <p class="tool-subtitle">Enter your most time-consuming processes – the calculator shows what AI automation could save per year.</p>
+    <div class="global-section">
+      <div class="section-label" style="margin-bottom:0.8rem">Company Parameters</div>
+      <div class="global-grid">
+        <div class="field">
+          <label>Average hourly rate (internal)</label>
+          <div class="input-wrap">
+            <input type="number" id="stundensatz" value="55" min="10" max="500"/>
+            <span class="input-unit">€/h</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Working days per year</label>
+          <div class="input-wrap">
+            <input type="number" id="arbeitstage" value="220" min="100" max="365"/>
+            <span class="input-unit">days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-label">Your Processes</div>
+    <div id="processes-container"></div>
+    <button class="add-btn" onclick="addProcess()">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg>
+      Add another process
+    </button>
+    <button class="btn-primary" onclick="calculate()">Calculate potential <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+  </div>
+
+  <div id="results">
+    <div class="section-label" style="margin-bottom:1.2rem">Your Automation Potential</div>
+    <div class="big-number-row" id="big-numbers"></div>
+    <div class="breakdown-table">
+      <div class="breakdown-header">
+        <span>Process</span><span style="text-align:right">Hrs/Wk</span><span style="text-align:right">Hrs/Yr</span><span style="text-align:right">Cost/Yr</span><span style="text-align:right">Savings</span>
+      </div>
+      <div id="breakdown-rows"></div>
+    </div>
+    <div class="insight-row" id="insight-row"></div>
+    <div class="cta-box">
+      <div class="cta-title">Ready to realise the potential?</div>
+      <p class="cta-text">We show you which processes can be automated fastest and what the first step costs.</p>
+      <a href="https://ventari.eu/#contact" class="cta-btn">Book a free consultation <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <div class="cta-note">Free · No sales pitch · 45 minutes</div>
+    </div>
+    <div class="restart-row"><button class="restart-btn" onclick="restart()">New calculation</button></div>
+  </div>
+</main>
+<script>
+const AUTO_RATES={'High (70–80%)':0.75,'Medium (40–60%)':0.5,'Low (20–35%)':0.275};
+const DEFAULTS=[
+  {name:'Incoming mail & email processing',hours:8,auto:'High (70–80%)'},
+  {name:'Reporting & controlling',hours:5,auto:'Medium (40–60%)'},
+  {name:'Proposal creation',hours:6,auto:'Medium (40–60%)'},
+];
+let processCount=0;
+function addProcess(defaults={}){
+  processCount++;
+  const id=processCount;
+  const div=document.createElement('div');
+  div.className='process-card';div.id=`proc-${id}`;
+  div.innerHTML=`<div class="process-header"><div class="process-name">Process ${id}</div><button class="remove-btn" onclick="removeProcess(${id})" title="Remove">×</button></div><div class="process-inputs"><div class="field" style="grid-column:1/-1"><label>Process name</label><input type="text" value="${defaults.name||''}" placeholder="e.g. Proposal creation" style="background:var(--bg3);border:1px solid var(--border2);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.65rem 0.9rem;width:100%;outline:none;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border2)'" id="name-${id}"/></div><div class="field"><label>Hours/week</label><div class="input-wrap"><input type="number" id="hrs-${id}" value="${defaults.hours||4}" min="0.5" max="200" step="0.5"/><span class="input-unit">h</span></div></div><div class="field"><label>No. of employees</label><div class="input-wrap"><input type="number" id="ma-${id}" value="1" min="1" max="500"/><span class="input-unit">ppl</span></div></div><div class="field"><label>Automatable</label><select id="auto-${id}"><option ${(defaults.auto||'')==='High (70–80%)'?'selected':''}>High (70–80%)</option><option ${(defaults.auto||'')==='Medium (40–60%)'?'selected':''}>Medium (40–60%)</option><option ${(defaults.auto||'')==='Low (20–35%)'?'selected':''}>Low (20–35%)</option></select></div></div>`;
+  document.getElementById('processes-container').appendChild(div);
+}
+function removeProcess(id){const el=document.getElementById(`proc-${id}`);if(el)el.remove()}
+function calculate(){
+  const rate=parseFloat(document.getElementById('stundensatz').value)||55;
+  const days=parseInt(document.getElementById('arbeitstage').value)||220;
+  const weeks=days/5;
+  const procs=[];
+  document.querySelectorAll('[id^="proc-"]').forEach(el=>{
+    const id=el.id.replace('proc-','');
+    const name=document.getElementById(`name-${id}`)?.value||`Process ${id}`;
+    const hrs=parseFloat(document.getElementById(`hrs-${id}`)?.value)||0;
+    const ma=parseInt(document.getElementById(`ma-${id}`)?.value)||1;
+    const autoKey=document.getElementById(`auto-${id}`)?.value||'Medium (40–60%)';
+    const ar=AUTO_RATES[autoKey]||0.5;
+    const hrsYr=hrs*ma*weeks;
+    const costYr=hrsYr*rate;
+    const savings=costYr*ar;
+    procs.push({name,hrs,ma,hrsYr,costYr,savings,rate:ar});
+  });
+  if(!procs.length)return;
+  const totalHrsYr=procs.reduce((s,p)=>s+p.hrsYr,0);
+  const totalCost=procs.reduce((s,p)=>s+p.costYr,0);
+  const totalSavings=procs.reduce((s,p)=>s+p.savings,0);
+  const totalHrsFree=procs.reduce((s,p)=>s+p.hrsYr*p.rate,0);
+  document.getElementById('form-screen').style.display='none';
+  document.getElementById('results').style.display='block';
+  const fmt=n=>n>=1000?(n/1000).toFixed(1)+'k':Math.round(n).toLocaleString('en');
+  const fmtEur=n=>n>=10000?'€'+Math.round(n/1000)+'K':'€'+Math.round(n).toLocaleString('en');
+  document.getElementById('big-numbers').innerHTML=`<div class="big-card"><div class="big-card-val" style="color:var(--green)">${fmtEur(totalSavings)}</div><div class="big-card-label">Annual Potential</div><div class="big-card-sub">Conservative estimate</div></div><div class="big-card"><div class="big-card-val" style="color:var(--cyan)">${fmt(totalHrsFree)} h</div><div class="big-card-label">Hours freed/year</div><div class="big-card-sub">Available for value creation</div></div><div class="big-card"><div class="big-card-val" style="color:var(--blue)">${Math.round(totalSavings/rate/weeks)} h</div><div class="big-card-label">Hours freed/week</div><div class="big-card-sub">Avg. across all processes</div></div>`;
+  document.getElementById('breakdown-rows').innerHTML=procs.map(p=>`<div class="breakdown-row"><span class="col-name">${p.name}</span><span class="col-val">${(p.hrs*p.ma).toFixed(1)} h</span><span class="col-val">${Math.round(p.hrsYr).toLocaleString('en')} h</span><span class="col-val">${fmtEur(p.costYr)}</span><span class="col-highlight">${fmtEur(p.savings)}</span></div>`).join('');
+  const bestProc=[...procs].sort((a,b)=>b.savings-a.savings)[0];
+  document.getElementById('insight-row').innerHTML=`<div class="insight-card"><div class="insight-title">Biggest single potential</div><div class="insight-val">${bestProc.name.length>22?bestProc.name.slice(0,22)+'…':bestProc.name}</div><div class="insight-desc">${fmtEur(bestProc.savings)} savings/year – recommended starting point for automation.</div></div><div class="insight-card"><div class="insight-title">Typical payback period</div><div class="insight-val">3–6 months</div><div class="insight-desc">With an implementation cost of approx. ${fmtEur(totalSavings*0.25)}–${fmtEur(totalSavings*0.4)}, the project pays back in under half a year.</div></div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function restart(){document.getElementById('results').style.display='none';document.getElementById('form-screen').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
+DEFAULTS.forEach(d=>addProcess(d));
+</script>
+</body>
+</html>
