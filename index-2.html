@@ -860,8 +860,8 @@
 <footer>
   <a href="#" class="footer-logo">ventari<span>.</span></a>
   <div class="footer-links">
-    <a href="#" onclick="openModal('imprint');return false;" data-i18n="footer.imprint">Impressum</a>
-    <a href="#" onclick="openModal('privacy');return false;" data-i18n="footer.privacy">Datenschutz</a>
+    <a href="#" id="link-imprint" data-i18n="footer.imprint">Impressum</a>
+   <a href="#" id="link-privacy" data-i18n="footer.privacy">Datenschutz</a>
   </div>
   <span class="footer-copy" data-i18n="footer.copy">© 2025 Ventari. Alle Rechte vorbehalten.</span>
 </footer>
@@ -1271,7 +1271,7 @@ document.getElementById('legal-modal').addEventListener('click', function(e) {
 });
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeModal();
-});
-</script>
+});document.getElementById('link-imprint').addEventListener('click', function(e){ e.preventDefault(); openModal('imprint'); });
+document.getElementById('link-privacy').addEventListener('click', function(e){ e.preventDefault(); openModal('privacy'); });</script>
 </body>
 </html>
