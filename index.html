@@ -76,8 +76,8 @@
       font-size: 1.4rem; color: var(--white); text-decoration: none; font-weight: 400;
     }
     .logo span { color: var(--blue); }
-    .nav-right { display: flex; align-items: center; gap: 2.5rem; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links { display: flex; gap: 1.35rem; list-style: none; align-items: center; }
     .nav-links a {
       color: var(--muted2); text-decoration: none;
       font-size: 0.8rem; font-weight: 500; transition: color 0.2s;
@@ -167,6 +167,19 @@
       display: inline-block; transition: all 0.25s ease;
     }
     .btn-secondary:hover { border-color: var(--blue); color: var(--white); }
+    .inline-link {
+      color: var(--blue); text-decoration: none; font-weight: 500;
+      border-bottom: 1px solid rgba(74,140,255,0.35);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .inline-link:hover { color: var(--white); border-color: var(--blue); }
+    .context-link {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      margin-top: 1.2rem; color: var(--blue); text-decoration: none;
+      font-size: 0.78rem; font-weight: 600; transition: color 0.2s;
+    }
+    .context-link:hover { color: var(--cyan); }
+    .audit-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .hero-scroll {
       position: absolute; bottom: 2.5rem; left: 4rem;
       display: flex; align-items: center; gap: 0.8rem;
@@ -475,17 +488,21 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="logo">ventari<span>.</span></a>
+  <a href="/" class="logo">ventari<span>.</span></a>
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#services" data-i18n="nav.services">Leistungen</a></li>
       <li><a href="#expertise" data-i18n="nav.expertise">Expertise</a></li>
       <li><a href="#why" data-i18n="nav.why">Warum wir</a></li>
+      <li><a href="/tools/" data-i18n="nav.tools">Tools</a></li>
+      <li><a href="/blog/" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="/preise" data-i18n="nav.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Preise</a></li>
       <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Kontakt</a></li>
     </ul>
     <div class="lang-switcher">
       <button class="lang-btn active" data-lang="de">DE</button>
       <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="pl">PL</button>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -496,10 +513,14 @@
   <a href="#services" data-i18n="nav.services" onclick="closeMobile()">Leistungen</a>
   <a href="#expertise" data-i18n="nav.expertise" onclick="closeMobile()">Expertise</a>
   <a href="#why" data-i18n="nav.why" onclick="closeMobile()">Warum wir</a>
+  <a href="/tools/" data-i18n="nav.tools" onclick="closeMobile()">Tools</a>
+  <a href="/blog/" data-i18n="nav.blog" onclick="closeMobile()">Blog</a>
+  <a href="/preise" data-i18n="nav.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing" onclick="closeMobile()">Preise</a>
   <a href="#contact" class="m-cta" data-i18n="nav.cta" onclick="closeMobile()">Kontakt</a>
   <div class="lang-switcher" style="margin-top:1rem">
     <button class="lang-btn active" data-lang="de" onclick="closeMobile()">DE</button>
     <button class="lang-btn" data-lang="en" onclick="closeMobile()">EN</button>
+    <button class="lang-btn" data-lang="pl" onclick="closeMobile()">PL</button>
   </div>
 </div>
 
@@ -630,6 +651,7 @@
         </div>
       </div>
       <div class="service-tags"><span class="tag" data-i18n="s1.t1">2–3 Tage</span><span class="tag" data-i18n="s1.t2">Workshop-Format</span><span class="tag">Festpreis</span></div>
+      <a href="/preise" class="context-link" data-i18n="s1.link" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Preise & Pakete ansehen →</a>
     </div>
     <!-- S2 -->
     <div class="service-card reveal reveal-delay-1">
@@ -646,6 +668,7 @@
         </div>
       </div>
       <div class="service-tags"><span class="tag">LLM</span><span class="tag">n8n / Make</span><span class="tag">AWS / Azure / GCP</span><span class="tag">API-Integration</span></div>
+      <a href="/automatisierungspotenzial-rechner" class="context-link" data-i18n="s2.link" data-href-de="/automatisierungspotenzial-rechner" data-href-en="/automation-potential-calculator-en" data-href-pl="/automation-potential-calculator-en">Automatisierungspotenzial berechnen →</a>
     </div>
     <!-- S3 -->
     <div class="service-card reveal reveal-delay-2">
@@ -662,6 +685,7 @@
         </div>
       </div>
       <div class="service-tags"><span class="tag">EU AI Act</span><span class="tag">DSGVO</span><span class="tag">IT-Recht</span><span class="tag">Governance</span></div>
+      <a href="/eu-ai-act-checker" class="context-link" data-i18n="s3.link" data-href-de="/eu-ai-act-checker" data-href-en="/eu-ai-act-checker-en" data-href-pl="/eu-ai-act-checker-en">EU AI Act Risiko prüfen →</a>
     </div>
     <!-- S4 -->
     <div class="service-card reveal reveal-delay-3">
@@ -689,7 +713,10 @@
       <div class="audit-badge" data-i18n="audit.badge">Einstieg</div>
       <h3 data-i18n="audit.h3">Starten Sie mit einem AI Audit</h3>
       <p data-i18n="audit.p">In 2–3 Tagen analysieren wir gemeinsam Ihre Prozesse, Daten und IT-Landschaft – und liefern eine priorisierte Roadmap, mit der Sie sofort handlungsfähig sind. Kein langes Onboarding, kein unklares Commitment.</p>
-      <a href="#contact" class="btn-primary" data-i18n="audit.cta">AI Audit anfragen</a>
+      <div class="audit-actions">
+        <a href="#contact" class="btn-primary" data-i18n="audit.cta">AI Audit anfragen</a>
+        <a href="/preise" class="context-link" style="margin-top:0;" data-i18n="audit.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Preise vergleichen →</a>
+      </div>
     </div>
     <div class="audit-steps">
       <div class="audit-step">
@@ -798,19 +825,19 @@
   <div class="faq-grid">
     <div class="faq-item reveal" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.1.q">Was kostet ein Projekt bei Ventari?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      <div class="faq-a" data-i18n="faq.1.a">Wir starten immer mit einem AI Audit zu einem transparenten Festpreis. Größere Automations- und Integrationsprojekte werden individuell kalkuliert – abhängig von Komplexität, Systemlandschaft und Zeitrahmen. Im Erstgespräch erhalten Sie eine erste Einschätzung.</div>
+      <div class="faq-a" data-i18n="faq.1.a">Wir starten immer mit einem AI Audit zu einem transparenten Festpreis. Größere Automations- und Integrationsprojekte werden individuell kalkuliert – abhängig von Komplexität, Systemlandschaft und Zeitrahmen. Einen Überblick finden Sie auf der <a href="/preise" class="inline-link">Preisseite</a>.</div>
     </div>
     <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.2.q">Sind wir als Unternehmen zu klein?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      <div class="faq-a" data-i18n="faq.2.a">Nein. Unsere Methoden sind skalierbar. Entscheidend ist nicht die Unternehmensgröße, sondern ob Sie Prozesse und Daten haben, bei denen KI Hebel entfalten kann. Das klären wir gemeinsam im kostenlosen Erstgespräch.</div>
+      <div class="faq-a" data-i18n="faq.2.a">Nein. Unsere Methoden sind skalierbar. Entscheidend ist nicht die Unternehmensgröße, sondern ob Sie Prozesse und Daten haben, bei denen KI Hebel entfalten kann. Eine erste Einschätzung liefert der <a href="/ki-readiness-test" class="inline-link">KI-Readiness-Test</a>.</div>
     </div>
     <div class="faq-item reveal" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.3.q">Was passiert mit unseren Unternehmensdaten?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      <div class="faq-a" data-i18n="faq.3.a">Datenschutz ist keine Checkbox, sondern Architekturprinzip. Alle Lösungen werden DSGVO-konform konzipiert – wahlweise auf deutschen oder europäischen Cloud-Servern. Unser Rechtsexperte begleitet jedes Projekt von Anfang an.</div>
+      <div class="faq-a" data-i18n="faq.3.a">Datenschutz ist keine Checkbox, sondern Architekturprinzip. Alle Lösungen werden DSGVO-konform konzipiert – wahlweise auf deutschen oder europäischen Cloud-Servern. Für KI-Risiken können Sie vorab den <a href="/eu-ai-act-checker" class="inline-link">EU AI Act Checker</a> nutzen.</div>
     </div>
     <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.4.q">Wie lange dauert ein typisches Projekt?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      <div class="faq-a" data-i18n="faq.4.a">Der AI Audit dauert 2–3 Tage. Kleinere Automationen sind in 4–8 Wochen live. Komplexere Systeme mit tiefer Integration planen wir auf 3–6 Monate. Wir definieren Meilensteine im Voraus – kein Open-End-Consulting.</div>
+      <div class="faq-a" data-i18n="faq.4.a">Der AI Audit dauert 2–3 Tage. Kleinere Automationen sind in 4–8 Wochen live. Komplexere Systeme mit tiefer Integration planen wir auf 3–6 Monate. Für eine grobe Aufwandsspanne hilft der <a href="/ki-projektkosten-schaetzer" class="inline-link">KI-Projektkosten-Schätzer</a>.</div>
     </div>
     <div class="faq-item reveal" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.5.q">Brauchen wir eine interne IT-Abteilung?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
@@ -821,6 +848,7 @@
       <div class="faq-a" data-i18n="faq.6.a">Klassische IT-Agenturen bauen, was man ihnen aufträgt. Wir beginnen mit der Frage: Was bringt wirklich Mehrwert? Strategie, Umsetzung und Rechtssicherheit kommen bei uns aus einer Hand – ohne Silos, ohne Schnittstellenverluste.</div>
     </div>
   </div>
+  <a href="/blog/" class="context-link reveal" data-i18n="faq.blog">Mehr Einblicke im Blog lesen →</a>
 </section>
 
 <!-- CONTACT -->
@@ -832,7 +860,7 @@
       <p class="contact-desc reveal" data-i18n="contact.desc">Vereinbaren Sie ein kostenfreies Erstgespräch. In 30 Minuten verstehen wir Ihre aktuelle Situation und zeigen Ihnen, wo KI in Ihrem Unternehmen den größten Hebel hat – unverbindlich und konkret.</p>
       <div class="contact-info">
         <div class="contact-item reveal"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afc7cac3c3c0efd9cac1dbceddc681cada">[email&#160;protected]</a></span></div>
-        <div class="contact-item reveal reveal-delay-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="contact.location">Stuttgart, Deutschland</span></div>
+        <div class="contact-item reveal reveal-delay-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="contact.location">Jasionka, Polen</span></div>
         <div class="contact-item reveal reveal-delay-2"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="contact.response">Antwort innerhalb von 24 Stunden</span></div>
       </div>
     </div>
@@ -877,9 +905,9 @@
 <!-- IMPRESSUM CONTENT -->
 <template id="tpl-imprint-de">
   <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:1.5rem;color:#f4f6fb;">Impressum</h2>
-  <p style="color:#8b93b3;font-size:0.85rem;margin-bottom:1.5rem;">Angaben gemäß § 5 TMG</p>
+  <p style="color:#8b93b3;font-size:0.85rem;margin-bottom:1.5rem;">Anbieterangaben</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Verantwortlich</h3>
-  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran<br>Heiligensteinstraße 11<br>76534 Baden-Baden (Neuweier)<br>Deutschland</p>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran<br>Jasionka 33<br>28-300 Jędrzejów<br>Polen</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Kontakt</h3>
   <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">E-Mail: hello@ventari.eu</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Hinweis</h3>
@@ -888,20 +916,31 @@
 
 <template id="tpl-imprint-en">
   <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:1.5rem;color:#f4f6fb;">Legal Notice (Impressum)</h2>
-  <p style="color:#8b93b3;font-size:0.85rem;margin-bottom:1.5rem;">Information according to § 5 TMG (German Telemedia Act)</p>
+  <p style="color:#8b93b3;font-size:0.85rem;margin-bottom:1.5rem;">Provider information</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Responsible</h3>
-  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran<br>Heiligensteinstraße 11<br>76534 Baden-Baden (Neuweier)<br>Germany</p>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran<br>Jasionka 33<br>28-300 Jędrzejów<br>Poland</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Contact</h3>
   <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Email: hello@ventari.eu</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Note</h3>
   <p style="color:#8b93b3;line-height:1.8;font-size:0.9rem;">Ventari is a sole proprietorship. The contents of this website have been created with the greatest care. We cannot guarantee the accuracy, completeness or timeliness of the content.</p>
 </template>
 
+<template id="tpl-imprint-pl">
+  <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:1.5rem;color:#f4f6fb;">Nota prawna (Impressum)</h2>
+  <p style="color:#8b93b3;font-size:0.85rem;margin-bottom:1.5rem;">Dane firmy</p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Odpowiedzialny</h3>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran<br>Jasionka 33<br>28-300 Jędrzejów<br>Polska</p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Kontakt</h3>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">E-mail: hello@ventari.eu</p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Uwaga</h3>
+  <p style="color:#8b93b3;line-height:1.8;font-size:0.9rem;">Ventari jest jednoosobową działalnością gospodarczą. Treści tej strony zostały przygotowane z najwyższą starannością. Nie możemy jednak zagwarantować ich pełnej poprawności, kompletności ani aktualności.</p>
+</template>
+
 <!-- DATENSCHUTZ CONTENT -->
 <template id="tpl-privacy-de">
   <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:1.5rem;color:#f4f6fb;">Datenschutzerklärung</h2>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">1. Verantwortlicher</h3>
-  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran, Heiligensteinstraße 11, 76534 Baden-Baden (Neuweier)<br>E-Mail: hello@ventari.eu</p>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran, Jasionka 33, 28-300 Jędrzejów, Polen<br>E-Mail: hello@ventari.eu</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">2. Erhobene Daten</h3>
   <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Beim Besuch dieser Website werden keine personenbezogenen Daten automatisch gespeichert. Das Kontaktformular übermittelt Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht ausschließlich zur Bearbeitung Ihrer Anfrage.</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">3. Hosting</h3>
@@ -915,7 +954,7 @@
 <template id="tpl-privacy-en">
   <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:1.5rem;color:#f4f6fb;">Privacy Policy</h2>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">1. Controller</h3>
-  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran, Heiligensteinstraße 11, 76534 Baden-Baden (Neuweier)<br>Email: hello@ventari.eu</p>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran, Jasionka 33, 28-300 Jędrzejów, Poland<br>Email: hello@ventari.eu</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">2. Data collected</h3>
   <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">No personal data is automatically stored when you visit this website. The contact form transmits your name, email address and message solely for the purpose of processing your enquiry.</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">3. Hosting</h3>
@@ -924,6 +963,20 @@
   <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Data submitted via the contact form is used solely to process your enquiry and is not passed on to third parties. Legal basis: Art. 6(1)(b) GDPR.</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">5. Your rights</h3>
   <p style="color:#8b93b3;line-height:1.8;font-size:0.9rem;">You have the right to access, rectification, erasure and restriction of processing of your personal data. Contact: hello@ventari.eu</p>
+</template>
+
+<template id="tpl-privacy-pl">
+  <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:1.5rem;color:#f4f6fb;">Polityka prywatności</h2>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">1. Administrator</h3>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran, Jasionka 33, 28-300 Jędrzejów, Polska<br>E-mail: hello@ventari.eu</p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">2. Zbierane dane</h3>
+  <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Podczas odwiedzin tej strony nie zapisujemy automatycznie danych osobowych. Formularz kontaktowy przekazuje imię, adres e-mail i wiadomość wyłącznie w celu obsługi zapytania.</p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">3. Hosting</h3>
+  <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Strona jest hostowana przez Cloudflare Pages (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA). Cloudflare może przetwarzać dane techniczne, np. adres IP. Więcej informacji: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" style="color:#4a8cff;">cloudflare.com/privacypolicy</a></p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">4. Formularz kontaktowy</h3>
+  <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Dane przesłane przez formularz kontaktowy są używane wyłącznie do obsługi zapytania i nie są przekazywane osobom trzecim. Podstawa prawna: art. 6 ust. 1 lit. b GDPR.</p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">5. Twoje prawa</h3>
+  <p style="color:#8b93b3;line-height:1.8;font-size:0.9rem;">Masz prawo do dostępu, sprostowania, usunięcia i ograniczenia przetwarzania swoich danych osobowych. Kontakt: hello@ventari.eu</p>
 </template>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -937,18 +990,19 @@ de: {
   "tech.label":"Technologie-Stack",
   "faq.eyebrow":"Häufige Fragen","faq.h2":"Was Entscheider<br/>wissen wollen.",
   "faq.1.q":"Was kostet ein Projekt bei Ventari?",
-  "faq.1.a":"Wir starten immer mit einem AI Audit zu einem transparenten Festpreis. Größere Automations- und Integrationsprojekte werden individuell kalkuliert – abhängig von Komplexität, Systemlandschaft und Zeitrahmen. Im Erstgespräch erhalten Sie eine erste Einschätzung.",
+  "faq.1.a":"Wir starten immer mit einem AI Audit zu einem transparenten Festpreis. Größere Automations- und Integrationsprojekte werden individuell kalkuliert – abhängig von Komplexität, Systemlandschaft und Zeitrahmen. Einen Überblick finden Sie auf der <a href=\"/preise\" class=\"inline-link\">Preisseite</a>.",
   "faq.2.q":"Sind wir als Unternehmen zu klein?",
-  "faq.2.a":"Nein. Unsere Methoden sind skalierbar. Entscheidend ist nicht die Unternehmensgröße, sondern ob Sie Prozesse und Daten haben, bei denen KI Hebel entfalten kann. Das klären wir gemeinsam im kostenlosen Erstgespräch.",
+  "faq.2.a":"Nein. Unsere Methoden sind skalierbar. Entscheidend ist nicht die Unternehmensgröße, sondern ob Sie Prozesse und Daten haben, bei denen KI Hebel entfalten kann. Eine erste Einschätzung liefert der <a href=\"/ki-readiness-test\" class=\"inline-link\">KI-Readiness-Test</a>.",
   "faq.3.q":"Was passiert mit unseren Unternehmensdaten?",
-  "faq.3.a":"Datenschutz ist keine Checkbox, sondern Architekturprinzip. Alle Lösungen werden DSGVO-konform konzipiert – wahlweise auf deutschen oder europäischen Cloud-Servern. Unser Rechtsexperte begleitet jedes Projekt von Anfang an.",
+  "faq.3.a":"Datenschutz ist keine Checkbox, sondern Architekturprinzip. Alle Lösungen werden DSGVO-konform konzipiert – wahlweise auf deutschen oder europäischen Cloud-Servern. Für KI-Risiken können Sie vorab den <a href=\"/eu-ai-act-checker\" class=\"inline-link\">EU AI Act Checker</a> nutzen.",
   "faq.4.q":"Wie lange dauert ein typisches Projekt?",
-  "faq.4.a":"Der AI Audit dauert 2–3 Tage. Kleinere Automationen sind in 4–8 Wochen live. Komplexere Systeme mit tiefer Integration planen wir auf 3–6 Monate. Wir definieren Meilensteine im Voraus – kein Open-End-Consulting.",
+  "faq.4.a":"Der AI Audit dauert 2–3 Tage. Kleinere Automationen sind in 4–8 Wochen live. Komplexere Systeme mit tiefer Integration planen wir auf 3–6 Monate. Für eine grobe Aufwandsspanne hilft der <a href=\"/ki-projektkosten-schaetzer\" class=\"inline-link\">KI-Projektkosten-Schätzer</a>.",
   "faq.5.q":"Brauchen wir eine interne IT-Abteilung?",
   "faq.5.a":"Nein. Wir übernehmen die gesamte technische Umsetzung und übergeben am Ende ein System, das Ihr Team eigenständig nutzen kann. Optional begleiten wir Sie langfristig mit einem monatlichen Wartungspaket.",
   "faq.6.q":"Was unterscheidet Ventari von einer klassischen IT-Agentur?",
   "faq.6.a":"Klassische IT-Agenturen bauen, was man ihnen aufträgt. Wir beginnen mit der Frage: Was bringt wirklich Mehrwert? Strategie, Umsetzung und Rechtssicherheit kommen bei uns aus einer Hand – ohne Silos, ohne Schnittstellenverluste.",
-  "nav.services":"Leistungen","nav.expertise":"Expertise","nav.why":"Warum wir","nav.cta":"Kontakt",
+  "faq.blog":"Mehr Einblicke im Blog lesen →",
+  "nav.services":"Leistungen","nav.expertise":"Expertise","nav.why":"Warum wir","nav.tools":"Tools","nav.blog":"Blog","nav.pricing":"Preise","nav.cta":"Kontakt",
   "hero.eyebrow":"AI Automation & Compliance Studio",
   "hero.h1":'KI, die wirklich <span class="accent">funktioniert.</span><br/>Sicher, messbar, produktiv.',
   "hero.sub":"Wir helfen Unternehmen dabei, Künstliche Intelligenz sinnvoll einzusetzen – von der Identifikation der richtigen Use Cases über die technische Umsetzung bis zur rechtssicheren Implementierung nach EU AI Act und DSGVO.",
@@ -972,17 +1026,20 @@ de: {
   "s.delivers":"Ergebnis","s.examples":"Typische Lösungen","s.includes":"Bestandteile",
   "s1.b1":"Priorisierte AI-Use-Case-Liste","s1.b2":"Risiko- und Nutzenbewertung","s1.b3":"Konkrete Projektroadmap","s1.b4":"Erste Compliance-Einschätzung",
   "s1.t1":"2–3 Tage","s1.t2":"Workshop-Format",
+  "s1.link":"Preise & Pakete ansehen →",
   "s2.num":"02 — AI Automation & Integration","s2.h3":"KI, die in Ihren<br/>Prozessen läuft",
   "s2.p":"Wir entwickeln AI-Automationen und interne Tools, die direkt in Ihre bestehende Systemlandschaft integriert werden – inkl. Cloud-Infrastruktur auf AWS, Azure oder GCP.",
   "s2.b1":"AI-Wissenssysteme (interne Dokumente, Wikis)","s2.b2":"Support- & Anfragen-Automatisierung","s2.b3":"Sales Automation & CRM-Integration","s2.b4":"Cloud-Infrastruktur & Skalierung",
+  "s2.link":"Automatisierungspotenzial berechnen →",
   "s3.num":"03 — AI Governance & Compliance","s3.h3":"Rechtssicher von<br/>Anfang an",
   "s3.p":"Gemeinsam mit unserem spezialisierten AI-Rechtsexperten entwickeln wir die rechtliche Grundlage für Ihren KI-Einsatz – praxisnah, verständlich und auf den Punkt.",
   "s3.b1":"AI-Richtlinien & Governance-Framework","s3.b2":"DSGVO-konforme Datenschutzkonzepte","s3.b3":"EU AI Act Compliance-Dokumentation","s3.b4":"Risikobewertung & Haftungsklarheit",
+  "s3.link":"EU AI Act Risiko prüfen →",
   "s4.num":"04 — Wartung & Weiterentwicklung","s4.h3":"Kein Projekt endet<br/>mit dem Launch",
   "s4.p":"AI-Systeme müssen kontinuierlich überwacht, optimiert und weiterentwickelt werden. Wir bleiben als langfristiger Partner an Ihrer Seite.",
   "s4.b1":"Monitoring & Performance-Tracking","s4.b2":"Monatliche Optimierungsrunden","s4.b3":"Laufende Compliance-Überprüfung","s4.b4":"Skalierung bei wachsender Nutzung",
   "s4.t1":"Monatliche Betreuung","s4.t2":"Flexibel kündbar",
-  "audit.badge":"Einstieg","audit.h3":"Starten Sie mit einem AI Audit","audit.cta":"AI Audit anfragen",
+  "audit.badge":"Einstieg","audit.h3":"Starten Sie mit einem AI Audit","audit.cta":"AI Audit anfragen","audit.pricing":"Preise vergleichen →",
   "audit.p":"In 2–3 Tagen analysieren wir gemeinsam Ihre Prozesse, Daten und IT-Landschaft – und liefern eine priorisierte Roadmap, mit der Sie sofort handlungsfähig sind.",
   "audit.day1.title":"Analyse","audit.day1.p":"Prozesse, Daten und bestehende Systeme verstehen",
   "audit.day2.title":"Bewertung","audit.day2.p":"Use Cases priorisieren, Risiken und Nutzen abwägen",
@@ -1013,7 +1070,7 @@ de: {
   "contact.eyebrow":"Kontakt",
   "contact.h2":'Bereit für KI,<br/><span class="accent">die wirklich liefert?</span>',
   "contact.desc":"Vereinbaren Sie ein kostenfreies Erstgespräch. In 30 Minuten verstehen wir Ihre aktuelle Situation und zeigen Ihnen, wo KI in Ihrem Unternehmen den größten Hebel hat – unverbindlich und konkret.",
-  "contact.location":"Stuttgart, Deutschland","contact.response":"Antwort innerhalb von 24 Stunden",
+  "contact.location":"Jasionka, Polen","contact.response":"Antwort innerhalb von 24 Stunden",
   "form.first":"Vorname","form.last":"Nachname","form.email":"E-Mail-Adresse","form.company":"Unternehmen",
   "form.topic":"Thema auswählen …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt4":"Allgemeine Anfrage",
   "form.message":"Was beschäftigt Sie gerade? Kurze Skizze genügt …",
@@ -1028,18 +1085,19 @@ en: {
   "tech.label":"Technology Stack",
   "faq.eyebrow":"Frequently Asked","faq.h2":"What decision-makers<br/>want to know.",
   "faq.1.q":"What does a project with Ventari cost?",
-  "faq.1.a":"We always start with an AI Audit at a transparent fixed price. Larger automation and integration projects are individually scoped – based on complexity, system landscape and timeline. You will receive a first estimate during the free initial consultation.",
+  "faq.1.a":"We always start with an AI Audit at a transparent fixed price. Larger automation and integration projects are individually scoped – based on complexity, system landscape and timeline. You can find a first overview on the <a href=\"/pricing\" class=\"inline-link\">pricing page</a>.",
   "faq.2.q":"Is our company too small?",
-  "faq.2.a":"No. Our methods are scalable. What matters is not company size, but whether you have processes and data where AI can create leverage. We will clarify this together in the free initial consultation.",
+  "faq.2.a":"No. Our methods are scalable. What matters is not company size, but whether you have processes and data where AI can create leverage. The <a href=\"/ai-readiness-test-en\" class=\"inline-link\">AI Readiness Test</a> gives you a first indication.",
   "faq.3.q":"What happens to our company data?",
-  "faq.3.a":"Data protection is not a checkbox – it is an architecture principle. All solutions are designed to be GDPR-compliant, optionally hosted on German or European cloud servers. Our legal expert is involved in every project from day one.",
+  "faq.3.a":"Data protection is not a checkbox – it is an architecture principle. All solutions are designed to be GDPR-compliant, optionally hosted on German or European cloud servers. You can check AI risk early with the <a href=\"/eu-ai-act-checker-en\" class=\"inline-link\">EU AI Act Checker</a>.",
   "faq.4.q":"How long does a typical project take?",
-  "faq.4.a":"The AI Audit takes 2–3 days. Smaller automations are live in 4–8 weeks. More complex systems with deep integration are planned over 3–6 months. We define milestones upfront – no open-ended consulting.",
+  "faq.4.a":"The AI Audit takes 2–3 days. Smaller automations are live in 4–8 weeks. More complex systems with deep integration are planned over 3–6 months. For a rough effort range, use the <a href=\"/ai-project-cost-estimator-en\" class=\"inline-link\">AI Project Cost Estimator</a>.",
   "faq.5.q":"Do we need an internal IT department?",
   "faq.5.a":"No. We handle the entire technical implementation and hand over a system your team can operate independently. Optionally, we stay with you long-term through a monthly maintenance package.",
   "faq.6.q":"What sets Ventari apart from a traditional IT agency?",
   "faq.6.a":"Traditional IT agencies build what they are asked to build. We start with the question: what actually creates value? Strategy, implementation and legal certainty come from one source – no silos, no interface losses.",
-  "nav.services":"Services","nav.expertise":"Expertise","nav.why":"Why us","nav.cta":"Contact",
+  "faq.blog":"Read more insights in the blog →",
+  "nav.services":"Services","nav.expertise":"Expertise","nav.why":"Why us","nav.tools":"Tools","nav.blog":"Blog","nav.pricing":"Pricing","nav.cta":"Contact",
   "hero.eyebrow":"AI Automation & Compliance Studio",
   "hero.h1":'AI that actually <span class="accent">works.</span><br/>Safe, measurable, productive.',
   "hero.sub":"We help companies put artificial intelligence to meaningful use – from identifying the right use cases and technical implementation to legally sound deployment under the EU AI Act and GDPR.",
@@ -1063,23 +1121,38 @@ en: {
   "s.delivers":"Deliverables","s.examples":"Typical solutions","s.includes":"Includes",
   "s1.b1":"Prioritised AI use case list","s1.b2":"Risk and benefit assessment","s1.b3":"Concrete project roadmap","s1.b4":"Initial compliance assessment",
   "s1.t1":"2–3 days","s1.t2":"Workshop format",
+  "s1.link":"View pricing & packages →",
   "s2.num":"02 — AI Automation & Integration","s2.h3":"AI running inside<br/>your processes",
   "s2.p":"We develop AI automations and internal tools that integrate directly into your existing system landscape – including cloud infrastructure on AWS, Azure or GCP.",
   "s2.b1":"AI knowledge systems (documents, wikis)","s2.b2":"Support & request automation","s2.b3":"Sales automation & CRM integration","s2.b4":"Cloud infrastructure & scaling",
+  "s2.link":"Calculate automation potential →",
   "s3.num":"03 — AI Governance & Compliance","s3.h3":"Legally sound<br/>from day one",
   "s3.p":"Together with our specialist AI legal expert, we build the legal foundation for your AI deployment – practical, clear, and to the point.",
   "s3.b1":"AI policies & governance framework","s3.b2":"GDPR-compliant data protection concepts","s3.b3":"EU AI Act compliance documentation","s3.b4":"Risk assessment & liability clarity",
+  "s3.link":"Check EU AI Act risk →",
   "s4.num":"04 — Maintenance & Development","s4.h3":"No project ends<br/>at launch",
   "s4.p":"AI systems need continuous monitoring, optimisation and development. We stay by your side as a long-term partner – with clear SLAs and monthly reviews.",
   "s4.b1":"Monitoring & performance tracking","s4.b2":"Monthly optimisation rounds","s4.b3":"Ongoing compliance review","s4.b4":"Scaling as usage grows",
   "s4.t1":"Monthly retainer","s4.t2":"Cancel anytime",
-  "audit.badge":"Getting started","audit.h3":"Start with an AI Audit","audit.cta":"Request AI Audit",
+  "audit.badge":"Getting started","audit.h3":"Start with an AI Audit","audit.cta":"Request AI Audit","audit.pricing":"Compare pricing →",
   "audit.p":"In 2–3 days we jointly analyse your processes, data and IT landscape – delivering a prioritised roadmap that makes you ready to act immediately.",
   "audit.day1.title":"Analysis","audit.day1.p":"Understand processes, data and existing systems",
   "audit.day2.title":"Assessment","audit.day2.p":"Prioritise use cases, weigh risks and benefits",
   "audit.day3.title":"Roadmap","audit.day3.p":"Concrete next steps with effort and ROI estimates",
   "expertise.eyebrow":"Our Expertise",
   "expertise.h2":'Real experience.<br/><span class="accent">No theory.</span>',
+  "team.p1":"Ventari is not a traditional consultancy and not a pure development agency. We are a specialised studio built deliberately differently: with experts who come from practice, not from seminar rooms.",
+  "team.p2":"Our core team combines years of experience from the automotive industry, the international technology and startup ecosystem, and academic AI research. We have built AI systems that run in production every day. We have created cloud-native infrastructures processing millions of requests. We have taken products from first idea to scaled operation – in corporations as well as early-stage startups.",
+  "team.p3":"Our technical expertise goes far beyond the classic corporate context. Members of our team have worked on future technologies at government level, developed immersive AI systems for global productions with millions of viewers, and built international technology companies as CTOs. From Hollywood productions and defence technology to standalone AI products used worldwide today – we bring a depth of experience that classic consulting simply does not offer.",
+  "team.p4":"Beyond that, we have a broad international network of highly specialised experts from technology, law, data and engineering. This allows us to bring exactly the right people into each project – not generalists, but specialists with deep industry knowledge, precisely matched to your challenge.",
+  "team.p5":"Our legal expert is one of the few specialists in the German-speaking market focused exclusively on AI regulation – with the academic depth of doctoral research and the pragmatic view of a practitioner. No compliance surprises at the end of a project: legal certainty is part of the architecture.",
+  "team.p6":"We work internationally, think entrepreneurially and deliver results that can be measured.",
+  "tp.1.title":"Automotive industry","tp.1.sub":"Corporate PM & system integration",
+  "tp.2.title":"Defence technology","tp.2.sub":"Government level & future technologies",
+  "tp.3.title":"Hollywood & immersive tech","tp.3.sub":"Global productions, VR, AI systems",
+  "tp.4.title":"AI research & academia","tp.4.sub":"Data science & AI law",
+  "tp.5.title":"Startup & entrepreneurship","tp.5.sub":"Founding, investment, international growth",
+  "tp.6.title":"Cloud & infrastructure","tp.6.sub":"AWS, Azure, GCP – enterprise scale",
   "exp.1.title":"AI product development at production scale","exp.1.p":"Our team has built and operated AI systems processing millions of requests daily – not in a lab, but at real production scale.","exp.1.hl":"Recommendation systems, LLM integration, automation pipelines.",
   "exp.2.title":"Cloud infrastructure at enterprise level","exp.2.p":"Building and operating cloud-native, serverless architectures on AWS –","exp.2.hl":"scalable, cost-optimised and compliant with German data protection standards.",
   "exp.3.title":"Specialised AI legal expertise","exp.3.p":"Our legal expert is completing a doctorate on AI law and is one of the few specialists in Germany who","exp.3.hl":"focuses exclusively on the legal dimension of AI systems.",
@@ -1098,29 +1171,151 @@ en: {
   "contact.eyebrow":"Contact",
   "contact.h2":'Ready for AI<br/><span class="accent">that actually delivers?</span>',
   "contact.desc":"Book a free initial consultation. In 30 minutes we understand your current situation and show you where AI has the greatest leverage in your business – no obligation, no fluff.",
-  "contact.location":"Stuttgart, Germany","contact.response":"Response within 24 hours",
+  "contact.location":"Jasionka, Poland","contact.response":"Response within 24 hours",
   "form.first":"First name","form.last":"Last name","form.email":"Email address","form.company":"Company",
   "form.topic":"Select a topic …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt4":"General enquiry",
   "form.message":"What's on your mind? A brief sketch is enough …",
   "form.submit":"Book a call →","form.success":"✓ Thank you – we'll be in touch!",
   "footer.imprint":"Imprint","footer.privacy":"Privacy Policy","footer.copy":"© 2025 Ventari. All rights reserved."
+},
+pl: {
+  "stat.1.num":"3","stat.1.label":"Kluczowe kompetencje w jednym miejscu",
+  "stat.2.num":"4","stat.2.label":"Branżowe doświadczenie zespołu",
+  "stat.3.num":"24h","stat.3.label":"Gwarantowany czas odpowiedzi",
+  "stat.4.num":"100%","stat.4.label":"Zgodność z UE – GDPR i AI Act",
+  "tech.label":"Stos technologiczny",
+  "faq.eyebrow":"Najczęstsze pytania","faq.h2":"Co chcą wiedzieć<br/>decydenci.",
+  "faq.1.q":"Ile kosztuje projekt z Ventari?",
+  "faq.1.a":"Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie – zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na <a href=\"/pricing\" class=\"inline-link\">stronie z cenami</a>.",
+  "faq.2.q":"Czy nasza firma jest za mała?",
+  "faq.2.a":"Nie. Nasze metody są skalowalne. Ważna jest nie wielkość firmy, lecz to, czy macie procesy i dane, w których AI może dać realną dźwignię. Pierwszą wskazówkę daje <a href=\"/ai-readiness-test-en\" class=\"inline-link\">AI Readiness Test</a>.",
+  "faq.3.q":"Co dzieje się z naszymi danymi firmowymi?",
+  "faq.3.a":"Ochrona danych nie jest checkboxem, tylko zasadą architektury. Wszystkie rozwiązania projektujemy zgodnie z GDPR, opcjonalnie na niemieckich lub europejskich serwerach cloud. Ryzyko AI możesz wstępnie sprawdzić w <a href=\"/eu-ai-act-checker-en\" class=\"inline-link\">EU AI Act Checker</a>.",
+  "faq.4.q":"Jak długo trwa typowy projekt?",
+  "faq.4.a":"Audyt AI trwa 2–3 dni. Mniejsze automatyzacje są gotowe w 4–8 tygodni. Bardziej złożone systemy z głęboką integracją planujemy na 3–6 miesięcy. Wstępny zakres kosztów pokaże <a href=\"/ai-project-cost-estimator-en\" class=\"inline-link\">AI Project Cost Estimator</a>.",
+  "faq.5.q":"Czy potrzebujemy wewnętrznego działu IT?",
+  "faq.5.a":"Nie. Przejmujemy pełną realizację techniczną i przekazujemy system, z którego zespół może korzystać samodzielnie. Opcjonalnie wspieramy firmę długoterminowo w ramach miesięcznej opieki.",
+  "faq.6.q":"Czym Ventari różni się od klasycznej agencji IT?",
+  "faq.6.a":"Klasyczne agencje IT budują to, co zostanie im zlecone. My zaczynamy od pytania: co naprawdę tworzy wartość? Strategia, wdrożenie i bezpieczeństwo prawne pochodzą u nas z jednego źródła – bez silosów i strat na styku zespołów.",
+  "faq.blog":"Przeczytaj więcej w blogu →",
+  "nav.services":"Usługi","nav.expertise":"Ekspertyza","nav.why":"Dlaczego my","nav.tools":"Narzędzia","nav.blog":"Blog","nav.pricing":"Cennik","nav.cta":"Kontakt",
+  "hero.eyebrow":"Studio Automatyzacji AI i Compliance",
+  "hero.h1":'AI, które naprawdę <span class="accent">działa.</span><br/>Bezpiecznie, mierzalnie, produktywnie.',
+  "hero.sub":"Pomagamy firmom sensownie wykorzystywać sztuczną inteligencję – od znalezienia właściwych use case’ów, przez wdrożenie techniczne, aż po zgodność z EU AI Act i GDPR.",
+  "pill.1":"AI-hype bez wdrożenia","pill.2":"Złożoność techniczna","pill.3":"Niepewność prawna",
+  "hero.cta1":"Umów 30-minutową rozmowę","hero.cta2":"Zobacz usługi","hero.scroll":"Odkryj",
+  "strip.1.title":"AI Opportunity Assessment","strip.1.sub":"Use case’y i roadmapa",
+  "strip.2.title":"Automatyzacja i integracja AI","strip.2.sub":"Workflowy, narzędzia, API",
+  "strip.3.title":"AI Governance & Compliance","strip.3.sub":"EU AI Act, GDPR",
+  "strip.4.title":"Infrastruktura cloud","strip.4.sub":"AWS, Azure, GCP",
+  "problem.eyebrow":"Rynek dzisiaj",
+  "problem.h2":'Trzy problemy,<br/>które <span class="accent">spowalniają firmy.</span>',
+  "problem.intro":"Wiele firm wie, że AI jest ważne. Między tą świadomością a produktywnym wykorzystaniem stoją jednak trzy przeszkody, które trudno pokonać bez właściwego partnera.",
+  "prob.1.title":"AI-hype bez konkretnego wdrożenia","prob.1.p":"Firmy wiedzą, że AI jest ważne, ale nie wiedzą, od czego zacząć ani które use case’y naprawdę przyniosą wartość. Większość projektów zatrzymuje się na proof-of-concept.",
+  "prob.2.title":"Złożoność techniczna","prob.2.p":"Systemy AI muszą integrować się z CRM, dokumentami, chmurą i wewnętrznymi bazami danych. To przeciąża zespoły IT bez wyspecjalizowanego doświadczenia w AI engineeringu.",
+  "prob.3.title":"Niepewność prawna","prob.3.p":"EU AI Act i GDPR budzą podstawowe pytania: czy możemy używać AI? Jak chronimy dane firmowe? Kto odpowiada za błędy? Często brakuje jasnych odpowiedzi.",
+  "services.eyebrow":"Usługi",
+  "services.h2":'Kompletne rozwiązanie.<br/><span class="accent">Z jednego źródła.</span>',
+  "services.intro":"Strategia, wdrożenie i bezpieczeństwo prawne – ściśle połączone. Bez koordynacji wielu dostawców i bez myślenia silosowego. Obejmujemy cały proces.",
+  "s1.num":"01 — AI Opportunity Assessment","s1.h3":"Jasność, zanim<br/>powstanie kod",
+  "s1.p":"Analizujemy procesy firmy i identyfikujemy use case’y AI o największym wpływie. Bez zgadywania i drogich eksperymentów – z konkretną roadmapą.",
+  "s.delivers":"Rezultat","s.examples":"Typowe rozwiązania","s.includes":"Zakres",
+  "s1.b1":"Priorytetowa lista use case’ów AI","s1.b2":"Ocena ryzyka i korzyści","s1.b3":"Konkretna roadmapa projektu","s1.b4":"Wstępna ocena compliance",
+  "s1.t1":"2–3 dni","s1.t2":"Format warsztatowy",
+  "s1.link":"Zobacz ceny i pakiety →",
+  "s2.num":"02 — Automatyzacja i integracja AI","s2.h3":"AI działające<br/>w Twoich procesach",
+  "s2.p":"Budujemy automatyzacje AI i wewnętrzne narzędzia zintegrowane bezpośrednio z istniejącym środowiskiem systemowym – włącznie z infrastrukturą cloud na AWS, Azure lub GCP.",
+  "s2.b1":"Systemy wiedzy AI (dokumenty, wiki)","s2.b2":"Automatyzacja supportu i zapytań","s2.b3":"Automatyzacja sprzedaży i integracja CRM","s2.b4":"Infrastruktura cloud i skalowanie",
+  "s2.link":"Oblicz potencjał automatyzacji →",
+  "s3.num":"03 — AI Governance & Compliance","s3.h3":"Zgodność prawna<br/>od pierwszego dnia",
+  "s3.p":"Razem z ekspertem prawnym od AI budujemy podstawy prawne dla wdrożeń AI – praktycznie, jasno i bez zbędnej teorii.",
+  "s3.b1":"Polityki AI i governance framework","s3.b2":"Koncepcje ochrony danych zgodne z GDPR","s3.b3":"Dokumentacja zgodności z EU AI Act","s3.b4":"Ocena ryzyka i odpowiedzialności",
+  "s3.link":"Sprawdź ryzyko EU AI Act →",
+  "s4.num":"04 — Utrzymanie i rozwój","s4.h3":"Projekt nie kończy się<br/>na launchu",
+  "s4.p":"Systemy AI wymagają ciągłego monitoringu, optymalizacji i rozwoju. Zostajemy po stronie klienta jako długoterminowy partner.",
+  "s4.b1":"Monitoring i śledzenie wydajności","s4.b2":"Miesięczne rundy optymalizacji","s4.b3":"Bieżący przegląd compliance","s4.b4":"Skalowanie wraz ze wzrostem użycia",
+  "s4.t1":"Miesięczna opieka","s4.t2":"Elastyczne zakończenie",
+  "audit.badge":"Start","audit.h3":"Zacznij od audytu AI","audit.cta":"Zapytaj o audyt AI","audit.pricing":"Porównaj ceny →",
+  "audit.p":"W 2–3 dni analizujemy wspólnie procesy, dane i krajobraz IT – i dostarczamy priorytetową roadmapę, która pozwala od razu działać.",
+  "audit.day1.title":"Analiza","audit.day1.p":"Zrozumienie procesów, danych i istniejących systemów",
+  "audit.day2.title":"Ocena","audit.day2.p":"Priorytetyzacja use case’ów oraz ocena ryzyk i korzyści",
+  "audit.day3.title":"Roadmapa","audit.day3.p":"Konkretne kolejne kroki z szacunkiem nakładu i ROI",
+  "expertise.eyebrow":"Zespół",
+  "expertise.h2":"Łączymy kompetencje, których projekty AI naprawdę potrzebują.",
+  "team.p1":"Ventari nie jest klasyczną firmą doradczą ani zwykłą agencją developerską. Jesteśmy wyspecjalizowanym studiem zbudowanym świadomie inaczej: z ekspertów, którzy przychodzą z praktyki, nie z sali szkoleniowej.",
+  "team.p2":"Nasz zespół łączy wieloletnie doświadczenie z branży motoryzacyjnej, międzynarodowego ekosystemu technologii i startupów oraz akademickich badań nad AI. Budowaliśmy systemy AI działające codziennie produkcyjnie. Tworzyliśmy cloud-native infrastruktury obsługujące miliony zapytań. Prowadziliśmy produkty od pierwszej idei do skalowanego działania – zarówno w korporacjach, jak i młodych startupach.",
+  "team.p3":"Nasze kompetencje techniczne wykraczają daleko poza klasyczny kontekst firmowy. Członkowie zespołu pracowali przy technologiach przyszłości na poziomie rządowym, tworzyli immersyjne systemy AI dla globalnych produkcji i budowali międzynarodowe firmy technologiczne jako CTO. Od produkcji Hollywood, przez technologie obronne, po samodzielne produkty AI używane globalnie – wnosimy doświadczenie rzadkie w klasycznym doradztwie.",
+  "team.p4":"Dodatkowo mamy szeroką międzynarodową sieć wyspecjalizowanych ekspertów z obszaru technologii, prawa, danych i inżynierii. Dzięki temu do każdego projektu dobieramy właściwe osoby – nie generalistów, lecz specjalistów z głęboką wiedzą branżową.",
+  "team.p5":"Nasz ekspert prawny jest jednym z nielicznych specjalistów w obszarze niemieckojęzycznym, którzy skupiają się wyłącznie na regulacji AI – z akademicką głębią doktoratu i pragmatycznym spojrzeniem praktyka. Bez niespodzianek compliance na końcu projektu: bezpieczeństwo prawne jest częścią architektury.",
+  "team.p6":"Pracujemy w międzynarodowej sieci, myślimy przedsiębiorczo i dostarczamy mierzalne rezultaty.",
+  "tp.1.title":"Motoryzacja","tp.1.sub":"PM korporacyjny i integracja systemów",
+  "tp.2.title":"Technologie obronne","tp.2.sub":"Poziom rządowy i technologie przyszłości",
+  "tp.3.title":"Hollywood i immersive tech","tp.3.sub":"Globalne produkcje, VR, systemy AI",
+  "tp.4.title":"Badania AI i akademia","tp.4.sub":"Data science i prawo AI",
+  "tp.5.title":"Startupy i przedsiębiorczość","tp.5.sub":"Budowa firm, inwestycje, wzrost międzynarodowy",
+  "tp.6.title":"Cloud i infrastruktura","tp.6.sub":"AWS, Azure, GCP – skala enterprise",
+  "exp.1.title":"Rozwój produktów AI w skali produkcyjnej","exp.1.p":"Nasz zespół budował i utrzymywał systemy AI obsługujące miliony zapytań dziennie – nie w laboratorium, lecz w realnej produkcji.","exp.1.hl":"Systemy rekomendacyjne, integracja LLM, pipeline’y automatyzacji.",
+  "exp.2.title":"Infrastruktura cloud na poziomie enterprise","exp.2.p":"Budowa i utrzymanie cloud-native, serverless architektur na AWS –","exp.2.hl":"skalowalnych, zoptymalizowanych kosztowo i zgodnych z europejskimi standardami ochrony danych.",
+  "exp.3.title":"Specjalistyczna ekspertyza prawna AI","exp.3.p":"Nasz ekspert prawny prowadzi doktorat z prawa AI i należy do nielicznych specjalistów w Niemczech, którzy","exp.3.hl":"skupiają się wyłącznie na prawnych aspektach systemów AI.",
+  "exp.4.title":"DNA startupów i enterprise","exp.4.p":"Znamy oba światy: szybkość i pragmatyzm startupów oraz struktury i ścieżki decyzyjne dużych organizacji.","exp.4.hl":"To nie sprzeczność – to nasza przewaga.",
+  "exp.5.title":"Międzynarodowa sieć","exp.5.p":"Nasz zespół pracował w Los Angeles, Polsce i Niemczech – z partnerami z badań i branży technologicznej.","exp.5.hl":"Perspektywy wykraczające poza rynek niemiecki.",
+  "exp.6.title":"Sprawdzona metodologia AI","exp.6.p":"Nigdy nie wdrażamy AI dla samego AI. Zaczynamy od problemu biznesowego i dobieramy właściwe narzędzie.","exp.6.hl":"Praktycznie, mierzalnie, z jasnym naciskiem na ROI.",
+  "quote.text":'Naszym celem nie jest budowanie demo AI – lecz tworzenie <span class="accent">mierzalnej wartości w firmie.</span>',
+  "quote.author":"Ventari – Studio Automatyzacji AI i Compliance",
+  "why.eyebrow":"Dlaczego Ventari",
+  "why.h2":'Co nas<br/><span class="accent">wyróżnia.</span>',
+  "why.intro":"Jest wiele firm doradczych od AI. Większość potrafi robić strategię, technologię albo prawo – rzadko wszystkie trzy naraz. Jeszcze rzadziej ta kompetencja wynika z realnego doświadczenia produktowego.",
+  "w1.title":"Strategia, technologia i prawo z jednego źródła","w1.p":"Wielu dostawców pokrywa tylko jeden z tych obszarów. My łączymy wszystkie trzy – koordynowane, bez tarcia między wykonawcami.",
+  "w2.title":"Bez doradztwa bez wdrożenia","w2.p":"Nie tylko doradzamy – budujemy. Każda rekomendacja opiera się na doświadczeniu zespołów, które już uruchamiały takie systemy produkcyjnie.",
+  "w3.title":"Bezpieczeństwo prawne jako kluczowa kompetencja","w3.p":"EU AI Act i GDPR nie są dla nas checkboxem na końcu. Są częścią architektury od samego początku.",
+  "w4.title":"Koncentracja na mierzalnych wynikach","w4.p":"Nie ma projektu AI bez jasnych mierników sukcesu. Przed startem definiujemy wspólnie, według czego będziemy oceniani – i bierzemy za to odpowiedzialność.",
+  "contact.eyebrow":"Kontakt",
+  "contact.h2":'Gotowi na AI,<br/><span class="accent">które naprawdę dowozi?</span>',
+  "contact.desc":"Umów bezpłatną rozmowę wstępną. W 30 minut zrozumiemy Twoją sytuację i pokażemy, gdzie AI może dać największą dźwignię w firmie – konkretnie i bez zobowiązań.",
+  "contact.location":"Jasionka, Polska","contact.response":"Odpowiedź w ciągu 24 godzin",
+  "form.first":"Imię","form.last":"Nazwisko","form.email":"Adres e-mail","form.company":"Firma",
+  "form.topic":"Wybierz temat …","form.opt1":"AI Opportunity Assessment","form.opt2":"Automatyzacja i integracja AI","form.opt3":"AI Governance & Compliance","form.opt4":"Zapytanie ogólne",
+  "form.message":"Co aktualnie jest dla Ciebie ważne? Krótki opis wystarczy …",
+  "form.submit":"Umów rozmowę →","form.success":"✓ Dziękujemy – odezwiemy się!",
+  "footer.imprint":"Nota prawna","footer.privacy":"Prywatność","footer.copy":"© 2025 Ventari. Wszelkie prawa zastrzeżone."
 }
 };
 
 let lang = 'de';
 function applyLang(l) {
-  const t = T[l];
+  const t = T[l] || T.de;
   document.documentElement.lang = l;
-  document.querySelectorAll('[data-i18n]').forEach(el => { if (t[el.dataset.i18n] !== undefined) el.innerHTML = t[el.dataset.i18n]; });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { if (t[el.dataset.i18nPlaceholder] !== undefined) el.placeholder = t[el.dataset.i18nPlaceholder]; });
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const value = t[key] ?? T.en[key] ?? T.de[key];
+    if (value !== undefined) el.innerHTML = value;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    const value = t[key] ?? T.en[key] ?? T.de[key];
+    if (value !== undefined) el.placeholder = value;
+  });
+  document.querySelectorAll('[data-href-de][data-href-en]').forEach(el => {
+    const key = 'href' + l.charAt(0).toUpperCase() + l.slice(1);
+    el.href = el.dataset[key] || el.dataset.hrefEn || el.dataset.hrefDe;
+  });
 }
 function switchLang(l) {
   if (l === lang) return; lang = l;
+  try { localStorage.setItem('ventari_lang', l); } catch(e) {}
   document.body.classList.add('lang-switching');
   setTimeout(() => { applyLang(l); document.body.classList.remove('lang-switching'); }, 180);
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
 }
 document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => switchLang(b.dataset.lang)));
+try {
+  const savedLang = localStorage.getItem('ventari_lang');
+  if (['de', 'en', 'pl'].includes(savedLang)) {
+    lang = savedLang;
+    applyLang(lang);
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  }
+} catch(e) {}
 
 /* ── NEURAL NETWORK ── */
 const canvas = document.getElementById('network-canvas');
@@ -1257,7 +1452,7 @@ function openModal(type) {
   const modal = document.getElementById('legal-modal');
   const content = document.getElementById('modal-content');
   const tplId = 'tpl-' + type + '-' + lang;
-  const tpl = document.getElementById(tplId);
+  const tpl = document.getElementById(tplId) || document.getElementById('tpl-' + type + '-en');
   if (tpl) content.innerHTML = tpl.innerHTML;
   modal.style.display = 'block';
   document.body.style.overflow = 'hidden';

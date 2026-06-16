@@ -18,6 +18,8 @@
     (function(){
       try {
         var lang = localStorage.getItem('ventari_lang') || 'de';
+        if (lang === 'pl') lang = 'en';
+        if (lang !== 'de' && lang !== 'en') lang = 'de';
         window._toolsLang = lang;
       } catch(e) { window._toolsLang = 'de'; }
     })();
