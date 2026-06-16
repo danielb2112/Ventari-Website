@@ -1074,7 +1074,7 @@ de: {
   "form.first":"Vorname","form.last":"Nachname","form.email":"E-Mail-Adresse","form.company":"Unternehmen",
   "form.topic":"Thema auswählen …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt4":"Allgemeine Anfrage",
   "form.message":"Was beschäftigt Sie gerade? Kurze Skizze genügt …",
-  "form.submit":"Gespräch buchen →","form.success":"✓ Vielen Dank – wir melden uns!",
+  "form.submit":"Gespräch buchen →","form.required":"Bitte E-Mail und Nachricht ausfüllen.","form.sending":"Wird gesendet …","form.success":"✓ Vielen Dank – wir melden uns!","form.error":"Fehler – bitte erneut versuchen",
   "footer.imprint":"Impressum","footer.privacy":"Datenschutz","footer.copy":"© 2025 Ventari. Alle Rechte vorbehalten."
 },
 en: {
@@ -1175,7 +1175,7 @@ en: {
   "form.first":"First name","form.last":"Last name","form.email":"Email address","form.company":"Company",
   "form.topic":"Select a topic …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt4":"General enquiry",
   "form.message":"What's on your mind? A brief sketch is enough …",
-  "form.submit":"Book a call →","form.success":"✓ Thank you – we'll be in touch!",
+  "form.submit":"Book a call →","form.required":"Please fill in email and message.","form.sending":"Sending …","form.success":"✓ Thank you – we'll be in touch!","form.error":"Error – please try again",
   "footer.imprint":"Imprint","footer.privacy":"Privacy Policy","footer.copy":"© 2025 Ventari. All rights reserved."
 },
 pl: {
@@ -1276,7 +1276,7 @@ pl: {
   "form.first":"Imię","form.last":"Nazwisko","form.email":"Adres e-mail","form.company":"Firma",
   "form.topic":"Wybierz temat …","form.opt1":"AI Opportunity Assessment","form.opt2":"Automatyzacja i integracja AI","form.opt3":"AI Governance & Compliance","form.opt4":"Zapytanie ogólne",
   "form.message":"Co aktualnie jest dla Ciebie ważne? Krótki opis wystarczy …",
-  "form.submit":"Umów rozmowę →","form.success":"✓ Dziękujemy – odezwiemy się!",
+  "form.submit":"Umów rozmowę →","form.required":"Wpisz adres e-mail i wiadomość.","form.sending":"Wysyłanie …","form.success":"✓ Dziękujemy – odezwiemy się!","form.error":"Błąd – spróbuj ponownie",
   "footer.imprint":"Nota prawna","footer.privacy":"Prywatność","footer.copy":"© 2025 Ventari. Wszelkie prawa zastrzeżone."
 }
 };
@@ -1404,6 +1404,7 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 /* ── FORM ── */
 const WORKER_URL = 'https://ventari-worker.danielbaran1995.workers.dev/';
+const formText = key => T[lang]?.[key] || T.en[key] || T.de[key] || '';
 
 document.querySelector('.form-submit').addEventListener('click', async function(e) {
   e.preventDefault();
@@ -1417,12 +1418,12 @@ document.querySelector('.form-submit').addEventListener('click', async function(
   const message = document.querySelector('textarea')?.value || '';
 
   if (!email || !message) {
-    alert(lang === 'de' ? 'Bitte E-Mail und Nachricht ausfüllen.' : 'Please fill in email and message.');
+    alert(formText('form.required'));
     return;
   }
 
   btn.disabled = true;
-  btn.textContent = lang === 'de' ? 'Wird gesendet …' : 'Sending …';
+  btn.textContent = formText('form.sending');
 
   try {
     const res = await fetch(WORKER_URL, {
@@ -1432,18 +1433,18 @@ document.querySelector('.form-submit').addEventListener('click', async function(
     });
 
     if (res.ok) {
-      btn.textContent = lang === 'de' ? '✓ Vielen Dank – wir melden uns!' : '✓ Thank you – we\'ll be in touch!';
+      btn.textContent = formText('form.success');
       btn.style.background = '#2d5cb8';
     } else {
       throw new Error('Failed');
     }
   } catch {
     btn.disabled = false;
-    btn.textContent = lang === 'de' ? 'Fehler – bitte erneut versuchen' : 'Error – please try again';
+    btn.textContent = formText('form.error');
     btn.style.background = '#c0392b';
     setTimeout(() => {
       btn.style.background = '';
-      btn.textContent = lang === 'de' ? 'Gespräch buchen →' : 'Book a call →';
+      btn.textContent = formText('form.submit');
     }, 3000);
   }
 });
