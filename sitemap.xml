@@ -22,59 +22,59 @@
 
   <!-- Tools DE -->
   <url>
-    <loc>https://ventari.eu/automatisierungspotenzial-rechner.html</loc>
+    <loc>https://ventari.eu/automatisierungspotenzial-rechner</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/automatisierungspotenzial-rechner.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/automation-potential-calculator-en.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/automatisierungspotenzial-rechner"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/automation-potential-calculator-en"/>
   </url>
   <url>
-    <loc>https://ventari.eu/ki-projektkosten-schaetzer.html</loc>
+    <loc>https://ventari.eu/ki-projektkosten-schaetzer</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-projektkosten-schaetzer.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-project-cost-estimator-en.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-projektkosten-schaetzer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-project-cost-estimator-en"/>
   </url>
   <url>
-    <loc>https://ventari.eu/ki-readiness-test.html</loc>
+    <loc>https://ventari.eu/ki-readiness-test</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-readiness-test.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-readiness-test-en.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-readiness-test"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-readiness-test-en"/>
   </url>
   <url>
-    <loc>https://ventari.eu/eu-ai-act-checker.html</loc>
+    <loc>https://ventari.eu/eu-ai-act-checker</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/eu-ai-act-checker.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/eu-ai-act-checker-en.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/eu-ai-act-checker"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/eu-ai-act-checker-en"/>
   </url>
 
   <!-- Tools EN -->
   <url>
-    <loc>https://ventari.eu/automation-potential-calculator-en.html</loc>
+    <loc>https://ventari.eu/automation-potential-calculator-en</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ventari.eu/ai-project-cost-estimator-en.html</loc>
+    <loc>https://ventari.eu/ai-project-cost-estimator-en</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ventari.eu/ai-readiness-test-en.html</loc>
+    <loc>https://ventari.eu/ai-readiness-test-en</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ventari.eu/eu-ai-act-checker-en.html</loc>
+    <loc>https://ventari.eu/eu-ai-act-checker-en</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -109,12 +109,12 @@
   </url>
 
   <url>
-    <loc>https://ventari.eu/preise.html</loc>
+    <loc>https://ventari.eu/preise</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ventari.eu/pricing.html</loc>
+    <loc>https://ventari.eu/pricing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

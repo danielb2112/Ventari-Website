@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <script>try{if(localStorage.getItem("ventari_lang")==="en"){var el=document.querySelector('link[hreflang="en"]');if(el)window.location.replace(el.href);}}catch(e){}</script>
+  <script>try{if(localStorage.getItem("ventari_lang")==="en")window.location.replace("https://ventari.eu/automation-potential-calculator-en");}catch(e){}</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Automatisierungspotenzial-Rechner – Ventari</title>
   <meta name="description" content="Kostenloser Automatisierungspotenzial-Rechner: Berechnen Sie in Minuten, was KI-Automatisierung Ihrem Unternehmen pro Jahr einspart – mit konkreten Euro-Zahlen."/>
-  <link rel="canonical" href="https://ventari.eu/automatisierungspotenzial-rechner.html"/>
+  <link rel="canonical" href="https://ventari.eu/automatisierungspotenzial-rechner"/>
+  <link rel="alternate" hreflang="de" href="https://ventari.eu/automatisierungspotenzial-rechner"/>
+  <link rel="alternate" hreflang="en" href="https://ventari.eu/automation-potential-calculator-en"/>
+  <link rel="alternate" hreflang="x-default" href="https://ventari.eu/automatisierungspotenzial-rechner"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -353,7 +356,7 @@ function shareLinkedIn() {
   const eur = d.totalErsparnis >= 10000 ? Math.round(d.totalErsparnis/1000)+'K €' : Math.round(d.totalErsparnis).toLocaleString('de-DE')+' €';
   const hrs = Math.round(d.totalHrsFreigesetzt);
   const text = `Ich habe gerade mein Automatisierungspotenzial berechnet:\n\n💡 ${eur} Einsparung pro Jahr\n⏱ ${hrs} Stunden freigesetzt/Jahr\n🚀 Größtes Potenzial: ${d.bestProc.name}\n\nKostenlos berechnen auf ventari.eu →`;
-  const url = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://ventari.eu/automatisierungspotenzial-rechner.html') + '&summary=' + encodeURIComponent(text);
+  const url = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://ventari.eu/automatisierungspotenzial-rechner') + '&summary=' + encodeURIComponent(text);
   window.open(url, '_blank', 'width=600,height=500');
 }
 
@@ -362,7 +365,7 @@ function copyResult() {
   if (!d) return;
   const eur = d.totalErsparnis >= 10000 ? Math.round(d.totalErsparnis/1000)+'K €' : Math.round(d.totalErsparnis).toLocaleString('de-DE')+' €';
   const hrs = Math.round(d.totalHrsFreigesetzt);
-  const text = `Automatisierungspotenzial meines Unternehmens:\n\n• ${eur} Einsparung/Jahr\n• ${hrs} Stunden/Jahr freigesetzt\n• Größtes Potenzial: ${d.bestProc.name}\n\nKostenlos berechnen: ventari.eu/automatisierungspotenzial-rechner.html`;
+  const text = `Automatisierungspotenzial meines Unternehmens:\n\n• ${eur} Einsparung/Jahr\n• ${hrs} Stunden/Jahr freigesetzt\n• Größtes Potenzial: ${d.bestProc.name}\n\nKostenlos berechnen: ventari.eu/automatisierungspotenzial-rechner`;
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.getElementById('share-copy');
     const orig = btn.innerHTML;
