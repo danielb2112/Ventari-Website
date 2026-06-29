@@ -36,6 +36,9 @@
   <link rel="preload" href="/fonts/dm-serif-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/fonts/fonts.css">
   <style>
+.skip-link{position:fixed;top:.75rem;left:.75rem;z-index:1000;transform:translateY(-160%);background:#f4f6fb;color:#07080f;padding:.7rem 1rem;border-radius:4px;text-decoration:none;}
+.skip-link:focus{transform:translateY(0);}
+
     :root {
       --bg: #07080f; --bg2: #0c0e18; --bg3: #111320;
       --surface: #161828; --surface2: #1c1f35;
@@ -111,6 +114,7 @@
   </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
 <div class="bg-glow"></div>
 
 <nav>
@@ -127,6 +131,7 @@
   </div>
 </nav>
 
+<main id="main">
 <div class="hero">
   <div class="eyebrow" id="h-eyebrow">Kostenlose Tools</div>
   <h1 id="h-title">Klarheit in Minuten.<br/><span class="accent">Ohne Erstgespräch.</span></h1>
@@ -224,6 +229,7 @@
 
 </div>
 
+</main>
 <script>
 const T = {
   de: {

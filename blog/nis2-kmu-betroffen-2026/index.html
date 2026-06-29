@@ -24,6 +24,9 @@
   <link rel="preload" href="/fonts/dm-serif-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/fonts/fonts.css">
   <style>
+.skip-link{position:fixed;top:.75rem;left:.75rem;z-index:1000;transform:translateY(-160%);background:#f4f6fb;color:#07080f;padding:.7rem 1rem;border-radius:4px;text-decoration:none;}
+.skip-link:focus{transform:translateY(0);}
+
 :root{--bg:#07080f;--bg2:#0c0e18;--bg3:#111320;--surface:#161828;--blue:#4a8cff;--cyan:#5dd8e8;--white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;--border:rgba(74,140,255,0.12);--border2:rgba(255,255,255,0.06);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -80,11 +83,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:2.5rem 
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
 <nav>
   <a href="https://ventari.eu" class="logo">ventari<span>.</span></a>
   <a href="https://ventari.eu/blog/" class="nav-back">← Alle Artikel</a>
 </nav>
-<main class="wrap">
+<main id="main" class="wrap">
   <div class="breadcrumb">
     <a href="https://ventari.eu">ventari.eu</a> / <a href="https://ventari.eu/blog/">Blog</a> / NIS2
   </div>
