@@ -66,6 +66,18 @@
       white-space: nowrap;
       border: 0;
     }
+    .skip-link {
+      position: fixed;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 1000;
+      transform: translateY(-160%);
+      background: var(--white);
+      color: var(--bg);
+      padding: 0.7rem 1rem;
+      border-radius: 4px;
+    }
+    .skip-link:focus { transform: translateY(0); }
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 2px; }
@@ -98,7 +110,7 @@
     .nav-right { display: flex; align-items: center; gap: 1.5rem; }
     .nav-links { display: flex; gap: 1.35rem; list-style: none; align-items: center; }
     .nav-links a {
-      color: var(--muted2); text-decoration: none;
+      color: #a8afc9; text-decoration: none;
       font-size: 0.8rem; font-weight: 500; transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--white); }
@@ -114,7 +126,9 @@
     .lang-btn {
       background: none; border: none; color: var(--muted);
       font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.08em; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer;
+      letter-spacing: 0; min-width: 44px; min-height: 44px; padding: 0.3rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 4px; cursor: pointer;
       transition: all 0.2s ease;
     }
     .lang-btn.active { background: var(--blue); color: var(--bg); }
@@ -143,7 +157,7 @@
     h1 {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(3rem, 7vw, 6.5rem); font-weight: 400;
-      line-height: 1.05; letter-spacing: -0.01em; max-width: 860px;
+      line-height: 1.05; letter-spacing: 0; max-width: 860px;
       color: var(--white);
       opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
     }
@@ -431,7 +445,11 @@
 
     
     /* HAMBURGER */
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; }
+    .hamburger {
+      display: none; width: 44px; height: 44px; flex-direction: column;
+      align-items: center; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 200;
+    }
     .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s ease; }
     .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -502,11 +520,12 @@
   </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
 
 <canvas id="network-canvas"></canvas>
 
 <!-- NAV -->
-<nav id="nav">
+<nav id="nav" aria-label="Hauptnavigation">
   <a href="/" class="logo">ventari<span>.</span></a>
   <div class="nav-right">
     <ul class="nav-links">
@@ -518,17 +537,17 @@
       <li><a href="/preise" data-i18n="nav.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Preise</a></li>
       <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Kontakt</a></li>
     </ul>
-    <div class="lang-switcher">
+    <div class="lang-switcher" role="group" aria-label="Sprache">
       <button type="button" class="lang-btn active" data-lang="de">DE</button>
       <button type="button" class="lang-btn" data-lang="en">EN</button>
       <button type="button" class="lang-btn" data-lang="pl">PL</button>
     </div>
-    <button type="button" class="hamburger" id="hamburger" aria-label="Menu">
+    <button type="button" class="hamburger" id="hamburger" aria-label="Menu" aria-controls="mobileMenu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <a href="#services" data-i18n="nav.services" onclick="closeMobile()">Leistungen</a>
   <a href="#expertise" data-i18n="nav.expertise" onclick="closeMobile()">Expertise</a>
   <a href="#why" data-i18n="nav.why" onclick="closeMobile()">Warum wir</a>
@@ -536,17 +555,18 @@
   <a href="/blog/" data-i18n="nav.blog" onclick="closeMobile()">Blog</a>
   <a href="/preise" data-i18n="nav.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing" onclick="closeMobile()">Preise</a>
   <a href="#contact" class="m-cta" data-i18n="nav.cta" onclick="closeMobile()">Kontakt</a>
-  <div class="lang-switcher" style="margin-top:1rem">
+  <div class="lang-switcher" role="group" aria-label="Sprache" style="margin-top:1rem">
     <button type="button" class="lang-btn active" data-lang="de" onclick="closeMobile()">DE</button>
     <button type="button" class="lang-btn" data-lang="en" onclick="closeMobile()">EN</button>
     <button type="button" class="lang-btn" data-lang="pl" onclick="closeMobile()">PL</button>
   </div>
 </div>
 
+<main id="main">
 <!-- HERO -->
 <section id="hero">
   <div class="hero-eyebrow"><div class="hero-dot"></div><span data-i18n="hero.eyebrow">AI Automation & Compliance Studio</span></div>
-  <h1 data-i18n="hero.h1">KI, die wirklich <span class="accent">funktioniert.</span><br/>Sicher, messbar, produktiv.</h1>
+  <h1 data-i18n="hero.h1">KI, die wirklich <span class="accent">funktioniert.</span><br/> Sicher, messbar, produktiv.</h1>
   <p class="hero-sub" data-i18n="hero.sub">Wir helfen Unternehmen dabei, Künstliche Intelligenz sinnvoll einzusetzen – von der Identifikation der richtigen Use Cases über die technische Umsetzung bis zur rechtssicheren Implementierung nach EU AI Act und DSGVO.</p>
   <div class="hero-problems">
     <div class="hero-pill"><div class="hero-pill-dot"></div><span data-i18n="pill.1">AI-Hype ohne Umsetzung</span></div>
@@ -616,7 +636,7 @@
 <!-- PROBLEM -->
 <section id="problem">
   <div class="eyebrow reveal" data-i18n="problem.eyebrow">Der Markt heute</div>
-  <h2 class="reveal" data-i18n="problem.h2">Drei Probleme,<br/>die <span class="accent">Unternehmen bremsen.</span></h2>
+  <h2 class="reveal" data-i18n="problem.h2">Drei Probleme,<br/> die <span class="accent">Unternehmen bremsen.</span></h2>
   <div class="problem-layout">
     <p class="problem-intro reveal" data-i18n="problem.intro">Viele Unternehmen wissen, dass KI wichtig ist. Aber zwischen diesem Wissen und einer produktiven Nutzung liegen drei Hindernisse, die sich ohne die richtigen Partner kaum überwinden lassen.</p>
     <div class="problem-cards">
@@ -650,7 +670,7 @@
   <div class="services-header">
     <div>
       <div class="eyebrow reveal" data-i18n="services.eyebrow">Leistungen</div>
-      <h2 class="reveal" data-i18n="services.h2">Eine komplette Lösung.<br/><span class="accent">Aus einer Hand.</span></h2>
+      <h2 class="reveal" data-i18n="services.h2">Eine komplette Lösung.<br/> <span class="accent">Aus einer Hand.</span></h2>
     </div>
     <p class="services-intro reveal" data-i18n="services.intro">Strategie, Umsetzung und Rechtssicherheit – eng verzahnt. Kein Koordinieren zwischen mehreren Dienstleistern, kein Silodenken. Wir decken den gesamten Weg ab.</p>
   </div>
@@ -658,7 +678,7 @@
     <!-- S1 -->
     <div class="service-card reveal">
       <div class="service-num" data-i18n="s1.num">01 — AI Opportunity Assessment</div>
-      <h3 data-i18n="s1.h3">Klarheit, bevor<br/>Code geschrieben wird</h3>
+      <h3 data-i18n="s1.h3">Klarheit, bevor<br/> Code geschrieben wird</h3>
       <p data-i18n="s1.p">Wir analysieren Ihre Unternehmensprozesse und identifizieren die KI-Use-Cases mit dem größten Hebel. Kein Blindflug, keine überteuerten Experimente – sondern eine konkrete Roadmap, die sofort handlungsfähig macht.</p>
       <div class="service-includes">
         <div class="service-includes-title" data-i18n="s.delivers">Ergebnis</div>
@@ -675,7 +695,7 @@
     <!-- S2 -->
     <div class="service-card reveal reveal-delay-1">
       <div class="service-num" data-i18n="s2.num">02 — AI Automation & Integration</div>
-      <h3 data-i18n="s2.h3">KI, die in Ihren<br/>Prozessen läuft</h3>
+      <h3 data-i18n="s2.h3">KI, die in Ihren<br/> Prozessen läuft</h3>
       <p data-i18n="s2.p">Wir entwickeln AI-Automationen und interne Tools, die direkt in Ihre bestehende Systemlandschaft integriert werden – inkl. Cloud-Infrastruktur auf AWS, Azure oder GCP.</p>
       <div class="service-includes">
         <div class="service-includes-title" data-i18n="s.examples">Typische Lösungen</div>
@@ -692,7 +712,7 @@
     <!-- S3 -->
     <div class="service-card reveal reveal-delay-2">
       <div class="service-num" data-i18n="s3.num">03 — AI Governance & Compliance</div>
-      <h3 data-i18n="s3.h3">Rechtssicher von<br/>Anfang an</h3>
+      <h3 data-i18n="s3.h3">Rechtssicher von<br/> Anfang an</h3>
       <p data-i18n="s3.p">Gemeinsam mit unserem spezialisierten AI-Rechtsexperten entwickeln wir die rechtliche Grundlage für Ihren KI-Einsatz – praxisnah, verständlich und auf den Punkt.</p>
       <div class="service-includes">
         <div class="service-includes-title" data-i18n="s.delivers">Ergebnis</div>
@@ -709,7 +729,7 @@
     <!-- S4 -->
     <div class="service-card reveal reveal-delay-3">
       <div class="service-num" data-i18n="s4.num">04 — Wartung & Weiterentwicklung</div>
-      <h3 data-i18n="s4.h3">Kein Projekt endet<br/>mit dem Launch</h3>
+      <h3 data-i18n="s4.h3">Kein Projekt endet<br/> mit dem Launch</h3>
       <p data-i18n="s4.p">AI-Systeme müssen kontinuierlich überwacht, optimiert und weiterentwickelt werden. Wir bleiben als langfristiger Partner an Ihrer Seite – mit klaren SLAs und monatlichen Reviews.</p>
       <div class="service-includes">
         <div class="service-includes-title" data-i18n="s.includes">Bestandteile</div>
@@ -757,7 +777,7 @@
 <!-- EXPERTISE -->
 <section id="expertise">
   <div class="eyebrow reveal" data-i18n="expertise.eyebrow">Das Team</div>
-  <h2 class="reveal" data-i18n="expertise.h2">Wir bringen zusammen,<br/>was KI-Projekte wirklich brauchen.</h2>
+  <h2 class="reveal" data-i18n="expertise.h2">Wir bringen zusammen,<br/> was KI-Projekte wirklich brauchen.</h2>
   <div class="team-layout">
     <div class="team-text">
       <p class="team-para reveal" data-i18n="team.p1">Ventari ist kein klassisches Beratungshaus und keine reine Entwicklungsagentur. Wir sind ein spezialisiertes Studio, das bewusst anders aufgestellt ist: mit Experten, die aus der Praxis kommen, nicht aus dem Seminarraum.</p>
@@ -811,7 +831,7 @@
 <!-- WHY -->
 <section id="why">
   <div class="eyebrow reveal" data-i18n="why.eyebrow">Warum Ventari</div>
-  <h2 class="reveal" data-i18n="why.h2">Was uns von anderen<br/><span class="accent">unterscheidet.</span></h2>
+  <h2 class="reveal" data-i18n="why.h2">Was uns von anderen<br/> <span class="accent">unterscheidet.</span></h2>
   <div class="why-layout">
     <div>
       <p class="why-intro reveal" data-i18n="why.intro">Es gibt viele KI-Berater. Die meisten können entweder Strategie, Technik oder Recht – selten alle drei. Und noch seltener haben sie diese Kompetenz aus echter Produkterfahrung, nicht aus Projektstudien.</p>
@@ -840,7 +860,7 @@
 <!-- FAQ -->
 <section id="faq">
   <div class="eyebrow reveal" data-i18n="faq.eyebrow">Häufige Fragen</div>
-  <h2 class="reveal" data-i18n="faq.h2">Was Entscheider<br/>wissen wollen.</h2>
+  <h2 class="reveal" data-i18n="faq.h2">Was Entscheider<br/> wissen wollen.</h2>
   <div class="faq-grid">
     <div class="faq-item reveal" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.1.q">Was kostet ein Projekt bei Ventari?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
@@ -873,7 +893,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="eyebrow reveal" data-i18n="contact.eyebrow">Kontakt</div>
-  <h2 class="reveal" data-i18n="contact.h2">Bereit für KI,<br/><span class="accent">die wirklich liefert?</span></h2>
+  <h2 class="reveal" data-i18n="contact.h2">Bereit für KI,<br/> <span class="accent">die wirklich liefert?</span></h2>
   <div class="contact-layout">
     <div>
       <p class="contact-desc reveal" data-i18n="contact.desc">Vereinbaren Sie ein kostenfreies Erstgespräch. In 30 Minuten verstehen wir Ihre aktuelle Situation und zeigen Ihnen, wo KI in Ihrem Unternehmen den größten Hebel hat – unverbindlich und konkret.</p>
@@ -912,6 +932,7 @@
     </form>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -1017,7 +1038,7 @@ de: {
   "stat.3.num":"24h","stat.3.label":"Reaktionszeit garantiert",
   "stat.4.num":"100%","stat.4.label":"EU-konform – DSGVO & AI Act",
   "tech.label":"Technologie-Stack",
-  "faq.eyebrow":"Häufige Fragen","faq.h2":"Was Entscheider<br/>wissen wollen.",
+  "faq.eyebrow":"Häufige Fragen","faq.h2":"Was Entscheider<br/> wissen wollen.",
   "faq.1.q":"Was kostet ein Projekt bei Ventari?",
   "faq.1.a":"Wir starten immer mit einem AI Audit zu einem transparenten Festpreis. Größere Automations- und Integrationsprojekte werden individuell kalkuliert – abhängig von Komplexität, Systemlandschaft und Zeitrahmen. Einen Überblick finden Sie auf der <a href=\"/preise\" class=\"inline-link\">Preisseite</a>.",
   "faq.2.q":"Sind wir als Unternehmen zu klein?",
@@ -1033,7 +1054,7 @@ de: {
   "faq.blog":"Mehr Einblicke im Blog lesen →",
   "nav.services":"Leistungen","nav.expertise":"Expertise","nav.why":"Warum wir","nav.tools":"Tools","nav.blog":"Blog","nav.pricing":"Preise","nav.cta":"Kontakt",
   "hero.eyebrow":"AI Automation & Compliance Studio",
-  "hero.h1":'KI, die wirklich <span class="accent">funktioniert.</span><br/>Sicher, messbar, produktiv.',
+  "hero.h1":'KI, die wirklich <span class="accent">funktioniert.</span><br/> Sicher, messbar, produktiv.',
   "hero.sub":"Wir helfen Unternehmen dabei, Künstliche Intelligenz sinnvoll einzusetzen – von der Identifikation der richtigen Use Cases über die technische Umsetzung bis zur rechtssicheren Implementierung nach EU AI Act und DSGVO.",
   "pill.1":"AI-Hype ohne Umsetzung","pill.2":"Technische Komplexität","pill.3":"Rechtliche Unsicherheit",
   "hero.cta1":"30-Minuten-Gespräch buchen","hero.cta2":"Leistungen ansehen","hero.scroll":"Entdecken",
@@ -1042,29 +1063,29 @@ de: {
   "strip.3.title":"AI Governance & Compliance","strip.3.sub":"EU AI Act, DSGVO",
   "strip.4.title":"Cloud-Infrastruktur","strip.4.sub":"AWS, Azure, GCP",
   "problem.eyebrow":"Der Markt heute",
-  "problem.h2":'Drei Probleme,<br/>die <span class="accent">Unternehmen bremsen.</span>',
+  "problem.h2":'Drei Probleme,<br/> die <span class="accent">Unternehmen bremsen.</span>',
   "problem.intro":"Viele Unternehmen wissen, dass KI wichtig ist. Aber zwischen diesem Wissen und einer produktiven Nutzung liegen drei Hindernisse, die sich ohne die richtigen Partner kaum überwinden lassen.",
   "prob.1.title":"AI-Hype ohne konkrete Umsetzung","prob.1.p":"Unternehmen wissen, dass KI wichtig ist – aber nicht, wo sie anfangen sollen und welche Use Cases wirklich Mehrwert bringen. Die meisten Projekte bleiben im Proof-of-Concept stecken.",
   "prob.2.title":"Technische Komplexität","prob.2.p":"KI-Systeme müssen in CRM, Dokumentenmanagement, Cloud und interne Datenbanken integriert werden. Das überfordert interne IT-Teams, die kein spezialisiertes AI-Engineering-Know-how haben.",
   "prob.3.title":"Rechtliche Unsicherheit","prob.3.p":"EU AI Act und DSGVO verunsichern Unternehmen grundlegend: Darf KI eingesetzt werden? Wie werden Unternehmensdaten geschützt? Wer haftet bei Fehlern? Antworten fehlen.",
   "services.eyebrow":"Leistungen",
-  "services.h2":'Eine komplette Lösung.<br/><span class="accent">Aus einer Hand.</span>',
+  "services.h2":'Eine komplette Lösung.<br/> <span class="accent">Aus einer Hand.</span>',
   "services.intro":"Strategie, Umsetzung und Rechtssicherheit – eng verzahnt. Kein Koordinieren zwischen mehreren Dienstleistern, kein Silodenken. Wir decken den gesamten Weg ab.",
-  "s1.num":"01 — AI Opportunity Assessment","s1.h3":"Klarheit, bevor<br/>Code geschrieben wird",
+  "s1.num":"01 — AI Opportunity Assessment","s1.h3":"Klarheit, bevor<br/> Code geschrieben wird",
   "s1.p":"Wir analysieren Ihre Unternehmensprozesse und identifizieren die KI-Use-Cases mit dem größten Hebel. Kein Blindflug, keine überteuerten Experimente – sondern eine konkrete Roadmap.",
   "s.delivers":"Ergebnis","s.examples":"Typische Lösungen","s.includes":"Bestandteile",
   "s1.b1":"Priorisierte AI-Use-Case-Liste","s1.b2":"Risiko- und Nutzenbewertung","s1.b3":"Konkrete Projektroadmap","s1.b4":"Erste Compliance-Einschätzung",
   "s1.t1":"2–3 Tage","s1.t2":"Workshop-Format",
   "s1.link":"Preise & Pakete ansehen →",
-  "s2.num":"02 — AI Automation & Integration","s2.h3":"KI, die in Ihren<br/>Prozessen läuft",
+  "s2.num":"02 — AI Automation & Integration","s2.h3":"KI, die in Ihren<br/> Prozessen läuft",
   "s2.p":"Wir entwickeln AI-Automationen und interne Tools, die direkt in Ihre bestehende Systemlandschaft integriert werden – inkl. Cloud-Infrastruktur auf AWS, Azure oder GCP.",
   "s2.b1":"AI-Wissenssysteme (interne Dokumente, Wikis)","s2.b2":"Support- & Anfragen-Automatisierung","s2.b3":"Sales Automation & CRM-Integration","s2.b4":"Cloud-Infrastruktur & Skalierung",
   "s2.link":"Automatisierungspotenzial berechnen →",
-  "s3.num":"03 — AI Governance & Compliance","s3.h3":"Rechtssicher von<br/>Anfang an",
+  "s3.num":"03 — AI Governance & Compliance","s3.h3":"Rechtssicher von<br/> Anfang an",
   "s3.p":"Gemeinsam mit unserem spezialisierten AI-Rechtsexperten entwickeln wir die rechtliche Grundlage für Ihren KI-Einsatz – praxisnah, verständlich und auf den Punkt.",
   "s3.b1":"AI-Richtlinien & Governance-Framework","s3.b2":"DSGVO-konforme Datenschutzkonzepte","s3.b3":"EU AI Act Compliance-Dokumentation","s3.b4":"Risikobewertung & Haftungsklarheit",
   "s3.link":"EU AI Act Risiko prüfen →",
-  "s4.num":"04 — Wartung & Weiterentwicklung","s4.h3":"Kein Projekt endet<br/>mit dem Launch",
+  "s4.num":"04 — Wartung & Weiterentwicklung","s4.h3":"Kein Projekt endet<br/> mit dem Launch",
   "s4.p":"AI-Systeme müssen kontinuierlich überwacht, optimiert und weiterentwickelt werden. Wir bleiben als langfristiger Partner an Ihrer Seite.",
   "s4.b1":"Monitoring & Performance-Tracking","s4.b2":"Monatliche Optimierungsrunden","s4.b3":"Laufende Compliance-Überprüfung","s4.b4":"Skalierung bei wachsender Nutzung",
   "s4.t1":"Monatliche Betreuung","s4.t2":"Flexibel kündbar",
@@ -1090,14 +1111,14 @@ de: {
   "quote.text":'Unser Ziel ist nicht, AI-Demos zu bauen – sondern <span class="accent">messbaren Nutzen im Unternehmen zu schaffen.</span>',
   "quote.author":"Ventari – AI Automation & Compliance Studio",
   "why.eyebrow":"Warum Ventari",
-  "why.h2":'Was uns von anderen<br/><span class="accent">unterscheidet.</span>',
+  "why.h2":'Was uns von anderen<br/> <span class="accent">unterscheidet.</span>',
   "why.intro":"Es gibt viele KI-Berater. Die meisten können entweder Strategie, Technik oder Recht – selten alle drei. Und noch seltener haben sie diese Kompetenz aus echter Produkterfahrung.",
   "w1.title":"Strategie, Tech und Recht aus einer Hand","w1.p":"Viele Anbieter decken nur einen dieser Bereiche ab. Wir kombinieren alle drei – koordiniert, ohne Reibungsverluste zwischen Dienstleistern.",
   "w2.title":"Kein Consulting ohne Umsetzung","w2.p":"Wir beraten nicht nur – wir bauen. Jede Empfehlung ist von Teams untermauert, die genau diese Systeme schon produktiv betrieben haben.",
   "w3.title":"Rechtssicherheit als Kernkompetenz","w3.p":"EU AI Act und DSGVO sind bei uns keine Checkbox am Ende – sie sind von Anfang an Teil der Architektur.",
   "w4.title":"Fokus auf messbaren Nutzen","w4.p":"Kein KI-Projekt ohne klare Erfolgskennzahlen. Wir definieren vor Projektstart gemeinsam, woran wir gemessen werden – und stehen dazu.",
   "contact.eyebrow":"Kontakt",
-  "contact.h2":'Bereit für KI,<br/><span class="accent">die wirklich liefert?</span>',
+  "contact.h2":'Bereit für KI,<br/> <span class="accent">die wirklich liefert?</span>',
   "contact.desc":"Vereinbaren Sie ein kostenfreies Erstgespräch. In 30 Minuten verstehen wir Ihre aktuelle Situation und zeigen Ihnen, wo KI in Ihrem Unternehmen den größten Hebel hat – unverbindlich und konkret.",
   "contact.location":"Remote in Polen & Deutschland · Workshops vor Ort möglich","contact.response":"Antwort innerhalb von 24 Stunden",
   "form.first":"Vorname","form.last":"Nachname","form.email":"E-Mail-Adresse","form.company":"Unternehmen",
@@ -1112,7 +1133,7 @@ en: {
   "stat.3.num":"24h","stat.3.label":"Response time guaranteed",
   "stat.4.num":"100%","stat.4.label":"EU-compliant – GDPR & AI Act",
   "tech.label":"Technology Stack",
-  "faq.eyebrow":"Frequently Asked","faq.h2":"What decision-makers<br/>want to know.",
+  "faq.eyebrow":"Frequently Asked","faq.h2":"What decision-makers<br/> want to know.",
   "faq.1.q":"What does a project with Ventari cost?",
   "faq.1.a":"We always start with an AI Audit at a transparent fixed price. Larger automation and integration projects are individually scoped – based on complexity, system landscape and timeline. You can find a first overview on the <a href=\"/pricing\" class=\"inline-link\">pricing page</a>.",
   "faq.2.q":"Is our company too small?",
@@ -1128,7 +1149,7 @@ en: {
   "faq.blog":"Read more insights in the blog →",
   "nav.services":"Services","nav.expertise":"Expertise","nav.why":"Why us","nav.tools":"Tools","nav.blog":"Blog","nav.pricing":"Pricing","nav.cta":"Contact",
   "hero.eyebrow":"AI Automation & Compliance Studio",
-  "hero.h1":'AI that actually <span class="accent">works.</span><br/>Safe, measurable, productive.',
+  "hero.h1":'AI that actually <span class="accent">works.</span><br/> Safe, measurable, productive.',
   "hero.sub":"We help companies put artificial intelligence to meaningful use – from identifying the right use cases and technical implementation to legally sound deployment under the EU AI Act and GDPR.",
   "pill.1":"AI hype without execution","pill.2":"Technical complexity","pill.3":"Legal uncertainty",
   "hero.cta1":"Book a 30-minute call","hero.cta2":"Explore services","hero.scroll":"Discover",
@@ -1137,29 +1158,29 @@ en: {
   "strip.3.title":"AI Governance & Compliance","strip.3.sub":"EU AI Act, GDPR",
   "strip.4.title":"Cloud Infrastructure","strip.4.sub":"AWS, Azure, GCP",
   "problem.eyebrow":"The market today",
-  "problem.h2":'Three problems<br/>holding <span class="accent">companies back.</span>',
+  "problem.h2":'Three problems<br/> holding <span class="accent">companies back.</span>',
   "problem.intro":"Most companies know that AI matters. But between that awareness and productive use lie three obstacles that are hard to overcome without the right partners.",
   "prob.1.title":"AI hype without execution","prob.1.p":"Companies know AI is important – but not where to start or which use cases deliver real value. Most projects stall at the proof-of-concept stage.",
   "prob.2.title":"Technical complexity","prob.2.p":"AI systems need to integrate with CRM, document management, cloud and internal databases. Internal IT teams lack the specialised AI engineering expertise to handle this.",
   "prob.3.title":"Legal uncertainty","prob.3.p":"EU AI Act and GDPR leave companies fundamentally uncertain: Can we use AI at all? How do we protect company data? Who is liable for errors?",
   "services.eyebrow":"Services",
-  "services.h2":'One complete solution.<br/><span class="accent">From a single source.</span>',
+  "services.h2":'One complete solution.<br/> <span class="accent">From a single source.</span>',
   "services.intro":"Strategy, implementation and legal certainty – tightly integrated. No coordinating between multiple vendors, no silo thinking. We cover the entire journey.",
-  "s1.num":"01 — AI Opportunity Assessment","s1.h3":"Clarity before<br/>code is written",
+  "s1.num":"01 — AI Opportunity Assessment","s1.h3":"Clarity before<br/> code is written",
   "s1.p":"We analyse your business processes and identify AI use cases with the greatest impact. No guesswork, no overpriced experiments – just a concrete roadmap that enables immediate action.",
   "s.delivers":"Deliverables","s.examples":"Typical solutions","s.includes":"Includes",
   "s1.b1":"Prioritised AI use case list","s1.b2":"Risk and benefit assessment","s1.b3":"Concrete project roadmap","s1.b4":"Initial compliance assessment",
   "s1.t1":"2–3 days","s1.t2":"Workshop format",
   "s1.link":"View pricing & packages →",
-  "s2.num":"02 — AI Automation & Integration","s2.h3":"AI running inside<br/>your processes",
+  "s2.num":"02 — AI Automation & Integration","s2.h3":"AI running inside<br/> your processes",
   "s2.p":"We develop AI automations and internal tools that integrate directly into your existing system landscape – including cloud infrastructure on AWS, Azure or GCP.",
   "s2.b1":"AI knowledge systems (documents, wikis)","s2.b2":"Support & request automation","s2.b3":"Sales automation & CRM integration","s2.b4":"Cloud infrastructure & scaling",
   "s2.link":"Calculate automation potential →",
-  "s3.num":"03 — AI Governance & Compliance","s3.h3":"Legally sound<br/>from day one",
+  "s3.num":"03 — AI Governance & Compliance","s3.h3":"Legally sound<br/> from day one",
   "s3.p":"Together with our specialist AI legal expert, we build the legal foundation for your AI deployment – practical, clear, and to the point.",
   "s3.b1":"AI policies & governance framework","s3.b2":"GDPR-compliant data protection concepts","s3.b3":"EU AI Act compliance documentation","s3.b4":"Risk assessment & liability clarity",
   "s3.link":"Check EU AI Act risk →",
-  "s4.num":"04 — Maintenance & Development","s4.h3":"No project ends<br/>at launch",
+  "s4.num":"04 — Maintenance & Development","s4.h3":"No project ends<br/> at launch",
   "s4.p":"AI systems need continuous monitoring, optimisation and development. We stay by your side as a long-term partner – with clear SLAs and monthly reviews.",
   "s4.b1":"Monitoring & performance tracking","s4.b2":"Monthly optimisation rounds","s4.b3":"Ongoing compliance review","s4.b4":"Scaling as usage grows",
   "s4.t1":"Monthly retainer","s4.t2":"Cancel anytime",
@@ -1169,7 +1190,7 @@ en: {
   "audit.day2.title":"Assessment","audit.day2.p":"Prioritise use cases, weigh risks and benefits",
   "audit.day3.title":"Roadmap","audit.day3.p":"Concrete next steps with effort and ROI estimates",
   "expertise.eyebrow":"Our Expertise",
-  "expertise.h2":'Real experience.<br/><span class="accent">No theory.</span>',
+  "expertise.h2":'Real experience.<br/> <span class="accent">No theory.</span>',
   "team.p1":"Ventari is not a traditional consultancy and not a pure development agency. We are a specialised studio built deliberately differently: with experts who come from practice, not from seminar rooms.",
   "team.p2":"Our core team combines years of experience from the automotive industry, the international technology and startup ecosystem, and academic AI research. We have built AI systems that run in production every day. We have created cloud-native infrastructures processing millions of requests. We have taken products from first idea to scaled operation – in corporations as well as early-stage startups.",
   "team.p3":"Our technical expertise goes far beyond the classic corporate context. Members of our team have worked on future technologies at government level, developed immersive AI systems for global productions with millions of viewers, and built international technology companies as CTOs. From Hollywood productions and defence technology to standalone AI products used worldwide today – we bring a depth of experience that classic consulting simply does not offer.",
@@ -1191,14 +1212,14 @@ en: {
   "quote.text":'Our goal is not to build AI demos – but to create <span class="accent">measurable value inside your business.</span>',
   "quote.author":"Ventari – AI Automation & Compliance Studio",
   "why.eyebrow":"Why Ventari",
-  "why.h2":'What sets us<br/><span class="accent">apart.</span>',
+  "why.h2":'What sets us<br/> <span class="accent">apart.</span>',
   "why.intro":"There are many AI consultants. Most can do either strategy, technology or law – rarely all three. And even fewer have built that expertise from real product experience, not case studies.",
   "w1.title":"Strategy, tech and law from one source","w1.p":"Most providers cover only one of these areas. We combine all three – coordinated, without friction between vendors.",
   "w2.title":"No consulting without delivery","w2.p":"We don't just advise – we build. Every recommendation is backed by teams who have already run exactly these systems in production.",
   "w3.title":"Legal certainty as a core competency","w3.p":"EU AI Act and GDPR are not a checkbox at the end for us – they are part of the architecture from the very beginning.",
   "w4.title":"Focus on measurable outcomes","w4.p":"No AI project without clear success metrics. We define together before the project starts what we will be measured on – and we commit to it.",
   "contact.eyebrow":"Contact",
-  "contact.h2":'Ready for AI<br/><span class="accent">that actually delivers?</span>',
+  "contact.h2":'Ready for AI<br/> <span class="accent">that actually delivers?</span>',
   "contact.desc":"Book a free initial consultation. In 30 minutes we understand your current situation and show you where AI has the greatest leverage in your business – no obligation, no fluff.",
   "contact.location":"Remote in Poland & Germany · On-site workshops available","contact.response":"Response within 24 hours",
   "form.first":"First name","form.last":"Last name","form.email":"Email address","form.company":"Company",
@@ -1213,7 +1234,7 @@ pl: {
   "stat.3.num":"24h","stat.3.label":"Gwarantowany czas odpowiedzi",
   "stat.4.num":"100%","stat.4.label":"Zgodność z UE – GDPR i AI Act",
   "tech.label":"Stos technologiczny",
-  "faq.eyebrow":"Najczęstsze pytania","faq.h2":"Co chcą wiedzieć<br/>decydenci.",
+  "faq.eyebrow":"Najczęstsze pytania","faq.h2":"Co chcą wiedzieć<br/> decydenci.",
   "faq.1.q":"Ile kosztuje projekt z Ventari?",
   "faq.1.a":"Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie – zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na <a href=\"/pricing\" class=\"inline-link\">stronie z cenami</a>.",
   "faq.2.q":"Czy nasza firma jest za mała?",
@@ -1229,7 +1250,7 @@ pl: {
   "faq.blog":"Przeczytaj więcej w blogu →",
   "nav.services":"Usługi","nav.expertise":"Ekspertyza","nav.why":"Dlaczego my","nav.tools":"Narzędzia","nav.blog":"Blog","nav.pricing":"Cennik","nav.cta":"Kontakt",
   "hero.eyebrow":"Studio Automatyzacji AI i Compliance",
-  "hero.h1":'AI, które naprawdę <span class="accent">działa.</span><br/>Bezpiecznie, mierzalnie, produktywnie.',
+  "hero.h1":'AI, które naprawdę <span class="accent">działa.</span><br/> Bezpiecznie, mierzalnie, produktywnie.',
   "hero.sub":"Pomagamy firmom sensownie wykorzystywać sztuczną inteligencję – od znalezienia właściwych use case’ów, przez wdrożenie techniczne, aż po zgodność z EU AI Act i GDPR.",
   "pill.1":"AI-hype bez wdrożenia","pill.2":"Złożoność techniczna","pill.3":"Niepewność prawna",
   "hero.cta1":"Umów 30-minutową rozmowę","hero.cta2":"Zobacz usługi","hero.scroll":"Odkryj",
@@ -1238,29 +1259,29 @@ pl: {
   "strip.3.title":"AI Governance & Compliance","strip.3.sub":"EU AI Act, GDPR",
   "strip.4.title":"Infrastruktura cloud","strip.4.sub":"AWS, Azure, GCP",
   "problem.eyebrow":"Rynek dzisiaj",
-  "problem.h2":'Trzy problemy,<br/>które <span class="accent">spowalniają firmy.</span>',
+  "problem.h2":'Trzy problemy,<br/> które <span class="accent">spowalniają firmy.</span>',
   "problem.intro":"Wiele firm wie, że AI jest ważne. Między tą świadomością a produktywnym wykorzystaniem stoją jednak trzy przeszkody, które trudno pokonać bez właściwego partnera.",
   "prob.1.title":"AI-hype bez konkretnego wdrożenia","prob.1.p":"Firmy wiedzą, że AI jest ważne, ale nie wiedzą, od czego zacząć ani które use case’y naprawdę przyniosą wartość. Większość projektów zatrzymuje się na proof-of-concept.",
   "prob.2.title":"Złożoność techniczna","prob.2.p":"Systemy AI muszą integrować się z CRM, dokumentami, chmurą i wewnętrznymi bazami danych. To przeciąża zespoły IT bez wyspecjalizowanego doświadczenia w AI engineeringu.",
   "prob.3.title":"Niepewność prawna","prob.3.p":"EU AI Act i GDPR budzą podstawowe pytania: czy możemy używać AI? Jak chronimy dane firmowe? Kto odpowiada za błędy? Często brakuje jasnych odpowiedzi.",
   "services.eyebrow":"Usługi",
-  "services.h2":'Kompletne rozwiązanie.<br/><span class="accent">Z jednego źródła.</span>',
+  "services.h2":'Kompletne rozwiązanie.<br/> <span class="accent">Z jednego źródła.</span>',
   "services.intro":"Strategia, wdrożenie i bezpieczeństwo prawne – ściśle połączone. Bez koordynacji wielu dostawców i bez myślenia silosowego. Obejmujemy cały proces.",
-  "s1.num":"01 — AI Opportunity Assessment","s1.h3":"Jasność, zanim<br/>powstanie kod",
+  "s1.num":"01 — AI Opportunity Assessment","s1.h3":"Jasność, zanim<br/> powstanie kod",
   "s1.p":"Analizujemy procesy firmy i identyfikujemy use case’y AI o największym wpływie. Bez zgadywania i drogich eksperymentów – z konkretną roadmapą.",
   "s.delivers":"Rezultat","s.examples":"Typowe rozwiązania","s.includes":"Zakres",
   "s1.b1":"Priorytetowa lista use case’ów AI","s1.b2":"Ocena ryzyka i korzyści","s1.b3":"Konkretna roadmapa projektu","s1.b4":"Wstępna ocena compliance",
   "s1.t1":"2–3 dni","s1.t2":"Format warsztatowy",
   "s1.link":"Zobacz ceny i pakiety →",
-  "s2.num":"02 — Automatyzacja i integracja AI","s2.h3":"AI działające<br/>w Twoich procesach",
+  "s2.num":"02 — Automatyzacja i integracja AI","s2.h3":"AI działające<br/> w Twoich procesach",
   "s2.p":"Budujemy automatyzacje AI i wewnętrzne narzędzia zintegrowane bezpośrednio z istniejącym środowiskiem systemowym – włącznie z infrastrukturą cloud na AWS, Azure lub GCP.",
   "s2.b1":"Systemy wiedzy AI (dokumenty, wiki)","s2.b2":"Automatyzacja supportu i zapytań","s2.b3":"Automatyzacja sprzedaży i integracja CRM","s2.b4":"Infrastruktura cloud i skalowanie",
   "s2.link":"Oblicz potencjał automatyzacji →",
-  "s3.num":"03 — AI Governance & Compliance","s3.h3":"Zgodność prawna<br/>od pierwszego dnia",
+  "s3.num":"03 — AI Governance & Compliance","s3.h3":"Zgodność prawna<br/> od pierwszego dnia",
   "s3.p":"Razem z ekspertem prawnym od AI budujemy podstawy prawne dla wdrożeń AI – praktycznie, jasno i bez zbędnej teorii.",
   "s3.b1":"Polityki AI i governance framework","s3.b2":"Koncepcje ochrony danych zgodne z GDPR","s3.b3":"Dokumentacja zgodności z EU AI Act","s3.b4":"Ocena ryzyka i odpowiedzialności",
   "s3.link":"Sprawdź ryzyko EU AI Act →",
-  "s4.num":"04 — Utrzymanie i rozwój","s4.h3":"Projekt nie kończy się<br/>na launchu",
+  "s4.num":"04 — Utrzymanie i rozwój","s4.h3":"Projekt nie kończy się<br/> na launchu",
   "s4.p":"Systemy AI wymagają ciągłego monitoringu, optymalizacji i rozwoju. Zostajemy po stronie klienta jako długoterminowy partner.",
   "s4.b1":"Monitoring i śledzenie wydajności","s4.b2":"Miesięczne rundy optymalizacji","s4.b3":"Bieżący przegląd compliance","s4.b4":"Skalowanie wraz ze wzrostem użycia",
   "s4.t1":"Miesięczna opieka","s4.t2":"Elastyczne zakończenie",
@@ -1292,14 +1313,14 @@ pl: {
   "quote.text":'Naszym celem nie jest budowanie demo AI – lecz tworzenie <span class="accent">mierzalnej wartości w firmie.</span>',
   "quote.author":"Ventari – Studio Automatyzacji AI i Compliance",
   "why.eyebrow":"Dlaczego Ventari",
-  "why.h2":'Co nas<br/><span class="accent">wyróżnia.</span>',
+  "why.h2":'Co nas<br/> <span class="accent">wyróżnia.</span>',
   "why.intro":"Jest wiele firm doradczych od AI. Większość potrafi robić strategię, technologię albo prawo – rzadko wszystkie trzy naraz. Jeszcze rzadziej ta kompetencja wynika z realnego doświadczenia produktowego.",
   "w1.title":"Strategia, technologia i prawo z jednego źródła","w1.p":"Wielu dostawców pokrywa tylko jeden z tych obszarów. My łączymy wszystkie trzy – koordynowane, bez tarcia między wykonawcami.",
   "w2.title":"Bez doradztwa bez wdrożenia","w2.p":"Nie tylko doradzamy – budujemy. Każda rekomendacja opiera się na doświadczeniu zespołów, które już uruchamiały takie systemy produkcyjnie.",
   "w3.title":"Bezpieczeństwo prawne jako kluczowa kompetencja","w3.p":"EU AI Act i GDPR nie są dla nas checkboxem na końcu. Są częścią architektury od samego początku.",
   "w4.title":"Koncentracja na mierzalnych wynikach","w4.p":"Nie ma projektu AI bez jasnych mierników sukcesu. Przed startem definiujemy wspólnie, według czego będziemy oceniani – i bierzemy za to odpowiedzialność.",
   "contact.eyebrow":"Kontakt",
-  "contact.h2":'Gotowi na AI,<br/><span class="accent">które naprawdę dowozi?</span>',
+  "contact.h2":'Gotowi na AI,<br/> <span class="accent">które naprawdę dowozi?</span>',
   "contact.desc":"Umów bezpłatną rozmowę wstępną. W 30 minut zrozumiemy Twoją sytuację i pokażemy, gdzie AI może dać największą dźwignię w firmie – konkretnie i bez zobowiązań.",
   "contact.location":"Zdalnie w Polsce i Niemczech · Warsztaty u klienta możliwe","contact.response":"Odpowiedź w ciągu 24 godzin",
   "form.first":"Imię","form.last":"Nazwisko","form.email":"Adres e-mail","form.company":"Firma",
@@ -1406,13 +1427,17 @@ document.body.classList.add('js-ready');
 const ham = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 ham.addEventListener('click', () => {
-  ham.classList.toggle('open');
-  mobileMenu.classList.toggle('open');
-  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  const isOpen = mobileMenu.classList.toggle('open');
+  ham.classList.toggle('open', isOpen);
+  ham.setAttribute('aria-expanded', String(isOpen));
+  mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 function closeMobile() {
   ham.classList.remove('open');
   mobileMenu.classList.remove('open');
+  ham.setAttribute('aria-expanded', 'false');
+  mobileMenu.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
 // also update mobile menu lang buttons
@@ -1490,7 +1515,10 @@ document.getElementById('legal-modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') {
+    closeMobile();
+    closeModal();
+  }
 });</script>
 </body>
 </html>
