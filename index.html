@@ -896,8 +896,8 @@
 <footer>
   <a href="/" class="footer-logo">ventari<span>.</span></a>
   <div class="footer-links">
- <button type="button" onclick="openModal('imprint')" style="background:none;border:none;font-size:0.75rem;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#f4f6fb'" onmouseout="this.style.color='var(--muted)'" data-i18n="footer.imprint">Impressum</button>
-<button type="button" onclick="openModal('privacy')" style="background:none;border:none;font-size:0.75rem;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#f4f6fb'" onmouseout="this.style.color='var(--muted)'" data-i18n="footer.privacy">Datenschutz</button>
+    <a href="/impressum" data-i18n="footer.imprint">Impressum</a>
+    <a href="/datenschutz" data-i18n="footer.privacy">Datenschutz</a>
   </div>
   <span class="footer-copy" data-i18n="footer.copy">© 2026 Ventari. Alle Rechte vorbehalten.</span>
 </footer>
@@ -1475,7 +1475,6 @@ document.getElementById('legal-modal').addEventListener('click', function(e) {
 });
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeModal();
-});document.getElementById('link-imprint').addEventListener('click', function(e){ e.preventDefault(); openModal('imprint'); });
-document.getElementById('link-privacy').addEventListener('click', function(e){ e.preventDefault(); openModal('privacy'); });</script>
+});</script>
 </body>
 </html>
