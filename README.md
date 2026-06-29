@@ -42,3 +42,27 @@ Statische Website für [ventari.eu](https://ventari.eu), gehostet auf **Cloudfla
 ## Deployment
 
 Cloudflare Pages deployed automatisch bei jedem Push auf `main`.
+
+## Cloudflare AI-Crawler
+
+Die statische `robots.txt` erlaubt GPTBot, ClaudeBot und Google-Extended. Damit
+Cloudflare keine blockierenden Regeln vor diese Datei setzt, müssen im
+Cloudflare Dashboard unter **Security Settings > Bot traffic** zwei Einstellungen
+deaktiviert sein:
+
+1. **Instruct AI bot traffic with robots.txt**: aus
+2. **Block AI bots**: **Do not block (off)**
+
+Cloudflare kann sonst eigene `Disallow`-Regeln vor die Repository-Datei setzen
+oder AI-Crawler bereits auf Netzwerkebene blockieren.
+
+## Sprach-URLs und hreflang
+
+Die Startseite wechselt DE, EN und PL derzeit clientseitig auf derselben URL.
+Korrektes hreflang für diese drei Varianten benötigt getrennte statische URLs
+wie `/de/`, `/en/` und `/pl/`. Dieser Umbau ist für einen eigenen Durchgang
+vorgesehen, weil dafür drei eigenständig auslieferbare HTML-Versionen und eine
+klare Weiterleitungsstrategie nötig sind.
+
+Bereits getrennte deutsche und englische Seiten, zum Beispiel `/preise` und
+`/pricing`, behalten ihre vorhandenen hreflang-Verknüpfungen.
