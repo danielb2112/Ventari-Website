@@ -404,7 +404,7 @@
     <p class="tool-subtitle">
       10 Fragen. 5 Dimensionen. Ein konkreter Score – wo Ihr Unternehmen bei KI steht und was als nächstes sinnvoll ist.
     </p>
-    <button class="btn-primary" onclick="startTest()">
+    <button type="button" class="btn-primary" onclick="startTest()">
       Test starten
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M3 8h10M9 4l4 4-4 4"/>
@@ -428,13 +428,13 @@
     <div id="question-area"></div>
 
     <div class="btn-row">
-      <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>
+      <button type="button" class="btn-primary" id="btn-next" onclick="nextQ()" disabled>
         Weiter
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M3 8h10M9 4l4 4-4 4"/>
         </svg>
       </button>
-      <button class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Zurück</button>
+      <button type="button" class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Zurück</button>
     </div>
   </div>
 
@@ -475,7 +475,7 @@
             Jetzt 30 Minuten buchen →
           </a>
         </div>
-        <button onclick="document.getElementById('chat-trigger').style.display='none'" style="background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:0;line-height:1;flex-shrink:0;" aria-label="Schließen">✕</button>
+        <button type="button" onclick="document.getElementById('chat-trigger').style.display='none'" style="background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:0;line-height:1;flex-shrink:0;" aria-label="Schließen">✕</button>
       </div>
     </div>
 
@@ -492,7 +492,7 @@
     </div>
 
     <div class="restart-row">
-      <button class="restart-btn" onclick="restart()">Test neu starten</button>
+      <button type="button" class="restart-btn" onclick="restart()">Test neu starten</button>
     </div>
   </div>
 
@@ -710,7 +710,7 @@ function renderQ() {
     <div class="question-text">${q.text}</div>
     <div class="options" id="options-wrap">
       ${q.options.map((o, i) => `
-        <button class="option ${answers[current] === i ? 'selected' : ''}" onclick="selectOption(${i})">
+        <button type="button" class="option ${answers[current] === i ? 'selected' : ''}" onclick="selectOption(${i})">
           <div class="option-dot"></div>
           <div class="option-text">${o.text}</div>
         </button>

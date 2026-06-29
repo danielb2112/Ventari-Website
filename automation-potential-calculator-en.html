@@ -134,11 +134,11 @@
     </div>
     <div class="section-label">Your Processes</div>
     <div id="processes-container"></div>
-    <button class="add-btn" onclick="addProcess()">
+    <button type="button" class="add-btn" onclick="addProcess()">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg>
       Add another process
     </button>
-    <button class="btn-primary" onclick="calculate()">Calculate potential <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <button type="button" class="btn-primary" onclick="calculate()">Calculate potential <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
   </div>
 
   <div id="results">
@@ -157,7 +157,7 @@
       <a href="https://ventari.eu/#contact" class="cta-btn">Book a free consultation <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
       <div class="cta-note">Free · No sales pitch · 45 minutes</div>
     </div>
-    <div class="restart-row"><button class="restart-btn" onclick="restart()">New calculation</button></div>
+    <div class="restart-row"><button type="button" class="restart-btn" onclick="restart()">New calculation</button></div>
   </div>
 </main>
 <script>
@@ -173,7 +173,7 @@ function addProcess(defaults={}){
   const id=processCount;
   const div=document.createElement('div');
   div.className='process-card';div.id=`proc-${id}`;
-  div.innerHTML=`<div class="process-header"><div class="process-name">Process ${id}</div><button class="remove-btn" onclick="removeProcess(${id})" title="Remove">×</button></div><div class="process-inputs"><div class="field" style="grid-column:1/-1"><label>Process name</label><input type="text" value="${defaults.name||''}" placeholder="e.g. Proposal creation" style="background:var(--bg3);border:1px solid var(--border2);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.65rem 0.9rem;width:100%;outline:none;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border2)'" id="name-${id}"/></div><div class="field"><label>Hours/week</label><div class="input-wrap"><input type="number" id="hrs-${id}" value="${defaults.hours||4}" min="0.5" max="200" step="0.5"/><span class="input-unit">h</span></div></div><div class="field"><label>No. of employees</label><div class="input-wrap"><input type="number" id="ma-${id}" value="1" min="1" max="500"/><span class="input-unit">ppl</span></div></div><div class="field"><label>Automatable</label><select id="auto-${id}"><option ${(defaults.auto||'')==='High (70–80%)'?'selected':''}>High (70–80%)</option><option ${(defaults.auto||'')==='Medium (40–60%)'?'selected':''}>Medium (40–60%)</option><option ${(defaults.auto||'')==='Low (20–35%)'?'selected':''}>Low (20–35%)</option></select></div></div>`;
+  div.innerHTML=`<div class="process-header"><div class="process-name">Process ${id}</div><button type="button" class="remove-btn" onclick="removeProcess(${id})" title="Remove">×</button></div><div class="process-inputs"><div class="field" style="grid-column:1/-1"><label>Process name</label><input type="text" value="${defaults.name||''}" placeholder="e.g. Proposal creation" style="background:var(--bg3);border:1px solid var(--border2);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.65rem 0.9rem;width:100%;outline:none;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border2)'" id="name-${id}"/></div><div class="field"><label>Hours/week</label><div class="input-wrap"><input type="number" id="hrs-${id}" value="${defaults.hours||4}" min="0.5" max="200" step="0.5"/><span class="input-unit">h</span></div></div><div class="field"><label>No. of employees</label><div class="input-wrap"><input type="number" id="ma-${id}" value="1" min="1" max="500"/><span class="input-unit">ppl</span></div></div><div class="field"><label>Automatable</label><select id="auto-${id}"><option ${(defaults.auto||'')==='High (70–80%)'?'selected':''}>High (70–80%)</option><option ${(defaults.auto||'')==='Medium (40–60%)'?'selected':''}>Medium (40–60%)</option><option ${(defaults.auto||'')==='Low (20–35%)'?'selected':''}>Low (20–35%)</option></select></div></div>`;
   document.getElementById('processes-container').appendChild(div);
 }
 function removeProcess(id){const el=document.getElementById(`proc-${id}`);if(el)el.remove()}

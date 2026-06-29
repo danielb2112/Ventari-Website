@@ -132,7 +132,7 @@
       <span class="legal-note-icon">⚠</span>
       <span>This tool provides a structured initial assessment but does not replace legal advice. For binding compliance evaluations, we recommend professional legal support.</span>
     </div>
-    <button class="btn-primary" onclick="startChecker()">Start checker <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <button type="button" class="btn-primary" onclick="startChecker()">Start checker <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
   </div>
 
   <div id="quiz-screen" style="display:none">
@@ -143,8 +143,8 @@
     <div class="step-info" id="step-info"></div>
     <div id="question-area"></div>
     <div class="btn-row">
-      <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-      <button class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Back</button>
+      <button type="button" class="btn-primary" id="btn-next" onclick="nextQ()" disabled>Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+      <button type="button" class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Back</button>
     </div>
   </div>
 
@@ -173,7 +173,7 @@
       <a href="https://ventari.eu/#contact" class="cta-btn">Book a free consultation <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
       <div class="cta-note">Free · No sales pitch · 45 minutes</div>
     </div>
-    <div class="restart-row"><button class="restart-btn" onclick="restart()">Restart checker</button></div>
+    <div class="restart-row"><button type="button" class="restart-btn" onclick="restart()">Restart checker</button></div>
   </div>
 </main>
 <script>
@@ -305,7 +305,7 @@ function renderQ(){
   btn.disabled=answers[current]===null;
   btn.innerHTML=isLast?'Show results <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>':'Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
   const area=document.getElementById('question-area');
-  area.innerHTML=`<div class="question-card"><div class="question-text">${q.text}</div>${q.hint?`<div class="question-hint">${q.hint}</div>`:''}<div class="options">${q.options.map((o,i)=>`<button class="option ${answers[current]===i?'selected':''}" onclick="selectOption(${i})"><div class="option-dot"></div><div><div class="option-label">${o.label}</div><div class="option-desc">${o.desc}</div></div></button>`).join('')}</div></div>`;
+  area.innerHTML=`<div class="question-card"><div class="question-text">${q.text}</div>${q.hint?`<div class="question-hint">${q.hint}</div>`:''}<div class="options">${q.options.map((o,i)=>`<button type="button" class="option ${answers[current]===i?'selected':''}" onclick="selectOption(${i})"><div class="option-dot"></div><div><div class="option-label">${o.label}</div><div class="option-desc">${o.desc}</div></div></button>`).join('')}</div></div>`;
 }
 function selectOption(i){answers[current]=i;document.querySelectorAll('.option').forEach((el,idx)=>el.classList.toggle('selected',idx===i));document.getElementById('btn-next').disabled=false}
 function nextQ(){if(answers[current]===null)return;if(current<QUESTIONS.length-1){current++;renderQ();}else showResult()}

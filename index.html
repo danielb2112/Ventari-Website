@@ -508,11 +508,11 @@
       <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Kontakt</a></li>
     </ul>
     <div class="lang-switcher">
-      <button class="lang-btn active" data-lang="de">DE</button>
-      <button class="lang-btn" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="pl">PL</button>
+      <button type="button" class="lang-btn active" data-lang="de">DE</button>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-lang="pl">PL</button>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button type="button" class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -526,9 +526,9 @@
   <a href="/preise" data-i18n="nav.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing" onclick="closeMobile()">Preise</a>
   <a href="#contact" class="m-cta" data-i18n="nav.cta" onclick="closeMobile()">Kontakt</a>
   <div class="lang-switcher" style="margin-top:1rem">
-    <button class="lang-btn active" data-lang="de" onclick="closeMobile()">DE</button>
-    <button class="lang-btn" data-lang="en" onclick="closeMobile()">EN</button>
-    <button class="lang-btn" data-lang="pl" onclick="closeMobile()">PL</button>
+    <button type="button" class="lang-btn active" data-lang="de" onclick="closeMobile()">DE</button>
+    <button type="button" class="lang-btn" data-lang="en" onclick="closeMobile()">EN</button>
+    <button type="button" class="lang-btn" data-lang="pl" onclick="closeMobile()">PL</button>
   </div>
 </div>
 
@@ -887,7 +887,7 @@
         <option data-i18n="form.opt4">Allgemeine Anfrage</option>
       </select>
       <textarea data-i18n-placeholder="form.message" placeholder="Was beschäftigt Sie gerade? Kurze Skizze genügt …"></textarea>
-      <button class="form-submit" data-i18n="form.submit">Gespräch buchen →</button>
+      <button type="submit" class="form-submit" data-i18n="form.submit">Gespräch buchen →</button>
     </div>
   </div>
 </section>
@@ -896,8 +896,8 @@
 <footer>
   <a href="#" class="footer-logo">ventari<span>.</span></a>
   <div class="footer-links">
- <button onclick="openModal('imprint')" style="background:none;border:none;font-size:0.75rem;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#f4f6fb'" onmouseout="this.style.color='var(--muted)'" data-i18n="footer.imprint">Impressum</button>
-<button onclick="openModal('privacy')" style="background:none;border:none;font-size:0.75rem;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#f4f6fb'" onmouseout="this.style.color='var(--muted)'" data-i18n="footer.privacy">Datenschutz</button>
+ <button type="button" onclick="openModal('imprint')" style="background:none;border:none;font-size:0.75rem;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#f4f6fb'" onmouseout="this.style.color='var(--muted)'" data-i18n="footer.imprint">Impressum</button>
+<button type="button" onclick="openModal('privacy')" style="background:none;border:none;font-size:0.75rem;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#f4f6fb'" onmouseout="this.style.color='var(--muted)'" data-i18n="footer.privacy">Datenschutz</button>
   </div>
   <span class="footer-copy" data-i18n="footer.copy">© 2025 Ventari. Alle Rechte vorbehalten.</span>
 </footer>
@@ -905,7 +905,7 @@
 <!-- MODAL OVERLAY -->
 <div id="legal-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(7,8,15,0.92);backdrop-filter:blur(8px);overflow-y:auto;padding:2rem 1rem;">
   <div style="max-width:720px;margin:2rem auto;background:#0c0e18;border:1px solid rgba(74,140,255,0.15);border-radius:12px;padding:2.5rem;position:relative;">
-    <button onclick="closeModal()" style="position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:#8b93b3;font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
+    <button type="button" onclick="closeModal()" style="position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:#8b93b3;font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
     <div id="modal-content"></div>
   </div>
 </div>

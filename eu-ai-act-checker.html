@@ -353,7 +353,7 @@
       <span class="legal-note-icon">⚠</span>
       <span>Dieses Tool liefert eine strukturierte Ersteinschätzung, ersetzt jedoch keine Rechtsberatung. Für verbindliche Compliance-Bewertungen empfehlen wir juristische Unterstützung.</span>
     </div>
-    <button class="btn-primary" onclick="startChecker()">
+    <button type="button" class="btn-primary" onclick="startChecker()">
       Checker starten
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </button>
@@ -375,11 +375,11 @@
     <div id="question-area"></div>
 
     <div class="btn-row">
-      <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>
+      <button type="button" class="btn-primary" id="btn-next" onclick="nextQ()" disabled>
         Weiter
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </button>
-      <button class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Zurück</button>
+      <button type="button" class="btn-secondary" id="btn-back" onclick="prevQ()" style="display:none">Zurück</button>
     </div>
   </div>
 
@@ -418,7 +418,7 @@
     </div>
 
     <div class="restart-row">
-      <button class="restart-btn" onclick="restart()">Checker neu starten</button>
+      <button type="button" class="restart-btn" onclick="restart()">Checker neu starten</button>
     </div>
   </div>
 
@@ -665,7 +665,7 @@ function renderQ() {
     ${q.hint ? `<div class="question-hint">${q.hint}</div>` : ''}
     <div class="options">
       ${q.options.map((o, i) => `
-        <button class="option ${answers[current] === i ? 'selected' : ''}" onclick="selectOption(${i})">
+        <button type="button" class="option ${answers[current] === i ? 'selected' : ''}" onclick="selectOption(${i})">
           <div class="option-dot"></div>
           <div>
             <div class="option-label">${o.label}</div>
