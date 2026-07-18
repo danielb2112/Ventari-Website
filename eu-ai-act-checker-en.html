@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>try{localStorage.setItem("ventari_lang","en");}catch(e){}</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EU AI Act Checker – Ventari</title>
@@ -30,7 +31,7 @@
 .skip-link{position:fixed;top:.75rem;left:.75rem;z-index:1000;transform:translateY(-160%);background:#f4f6fb;color:#07080f;padding:.7rem 1rem;border-radius:4px;text-decoration:none;}
 .skip-link:focus{transform:translateY(0);}
 
-    :root{--bg:#07080f;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--red:#ff5c5c;--white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
+    :root{--bg:#07080f;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--red:#ff5c5c;--white:#f4f6fb;--muted:#727b9c;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
@@ -261,7 +262,7 @@ const RISK_LEVELS={
     timeline:[
       {date:"Feb 2025",text:"<strong>AI literacy obligation (Art. 4) applies.</strong> Document training concept.",color:"#ff5c5c"},
       {date:"Aug 2026",text:"<strong>High-risk obligations fully applicable.</strong> Risk management, documentation, conformity.",color:"#f5a623"},
-      {date:"Possibly Dec 2027",text:"Potential extension under EU Omnibus proposal – not yet adopted.",color:"#616884"}
+      {date:"Possibly Dec 2027",text:"Potential extension under EU Omnibus proposal – not yet adopted.",color:"#727b9c"}
     ],
     steps:["<strong>Now:</strong> Create AI inventory – record all systems in use.","<strong>Q2 2025:</strong> Risk classification per system (high-risk confirmed?).","<strong>Q3–Q4 2025:</strong> Build risk management framework and governance structure.","<strong>2026:</strong> Complete technical documentation and conformity assessment.","<strong>In parallel:</strong> Introduce AI literacy programme for employees."]
   },

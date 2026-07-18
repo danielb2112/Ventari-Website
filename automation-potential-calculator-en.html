@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>try{localStorage.setItem("ventari_lang","en");}catch(e){}</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Automation Potential Calculator – Ventari</title>
@@ -31,7 +32,7 @@
 .skip-link{position:fixed;top:.75rem;left:.75rem;z-index:1000;transform:translateY(-160%);background:#f4f6fb;color:#07080f;padding:.7rem 1rem;border-radius:4px;text-decoration:none;}
 .skip-link:focus{transform:translateY(0);}
 
-    :root{--bg:#07080f;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
+    :root{--bg:#07080f;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--white:#f4f6fb;--muted:#727b9c;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
@@ -166,11 +167,6 @@
 </main>
 <script>
 const AUTO_RATES={'High (70–80%)':0.75,'Medium (40–60%)':0.5,'Low (20–35%)':0.275};
-const DEFAULTS=[
-  {name:'Incoming mail & email processing',hours:8,auto:'High (70–80%)'},
-  {name:'Reporting & controlling',hours:5,auto:'Medium (40–60%)'},
-  {name:'Proposal creation',hours:6,auto:'Medium (40–60%)'},
-];
 let processCount=0;
 function addProcess(defaults={}){
   processCount++;
@@ -188,7 +184,8 @@ function calculate(){
   const procs=[];
   document.querySelectorAll('[id^="proc-"]').forEach(el=>{
     const id=el.id.replace('proc-','');
-    const name=document.getElementById(`name-${id}`)?.value||`Process ${id}`;
+    const name=(document.getElementById(`name-${id}`)?.value||'').trim();
+    if(!name)return;
     const hrs=parseFloat(document.getElementById(`hrs-${id}`)?.value)||0;
     const ma=parseInt(document.getElementById(`ma-${id}`)?.value)||1;
     const autoKey=document.getElementById(`auto-${id}`)?.value||'Medium (40–60%)';
@@ -214,7 +211,8 @@ function calculate(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function restart(){document.getElementById('results').style.display='none';document.getElementById('form-screen').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
-DEFAULTS.forEach(d=>addProcess(d));
+// Start with a single empty row so examples are not counted as user input.
+addProcess();
 </script>
 </body>
 </html>

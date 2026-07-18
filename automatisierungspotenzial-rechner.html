@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <script>try{if(localStorage.getItem("ventari_lang")==="en")window.location.replace("https://ventari.eu/automation-potential-calculator-en");}catch(e){}</script>
+  <script>try{localStorage.setItem("ventari_lang","de");}catch(e){}</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Automatisierungspotenzial-Rechner – Ventari</title>
@@ -36,7 +36,7 @@
       --bg:#07080f;--bg2:#0c0e18;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;
       --blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);
       --cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;
-      --white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;
+      --white:#f4f6fb;--muted:#727b9c;--muted2:#8b93b3;
       --border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -232,12 +232,6 @@
 <script>
 const AUTO_RATES = { 'Hoch (70–80%)': 0.75, 'Mittel (40–60%)': 0.5, 'Niedrig (20–35%)': 0.275 };
 
-const DEFAULTS = [
-  { name: 'Eingangspost & E-Mail-Verarbeitung', stunden: 8, auto: 'Hoch (70–80%)' },
-  { name: 'Reporting & Controlling', stunden: 5, auto: 'Mittel (40–60%)' },
-  { name: 'Angebotserstellung', stunden: 6, auto: 'Mittel (40–60%)' },
-];
-
 let processCount = 0;
 
 function addProcess(defaults={}) {
@@ -296,7 +290,8 @@ function calculate() {
   const procs = [];
   document.querySelectorAll('[id^="proc-"]').forEach(el => {
     const id = el.id.replace('proc-','');
-    const name = document.getElementById(`name-${id}`)?.value || `Prozess ${id}`;
+    const name = (document.getElementById(`name-${id}`)?.value || '').trim();
+    if (!name) return;
     const hrs = parseFloat(document.getElementById(`hrs-${id}`)?.value) || 0;
     const ma = parseInt(document.getElementById(`ma-${id}`)?.value) || 1;
     const autoKey = document.getElementById(`auto-${id}`)?.value || 'Mittel (40–60%)';
@@ -399,8 +394,8 @@ function restart() {
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// Init with defaults
-DEFAULTS.forEach(d => addProcess(d));
+// Start with a single empty row so examples are not counted as user input.
+addProcess();
 </script>
 </body>
 </html>

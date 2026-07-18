@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <script>try{if(localStorage.getItem("ventari_lang")==="en")window.location.replace("https://ventari.eu/ai-project-cost-estimator-en");}catch(e){}</script>
+  <script>try{localStorage.setItem("ventari_lang","de");}catch(e){}</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KI-Projektkosten-Schätzer – Ventari</title>
@@ -32,7 +32,7 @@
 .skip-link{position:fixed;top:.75rem;left:.75rem;z-index:1000;transform:translateY(-160%);background:#f4f6fb;color:#07080f;padding:.7rem 1rem;border-radius:4px;text-decoration:none;}
 .skip-link:focus{transform:translateY(0);}
 
-    :root{--bg:#07080f;--bg2:#0c0e18;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--white:#f4f6fb;--muted:#616884;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
+    :root{--bg:#07080f;--bg2:#0c0e18;--bg3:#111320;--surface:#161828;--surface2:#1c1f35;--blue:#4a8cff;--blue-dim:#2d5cb8;--blueglow:rgba(74,140,255,0.12);--cyan:#5dd8e8;--green:#4ecb71;--amber:#f5a623;--white:#f4f6fb;--muted:#727b9c;--muted2:#8b93b3;--border:rgba(74,140,255,0.14);--border2:rgba(255,255,255,0.06)}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden}
@@ -66,7 +66,7 @@
     .check-item.checked{border-color:var(--blue);background:rgba(74,140,255,0.1)}
     .check-box{width:16px;height:16px;min-width:16px;border-radius:4px;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;transition:all 0.2s}
     .check-item.checked .check-box{border-color:var(--blue);background:var(--blue)}
-    .check-box-tick{display:none;color:var(--bg);font-size:0.65rem;font-weight:900}
+    .check-box-tick{display:none;color:var(--bg);font-size:0.65rem;font-weight:700}
     .check-item.checked .check-box-tick{display:block}
     .check-label{font-size:0.83rem;color:var(--muted2);transition:color 0.2s}
     .check-item.checked .check-label,.check-item:hover .check-label{color:var(--white)}
