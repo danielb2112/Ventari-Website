@@ -5,12 +5,15 @@ Statische Website für [ventari.eu](https://ventari.eu), gehostet auf **Cloudfla
 ## Struktur
 
 ```
-/                          → Homepage (DE/EN bilingual)
+/                          → Homepage (DE)
+/en/                       → Homepage (EN)
+/pl/                       → Homepage (PL)
 /preise.html               → Preisseite (DE)
 /pricing.html              → Pricing page (EN)
 /sitemap.xml
 /robots.txt
 /worker.js                 → Cloudflare Worker (Kontaktformular via Resend)
+/wrangler.jsonc            → Worker-Konfiguration
 
 /tools/
   index.html               → Tools-Übersicht
@@ -33,8 +36,8 @@ Statische Website für [ventari.eu](https://ventari.eu), gehostet auf **Cloudfla
 
 ## Setup vor dem Launch
 
-1. **Resend API Key** neu generieren → in `worker.js` eintragen
-2. **Cloudflare Worker** deployen → Worker-URL in `index.html` bei `YOUR_SUBDOMAIN` eintragen
+1. **Resend API Key** als Cloudflare Worker Secret `RESEND_API_KEY` setzen
+2. **Cloudflare Worker** deployen → Worker-URL in `index.html` prüfen
 3. **Resend Domain** `ventari.eu` verifizieren (SPF/DKIM)
 4. Dieses Repo als **Cloudflare Pages** Projekt verbinden
 5. Custom Domain `ventari.eu` in Cloudflare Pages eintragen
@@ -42,6 +45,20 @@ Statische Website für [ventari.eu](https://ventari.eu), gehostet auf **Cloudfla
 ## Deployment
 
 Cloudflare Pages deployed automatisch bei jedem Push auf `main`.
+
+Der Kontaktformular-Worker ist eine separate Cloudflare-Worker-Laufzeit. Code-
+Änderungen an `worker.js` gehen nicht automatisch über Cloudflare Pages live.
+Deploy:
+
+```
+npx wrangler deploy
+```
+
+Vor dem ersten Deploy:
+
+```
+npx wrangler secret put RESEND_API_KEY
+```
 
 ## Cloudflare AI-Crawler
 
@@ -58,11 +75,12 @@ oder AI-Crawler bereits auf Netzwerkebene blockieren.
 
 ## Sprach-URLs und hreflang
 
-Die Startseite wechselt DE, EN und PL derzeit clientseitig auf derselben URL.
-Korrektes hreflang für diese drei Varianten benötigt getrennte statische URLs
-wie `/de/`, `/en/` und `/pl/`. Dieser Umbau ist für einen eigenen Durchgang
-vorgesehen, weil dafür drei eigenständig auslieferbare HTML-Versionen und eine
-klare Weiterleitungsstrategie nötig sind.
+Die Startseite wird als drei statische Sprachvarianten ausgeliefert: `/`,
+`/en/` und `/pl/`. Die Dateien werden aus `index.html` erzeugt:
+
+```
+node scripts/build-home-locales.mjs
+```
 
 Bereits getrennte deutsche und englische Seiten, zum Beispiel `/preise` und
 `/pricing`, behalten ihre vorhandenen hreflang-Verknüpfungen.

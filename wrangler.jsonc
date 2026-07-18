@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/wrangler@4/config-schema.json",
+  "name": "ventari-worker",
+  "main": "worker.js",
+  "compatibility_date": "2026-03-15",
+  "observability": {
+    "enabled": true
+  }
+}
