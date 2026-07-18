@@ -1086,7 +1086,7 @@
 <footer>
   <a href="/" class="footer-logo">ventari<span>.</span></a>
   <div class="footer-links">
-    <a href="/impressum" data-i18n="footer.imprint">Nota prawna</a>
+    <a href="/impressum" data-i18n="footer.imprint" onclick="openModal('imprint'); return false;">Nota prawna</a>
     <a href="/datenschutz" data-i18n="footer.privacy">Prywatność</a>
   </div>
   <span class="footer-copy" data-i18n="footer.copy">© 2026 Ventari. Wszelkie prawa zastrzeżone.</span>
@@ -1107,9 +1107,9 @@
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Verantwortlich</h3>
   <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran<br> Jasionka 33<br> 28-300 Jędrzejów<br> Polen</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Kontakt</h3>
-  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">E-Mail: hello@ventari.eu</p>
-  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Unternehmensform</h3>
-  <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Ventari ist ein Einzelunternehmen.</p>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">E-Mail: hello@ventari.eu<br>Telefon: <a href="tel:+4971727539490" style="color:#4a8cff;">+49 7172 7539490</a></p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Anbieter</h3>
+  <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Anbieter dieser Website ist Daniel Baran. Steuer- und Registrierungsangaben werden ausgewiesen, sobald sie vorhanden und rechtlich erforderlich sind.</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Inhaltlich verantwortlich</h3>
   <p style="color:#8b93b3;line-height:1.8;font-size:0.9rem;">Daniel Baran, Anschrift wie oben. Die vollständige Fassung finden Sie unter <a href="/impressum" style="color:#4a8cff;">/impressum</a>.</p>
 </template>
@@ -1120,9 +1120,9 @@
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Responsible</h3>
   <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran<br> Jasionka 33<br> 28-300 Jędrzejów<br> Poland</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Contact</h3>
-  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Email: hello@ventari.eu</p>
-  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Business form</h3>
-  <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Ventari is a sole proprietorship.</p>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Email: hello@ventari.eu<br>Phone Poland: <a href="tel:+48780680329" style="color:#4a8cff;">+48 780 680 329</a><br>Phone Germany: <a href="tel:+4971727539490" style="color:#4a8cff;">+49 7172 7539490</a></p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Provider</h3>
+  <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">The provider of this website is Daniel Baran. Tax and registration details will be listed once available and legally required.</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Responsible for content</h3>
   <p style="color:#8b93b3;line-height:1.8;font-size:0.9rem;">Daniel Baran, address as above. The full legal notice is available at <a href="/impressum" style="color:#4a8cff;">/impressum</a>.</p>
 </template>
@@ -1133,9 +1133,9 @@
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Odpowiedzialny</h3>
   <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">Daniel Baran<br> Jasionka 33<br> 28-300 Jędrzejów<br> Polska</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Kontakt</h3>
-  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">E-mail: hello@ventari.eu</p>
-  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Forma działalności</h3>
-  <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Ventari jest jednoosobową działalnością gospodarczą.</p>
+  <p style="color:#f4f6fb;margin-bottom:1.5rem;line-height:1.8;">E-mail: hello@ventari.eu<br>Telefon: <a href="tel:+48780680329" style="color:#4a8cff;">+48 780 680 329</a></p>
+  <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Dostawca</h3>
+  <p style="color:#8b93b3;margin-bottom:1.5rem;line-height:1.8;font-size:0.9rem;">Dostawcą tej strony internetowej jest Daniel Baran. Dane podatkowe i rejestrowe zostaną podane, gdy będą dostępne i wymagane prawnie.</p>
   <h3 style="color:#4a8cff;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Odpowiedzialny za treść</h3>
   <p style="color:#8b93b3;line-height:1.8;font-size:0.9rem;">Daniel Baran, adres jak wyżej. Pełna nota prawna jest dostępna pod adresem <a href="/impressum" style="color:#4a8cff;">/impressum</a>.</p>
 </template>
