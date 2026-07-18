@@ -143,9 +143,12 @@
 
     /* HERO */
     #hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; padding: 8rem 4rem 5rem;
-      position: relative; z-index: 2;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex; flex-direction: column;
+      justify-content: flex-start;
+      padding: calc(72px + clamp(2rem, 9svh, 5rem)) 4rem 5rem;
+      position: relative; z-index: 2; overflow: visible;
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 0.7rem;
@@ -422,6 +425,19 @@
       cursor: pointer; width: 100%; margin-top: 0.3rem; transition: all 0.25s ease;
     }
     .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+    .form-privacy {
+      color: var(--muted2);
+      font-size: 0.78rem;
+      font-weight: 300;
+      line-height: 1.65;
+      margin-top: 0.1rem;
+    }
+    .form-privacy a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(74,140,255,0.35);
+    }
+    .form-privacy a:hover { color: var(--white); border-color: var(--blue); }
     .form-status {
       min-height: 1.4rem;
       color: var(--muted2);
@@ -515,6 +531,19 @@
       h1 { font-size: clamp(2.8rem, 8vw, 5.4rem); }
       section, .quote-section, footer { padding-left: 3rem; padding-right: 3rem; }
       .problem-layout, .why-layout, .contact-layout { gap: 4rem; }
+    }
+
+    @media (max-height: 860px) and (min-width: 961px) {
+      #hero {
+        min-height: auto;
+        padding-top: calc(72px + 2.25rem);
+        padding-bottom: 3.5rem;
+      }
+      .hero-eyebrow { margin-bottom: 1.3rem; }
+      .hero-sub { margin-top: 1.5rem; line-height: 1.7; }
+      .hero-problems { margin-top: 1.4rem; }
+      .hero-actions { margin-top: 1.8rem; }
+      .hero-scroll { position: static; margin-top: 2.25rem; }
     }
 
     @media (max-width: 960px) {
@@ -712,8 +741,8 @@
     <span class="stat-label" data-i18n="stat.3.label">Response time guaranteed</span>
   </div>
   <div class="stat-item reveal reveal-delay-3">
-    <span class="stat-num" data-i18n="stat.4.num">100%</span>
-    <span class="stat-label" data-i18n="stat.4.label">EU-compliant – GDPR & AI Act</span>
+    <span class="stat-num" data-i18n="stat.4.num">EU</span>
+    <span class="stat-label" data-i18n="stat.4.label">GDPR & AI Act aligned</span>
   </div>
 </div>
 
@@ -806,7 +835,7 @@
           <div class="service-bullet" data-i18n="s1.b4">Initial compliance assessment</div>
         </div>
       </div>
-      <div class="service-tags"><span class="tag" data-i18n="s1.t1">2–3 days</span><span class="tag" data-i18n="s1.t2">Workshop format</span><span class="tag">Festpreis</span></div>
+      <div class="service-tags"><span class="tag" data-i18n="s1.t1">2–3 days</span><span class="tag" data-i18n="s1.t2">Workshop format</span><span class="tag" data-i18n="s1.t3">Fixed price</span></div>
       <a href="/pricing" class="context-link" data-i18n="s1.link" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">View pricing & packages →</a>
     </div>
     <!-- S2 -->
@@ -899,7 +928,7 @@
     <div class="team-text">
       <p class="team-para reveal" data-i18n="team.p1">Ventari is not a traditional consultancy and not a pure development agency. We are a specialised studio built deliberately differently: with experts who come from practice, not from seminar rooms.</p>
       <p class="team-para reveal" data-i18n="team.p2">Our core team combines years of experience from the automotive industry, the international technology and startup ecosystem, and academic AI research. We have built AI systems that run in production every day. We have created cloud-native infrastructures processing millions of requests. We have taken products from first idea to scaled operation – in corporations as well as early-stage startups.</p>
-      <p class="team-para reveal" data-i18n="team.p3">Our technical expertise goes far beyond the classic corporate context. Members of our team have worked on future technologies at government level, developed immersive AI systems for global productions with millions of viewers, and built international technology companies as CTOs. From Hollywood productions and defence technology to standalone AI products used worldwide today – we bring a depth of experience that classic consulting simply does not offer.</p>
+      <p class="team-para reveal" data-i18n="team.p3">Our technical expertise goes beyond classic corporate IT. Members of our network have worked on regulated technology projects, immersive media applications and international product platforms. What matters to us is not a famous name in the background, but the ability to bring robust systems into real business processes.</p>
       <p class="team-para reveal" data-i18n="team.p4">Beyond that, we have a broad international network of highly specialised experts from technology, law, data and engineering. This allows us to bring exactly the right people into each project – not generalists, but specialists with deep industry knowledge, precisely matched to your challenge.</p>
       <p class="team-para reveal" data-i18n="team.p5">Our legal expert is one of the few specialists in the German-speaking market focused exclusively on AI regulation – with the academic depth of doctoral research and the pragmatic view of a practitioner. No compliance surprises at the end of a project: legal certainty is part of the architecture.</p>
       <p class="team-para team-closing reveal" data-i18n="team.p6">We work internationally, think entrepreneurially and deliver results that can be measured.</p>
@@ -912,13 +941,13 @@
       </div>
       <div class="team-pillar">
         <div class="team-pillar-line"></div>
-        <strong data-i18n="tp.2.title">Defence technology</strong>
-        <span data-i18n="tp.2.sub">Government level & future technologies</span>
+        <strong data-i18n="tp.2.title">Regulated technology projects</strong>
+        <span data-i18n="tp.2.sub">Sensitive industries & future technologies</span>
       </div>
       <div class="team-pillar">
         <div class="team-pillar-line"></div>
-        <strong data-i18n="tp.3.title">Hollywood & immersive tech</strong>
-        <span data-i18n="tp.3.sub">Global productions, VR, AI systems</span>
+        <strong data-i18n="tp.3.title">Immersive tech & media</strong>
+        <span data-i18n="tp.3.sub">VR, AI systems, international production experience</span>
       </div>
       <div class="team-pillar">
         <div class="team-pillar-line"></div>
@@ -1045,6 +1074,7 @@
       </select>
       <label class="sr-only" for="contact-message" data-i18n="form.message">What's on your mind? A brief sketch is enough …</label>
       <textarea id="contact-message" name="message" required data-i18n-placeholder="form.message" placeholder="What's on your mind? A brief sketch is enough …"></textarea>
+      <p class="form-privacy" data-i18n="form.privacy">When you submit the form, we process your details to handle your enquiry. Details: <a href="/datenschutz">privacy policy</a>.</p>
       <button type="submit" class="form-submit" data-i18n="form.submit">Send enquiry →</button>
       <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
     </form>
@@ -1166,7 +1196,7 @@ de: {
     "stat.1.num":"3","stat.1.label":"Kerndisziplinen unter einem Dach",
   "stat.2.num":"4","stat.2.label":"Branchen-Hintergründe im Kernteam",
   "stat.3.num":"24h","stat.3.label":"Reaktionszeit garantiert",
-  "stat.4.num":"100%","stat.4.label":"EU-konform – DSGVO & AI Act",
+  "stat.4.num":"EU","stat.4.label":"DSGVO- & AI-Act-orientiert",
   "tech.label":"Technologie-Stack",
   "faq.eyebrow":"Häufige Fragen","faq.h2":"Was Entscheider<br/> wissen wollen.",
   "faq.1.q":"Was kostet ein Projekt bei Ventari?",
@@ -1205,7 +1235,7 @@ de: {
   "s1.p":"Wir analysieren Ihre Unternehmensprozesse und identifizieren die KI-Use-Cases mit dem größten Hebel. Kein Blindflug, keine überteuerten Experimente – sondern eine konkrete Roadmap.",
   "s.delivers":"Ergebnis","s.examples":"Typische Lösungen","s.includes":"Bestandteile",
   "s1.b1":"Priorisierte AI-Use-Case-Liste","s1.b2":"Risiko- und Nutzenbewertung","s1.b3":"Konkrete Projektroadmap","s1.b4":"Erste Compliance-Einschätzung",
-  "s1.t1":"2–3 Tage","s1.t2":"Workshop-Format",
+  "s1.t1":"2–3 Tage","s1.t2":"Workshop-Format","s1.t3":"Festpreis",
   "s1.link":"Preise & Pakete ansehen →",
   "s2.num":"02 — AI Automation & Integration","s2.h3":"KI, die in Ihren<br/> Prozessen läuft",
   "s2.p":"Wir entwickeln AI-Automationen und interne Tools, die direkt in Ihre bestehende Systemlandschaft integriert werden – inkl. Cloud-Infrastruktur auf AWS, Azure oder GCP.",
@@ -1228,13 +1258,13 @@ de: {
   "expertise.h2":"Wir bringen zusammen, was KI-Projekte wirklich brauchen.",
   "team.p1":"Ventari ist kein klassisches Beratungshaus und keine reine Entwicklungsagentur. Wir sind ein spezialisiertes Studio, das bewusst anders aufgestellt ist: mit Experten, die aus der Praxis kommen, nicht aus dem Seminarraum.",
   "team.p2":"Unser Kernteam vereint jahrelange Erfahrung aus der Automobilindustrie, dem internationalen Technologie- und Startup-Ökosystem sowie der akademischen KI-Forschung. Wir haben KI-Systeme entwickelt, die täglich im Produktivbetrieb laufen. Wir haben cloud-native Infrastrukturen aufgebaut, die Millionen von Anfragen verarbeiten. Wir haben Produkte von der ersten Idee bis zum skalierten Betrieb geführt – in Konzernen genauso wie in frühen Startups.",
-  "team.p3":"Unsere technische Expertise reicht weit über den klassischen Unternehmenskontext hinaus. Mitglieder unseres Teams haben auf Regierungsebene an Zukunftstechnologien gearbeitet, immersive KI-Systeme für globale Produktionen mit Millionen von Zuschauern entwickelt und als CTO internationale Technologieunternehmen aufgebaut. Von Hollywood-Produktionen über Verteidigungstechnologie bis hin zu eigenständigen KI-Produkten, die heute weltweit im Einsatz sind – wir bringen einen Erfahrungshorizont mit, den man in der klassischen Unternehmensberatung schlicht nicht findet.",
+  "team.p3":"Unsere technische Expertise reicht über klassische Unternehmens-IT hinaus. Mitglieder unseres Netzwerks haben an regulierten Technologieprojekten, immersiven Medienanwendungen und internationalen Produktplattformen gearbeitet. Entscheidend ist für uns nicht der große Name im Hintergrund, sondern die Fähigkeit, robuste Systeme in reale Geschäftsprozesse zu bringen.",
   "team.p4":"Darüber hinaus verfügen wir über ein breites, internationales Netzwerk an hochspezialisierten Experten aus der Technologie-, Rechts-, Daten- und Ingenieurswelt. Das erlaubt uns, für jedes Projekt genau die richtigen Köpfe zusammenzubringen – keine Generalisten, sondern Spezialisten mit tiefem Branchenwissen, präzise auf Ihre Herausforderung zugeschnitten.",
   "team.p5":"Unser Rechtsexperte ist einer der wenigen Spezialisten im deutschsprachigen Raum, der sich ausschließlich auf KI-Regulierung fokussiert – mit dem akademischen Tiefgang eines Promovierten und dem pragmatischen Blick eines Praktikers. Keine Compliance-Überraschungen am Ende eines Projekts, sondern rechtliche Sicherheit als Teil der Architektur.",
   "team.p6":"Wir arbeiten international vernetzt, denken unternehmerisch und liefern Ergebnisse, die sich messen lassen.",
   "tp.1.title":"Automobilindustrie","tp.1.sub":"Konzern-PM & Systemintegration",
-  "tp.2.title":"Verteidigungstechnologie","tp.2.sub":"Regierungsebene & Zukunftstechnologien",
-  "tp.3.title":"Hollywood & Immersive Tech","tp.3.sub":"Globale Produktionen, VR, AI-Systeme",
+  "tp.2.title":"Regulierte Technologieprojekte","tp.2.sub":"Sensible Branchen & Zukunftstechnologien",
+  "tp.3.title":"Immersive Tech & Medien","tp.3.sub":"VR, AI-Systeme, internationale Produktionserfahrung",
   "tp.4.title":"KI-Forschung & Akademie","tp.4.sub":"Datenwissenschaft & AI-Recht",
   "tp.5.title":"Startup & Unternehmertum","tp.5.sub":"Gründung, Investment, internationales Wachstum",
   "tp.6.title":"Cloud & Infrastruktur","tp.6.sub":"AWS, Azure, GCP – Enterprise-Maßstab",
@@ -1254,6 +1284,7 @@ de: {
   "form.first":"Vorname","form.last":"Nachname","form.email":"E-Mail-Adresse","form.company":"Unternehmen",
   "form.topic":"Thema auswählen …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt4":"Allgemeine Anfrage",
   "form.message":"Was beschäftigt Sie gerade? Kurze Skizze genügt …",
+  "form.privacy":"Mit dem Absenden verarbeiten wir Ihre Angaben zur Bearbeitung der Anfrage. Details: <a href=\"/datenschutz\">Datenschutzerklärung</a>.",
   "form.submit":"Anfrage senden →","form.required":"Bitte E-Mail und Nachricht ausfüllen.","form.sending":"Wird gesendet …","form.success":"✓ Vielen Dank – wir melden uns!","form.error":"Fehler – bitte erneut versuchen",
   "footer.imprint":"Impressum","footer.privacy":"Datenschutz","footer.copy":"© 2026 Ventari. Alle Rechte vorbehalten."
 },
@@ -1261,7 +1292,7 @@ en: {
     "stat.1.num":"3","stat.1.label":"Core disciplines under one roof",
   "stat.2.num":"4","stat.2.label":"Industry backgrounds in the core team",
   "stat.3.num":"24h","stat.3.label":"Response time guaranteed",
-  "stat.4.num":"100%","stat.4.label":"EU-compliant – GDPR & AI Act",
+  "stat.4.num":"EU","stat.4.label":"GDPR & AI Act aligned",
   "tech.label":"Technology Stack",
   "faq.eyebrow":"Frequently Asked","faq.h2":"What decision-makers<br/> want to know.",
   "faq.1.q":"What does a project with Ventari cost?",
@@ -1300,7 +1331,7 @@ en: {
   "s1.p":"We analyse your business processes and identify AI use cases with the greatest impact. No guesswork, no overpriced experiments – just a concrete roadmap that enables immediate action.",
   "s.delivers":"Deliverables","s.examples":"Typical solutions","s.includes":"Includes",
   "s1.b1":"Prioritised AI use case list","s1.b2":"Risk and benefit assessment","s1.b3":"Concrete project roadmap","s1.b4":"Initial compliance assessment",
-  "s1.t1":"2–3 days","s1.t2":"Workshop format",
+  "s1.t1":"2–3 days","s1.t2":"Workshop format","s1.t3":"Fixed price",
   "s1.link":"View pricing & packages →",
   "s2.num":"02 — AI Automation & Integration","s2.h3":"AI running inside<br/> your processes",
   "s2.p":"We develop AI automations and internal tools that integrate directly into your existing system landscape – including cloud infrastructure on AWS, Azure or GCP.",
@@ -1323,13 +1354,13 @@ en: {
   "expertise.h2":'Real experience.<br/> <span class="accent">No theory.</span>',
   "team.p1":"Ventari is not a traditional consultancy and not a pure development agency. We are a specialised studio built deliberately differently: with experts who come from practice, not from seminar rooms.",
   "team.p2":"Our core team combines years of experience from the automotive industry, the international technology and startup ecosystem, and academic AI research. We have built AI systems that run in production every day. We have created cloud-native infrastructures processing millions of requests. We have taken products from first idea to scaled operation – in corporations as well as early-stage startups.",
-  "team.p3":"Our technical expertise goes far beyond the classic corporate context. Members of our team have worked on future technologies at government level, developed immersive AI systems for global productions with millions of viewers, and built international technology companies as CTOs. From Hollywood productions and defence technology to standalone AI products used worldwide today – we bring a depth of experience that classic consulting simply does not offer.",
+  "team.p3":"Our technical expertise goes beyond classic corporate IT. Members of our network have worked on regulated technology projects, immersive media applications and international product platforms. What matters to us is not a famous name in the background, but the ability to bring robust systems into real business processes.",
   "team.p4":"Beyond that, we have a broad international network of highly specialised experts from technology, law, data and engineering. This allows us to bring exactly the right people into each project – not generalists, but specialists with deep industry knowledge, precisely matched to your challenge.",
   "team.p5":"Our legal expert is one of the few specialists in the German-speaking market focused exclusively on AI regulation – with the academic depth of doctoral research and the pragmatic view of a practitioner. No compliance surprises at the end of a project: legal certainty is part of the architecture.",
   "team.p6":"We work internationally, think entrepreneurially and deliver results that can be measured.",
   "tp.1.title":"Automotive industry","tp.1.sub":"Corporate PM & system integration",
-  "tp.2.title":"Defence technology","tp.2.sub":"Government level & future technologies",
-  "tp.3.title":"Hollywood & immersive tech","tp.3.sub":"Global productions, VR, AI systems",
+  "tp.2.title":"Regulated technology projects","tp.2.sub":"Sensitive industries & future technologies",
+  "tp.3.title":"Immersive tech & media","tp.3.sub":"VR, AI systems, international production experience",
   "tp.4.title":"AI research & academia","tp.4.sub":"Data science & AI law",
   "tp.5.title":"Startup & entrepreneurship","tp.5.sub":"Founding, investment, international growth",
   "tp.6.title":"Cloud & infrastructure","tp.6.sub":"AWS, Azure, GCP – enterprise scale",
@@ -1355,6 +1386,7 @@ en: {
   "form.first":"First name","form.last":"Last name","form.email":"Email address","form.company":"Company",
   "form.topic":"Select a topic …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt4":"General enquiry",
   "form.message":"What's on your mind? A brief sketch is enough …",
+  "form.privacy":"When you submit the form, we process your details to handle your enquiry. Details: <a href=\"/datenschutz\">privacy policy</a>.",
   "form.submit":"Send enquiry →","form.required":"Please fill in email and message.","form.sending":"Sending …","form.success":"✓ Thank you – we'll be in touch!","form.error":"Error – please try again",
   "footer.imprint":"Imprint","footer.privacy":"Privacy Policy","footer.copy":"© 2026 Ventari. All rights reserved."
 },
@@ -1362,7 +1394,7 @@ pl: {
   "stat.1.num":"3","stat.1.label":"Kluczowe kompetencje w jednym miejscu",
   "stat.2.num":"4","stat.2.label":"Branżowe doświadczenie zespołu",
   "stat.3.num":"24h","stat.3.label":"Gwarantowany czas odpowiedzi",
-  "stat.4.num":"100%","stat.4.label":"Zgodność z UE – GDPR i AI Act",
+  "stat.4.num":"UE","stat.4.label":"Zorientowane na GDPR i AI Act",
   "tech.label":"Stos technologiczny",
   "faq.eyebrow":"Najczęstsze pytania","faq.h2":"Co chcą wiedzieć<br/> decydenci.",
   "faq.1.q":"Ile kosztuje projekt z Ventari?",
@@ -1401,7 +1433,7 @@ pl: {
   "s1.p":"Analizujemy procesy firmy i identyfikujemy use case’y AI o największym wpływie. Bez zgadywania i drogich eksperymentów – z konkretną roadmapą.",
   "s.delivers":"Rezultat","s.examples":"Typowe rozwiązania","s.includes":"Zakres",
   "s1.b1":"Priorytetowa lista use case’ów AI","s1.b2":"Ocena ryzyka i korzyści","s1.b3":"Konkretna roadmapa projektu","s1.b4":"Wstępna ocena compliance",
-  "s1.t1":"2–3 dni","s1.t2":"Format warsztatowy",
+  "s1.t1":"2–3 dni","s1.t2":"Format warsztatowy","s1.t3":"Stała cena",
   "s1.link":"Zobacz ceny i pakiety →",
   "s2.num":"02 — Automatyzacja i integracja AI","s2.h3":"AI działające<br/> w Twoich procesach",
   "s2.p":"Budujemy automatyzacje AI i wewnętrzne narzędzia zintegrowane bezpośrednio z istniejącym środowiskiem systemowym – włącznie z infrastrukturą cloud na AWS, Azure lub GCP.",
@@ -1424,13 +1456,13 @@ pl: {
   "expertise.h2":"Łączymy kompetencje, których projekty AI naprawdę potrzebują.",
   "team.p1":"Ventari nie jest klasyczną firmą doradczą ani zwykłą agencją developerską. Jesteśmy wyspecjalizowanym studiem zbudowanym świadomie inaczej: z ekspertów, którzy przychodzą z praktyki, nie z sali szkoleniowej.",
   "team.p2":"Nasz zespół łączy wieloletnie doświadczenie z branży motoryzacyjnej, międzynarodowego ekosystemu technologii i startupów oraz akademickich badań nad AI. Budowaliśmy systemy AI działające codziennie produkcyjnie. Tworzyliśmy cloud-native infrastruktury obsługujące miliony zapytań. Prowadziliśmy produkty od pierwszej idei do skalowanego działania – zarówno w korporacjach, jak i młodych startupach.",
-  "team.p3":"Nasze kompetencje techniczne wykraczają daleko poza klasyczny kontekst firmowy. Członkowie zespołu pracowali przy technologiach przyszłości na poziomie rządowym, tworzyli immersyjne systemy AI dla globalnych produkcji i budowali międzynarodowe firmy technologiczne jako CTO. Od produkcji Hollywood, przez technologie obronne, po samodzielne produkty AI używane globalnie – wnosimy doświadczenie rzadkie w klasycznym doradztwie.",
+  "team.p3":"Nasze kompetencje techniczne wykraczają poza klasyczną firmową IT. Członkowie naszej sieci pracowali przy regulowanych projektach technologicznych, immersyjnych aplikacjach medialnych i międzynarodowych platformach produktowych. Liczy się dla nas nie duża nazwa w tle, lecz umiejętność wdrażania solidnych systemów w realnych procesach biznesowych.",
   "team.p4":"Dodatkowo mamy szeroką międzynarodową sieć wyspecjalizowanych ekspertów z obszaru technologii, prawa, danych i inżynierii. Dzięki temu do każdego projektu dobieramy właściwe osoby – nie generalistów, lecz specjalistów z głęboką wiedzą branżową.",
   "team.p5":"Nasz ekspert prawny jest jednym z nielicznych specjalistów w obszarze niemieckojęzycznym, którzy skupiają się wyłącznie na regulacji AI – z akademicką głębią doktoratu i pragmatycznym spojrzeniem praktyka. Bez niespodzianek compliance na końcu projektu: bezpieczeństwo prawne jest częścią architektury.",
   "team.p6":"Pracujemy w międzynarodowej sieci, myślimy przedsiębiorczo i dostarczamy mierzalne rezultaty.",
   "tp.1.title":"Motoryzacja","tp.1.sub":"PM korporacyjny i integracja systemów",
-  "tp.2.title":"Technologie obronne","tp.2.sub":"Poziom rządowy i technologie przyszłości",
-  "tp.3.title":"Hollywood i immersive tech","tp.3.sub":"Globalne produkcje, VR, systemy AI",
+  "tp.2.title":"Regulowane projekty technologiczne","tp.2.sub":"Wrażliwe branże i technologie przyszłości",
+  "tp.3.title":"Immersive tech i media","tp.3.sub":"VR, systemy AI, międzynarodowe doświadczenie produkcyjne",
   "tp.4.title":"Badania AI i akademia","tp.4.sub":"Data science i prawo AI",
   "tp.5.title":"Startupy i przedsiębiorczość","tp.5.sub":"Budowa firm, inwestycje, wzrost międzynarodowy",
   "tp.6.title":"Cloud i infrastruktura","tp.6.sub":"AWS, Azure, GCP – skala enterprise",
@@ -1456,6 +1488,7 @@ pl: {
   "form.first":"Imię","form.last":"Nazwisko","form.email":"Adres e-mail","form.company":"Firma",
   "form.topic":"Wybierz temat …","form.opt1":"AI Opportunity Assessment","form.opt2":"Automatyzacja i integracja AI","form.opt3":"AI Governance & Compliance","form.opt4":"Zapytanie ogólne",
   "form.message":"Co aktualnie jest dla Ciebie ważne? Krótki opis wystarczy …",
+  "form.privacy":"Po wysłaniu formularza przetwarzamy dane w celu obsługi zapytania. Szczegóły: <a href=\"/datenschutz\">polityka prywatności</a>.",
   "form.submit":"Wyślij zapytanie →","form.required":"Wpisz adres e-mail i wiadomość.","form.sending":"Wysyłanie …","form.success":"✓ Dziękujemy – odezwiemy się!","form.error":"Błąd – spróbuj ponownie",
   "footer.imprint":"Nota prawna","footer.privacy":"Prywatność","footer.copy":"© 2026 Ventari. Wszelkie prawa zastrzeżone."
 }
