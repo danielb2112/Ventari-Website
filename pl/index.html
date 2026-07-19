@@ -154,7 +154,7 @@
       display: inline-flex; align-items: center; gap: 0.7rem;
       font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
       text-transform: uppercase; color: var(--blue); margin-bottom: 1.8rem;
-      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+      opacity: 0; animation: fadeUp 0.45s 0s forwards;
     }
     .hero-dot {
       width: 6px; height: 6px; border-radius: 50%;
@@ -166,7 +166,7 @@
       font-size: clamp(3rem, 7vw, 6.5rem); font-weight: 400;
       line-height: 1.05; letter-spacing: 0; max-width: 860px;
       color: var(--white);
-      opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+      opacity: 0; animation: fadeUp 0.5s 0.06s forwards;
     }
     h1 .accent {
       color: var(--white);
@@ -174,11 +174,11 @@
     .hero-sub {
       margin-top: 2rem; max-width: 540px;
       color: var(--muted2); font-size: 1rem; font-weight: 300; line-height: 1.85;
-      opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+      opacity: 0; animation: fadeUp 0.5s 0.12s forwards;
     }
     .hero-problems {
       margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp 0.8s 0.75s forwards;
+      opacity: 0; animation: fadeUp 0.5s 0.18s forwards;
     }
     .hero-pill {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -189,7 +189,7 @@
     .hero-pill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
     .hero-actions {
       margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+      opacity: 0; animation: fadeUp 0.5s 0.24s forwards;
     }
     .btn-primary {
       background: var(--blue); color: var(--bg); border: none;
@@ -224,7 +224,7 @@
       position: absolute; bottom: 2.5rem; left: 4rem;
       display: flex; align-items: center; gap: 0.8rem;
       color: var(--muted); font-size: 0.68rem; letter-spacing: 0.18em;
-      text-transform: uppercase; opacity: 0; animation: fadeUp 0.8s 1.1s forwards;
+      text-transform: uppercase; opacity: 0; animation: fadeUp 0.5s 0.3s forwards;
     }
     .scroll-line { width: 36px; height: 1px; background: linear-gradient(to right, var(--blue), transparent); }
 
@@ -463,6 +463,16 @@
     /* ANIMATIONS */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes pulseDot { 0%,100% { box-shadow: 0 0 6px var(--blue); transform: scale(1); } 50% { box-shadow: 0 0 14px var(--blue); transform: scale(1.3); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero-eyebrow, h1, .hero-sub, .hero-problems, .hero-actions, .hero-scroll { animation: none; opacity: 1; }
+      .hero-dot { animation: none; }
+      .js-ready .reveal, .js-ready .reveal-delay-1, .js-ready .reveal-delay-2, .js-ready .reveal-delay-3 {
+        opacity: 1; transform: none; transition: none;
+      }
+      #network-canvas { display: none; }
+    }
     [data-i18n] { transition: opacity 0.18s ease; }
     body.lang-switching [data-i18n] { opacity: 0; }
     .js-ready .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
@@ -546,10 +556,19 @@
       .hero-scroll { position: static; margin-top: 2.25rem; }
     }
 
-    @media (max-width: 960px) {
-      nav { padding: 1.2rem 2rem; }
+    @media (max-width: 1100px) {
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.75rem; }
+      .nav-right { gap: 1rem; }
+    }
+
+    @media (max-width: 880px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
+    }
+
+    @media (max-width: 960px) {
+      nav { padding: 1.2rem 2rem; }
       .stats-bar { grid-template-columns: repeat(2,1fr); }
       .faq-grid { grid-template-columns: 1fr; }
       .tech-section { padding: 2rem; }
@@ -694,7 +713,7 @@
       "name": "Ile kosztuje projekt z Ventari?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie, zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na stronie z cenami (EN)."
+        "text": "Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie, zależnie od złożoności, systemów i harmonogramu. Wejście zaczyna się od szybkiego audytu AI w stałej cenie 2 500 €, assessmenty od 4 900 €. Pierwszy przegląd znajdziesz na stronie z cenami (EN)."
       }
     },
     {
@@ -821,8 +840,8 @@
 <!-- STATS BAR -->
 <div class="stats-bar" style="position:relative;z-index:2;">
   <div class="stat-item reveal">
-    <span class="stat-num" data-i18n="stat.1.num">20+</span>
-    <span class="stat-label" data-i18n="stat.1.label">lat doświadczenia senior w sieci ekspertów</span>
+    <span class="stat-num" data-i18n="stat.1.num">100 %</span>
+    <span class="stat-label" data-i18n="stat.1.label">Ceny stałe zamiast rozliczeń godzinowych</span>
   </div>
   <div class="stat-item reveal reveal-delay-1">
     <span class="stat-num" data-i18n="stat.2.num">1</span>
@@ -990,7 +1009,7 @@
     <div>
       <div class="audit-badge" data-i18n="audit.badge">Start</div>
       <h3 data-i18n="audit.h3">Zacznij od audytu AI</h3>
-      <p data-i18n="audit.p">W 2–3 dni analizujemy wspólnie procesy, dane i krajobraz IT, a następnie dostarczamy priorytetową roadmapę, która pozwala od razu działać.</p>
+      <p data-i18n="audit.p">W 2–3 dni analizujemy wspólnie procesy, dane i krajobraz IT, a następnie dostarczamy priorytetową roadmapę, która pozwala od razu działać. Cena stała od 4 900 €.</p>
       <div class="audit-actions">
         <a href="#contact" class="btn-primary" data-i18n="audit.cta">Zapytaj o audyt AI</a>
         <a href="/pricing" class="context-link" style="margin-top:0;" data-i18n="audit.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Porównaj ceny (EN) →</a>
@@ -1103,7 +1122,7 @@
   <div class="faq-grid">
     <div class="faq-item reveal" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.1.q">Ile kosztuje projekt z Ventari?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      <div class="faq-a" data-i18n="faq.1.a">Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie, zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na <a href="/pricing" class="inline-link">stronie z cenami (EN)</a>.</div>
+      <div class="faq-a" data-i18n="faq.1.a">Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie, zależnie od złożoności, systemów i harmonogramu. Wejście zaczyna się od szybkiego audytu AI w stałej cenie 2 500 €, assessmenty od 4 900 €. Pierwszy przegląd znajdziesz na <a href="/pricing" class="inline-link">stronie z cenami (EN)</a>.</div>
     </div>
     <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.7.q">Kto konkretnie będzie pracował nad moim projektem?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
@@ -1148,6 +1167,7 @@
         <div class="contact-item reveal"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afc7cac3c3c0efd9cac1dbceddc681cada">[email&#160;protected]</a></span></div>
         <div class="contact-item reveal reveal-delay-1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="contact.location">Zdalnie w Polsce i Niemczech · Warsztaty u klienta możliwe</span></div>
         <div class="contact-item reveal reveal-delay-2"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="contact.response">Odpowiedź w ciągu 24 godzin</span></div>
+        <div class="contact-item reveal reveal-delay-3"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg><span data-i18n="contact.provider">Ventari · Właściciel: Daniel Baran · Siedziba w Polsce (UE)</span></div>
       </div>
     </div>
     <form class="form-group reveal" id="contact-form" action="https://ventari-worker.danielbaran1995.workers.dev/" method="post">
@@ -1294,14 +1314,14 @@
 /* ── TRANSLATIONS ── */
 const T = {
 de: {
-    "stat.1.num":"20+","stat.1.label":"Jahre Senior-Erfahrung im Expertennetzwerk",
+    "stat.1.num":"100 %","stat.1.label":"Festpreise statt Stundensatz-Überraschungen",
   "stat.2.num":"1","stat.2.label":"Ansprechpartner für Strategie, Tech & Recht",
   "stat.3.num":"24h","stat.3.label":"Reaktionszeit garantiert",
   "stat.4.num":"EU","stat.4.label":"DSGVO- & AI-Act-orientiert",
   "tech.label":"Technologie-Stack",
   "faq.eyebrow":"Häufige Fragen","faq.h2":"Was Entscheider<br/> wissen wollen.",
   "faq.1.q":"Was kostet ein Projekt bei Ventari?",
-  "faq.1.a":"Wir starten immer mit einem AI Audit zu einem transparenten Festpreis. Größere Automations- und Integrationsprojekte werden individuell kalkuliert, abhängig von Komplexität, Systemlandschaft und Zeitrahmen. Einen Überblick finden Sie auf der <a href=\"/preise\" class=\"inline-link\">Preisseite</a>.",
+  "faq.1.a":"Wir starten immer mit einem AI Audit zu einem transparenten Festpreis. Größere Automations- und Integrationsprojekte werden individuell kalkuliert, abhängig von Komplexität, Systemlandschaft und Zeitrahmen. Der Einstieg beginnt beim KI-Schnellcheck für 2.500 € Festpreis, Assessments starten ab 4.900 €. Einen Überblick finden Sie auf der <a href=\"/preise\" class=\"inline-link\">Preisseite</a>.",
   "faq.2.q":"Sind wir als Unternehmen zu klein?",
   "faq.2.a":"Nein. Unsere Methoden sind skalierbar. Entscheidend ist nicht die Unternehmensgröße, sondern ob Sie Prozesse und Daten haben, bei denen KI Hebel entfalten kann. Eine erste Einschätzung liefert der <a href=\"/ki-readiness-test\" class=\"inline-link\">KI-Readiness-Test</a>.",
   "faq.3.q":"Was passiert mit unseren Unternehmensdaten?",
@@ -1359,7 +1379,7 @@ de: {
   "s4.b1":"Monitoring & Performance-Tracking","s4.b2":"Monatliche Optimierungsrunden","s4.b3":"Laufende Compliance-Überprüfung","s4.b4":"Skalierung bei wachsender Nutzung",
   "s4.t1":"Monatliche Betreuung","s4.t2":"Flexibel kündbar",
   "audit.badge":"Einstieg","audit.h3":"Starten Sie mit einem AI Audit","audit.cta":"AI Audit anfragen","audit.pricing":"Preise vergleichen →",
-  "audit.p":"In 2–3 Tagen analysieren wir gemeinsam Ihre Prozesse, Daten und IT-Landschaft und liefern eine priorisierte Roadmap, mit der Sie sofort handlungsfähig sind.",
+  "audit.p":"In 2–3 Tagen analysieren wir gemeinsam Ihre Prozesse, Daten und IT-Landschaft und liefern eine priorisierte Roadmap, mit der Sie sofort handlungsfähig sind. Festpreis ab 4.900 €.",
   "audit.day1.num":"Tag 1","audit.day2.num":"Tag 2","audit.day3.num":"Tag 3",
   "audit.day1.title":"Analyse","audit.day1.p":"Prozesse, Daten und bestehende Systeme verstehen",
   "audit.day2.title":"Bewertung","audit.day2.p":"Use Cases priorisieren, Risiken und Nutzen abwägen",
@@ -1391,6 +1411,7 @@ de: {
   "contact.h2":'Bereit für KI,<br/> <span class="accent">die wirklich liefert?</span>',
   "contact.desc":"Vereinbaren Sie ein kostenfreies Erstgespräch. In 30 Minuten verstehen wir Ihre aktuelle Situation und zeigen Ihnen, wo KI in Ihrem Unternehmen den größten Hebel hat. Unverbindlich und konkret.",
   "contact.location":"Remote in Polen & Deutschland · Workshops vor Ort möglich","contact.response":"Antwort innerhalb von 24 Stunden",
+  "contact.provider":"Ventari · Inhaber: Daniel Baran · Sitz in Polen (EU)",
   "form.first":"Vorname","form.last":"Nachname","form.email":"E-Mail-Adresse","form.company":"Unternehmen",
   "form.topic":"Thema auswählen …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt4":"Allgemeine Anfrage",
   "form.message":"Was beschäftigt Sie gerade? Kurze Skizze genügt …",
@@ -1399,14 +1420,14 @@ de: {
   "footer.imprint":"Impressum","footer.privacy":"Datenschutz","footer.copy":"© 2026 Ventari. Alle Rechte vorbehalten."
 },
 en: {
-    "stat.1.num":"20+","stat.1.label":"Years of senior experience in the expert network",
+    "stat.1.num":"100 %","stat.1.label":"Fixed prices, no hourly billing surprises",
   "stat.2.num":"1","stat.2.label":"Point of contact for strategy, tech & legal",
   "stat.3.num":"24h","stat.3.label":"Response time guaranteed",
   "stat.4.num":"EU","stat.4.label":"GDPR & AI Act aligned",
   "tech.label":"Technology Stack",
   "faq.eyebrow":"Frequently Asked","faq.h2":"What decision-makers<br/> want to know.",
   "faq.1.q":"What does a project with Ventari cost?",
-  "faq.1.a":"We always start with an AI Audit at a transparent fixed price. Larger automation and integration projects are individually scoped based on complexity, system landscape and timeline. You can find a first overview on the <a href=\"/pricing\" class=\"inline-link\">pricing page</a>.",
+  "faq.1.a":"We always start with an AI Audit at a transparent fixed price. Larger automation and integration projects are individually scoped based on complexity, system landscape and timeline. Entry starts with the AI quick check at a fixed price of €2,500, assessments start from €4,900. You can find a first overview on the <a href=\"/pricing\" class=\"inline-link\">pricing page</a>.",
   "faq.2.q":"Is our company too small?",
   "faq.2.a":"No. Our methods are scalable. What matters is not company size, but whether you have processes and data where AI can create leverage. The <a href=\"/ai-readiness-test-en\" class=\"inline-link\">AI Readiness Test</a> gives you a first indication.",
   "faq.3.q":"What happens to our company data?",
@@ -1464,7 +1485,7 @@ en: {
   "s4.b1":"Monitoring & performance tracking","s4.b2":"Monthly optimisation rounds","s4.b3":"Ongoing compliance review","s4.b4":"Scaling as usage grows",
   "s4.t1":"Monthly retainer","s4.t2":"Cancel anytime",
   "audit.badge":"Getting started","audit.h3":"Start with an AI Audit","audit.cta":"Request AI Audit","audit.pricing":"Compare pricing →",
-  "audit.p":"In 2–3 days we jointly analyse your processes, data and IT landscape and deliver a prioritised roadmap that makes you ready to act immediately.",
+  "audit.p":"In 2–3 days we jointly analyse your processes, data and IT landscape and deliver a prioritised roadmap that makes you ready to act immediately. Fixed price from €4,900.",
   "audit.day1.num":"Day 1","audit.day2.num":"Day 2","audit.day3.num":"Day 3",
   "audit.day1.title":"Analysis","audit.day1.p":"Understand processes, data and existing systems",
   "audit.day2.title":"Assessment","audit.day2.p":"Prioritise use cases, weigh risks and benefits",
@@ -1502,6 +1523,7 @@ en: {
   "contact.h2":'Ready for AI<br/> <span class="accent">that actually delivers?</span>',
   "contact.desc":"Book a free initial consultation. In 30 minutes we understand your current situation and show you where AI has the greatest leverage in your business. No obligation, no fluff.",
   "contact.location":"Remote in Poland & Germany · On-site workshops available","contact.response":"Response within 24 hours",
+  "contact.provider":"Ventari · Owner: Daniel Baran · Based in Poland (EU)",
   "form.first":"First name","form.last":"Last name","form.email":"Email address","form.company":"Company",
   "form.topic":"Select a topic …","form.opt1":"AI Opportunity Assessment","form.opt2":"AI Automation & Integration","form.opt3":"AI Governance & Compliance","form.opt4":"General enquiry",
   "form.message":"What's on your mind? A brief sketch is enough …",
@@ -1510,14 +1532,14 @@ en: {
   "footer.imprint":"Imprint","footer.privacy":"Privacy Policy","footer.copy":"© 2026 Ventari. All rights reserved."
 },
 pl: {
-  "stat.1.num":"20+","stat.1.label":"lat doświadczenia senior w sieci ekspertów",
+  "stat.1.num":"100 %","stat.1.label":"Ceny stałe zamiast rozliczeń godzinowych",
   "stat.2.num":"1","stat.2.label":"osoba kontaktowa: strategia, technologia i prawo",
   "stat.3.num":"24h","stat.3.label":"Gwarantowany czas odpowiedzi",
   "stat.4.num":"UE","stat.4.label":"Zorientowane na GDPR i AI Act",
   "tech.label":"Stos technologiczny",
   "faq.eyebrow":"Najczęstsze pytania","faq.h2":"Co chcą wiedzieć<br/> decydenci.",
   "faq.1.q":"Ile kosztuje projekt z Ventari?",
-  "faq.1.a":"Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie, zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na <a href=\"/pricing\" class=\"inline-link\">stronie z cenami (EN)</a>.",
+  "faq.1.a":"Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie, zależnie od złożoności, systemów i harmonogramu. Wejście zaczyna się od szybkiego audytu AI w stałej cenie 2 500 €, assessmenty od 4 900 €. Pierwszy przegląd znajdziesz na <a href=\"/pricing\" class=\"inline-link\">stronie z cenami (EN)</a>.",
   "faq.2.q":"Czy nasza firma jest za mała?",
   "faq.2.a":"Nie. Nasze metody są skalowalne. Ważna jest nie wielkość firmy, lecz to, czy macie procesy i dane, w których AI może dać realną dźwignię. Pierwszą wskazówkę daje <a href=\"/ai-readiness-test-en\" class=\"inline-link\">AI Readiness Test (EN)</a>.",
   "faq.3.q":"Co dzieje się z naszymi danymi firmowymi?",
@@ -1575,7 +1597,7 @@ pl: {
   "s4.b1":"Monitoring i śledzenie wydajności","s4.b2":"Miesięczne rundy optymalizacji","s4.b3":"Bieżący przegląd compliance","s4.b4":"Skalowanie wraz ze wzrostem użycia",
   "s4.t1":"Miesięczna opieka","s4.t2":"Elastyczne zakończenie",
   "audit.badge":"Start","audit.h3":"Zacznij od audytu AI","audit.cta":"Zapytaj o audyt AI","audit.pricing":"Porównaj ceny (EN) →",
-  "audit.p":"W 2–3 dni analizujemy wspólnie procesy, dane i krajobraz IT, a następnie dostarczamy priorytetową roadmapę, która pozwala od razu działać.",
+  "audit.p":"W 2–3 dni analizujemy wspólnie procesy, dane i krajobraz IT, a następnie dostarczamy priorytetową roadmapę, która pozwala od razu działać. Cena stała od 4 900 €.",
   "audit.day1.num":"Dzień 1","audit.day2.num":"Dzień 2","audit.day3.num":"Dzień 3",
   "audit.day1.title":"Analiza","audit.day1.p":"Zrozumienie procesów, danych i istniejących systemów",
   "audit.day2.title":"Ocena","audit.day2.p":"Priorytetyzacja use case’ów oraz ocena ryzyk i korzyści",
@@ -1613,6 +1635,7 @@ pl: {
   "contact.h2":'Gotowi na AI,<br/> <span class="accent">które naprawdę dowozi?</span>',
   "contact.desc":"Umów bezpłatną rozmowę wstępną. W 30 minut zrozumiemy Twoją sytuację i pokażemy, gdzie AI może dać największą dźwignię w firmie. Konkretnie i bez zobowiązań.",
   "contact.location":"Zdalnie w Polsce i Niemczech · Warsztaty u klienta możliwe","contact.response":"Odpowiedź w ciągu 24 godzin",
+  "contact.provider":"Ventari · Właściciel: Daniel Baran · Siedziba w Polsce (UE)",
   "form.first":"Imię","form.last":"Nazwisko","form.email":"Adres e-mail","form.company":"Firma",
   "form.topic":"Wybierz temat …","form.opt1":"AI Opportunity Assessment","form.opt2":"Automatyzacja i integracja AI","form.opt3":"AI Governance & Compliance","form.opt4":"Zapytanie ogólne",
   "form.message":"Co aktualnie jest dla Ciebie ważne? Krótki opis wystarczy …",
@@ -1729,7 +1752,12 @@ function tick() {
   });
   requestAnimationFrame(tick);
 }
-resize(); initNodes(); tick();
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (reduceMotion.matches) {
+  canvas.style.display = 'none';
+} else {
+  resize(); initNodes(); tick();
+}
 window.addEventListener('resize',()=>{resize();initNodes();});
 window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
 window.addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999;});
