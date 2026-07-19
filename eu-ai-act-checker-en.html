@@ -4,22 +4,23 @@
   <script>try{localStorage.setItem("ventari_lang","en");}catch(e){}</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EU AI Act Checker – Ventari</title>
-  <meta name="description" content="Free EU AI Act Checker: Find out your risk level and resulting obligations in a few questions – free from Ventari."/>
+  <title>EU AI Act Checker for SMEs | Ventari</title>
+  <meta name="description" content="Check in 8 questions whether your AI system is prohibited, high-risk or subject to transparency duties, with practical next steps."/>
+  <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://ventari.eu/eu-ai-act-checker-en"/>
     <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="EU AI Act Checker – Ventari">
-  <meta property="og:description" content="Free EU AI Act Checker: Find out your risk level and resulting obligations in a few questions – free from Ventari.">
+  <meta property="og:title" content="EU AI Act Checker for SMEs | Ventari">
+  <meta property="og:description" content="Check in 8 questions whether your AI system is prohibited, high-risk or subject to transparency duties, with practical next steps.">
   <meta property="og:url" content="https://ventari.eu/eu-ai-act-checker-en">
   <meta property="og:image" content="https://ventari.eu/og-image.png">
   <meta property="og:site_name" content="Ventari">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="EU AI Act Checker – Ventari">
-  <meta name="twitter:description" content="Free EU AI Act Checker: Find out your risk level and resulting obligations in a few questions – free from Ventari.">
+  <meta name="twitter:title" content="EU AI Act Checker for SMEs | Ventari">
+  <meta name="twitter:description" content="Check in 8 questions whether your AI system is prohibited, high-risk or subject to transparency duties, with practical next steps.">
   <meta name="twitter:image" content="https://ventari.eu/og-image.png">
 <link rel="alternate" hreflang="de" href="https://ventari.eu/eu-ai-act-checker"/>
   <link rel="alternate" hreflang="en" href="https://ventari.eu/eu-ai-act-checker-en"/>
@@ -116,7 +117,62 @@
     .restart-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color 0.2s}
     .restart-btn:hover{color:var(--white)}
     @media(max-width:600px){nav{padding:1rem 1.4rem}main{padding:7rem 1.2rem 4rem}.btn-row{flex-direction:column}.btn-primary,.btn-secondary{width:100%;justify-content:center}}
+    .tool-seo{margin-top:3rem;padding-top:2.2rem;border-top:1px solid var(--border2);color:var(--muted2);}
+    .tool-seo h2{font-family:'DM Serif Display',serif;font-size:1.35rem;font-weight:400;color:var(--white);line-height:1.25;margin-bottom:.8rem;}
+    .tool-seo p{font-size:.88rem;line-height:1.8;margin-bottom:1rem;}
+    .tool-seo a{color:var(--blue);text-decoration:none;}
   </style>
+<script type="application/ld+json" data-schema="web-application">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://ventari.eu/eu-ai-act-checker-en#app",
+      "name": "EU AI Act Checker",
+      "url": "https://ventari.eu/eu-ai-act-checker-en",
+      "description": "Free checker for an initial assessment of prohibited AI, high-risk AI and transparency duties under the EU AI Act.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "browserRequirements": "Requires JavaScript",
+      "isAccessibleForFree": true,
+      "inLanguage": "en",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "publisher": {
+        "@id": "https://ventari.eu/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ventari.eu/eu-ai-act-checker-en#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ventari",
+          "item": "https://ventari.eu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://ventari.eu/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "EU AI Act Checker",
+          "item": "https://ventari.eu/eu-ai-act-checker-en"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -180,6 +236,12 @@
     </div>
     <div class="restart-row"><button type="button" class="restart-btn" onclick="restart()">Restart checker</button></div>
   </div>
+<section class="tool-seo" aria-label="EU AI Act checker methodology">
+  <h2>What the EU AI Act Checker can do</h2>
+  <p>The checker walks through the key questions: your role in the AI value chain, use area, prohibited practices, model type, transparency duties and personal data. The result is an initial risk assessment.</p>
+  <p>It does not replace legal advice. Especially for high-risk systems, the regulation text, guidance, national authorities, technical documentation and actual business use need to be reviewed.</p>
+  <p>Useful next steps are the <a href="/ai-readiness-test-en">AI Readiness Test</a> and a <a href="/pricing">Compliance Sprint</a> if an AI inventory or governance documentation is missing.</p>
+</section>
 </main>
 <script>
 const QUESTIONS=[
@@ -250,21 +312,21 @@ const RISK_LEVELS={
   },
   HIGH:{key:"HIGH",label:"High-Risk AI",color:"#f5a623",bg:"rgba(245,166,35,0.1)",icon:"⚠️",iconBg:"rgba(245,166,35,0.15)",
     title:"You are operating high-risk AI.",
-    intro:"Your AI systems likely fall under the high-risk category of the EU AI Act (Annex III). This means extensive obligations – fully effective from August 2026. Preparation now is worthwhile.",
+    intro:"Your AI systems likely fall under the high-risk category of the EU AI Act (Annex III). Under the current EU Omnibus timeline, many high-risk duties apply from 2 December 2027; product-embedded systems follow on 2 August 2028. Preparation now is worthwhile.",
     obligations:[
-      {name:"Risk management system",desc:"Continuous risk management system for the entire lifecycle of the AI (Art. 9).",status:"From Aug 2026",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
-      {name:"Technical documentation",desc:"Complete documentation before market launch (Art. 11, Annex IV).",status:"From Aug 2026",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
-      {name:"Human oversight",desc:"Effective possibility of human control and intervention (Art. 14).",status:"From Aug 2026",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
-      {name:"Conformity assessment",desc:"Demonstrated conformity before deployment – in some cases with notification.",status:"From Aug 2026",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
+      {name:"Risk management system",desc:"Continuous risk management system for the entire lifecycle of the AI (Art. 9).",status:"From Dec 2027",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
+      {name:"Technical documentation",desc:"Complete documentation before market launch (Art. 11, Annex IV).",status:"From Dec 2027",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
+      {name:"Human oversight",desc:"Effective possibility of human control and intervention (Art. 14).",status:"From Dec 2027",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
+      {name:"Conformity assessment",desc:"Demonstrated conformity before deployment – in some cases with notification.",status:"From Dec 2027",statusColor:"#f5a623",statusBg:"rgba(245,166,35,0.12)",bg:"rgba(245,166,35,0.05)"},
       {name:"AI literacy obligation (Art. 4)",desc:"Employees must have demonstrably sufficient training in working with AI – already in force.",status:"In force now",statusColor:"#ff5c5c",statusBg:"rgba(255,92,92,0.12)",bg:"rgba(255,92,92,0.05)"},
       {name:"Create AI inventory",desc:"Record all AI systems in use – the foundation for all further steps.",status:"Immediately",statusColor:"#4ecb71",statusBg:"rgba(78,203,113,0.12)",bg:"rgba(78,203,113,0.05)"}
     ],
     timeline:[
       {date:"Feb 2025",text:"<strong>AI literacy obligation (Art. 4) applies.</strong> Document training concept.",color:"#ff5c5c"},
-      {date:"Aug 2026",text:"<strong>High-risk obligations fully applicable.</strong> Risk management, documentation, conformity.",color:"#f5a623"},
-      {date:"Possibly Dec 2027",text:"Potential extension under EU Omnibus proposal – not yet adopted.",color:"#727b9c"}
+      {date:"Dec 2027",text:"<strong>High-risk duties for Annex III systems apply.</strong> Risk management, documentation, conformity.",color:"#f5a623"},
+      {date:"Aug 2028",text:"Product-embedded high-risk AI under EU harmonisation rules follows.",color:"#727b9c"}
     ],
-    steps:["<strong>Now:</strong> Create AI inventory – record all systems in use.","<strong>Q2 2025:</strong> Risk classification per system (high-risk confirmed?).","<strong>Q3–Q4 2025:</strong> Build risk management framework and governance structure.","<strong>2026:</strong> Complete technical documentation and conformity assessment.","<strong>In parallel:</strong> Introduce AI literacy programme for employees."]
+    steps:["<strong>Now:</strong> Create AI inventory – record all systems in use.","<strong>Now:</strong> Document risk classification for each system (high-risk confirmed?).","<strong>2026:</strong> Build risk management framework and governance structure.","<strong>2027:</strong> Complete technical documentation and conformity assessment for Annex III systems.","<strong>In parallel:</strong> Introduce AI literacy programme for employees."]
   },
   LIMITED:{key:"LIMITED",label:"Limited Risk",color:"#5dd8e8",bg:"rgba(93,216,232,0.1)",icon:"ℹ️",iconBg:"rgba(93,216,232,0.15)",
     title:"Limited risk level – transparency obligations apply.",

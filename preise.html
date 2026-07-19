@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Preise & Leistungspakete – Ventari AI Automation & Compliance Studio</title>
-  <meta name="description" content="Transparente Preise für KI-Projekte: KI-Schnellcheck ab 2.500 €, AI Opportunity Assessment, EU AI Act Compliance Sprints, KI-Beauftragter auf Zeit und Retainer-Pakete. Festpreis, kein Risiko."/>
+  <title>KI-Projektpreise &amp; Compliance-Pakete | Ventari</title>
+  <meta name="description" content="Transparente Festpreise für KI-Assessment, Automatisierung, EU-AI-Act-Sprints, KI-Beauftragten und Wartungspakete."/>
+  <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://ventari.eu/preise"/>
     <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Preise &amp; Leistungspakete – Ventari AI Automation &amp; Compliance Studio">
-  <meta property="og:description" content="Transparente Preise für KI-Projekte: KI-Schnellcheck ab 2.500 €, AI Opportunity Assessment, EU AI Act Compliance Sprints, KI-Beauftragter auf Zeit und Retainer-Pakete. Festpreis, kein Risiko.">
+  <meta property="og:title" content="KI-Projektpreise &amp; Compliance-Pakete | Ventari">
+  <meta property="og:description" content="Transparente Festpreise für KI-Assessment, Automatisierung, EU-AI-Act-Sprints, KI-Beauftragten und Wartungspakete.">
   <meta property="og:url" content="https://ventari.eu/preise">
   <meta property="og:image" content="https://ventari.eu/og-image.png">
   <meta property="og:site_name" content="Ventari">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Preise &amp; Leistungspakete – Ventari AI Automation &amp; Compliance Studio">
-  <meta name="twitter:description" content="Transparente Preise für KI-Projekte: KI-Schnellcheck ab 2.500 €, AI Opportunity Assessment, EU AI Act Compliance Sprints, KI-Beauftragter auf Zeit und Retainer-Pakete. Festpreis, kein Risiko.">
+  <meta name="twitter:title" content="KI-Projektpreise &amp; Compliance-Pakete | Ventari">
+  <meta name="twitter:description" content="Transparente Festpreise für KI-Assessment, Automatisierung, EU-AI-Act-Sprints, KI-Beauftragten und Wartungspakete.">
   <meta name="twitter:image" content="https://ventari.eu/og-image.png">
 <link rel="alternate" hreflang="de" href="https://ventari.eu/preise"/>
   <link rel="alternate" hreflang="en" href="https://ventari.eu/pricing"/>
@@ -39,7 +40,8 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; }
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 2px; }
@@ -54,7 +56,7 @@
     .nav-cta:hover { opacity: 0.85; }
 
     /* HERO */
-    .pricing-hero { padding: 9rem 6vw 5rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+    .pricing-hero { padding: 9rem 6vw 5rem; max-width: 1200px; margin: 0 auto; text-align: center; min-width: 0; }
     .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
     .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
     h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 400; line-height: 1.1; max-width: 700px; margin: 0 auto 1.5rem; }
@@ -64,7 +66,7 @@
     .hero-note-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
 
     /* SECTION */
-    section { padding: 5rem 6vw; max-width: 1200px; margin: 0 auto; }
+    section { padding: 5rem 6vw; max-width: 1200px; margin: 0 auto; min-width: 0; }
     .section-title { font-family: 'DM Serif Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 0.5rem; }
     .section-sub { color: var(--muted2); font-size: 0.9rem; font-weight: 300; margin-bottom: 3rem; max-width: 520px; }
     .section-eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; }
@@ -97,7 +99,7 @@
     .cta-secondary:hover { border-color: var(--blue); color: var(--white); }
 
     /* AUTOMATION PROJECTS */
-    .project-table { width: 100%; border-collapse: collapse; }
+    .project-table { width: 100%; max-width: 100%; border-collapse: collapse; }
     .project-table th { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.8rem 1.2rem; text-align: left; border-bottom: 1px solid var(--border2); }
     .project-table td { padding: 1.1rem 1.2rem; font-size: 0.86rem; color: var(--muted2); border-bottom: 1px solid var(--border2); vertical-align: top; }
     .project-table tr:last-child td { border-bottom: none; }
@@ -112,6 +114,7 @@
 
     /* COMPLIANCE SPRINTS */
     .sprint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .sprint-grid.three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .sprint-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.25s; }
     .sprint-card:hover { border-color: rgba(74,140,255,0.3); }
     .sprint-icon { font-size: 1.5rem; margin-bottom: 1rem; }
@@ -148,7 +151,7 @@
     .pfaq-a p { padding: 0 0 1.2rem; font-size: 0.86rem; color: var(--muted2); line-height: 1.75; font-weight: 300; }
 
     /* CTA BOX */
-    .bottom-cta { background: linear-gradient(135deg, rgba(74,140,255,0.1), rgba(93,216,232,0.05)); border: 1px solid rgba(74,140,255,0.25); border-radius: 16px; padding: 3.5rem; text-align: center; margin: 0 6vw 5rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+    .bottom-cta { background: linear-gradient(135deg, rgba(74,140,255,0.1), rgba(93,216,232,0.05)); border: 1px solid rgba(74,140,255,0.25); border-radius: 16px; padding: 3.5rem; text-align: center; margin: 0 6vw 5rem; max-width: 1200px; margin-left: auto; margin-right: auto; min-width: 0; }
     .bottom-cta h2 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 1rem; }
     .bottom-cta p { color: var(--muted2); font-size: 0.92rem; font-weight: 300; max-width: 480px; margin: 0 auto 2rem; line-height: 1.8; }
     .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -171,6 +174,7 @@
       .pricing-hero, section { padding-left: 2rem; padding-right: 2rem; }
       .entry-grid { grid-template-columns: 1fr; }
       .sprint-grid { grid-template-columns: 1fr; }
+      .sprint-grid.three-col { grid-template-columns: 1fr; }
       .retainer-grid { grid-template-columns: 1fr; }
       .bottom-cta { margin-left: 2rem; margin-right: 2rem; padding: 2.5rem 2rem; }
     }
@@ -180,6 +184,20 @@
     .schnellcheck-price-note { font-size: 0.78rem; color: var(--muted2); margin-top: 0.3rem; }
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
+      nav { padding: 1rem 1.2rem; }
+      .nav-cta { display: none; }
+      .nav-back { min-width: 0; max-width: 52vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .pricing-hero { padding: 8rem 1.2rem 4rem; }
+      h1, .hero-sub { max-width: 100%; }
+      h1 .accent { overflow-wrap: anywhere; }
+      .hero-note { max-width: 100%; white-space: normal; overflow-wrap: anywhere; justify-content: center; text-align: center; border-radius: 12px; }
+      .early-partner-banner { padding: 1.3rem 1.2rem !important; gap: 1rem !important; border-radius: 10px !important; }
+      .early-partner-text { min-width: 0 !important; flex-basis: 100% !important; }
+      .early-partner-cta { width: 100%; text-align: center; white-space: normal !important; }
+      .sprint-card, .retainer-card, .entry-card { min-width: 0; }
+      .project-price { white-space: normal; }
+      .schnellcheck-box { padding: 1.4rem 1.2rem; gap: 1.2rem; }
+      .schnellcheck-price-big { font-size: 2.25rem; }
       .project-table thead { display: none; }
       .project-table td { display: block; padding: 0.5rem 0; border: none; }
       .project-table tr { padding: 1rem; border-bottom: 1px solid var(--border2); display: block; }
@@ -191,48 +209,113 @@
   "@graph": [
     {
       "@type": "Service",
-      "name": "AI Opportunity Assessment",
-      "serviceType": "AI Opportunity Assessment",
-      "description": "Der risikolose Startpunkt. In 2–3 Tagen wissen Sie genau, wo KI hilft, was es kostet und wie Sie starten.",
+      "@id": "https://ventari.eu/preise#service",
+      "name": "KI-Automatisierung und Compliance-Leistungen",
+      "serviceType": [
+        "AI Opportunity Assessment",
+        "AI Automation",
+        "EU AI Act Compliance",
+        "AI Governance"
+      ],
+      "url": "https://ventari.eu/preise",
       "provider": {
         "@id": "https://ventari.eu/#organization"
+      },
+      "areaServed": [
+        "Germany",
+        "Poland",
+        "Austria",
+        "Switzerland",
+        "Europe"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Ventari KI-Projektpakete",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "AI Quick Check",
+            "price": "2500",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/preise",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Assessment S",
+            "price": "4900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/preise",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Assessment M",
+            "price": "9900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/preise",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Assessment L",
+            "price": "17500",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/preise",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "EU AI Act Compliance Sprint",
+            "price": "11900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/preise",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "KI-Strategietag",
+            "price": "3900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/preise",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "KI-Beauftragter Essential",
+            "price": "1900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/preise",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Wartung Retainer Core",
+            "price": "2200",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/preise",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
       }
     },
     {
-      "@type": "Service",
-      "name": "AI Automation & Integration",
-      "serviceType": "AI Automation & Integration",
-      "description": "Festpreis-Projekte nach Komplexität. Jedes Projekt startet nach einem Assessment – keine Implementierung ohne Strategie.",
-      "provider": {
-        "@id": "https://ventari.eu/#organization"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "AI Governance & Compliance Sprints",
-      "serviceType": "AI Governance & Compliance Sprints",
-      "description": "Rechtssicherheit als Paket, nicht als Open-End-Auftrag. Unser Rechtsexperte (Dr. iur., spezialisiert auf EU AI Act) liefert in klar definierten Sprints.",
-      "provider": {
-        "@id": "https://ventari.eu/#organization"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "KI-Beauftragter auf Zeit",
-      "serviceType": "KI-Beauftragter auf Zeit",
-      "description": "EU AI Act Art. 4 verlangt nachweisbare KI-Kompetenz im Unternehmen – aber keine Vollzeitstelle. Unser KI-Beauftragter auf Zeit übernimmt Governance, Schulung und Compliance-Verantwortung auf monatlicher Basis.",
-      "provider": {
-        "@id": "https://ventari.eu/#organization"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "Wartung & Weiterentwicklung",
-      "serviceType": "Wartung & Weiterentwicklung",
-      "description": "Nach der Implementierung brauchen KI-Systeme Pflege. Unsere Retainer-Pakete halten Ihre Lösung performant, sicher und compliant.",
-      "provider": {
-        "@id": "https://ventari.eu/#organization"
-      }
+      "@type": "BreadcrumbList",
+      "@id": "https://ventari.eu/preise#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ventari",
+          "item": "https://ventari.eu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Preise",
+          "item": "https://ventari.eu/preise"
+        }
+      ]
     }
   ]
 }
@@ -307,13 +390,13 @@
 </div>
 
 <!-- EARLY PARTNER BANNER -->
-<div style="background:linear-gradient(135deg,rgba(74,140,255,0.08) 0%,rgba(93,216,232,0.06) 100%);border:1px solid rgba(74,140,255,0.25);border-radius:14px;padding:1.5rem 2rem;margin-bottom:0;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-  <div style="flex:1;min-width:260px;">
+<div class="early-partner-banner" style="background:linear-gradient(135deg,rgba(74,140,255,0.08) 0%,rgba(93,216,232,0.06) 100%);border:1px solid rgba(74,140,255,0.25);border-radius:14px;padding:1.5rem 2rem;margin-bottom:0;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+  <div class="early-partner-text" style="flex:1;min-width:260px;">
     <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:var(--cyan);text-transform:uppercase;margin-bottom:0.4rem;">Pilotkontingent für ausgewählte Projekte</div>
     <div style="font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;">Reduzierte Projektphase für erste <span style="color:var(--cyan);">anonymisierte Referenz-Cases.</span></div>
     <div style="font-size:0.84rem;color:var(--muted2);line-height:1.6;">Ausgewählte Unternehmen erhalten <strong style="color:var(--white);">30&thinsp;% Nachlass</strong> auf definierte Leistungen, wenn das Projekt später als anonymisierte Case Study genutzt werden darf. Umfang, Freigaben und Vertraulichkeit werden vorab schriftlich vereinbart.</div>
   </div>
-  <a href="https://ventari.eu/#contact" style="background:var(--blue);color:#fff;text-decoration:none;padding:0.7rem 1.4rem;border-radius:8px;font-size:0.88rem;font-weight:600;white-space:nowrap;flex-shrink:0;">Jetzt anfragen →</a>
+  <a href="https://ventari.eu/#contact" class="early-partner-cta" style="background:var(--blue);color:#fff;text-decoration:none;padding:0.7rem 1.4rem;border-radius:8px;font-size:0.88rem;font-weight:600;white-space:nowrap;flex-shrink:0;">Jetzt anfragen →</a>
 </div>
 
 <hr class="divider"/>
@@ -547,7 +630,7 @@
   <h2 class="section-title">KI-Beauftragter auf Zeit</h2>
   <p class="section-sub">EU AI Act Art. 4 verlangt nachweisbare KI-Kompetenz im Unternehmen – aber keine Vollzeitstelle. Unser KI-Beauftragter auf Zeit übernimmt Governance, Schulung und Compliance-Verantwortung auf monatlicher Basis.</p>
 
-  <div class="sprint-grid" style="grid-template-columns: repeat(3, 1fr);">
+  <div class="sprint-grid three-col">
     <div class="sprint-card">
       <div class="sprint-icon">🎯</div>
       <div class="sprint-name">Basis</div>

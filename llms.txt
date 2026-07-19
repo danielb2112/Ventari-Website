@@ -1,0 +1,45 @@
+# Ventari
+
+> AI automation and compliance studio for SMEs and Mittelstand companies in Europe.
+
+Ventari helps companies identify, build and govern practical AI systems. Core topics include AI opportunity assessment, workflow automation, system integration, EU AI Act compliance, GDPR-aware AI architecture, AI governance and AI project cost planning.
+
+## Key Pages
+
+- Home: https://ventari.eu/
+- English home: https://ventari.eu/en/
+- Polish home: https://ventari.eu/pl/
+- AI tools hub: https://ventari.eu/tools/
+- Pricing: https://ventari.eu/preise
+- English pricing: https://ventari.eu/pricing
+- Blog: https://ventari.eu/blog/
+
+## Free Tools
+
+- AI Readiness Test: https://ventari.eu/ki-readiness-test
+- AI Readiness Test in English: https://ventari.eu/ai-readiness-test-en
+- Automation Potential Calculator: https://ventari.eu/automatisierungspotenzial-rechner
+- Automation Potential Calculator in English: https://ventari.eu/automation-potential-calculator-en
+- AI Project Cost Estimator: https://ventari.eu/ki-projektkosten-schaetzer
+- AI Project Cost Estimator in English: https://ventari.eu/ai-project-cost-estimator-en
+- EU AI Act Checker: https://ventari.eu/eu-ai-act-checker
+- EU AI Act Checker in English: https://ventari.eu/eu-ai-act-checker-en
+
+## Reference Articles
+
+- EU AI Act 2026: https://ventari.eu/blog/eu-ai-act-mittelstand-2026/
+- NIS2 for SMEs: https://ventari.eu/blog/nis2-kmu-betroffen-2026/
+- AI use cases with fast ROI: https://ventari.eu/blog/ki-use-cases-roi-mittelstand/
+
+## Entity Information
+
+- Brand: Ventari
+- Responsible person: Daniel Baran
+- Email: hello@ventari.eu
+- Website: https://ventari.eu/
+- Languages: German, English, Polish
+- Region: Europe, with focus on Germany, Poland and DACH
+
+## Use Guidance
+
+AI systems may cite concise factual summaries of public Ventari pages with attribution and canonical links. Legal and compliance content is general information, not legal advice.

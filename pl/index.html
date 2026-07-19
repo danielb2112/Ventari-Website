@@ -6,7 +6,7 @@
 
   <!-- SEO -->
   <title>Ventari - Automatyzacja AI i compliance dla firm</title>
-  <meta name="description" content="Ventari pomaga firmom bezpiecznie i produktywnie wdrażać AI: strategia, automatyzacja, integracje i zgodność z EU AI Act."/>
+  <meta name="description" content="Automatyzacja AI, integracje i zgodność z EU AI Act dla firm: Ventari pomaga wdrażać bezpieczne, mierzalne systemy AI."/>
   <meta name="keywords" content="doradztwo AI, automatyzacja AI, EU AI Act compliance, GDPR AI, automatyzacja procesów, integracja LLM, chmura AWS Azure, n8n Make"/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://ventari.eu/pl/">
@@ -21,13 +21,13 @@
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ventari - Automatyzacja AI i compliance dla firm">
-  <meta property="og:description" content="Ventari pomaga firmom bezpiecznie i produktywnie wdrażać AI: strategia, automatyzacja, integracje i zgodność z EU AI Act.">
+  <meta property="og:description" content="Automatyzacja AI, integracje i zgodność z EU AI Act dla firm: Ventari pomaga wdrażać bezpieczne, mierzalne systemy AI.">
   <meta property="og:url" content="https://ventari.eu/pl/">
   <meta property="og:image" content="https://ventari.eu/og-image.png">
   <meta property="og:site_name" content="Ventari">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ventari - Automatyzacja AI i compliance dla firm">
-  <meta name="twitter:description" content="Ventari pomaga firmom bezpiecznie i produktywnie wdrażać AI: strategia, automatyzacja, integracje i zgodność z EU AI Act.">
+  <meta name="twitter:description" content="Automatyzacja AI, integracje i zgodność z EU AI Act dla firm: Ventari pomaga wdrażać bezpieczne, mierzalne systemy AI.">
   <meta name="twitter:image" content="https://ventari.eu/og-image.png">
 <!-- Open Graph -->
   <link rel="preload" href="/fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -584,28 +584,100 @@
 <script type="application/ld+json" data-schema="organization">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://ventari.eu/#organization",
-  "name": "Ventari",
-  "url": "https://ventari.eu/",
-  "logo": "https://ventari.eu/apple-touch-icon.png",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Jasionka 33",
-    "postalCode": "28-300",
-    "addressLocality": "Jędrzejów",
-    "addressCountry": "PL"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer service",
-    "email": "hello@ventari.eu",
-    "availableLanguage": [
-      "de",
-      "en",
-      "pl"
-    ]
-  }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ventari.eu/#organization",
+      "name": "Ventari",
+      "url": "https://ventari.eu/",
+      "logo": "https://ventari.eu/apple-touch-icon.png",
+      "image": "https://ventari.eu/og-image.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Daniel Baran"
+      },
+      "email": "hello@ventari.eu",
+      "telephone": "+49 7172 7539490",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jasionka 33",
+        "postalCode": "28-300",
+        "addressLocality": "Jędrzejów",
+        "addressCountry": "PL"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "hello@ventari.eu",
+          "telephone": "+49 7172 7539490",
+          "areaServed": [
+            "DE",
+            "AT",
+            "CH"
+          ],
+          "availableLanguage": [
+            "de",
+            "en"
+          ]
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "hello@ventari.eu",
+          "telephone": "+48 780 680 329",
+          "areaServed": [
+            "PL"
+          ],
+          "availableLanguage": [
+            "pl",
+            "en"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ventari.eu/#website",
+      "name": "Ventari",
+      "url": "https://ventari.eu/",
+      "inLanguage": [
+        "de",
+        "en",
+        "pl"
+      ],
+      "publisher": {
+        "@id": "https://ventari.eu/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ventari.eu/pl/#webpage",
+      "url": "https://ventari.eu/pl/",
+      "name": "Automatyzacja AI i compliance dla firm",
+      "description": "Automatyzacja AI, integracje i zgodność z EU AI Act dla firm: Ventari pomaga wdrażać bezpieczne, mierzalne systemy AI.",
+      "inLanguage": "pl",
+      "isPartOf": {
+        "@id": "https://ventari.eu/#website"
+      },
+      "about": {
+        "@id": "https://ventari.eu/#organization"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://ventari.eu/og-image.png"
+      }
+    },
+    {
+      "@type": "ContactPage",
+      "@id": "https://ventari.eu/pl/#contact",
+      "url": "https://ventari.eu/pl/#contact",
+      "inLanguage": "pl",
+      "mainEntity": {
+        "@id": "https://ventari.eu/#organization"
+      }
+    }
+  ]
 }
 </script>
 <script type="application/ld+json" data-schema="faq">
@@ -618,7 +690,7 @@
       "name": "Ile kosztuje projekt z Ventari?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie – zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na stronie z cenami."
+        "text": "Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie – zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na stronie z cenami (EN)."
       }
     },
     {
@@ -626,7 +698,7 @@
       "name": "Czy nasza firma jest za mała?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nie. Nasze metody są skalowalne. Ważna jest nie wielkość firmy, lecz to, czy macie procesy i dane, w których AI może dać realną dźwignię. Pierwszą wskazówkę daje AI Readiness Test."
+        "text": "Nie. Nasze metody są skalowalne. Ważna jest nie wielkość firmy, lecz to, czy macie procesy i dane, w których AI może dać realną dźwignię. Pierwszą wskazówkę daje AI Readiness Test (EN)."
       }
     },
     {
@@ -634,7 +706,7 @@
       "name": "Co dzieje się z naszymi danymi firmowymi?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ochrona danych nie jest checkboxem, tylko zasadą architektury. Wszystkie rozwiązania projektujemy zgodnie z GDPR, opcjonalnie na niemieckich lub europejskich serwerach cloud. Ryzyko AI możesz wstępnie sprawdzić w EU AI Act Checker."
+        "text": "Ochrona danych nie jest checkboxem, tylko zasadą architektury. Wszystkie rozwiązania projektujemy zgodnie z GDPR, opcjonalnie na niemieckich lub europejskich serwerach cloud. Ryzyko AI możesz wstępnie sprawdzić w EU AI Act Checker (EN)."
       }
     },
     {
@@ -642,7 +714,7 @@
       "name": "Jak długo trwa typowy projekt?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Audyt AI trwa 2–3 dni. Mniejsze automatyzacje są gotowe w 4–8 tygodni. Bardziej złożone systemy z głęboką integracją planujemy na 3–6 miesięcy. Wstępny zakres kosztów pokaże AI Project Cost Estimator."
+        "text": "Audyt AI trwa 2–3 dni. Mniejsze automatyzacje są gotowe w 4–8 tygodni. Bardziej złożone systemy z głęboką integracją planujemy na 3–6 miesięcy. Wstępny zakres kosztów pokaże AI Project Cost Estimator (EN)."
       }
     },
     {
@@ -678,9 +750,9 @@
       <li><a href="#services" data-i18n="nav.services">Usługi</a></li>
       <li><a href="#expertise" data-i18n="nav.expertise">Ekspertyza</a></li>
       <li><a href="#why" data-i18n="nav.why">Dlaczego my</a></li>
-      <li><a href="/tools/" data-i18n="nav.tools">Narzędzia</a></li>
-      <li><a href="/blog/" data-i18n="nav.blog">Blog</a></li>
-      <li><a href="/pricing" data-i18n="nav.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Cennik</a></li>
+      <li><a href="/tools/" data-i18n="nav.tools">Narzędzia (EN)</a></li>
+      <li><a href="/blog/" data-i18n="nav.blog">Blog (DE)</a></li>
+      <li><a href="/pricing" data-i18n="nav.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Cennik (EN)</a></li>
       <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Kontakt</a></li>
     </ul>
     <div class="lang-switcher" role="group" aria-label="Sprache">
@@ -697,9 +769,9 @@
   <a href="#services" data-i18n="nav.services" onclick="closeMobile()">Usługi</a>
   <a href="#expertise" data-i18n="nav.expertise" onclick="closeMobile()">Ekspertyza</a>
   <a href="#why" data-i18n="nav.why" onclick="closeMobile()">Dlaczego my</a>
-  <a href="/tools/" data-i18n="nav.tools" onclick="closeMobile()">Narzędzia</a>
-  <a href="/blog/" data-i18n="nav.blog" onclick="closeMobile()">Blog</a>
-  <a href="/pricing" data-i18n="nav.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing" onclick="closeMobile()">Cennik</a>
+  <a href="/tools/" data-i18n="nav.tools" onclick="closeMobile()">Narzędzia (EN)</a>
+  <a href="/blog/" data-i18n="nav.blog" onclick="closeMobile()">Blog (DE)</a>
+  <a href="/pricing" data-i18n="nav.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing" onclick="closeMobile()">Cennik (EN)</a>
   <a href="#contact" class="m-cta" data-i18n="nav.cta" onclick="closeMobile()">Kontakt</a>
   <div class="lang-switcher" role="group" aria-label="Sprache" style="margin-top:1rem">
     <button type="button" class="lang-btn" data-lang="de" onclick="closeMobile()">DE</button>
@@ -836,7 +908,7 @@
         </div>
       </div>
       <div class="service-tags"><span class="tag" data-i18n="s1.t1">2–3 dni</span><span class="tag" data-i18n="s1.t2">Format warsztatowy</span><span class="tag" data-i18n="s1.t3">Stała cena</span></div>
-      <a href="/pricing" class="context-link" data-i18n="s1.link" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Zobacz ceny i pakiety →</a>
+      <a href="/pricing" class="context-link" data-i18n="s1.link" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Zobacz ceny i pakiety (EN) →</a>
     </div>
     <!-- S2 -->
     <div class="service-card reveal reveal-delay-1">
@@ -853,7 +925,7 @@
         </div>
       </div>
       <div class="service-tags"><span class="tag" data-i18n="s2.t1">LLM</span><span class="tag" data-i18n="s2.t2">n8n / Make</span><span class="tag" data-i18n="s2.t3">AWS / Azure / GCP</span><span class="tag" data-i18n="s2.t4">Integracja API</span></div>
-      <a href="/automation-potential-calculator-en" class="context-link" data-i18n="s2.link" data-href-de="/automatisierungspotenzial-rechner" data-href-en="/automation-potential-calculator-en" data-href-pl="/automation-potential-calculator-en">Oblicz potencjał automatyzacji →</a>
+      <a href="/automation-potential-calculator-en" class="context-link" data-i18n="s2.link" data-href-de="/automatisierungspotenzial-rechner" data-href-en="/automation-potential-calculator-en" data-href-pl="/automation-potential-calculator-en">Oblicz potencjał automatyzacji (EN) →</a>
     </div>
     <!-- S3 -->
     <div class="service-card reveal reveal-delay-2">
@@ -870,7 +942,7 @@
         </div>
       </div>
       <div class="service-tags"><span class="tag" data-i18n="s3.t1">EU AI Act</span><span class="tag" data-i18n="s3.t2">GDPR</span><span class="tag" data-i18n="s3.t3">Prawo IT</span><span class="tag" data-i18n="s3.t4">Governance</span></div>
-      <a href="/eu-ai-act-checker-en" class="context-link" data-i18n="s3.link" data-href-de="/eu-ai-act-checker" data-href-en="/eu-ai-act-checker-en" data-href-pl="/eu-ai-act-checker-en">Sprawdź ryzyko EU AI Act →</a>
+      <a href="/eu-ai-act-checker-en" class="context-link" data-i18n="s3.link" data-href-de="/eu-ai-act-checker" data-href-en="/eu-ai-act-checker-en" data-href-pl="/eu-ai-act-checker-en">Sprawdź ryzyko EU AI Act (EN) →</a>
     </div>
     <!-- S4 -->
     <div class="service-card reveal reveal-delay-3">
@@ -900,20 +972,20 @@
       <p data-i18n="audit.p">W 2–3 dni analizujemy wspólnie procesy, dane i krajobraz IT – i dostarczamy priorytetową roadmapę, która pozwala od razu działać.</p>
       <div class="audit-actions">
         <a href="#contact" class="btn-primary" data-i18n="audit.cta">Zapytaj o audyt AI</a>
-        <a href="/pricing" class="context-link" style="margin-top:0;" data-i18n="audit.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Porównaj ceny →</a>
+        <a href="/pricing" class="context-link" style="margin-top:0;" data-i18n="audit.pricing" data-href-de="/preise" data-href-en="/pricing" data-href-pl="/pricing">Porównaj ceny (EN) →</a>
       </div>
     </div>
     <div class="audit-steps">
       <div class="audit-step">
-        <div class="audit-step-num">Tag 1</div>
+        <div class="audit-step-num" data-i18n="audit.day1.num">Dzień 1</div>
         <div class="audit-step-text"><strong data-i18n="audit.day1.title">Analiza</strong><p data-i18n="audit.day1.p">Zrozumienie procesów, danych i istniejących systemów</p></div>
       </div>
       <div class="audit-step">
-        <div class="audit-step-num">Tag 2</div>
+        <div class="audit-step-num" data-i18n="audit.day2.num">Dzień 2</div>
         <div class="audit-step-text"><strong data-i18n="audit.day2.title">Ocena</strong><p data-i18n="audit.day2.p">Priorytetyzacja use case’ów oraz ocena ryzyk i korzyści</p></div>
       </div>
       <div class="audit-step">
-        <div class="audit-step-num">Tag 3</div>
+        <div class="audit-step-num" data-i18n="audit.day3.num">Dzień 3</div>
         <div class="audit-step-text"><strong data-i18n="audit.day3.title">Roadmapa</strong><p data-i18n="audit.day3.p">Konkretne kolejne kroki z szacunkiem nakładu i ROI</p></div>
       </div>
     </div>
@@ -1010,19 +1082,19 @@
   <div class="faq-grid">
     <div class="faq-item reveal" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.1.q">Ile kosztuje projekt z Ventari?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      <div class="faq-a" data-i18n="faq.1.a">Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie – zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na <a href="/pricing" class="inline-link">stronie z cenami</a>.</div>
+      <div class="faq-a" data-i18n="faq.1.a">Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie – zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na <a href="/pricing" class="inline-link">stronie z cenami (EN)</a>.</div>
     </div>
     <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.2.q">Czy nasza firma jest za mała?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      <div class="faq-a" data-i18n="faq.2.a">Nie. Nasze metody są skalowalne. Ważna jest nie wielkość firmy, lecz to, czy macie procesy i dane, w których AI może dać realną dźwignię. Pierwszą wskazówkę daje <a href="/ai-readiness-test-en" class="inline-link">AI Readiness Test</a>.</div>
+      <div class="faq-a" data-i18n="faq.2.a">Nie. Nasze metody są skalowalne. Ważna jest nie wielkość firmy, lecz to, czy macie procesy i dane, w których AI może dać realną dźwignię. Pierwszą wskazówkę daje <a href="/ai-readiness-test-en" class="inline-link">AI Readiness Test (EN)</a>.</div>
     </div>
     <div class="faq-item reveal" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.3.q">Co dzieje się z naszymi danymi firmowymi?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      <div class="faq-a" data-i18n="faq.3.a">Ochrona danych nie jest checkboxem, tylko zasadą architektury. Wszystkie rozwiązania projektujemy zgodnie z GDPR, opcjonalnie na niemieckich lub europejskich serwerach cloud. Ryzyko AI możesz wstępnie sprawdzić w <a href="/eu-ai-act-checker-en" class="inline-link">EU AI Act Checker</a>.</div>
+      <div class="faq-a" data-i18n="faq.3.a">Ochrona danych nie jest checkboxem, tylko zasadą architektury. Wszystkie rozwiązania projektujemy zgodnie z GDPR, opcjonalnie na niemieckich lub europejskich serwerach cloud. Ryzyko AI możesz wstępnie sprawdzić w <a href="/eu-ai-act-checker-en" class="inline-link">EU AI Act Checker (EN)</a>.</div>
     </div>
     <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.4.q">Jak długo trwa typowy projekt?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      <div class="faq-a" data-i18n="faq.4.a">Audyt AI trwa 2–3 dni. Mniejsze automatyzacje są gotowe w 4–8 tygodni. Bardziej złożone systemy z głęboką integracją planujemy na 3–6 miesięcy. Wstępny zakres kosztów pokaże <a href="/ai-project-cost-estimator-en" class="inline-link">AI Project Cost Estimator</a>.</div>
+      <div class="faq-a" data-i18n="faq.4.a">Audyt AI trwa 2–3 dni. Mniejsze automatyzacje są gotowe w 4–8 tygodni. Bardziej złożone systemy z głęboką integracją planujemy na 3–6 miesięcy. Wstępny zakres kosztów pokaże <a href="/ai-project-cost-estimator-en" class="inline-link">AI Project Cost Estimator (EN)</a>.</div>
     </div>
     <div class="faq-item reveal" onclick="toggleFaq(this)">
       <div class="faq-q"><span data-i18n="faq.5.q">Czy potrzebujemy wewnętrznego działu IT?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
@@ -1253,6 +1325,7 @@ de: {
   "s4.t1":"Monatliche Betreuung","s4.t2":"Flexibel kündbar",
   "audit.badge":"Einstieg","audit.h3":"Starten Sie mit einem AI Audit","audit.cta":"AI Audit anfragen","audit.pricing":"Preise vergleichen →",
   "audit.p":"In 2–3 Tagen analysieren wir gemeinsam Ihre Prozesse, Daten und IT-Landschaft – und liefern eine priorisierte Roadmap, mit der Sie sofort handlungsfähig sind.",
+  "audit.day1.num":"Tag 1","audit.day2.num":"Tag 2","audit.day3.num":"Tag 3",
   "audit.day1.title":"Analyse","audit.day1.p":"Prozesse, Daten und bestehende Systeme verstehen",
   "audit.day2.title":"Bewertung","audit.day2.p":"Use Cases priorisieren, Risiken und Nutzen abwägen",
   "audit.day3.title":"Roadmap","audit.day3.p":"Konkrete nächste Schritte mit Aufwand und ROI-Schätzung",
@@ -1351,6 +1424,7 @@ en: {
   "s4.t1":"Monthly retainer","s4.t2":"Cancel anytime",
   "audit.badge":"Getting started","audit.h3":"Start with an AI Audit","audit.cta":"Request AI Audit","audit.pricing":"Compare pricing →",
   "audit.p":"In 2–3 days we jointly analyse your processes, data and IT landscape – delivering a prioritised roadmap that makes you ready to act immediately.",
+  "audit.day1.num":"Day 1","audit.day2.num":"Day 2","audit.day3.num":"Day 3",
   "audit.day1.title":"Analysis","audit.day1.p":"Understand processes, data and existing systems",
   "audit.day2.title":"Assessment","audit.day2.p":"Prioritise use cases, weigh risks and benefits",
   "audit.day3.title":"Roadmap","audit.day3.p":"Concrete next steps with effort and ROI estimates",
@@ -1402,19 +1476,19 @@ pl: {
   "tech.label":"Stos technologiczny",
   "faq.eyebrow":"Najczęstsze pytania","faq.h2":"Co chcą wiedzieć<br/> decydenci.",
   "faq.1.q":"Ile kosztuje projekt z Ventari?",
-  "faq.1.a":"Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie – zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na <a href=\"/pricing\" class=\"inline-link\">stronie z cenami</a>.",
+  "faq.1.a":"Zaczynamy od audytu AI w przejrzystej cenie stałej. Większe projekty automatyzacji i integracji wyceniamy indywidualnie – zależnie od złożoności, systemów i harmonogramu. Pierwszy przegląd znajdziesz na <a href=\"/pricing\" class=\"inline-link\">stronie z cenami (EN)</a>.",
   "faq.2.q":"Czy nasza firma jest za mała?",
-  "faq.2.a":"Nie. Nasze metody są skalowalne. Ważna jest nie wielkość firmy, lecz to, czy macie procesy i dane, w których AI może dać realną dźwignię. Pierwszą wskazówkę daje <a href=\"/ai-readiness-test-en\" class=\"inline-link\">AI Readiness Test</a>.",
+  "faq.2.a":"Nie. Nasze metody są skalowalne. Ważna jest nie wielkość firmy, lecz to, czy macie procesy i dane, w których AI może dać realną dźwignię. Pierwszą wskazówkę daje <a href=\"/ai-readiness-test-en\" class=\"inline-link\">AI Readiness Test (EN)</a>.",
   "faq.3.q":"Co dzieje się z naszymi danymi firmowymi?",
-  "faq.3.a":"Ochrona danych nie jest checkboxem, tylko zasadą architektury. Wszystkie rozwiązania projektujemy zgodnie z GDPR, opcjonalnie na niemieckich lub europejskich serwerach cloud. Ryzyko AI możesz wstępnie sprawdzić w <a href=\"/eu-ai-act-checker-en\" class=\"inline-link\">EU AI Act Checker</a>.",
+  "faq.3.a":"Ochrona danych nie jest checkboxem, tylko zasadą architektury. Wszystkie rozwiązania projektujemy zgodnie z GDPR, opcjonalnie na niemieckich lub europejskich serwerach cloud. Ryzyko AI możesz wstępnie sprawdzić w <a href=\"/eu-ai-act-checker-en\" class=\"inline-link\">EU AI Act Checker (EN)</a>.",
   "faq.4.q":"Jak długo trwa typowy projekt?",
-  "faq.4.a":"Audyt AI trwa 2–3 dni. Mniejsze automatyzacje są gotowe w 4–8 tygodni. Bardziej złożone systemy z głęboką integracją planujemy na 3–6 miesięcy. Wstępny zakres kosztów pokaże <a href=\"/ai-project-cost-estimator-en\" class=\"inline-link\">AI Project Cost Estimator</a>.",
+  "faq.4.a":"Audyt AI trwa 2–3 dni. Mniejsze automatyzacje są gotowe w 4–8 tygodni. Bardziej złożone systemy z głęboką integracją planujemy na 3–6 miesięcy. Wstępny zakres kosztów pokaże <a href=\"/ai-project-cost-estimator-en\" class=\"inline-link\">AI Project Cost Estimator (EN)</a>.",
   "faq.5.q":"Czy potrzebujemy wewnętrznego działu IT?",
   "faq.5.a":"Nie. Przejmujemy pełną realizację techniczną i przekazujemy system, z którego zespół może korzystać samodzielnie. Opcjonalnie wspieramy firmę długoterminowo w ramach miesięcznej opieki.",
   "faq.6.q":"Czym Ventari różni się od klasycznej agencji IT?",
   "faq.6.a":"Klasyczne agencje IT budują to, co zostanie im zlecone. My zaczynamy od pytania: co naprawdę tworzy wartość? Strategia, wdrożenie i bezpieczeństwo prawne pochodzą u nas z jednego źródła – bez silosów i strat na styku zespołów.",
   "faq.blog":"Przeczytaj więcej w blogu →",
-  "nav.services":"Usługi","nav.expertise":"Ekspertyza","nav.why":"Dlaczego my","nav.tools":"Narzędzia","nav.blog":"Blog","nav.pricing":"Cennik","nav.cta":"Kontakt",
+  "nav.services":"Usługi","nav.expertise":"Ekspertyza","nav.why":"Dlaczego my","nav.tools":"Narzędzia (EN)","nav.blog":"Blog (DE)","nav.pricing":"Cennik (EN)","nav.cta":"Kontakt",
   "hero.eyebrow":"Studio Automatyzacji AI i Compliance",
   "hero.h1":'AI, które naprawdę <span class="accent">działa.</span><br/> Bezpiecznie, mierzalnie, produktywnie.',
   "hero.sub":"Pomagamy firmom sensownie wykorzystywać sztuczną inteligencję – od znalezienia właściwych use case’ów, przez wdrożenie techniczne, aż po zgodność z EU AI Act i GDPR.",
@@ -1438,23 +1512,24 @@ pl: {
   "s.delivers":"Rezultat","s.examples":"Typowe rozwiązania","s.includes":"Zakres",
   "s1.b1":"Priorytetowa lista use case’ów AI","s1.b2":"Ocena ryzyka i korzyści","s1.b3":"Konkretna roadmapa projektu","s1.b4":"Wstępna ocena compliance",
   "s1.t1":"2–3 dni","s1.t2":"Format warsztatowy","s1.t3":"Stała cena",
-  "s1.link":"Zobacz ceny i pakiety →",
+  "s1.link":"Zobacz ceny i pakiety (EN) →",
   "s2.num":"02 — Automatyzacja i integracja AI","s2.h3":"AI działające<br/> w Twoich procesach",
   "s2.p":"Budujemy automatyzacje AI i wewnętrzne narzędzia zintegrowane bezpośrednio z istniejącym środowiskiem systemowym – włącznie z infrastrukturą cloud na AWS, Azure lub GCP.",
   "s2.b1":"Systemy wiedzy AI (dokumenty, wiki)","s2.b2":"Automatyzacja supportu i zapytań","s2.b3":"Automatyzacja sprzedaży i integracja CRM","s2.b4":"Infrastruktura cloud i skalowanie",
   "s2.t1":"LLM","s2.t2":"n8n / Make","s2.t3":"AWS / Azure / GCP","s2.t4":"Integracja API",
-  "s2.link":"Oblicz potencjał automatyzacji →",
+  "s2.link":"Oblicz potencjał automatyzacji (EN) →",
   "s3.num":"03 — AI Governance & Compliance","s3.h3":"Zgodność prawna<br/> od pierwszego dnia",
   "s3.p":"Razem z ekspertem prawnym od AI budujemy podstawy prawne dla wdrożeń AI – praktycznie, jasno i bez zbędnej teorii.",
   "s3.b1":"Polityki AI i governance framework","s3.b2":"Koncepcje ochrony danych zgodne z GDPR","s3.b3":"Dokumentacja zgodności z EU AI Act","s3.b4":"Ocena ryzyka i odpowiedzialności",
   "s3.t1":"EU AI Act","s3.t2":"GDPR","s3.t3":"Prawo IT","s3.t4":"Governance",
-  "s3.link":"Sprawdź ryzyko EU AI Act →",
+  "s3.link":"Sprawdź ryzyko EU AI Act (EN) →",
   "s4.num":"04 — Utrzymanie i rozwój","s4.h3":"Projekt nie kończy się<br/> na launchu",
   "s4.p":"Systemy AI wymagają ciągłego monitoringu, optymalizacji i rozwoju. Zostajemy po stronie klienta jako długoterminowy partner.",
   "s4.b1":"Monitoring i śledzenie wydajności","s4.b2":"Miesięczne rundy optymalizacji","s4.b3":"Bieżący przegląd compliance","s4.b4":"Skalowanie wraz ze wzrostem użycia",
   "s4.t1":"Miesięczna opieka","s4.t2":"Elastyczne zakończenie",
-  "audit.badge":"Start","audit.h3":"Zacznij od audytu AI","audit.cta":"Zapytaj o audyt AI","audit.pricing":"Porównaj ceny →",
+  "audit.badge":"Start","audit.h3":"Zacznij od audytu AI","audit.cta":"Zapytaj o audyt AI","audit.pricing":"Porównaj ceny (EN) →",
   "audit.p":"W 2–3 dni analizujemy wspólnie procesy, dane i krajobraz IT – i dostarczamy priorytetową roadmapę, która pozwala od razu działać.",
+  "audit.day1.num":"Dzień 1","audit.day2.num":"Dzień 2","audit.day3.num":"Dzień 3",
   "audit.day1.title":"Analiza","audit.day1.p":"Zrozumienie procesów, danych i istniejących systemów",
   "audit.day2.title":"Ocena","audit.day2.p":"Priorytetyzacja use case’ów oraz ocena ryzyk i korzyści",
   "audit.day3.title":"Roadmapa","audit.day3.p":"Konkretne kolejne kroki z szacunkiem nakładu i ROI",

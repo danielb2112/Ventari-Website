@@ -4,22 +4,23 @@
   <script>try{localStorage.setItem("ventari_lang","en");}catch(e){}</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Readiness Test – Ventari</title>
-  <meta name="description" content="Where does your company stand on AI? Free 5-minute test – with a concrete score and actionable recommendations."/>
+  <title>AI Readiness Test for SMEs | Ventari</title>
+  <meta name="description" content="Assess your company's AI readiness in 5 minutes: strategy, data, processes, compliance and concrete next steps for safer AI adoption."/>
+  <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://ventari.eu/ai-readiness-test-en"/>
     <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Readiness Test – Ventari">
-  <meta property="og:description" content="Where does your company stand on AI? Free 5-minute test – with a concrete score and actionable recommendations.">
+  <meta property="og:title" content="AI Readiness Test for SMEs | Ventari">
+  <meta property="og:description" content="Assess your company's AI readiness in 5 minutes: strategy, data, processes, compliance and concrete next steps for safer AI adoption.">
   <meta property="og:url" content="https://ventari.eu/ai-readiness-test-en">
   <meta property="og:image" content="https://ventari.eu/og-image.png">
   <meta property="og:site_name" content="Ventari">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AI Readiness Test – Ventari">
-  <meta name="twitter:description" content="Where does your company stand on AI? Free 5-minute test – with a concrete score and actionable recommendations.">
+  <meta name="twitter:title" content="AI Readiness Test for SMEs | Ventari">
+  <meta name="twitter:description" content="Assess your company's AI readiness in 5 minutes: strategy, data, processes, compliance and concrete next steps for safer AI adoption.">
   <meta name="twitter:image" content="https://ventari.eu/og-image.png">
 <link rel="alternate" hreflang="de" href="https://ventari.eu/ki-readiness-test"/>
   <link rel="alternate" hreflang="en" href="https://ventari.eu/ai-readiness-test-en"/>
@@ -105,7 +106,62 @@
     .restart-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color 0.2s}
     .restart-btn:hover{color:var(--white)}
     @media(max-width:600px){nav{padding:1rem 1.4rem}main{padding:7rem 1.2rem 4rem}.btn-row{flex-direction:column}.btn-primary,.btn-secondary{width:100%;justify-content:center}}
+    .tool-seo{margin-top:3rem;padding-top:2.2rem;border-top:1px solid var(--border2);color:var(--muted2);}
+    .tool-seo h2{font-family:'DM Serif Display',serif;font-size:1.35rem;font-weight:400;color:var(--white);line-height:1.25;margin-bottom:.8rem;}
+    .tool-seo p{font-size:.88rem;line-height:1.8;margin-bottom:1rem;}
+    .tool-seo a{color:var(--blue);text-decoration:none;}
   </style>
+<script type="application/ld+json" data-schema="web-application">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://ventari.eu/ai-readiness-test-en#app",
+      "name": "AI Readiness Test",
+      "url": "https://ventari.eu/ai-readiness-test-en",
+      "description": "Free self-test for AI maturity, strategy, data readiness, process quality, internal capability and compliance.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "browserRequirements": "Requires JavaScript",
+      "isAccessibleForFree": true,
+      "inLanguage": "en",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "publisher": {
+        "@id": "https://ventari.eu/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ventari.eu/ai-readiness-test-en#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ventari",
+          "item": "https://ventari.eu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://ventari.eu/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI Readiness Test",
+          "item": "https://ventari.eu/ai-readiness-test-en"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -180,6 +236,12 @@
     </div>
     <div class="restart-row"><button type="button" class="restart-btn" onclick="restart()">Restart test</button></div>
   </div>
+<section class="tool-seo" aria-label="AI readiness test methodology">
+  <h2>What the AI Readiness Test measures</h2>
+  <p>The test checks five foundations for successful AI projects: strategic clarity, data readiness, process maturity, technical integration and governance. A high score does not mean every AI project is useful, but it indicates stronger prerequisites.</p>
+  <p>A low score is not a blocker. It shows which groundwork should come first, such as data access, responsibilities, training or an initial AI inventory.</p>
+  <p>For regulatory questions, use the <a href="/eu-ai-act-checker-en">EU AI Act Checker</a>. For business prioritisation, use the <a href="/automation-potential-calculator-en">Automation Potential Calculator</a>.</p>
+</section>
 </main>
 <script>
 const QUESTIONS = [

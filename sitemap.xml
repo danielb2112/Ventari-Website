@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ventari.eu/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/en/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://ventari.eu/pl/"/>
@@ -11,7 +11,7 @@
   </url>
   <url>
     <loc>https://ventari.eu/en/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/en/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://ventari.eu/pl/"/>
@@ -19,7 +19,7 @@
   </url>
   <url>
     <loc>https://ventari.eu/pl/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/en/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://ventari.eu/pl/"/>
@@ -27,100 +27,114 @@
   </url>
   <url>
     <loc>https://ventari.eu/tools/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/tools/"/>
   </url>
   <url>
     <loc>https://ventari.eu/automatisierungspotenzial-rechner</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/automatisierungspotenzial-rechner"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/automation-potential-calculator-en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/automatisierungspotenzial-rechner"/>
   </url>
   <url>
     <loc>https://ventari.eu/automation-potential-calculator-en</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/automatisierungspotenzial-rechner"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/automation-potential-calculator-en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/automatisierungspotenzial-rechner"/>
   </url>
   <url>
     <loc>https://ventari.eu/ki-projektkosten-schaetzer</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-projektkosten-schaetzer"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-project-cost-estimator-en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/ki-projektkosten-schaetzer"/>
   </url>
   <url>
     <loc>https://ventari.eu/ai-project-cost-estimator-en</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-projektkosten-schaetzer"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-project-cost-estimator-en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/ki-projektkosten-schaetzer"/>
   </url>
   <url>
     <loc>https://ventari.eu/ki-readiness-test</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-readiness-test"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-readiness-test-en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/ki-readiness-test"/>
   </url>
   <url>
     <loc>https://ventari.eu/ai-readiness-test-en</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/ki-readiness-test"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/ai-readiness-test-en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/ki-readiness-test"/>
   </url>
   <url>
     <loc>https://ventari.eu/eu-ai-act-checker</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/eu-ai-act-checker"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/eu-ai-act-checker-en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/eu-ai-act-checker"/>
   </url>
   <url>
     <loc>https://ventari.eu/eu-ai-act-checker-en</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/eu-ai-act-checker"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/eu-ai-act-checker-en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/eu-ai-act-checker"/>
   </url>
   <url>
     <loc>https://ventari.eu/preise</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/preise"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/preise"/>
   </url>
   <url>
     <loc>https://ventari.eu/pricing</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/preise"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ventari.eu/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/preise"/>
   </url>
   <url>
     <loc>https://ventari.eu/blog/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/blog/"/>
   </url>
   <url>
     <loc>https://ventari.eu/blog/eu-ai-act-mittelstand-2026/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/blog/eu-ai-act-mittelstand-2026/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/blog/eu-ai-act-mittelstand-2026/"/>
   </url>
   <url>
     <loc>https://ventari.eu/blog/nis2-kmu-betroffen-2026/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/blog/nis2-kmu-betroffen-2026/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/blog/nis2-kmu-betroffen-2026/"/>
   </url>
   <url>
     <loc>https://ventari.eu/blog/ki-use-cases-roi-mittelstand/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/blog/ki-use-cases-roi-mittelstand/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/blog/ki-use-cases-roi-mittelstand/"/>
   </url>
   <url>
     <loc>https://ventari.eu/impressum</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/impressum"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/impressum"/>
   </url>
   <url>
     <loc>https://ventari.eu/datenschutz</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ventari.eu/datenschutz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ventari.eu/datenschutz"/>
   </url>
 </urlset>

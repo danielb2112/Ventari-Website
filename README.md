@@ -40,11 +40,15 @@ Statische Website für [ventari.eu](https://ventari.eu), gehostet auf **Cloudfla
 2. **Cloudflare Worker** deployen → Worker-URL in `index.html` prüfen
 3. **Resend Domain** `ventari.eu` verifizieren (SPF/DKIM)
 4. Dieses Repo als **Cloudflare Pages** Projekt verbinden
-5. Custom Domain `ventari.eu` in Cloudflare Pages eintragen
+5. Custom Domains `ventari.eu` und `www.ventari.eu` in Cloudflare Pages eintragen
 
 ## Deployment
 
 Cloudflare Pages deployed automatisch bei jedem Push auf `main`.
+
+Die Domain `www.ventari.eu` muss als Pages-Custom-Domain hinterlegt sein und
+per proxied CNAME auf `ventari-website.pages.dev` zeigen. Der Apex
+`ventari.eu` bleibt ebenfalls auf das Pages-Projekt geroutet.
 
 Der Kontaktformular-Worker ist eine separate Cloudflare-Worker-Laufzeit. Code-
 Änderungen an `worker.js` gehen nicht automatisch über Cloudflare Pages live.

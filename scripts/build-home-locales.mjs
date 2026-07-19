@@ -18,20 +18,20 @@ const T = context.T;
 const meta = {
   de: {
     path: '/',
-    title: 'Ventari - KI-Automatisierung & Compliance für Unternehmen',
-    description: 'Ventari hilft Unternehmen, KI sicher und produktiv einzusetzen: Strategie, Automatisierung, Integration und EU-AI-Act-Compliance aus einer Hand.',
+    title: 'KI-Automatisierung & Compliance | Ventari',
+    description: 'Ventari entwickelt sichere KI-Automatisierung, Integration und EU-AI-Act-Compliance für Unternehmen im Mittelstand.',
     keywords: 'KI Beratung, AI Automation, EU AI Act Compliance, DSGVO KI, AI Consulting Deutschland, Prozessautomatisierung, LLM Integration, Cloud AWS Azure, n8n Make Automation',
   },
   en: {
     path: '/en/',
     title: 'Ventari - AI Automation & Compliance for SMEs',
-    description: 'Ventari helps SMEs use AI safely and productively: strategy, automation, integration and EU AI Act compliance from one specialised studio.',
+    description: 'AI automation, integration and EU AI Act compliance for SMEs: Ventari turns use cases into secure, measurable systems.',
     keywords: 'AI consulting, AI automation, EU AI Act compliance, GDPR AI, SME AI consulting, process automation, LLM integration, cloud AWS Azure, n8n Make automation',
   },
   pl: {
     path: '/pl/',
     title: 'Ventari - Automatyzacja AI i compliance dla firm',
-    description: 'Ventari pomaga firmom bezpiecznie i produktywnie wdrażać AI: strategia, automatyzacja, integracje i zgodność z EU AI Act.',
+    description: 'Automatyzacja AI, integracje i zgodność z EU AI Act dla firm: Ventari pomaga wdrażać bezpieczne, mierzalne systemy AI.',
     keywords: 'doradztwo AI, automatyzacja AI, EU AI Act compliance, GDPR AI, automatyzacja procesów, integracja LLM, chmura AWS Azure, n8n Make',
   },
 };
@@ -121,10 +121,106 @@ function replaceFaqSchema(html, lang) {
   );
 }
 
+function replaceOrganizationSchema(html, lang) {
+  const data = meta[lang];
+  const url = `${SITE}${data.path}`;
+  const pageNames = {
+    de: 'KI-Automatisierung & Compliance',
+    en: 'AI Automation & Compliance for SMEs',
+    pl: 'Automatyzacja AI i compliance dla firm',
+  };
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': `${SITE}/#organization`,
+        name: 'Ventari',
+        url: `${SITE}/`,
+        logo: `${SITE}/apple-touch-icon.png`,
+        image: `${SITE}/og-image.png`,
+        founder: {
+          '@type': 'Person',
+          name: 'Daniel Baran',
+        },
+        email: 'hello@ventari.eu',
+        telephone: '+49 7172 7539490',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Jasionka 33',
+          postalCode: '28-300',
+          addressLocality: 'Jędrzejów',
+          addressCountry: 'PL',
+        },
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'sales',
+            email: 'hello@ventari.eu',
+            telephone: '+49 7172 7539490',
+            areaServed: ['DE', 'AT', 'CH'],
+            availableLanguage: ['de', 'en'],
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'sales',
+            email: 'hello@ventari.eu',
+            telephone: '+48 780 680 329',
+            areaServed: ['PL'],
+            availableLanguage: ['pl', 'en'],
+          },
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE}/#website`,
+        name: 'Ventari',
+        url: `${SITE}/`,
+        inLanguage: ['de', 'en', 'pl'],
+        publisher: {
+          '@id': `${SITE}/#organization`,
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        url,
+        name: pageNames[lang],
+        description: data.description,
+        inLanguage: lang,
+        isPartOf: {
+          '@id': `${SITE}/#website`,
+        },
+        about: {
+          '@id': `${SITE}/#organization`,
+        },
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: `${SITE}/og-image.png`,
+        },
+      },
+      {
+        '@type': 'ContactPage',
+        '@id': `${url}#contact`,
+        url: `${url}#contact`,
+        inLanguage: lang,
+        mainEntity: {
+          '@id': `${SITE}/#organization`,
+        },
+      },
+    ],
+  };
+  return html.replace(
+    /<script type="application\/ld\+json" data-schema="organization">[\s\S]*?<\/script>/,
+    `<script type="application/ld+json" data-schema="organization">\n${JSON.stringify(schema, null, 2)}\n</script>`,
+  );
+}
+
 function build(lang) {
   let html = source;
   html = replaceMeta(html, lang);
   html = replaceBodyTranslations(html, lang);
+  html = replaceOrganizationSchema(html, lang);
   html = replaceFaqSchema(html, lang);
   return html;
 }

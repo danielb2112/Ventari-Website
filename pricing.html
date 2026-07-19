@@ -4,22 +4,23 @@
   <script>try{localStorage.setItem("ventari_lang","en");}catch(e){}</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pricing & Packages – Ventari AI Automation & Compliance Studio</title>
-  <meta name="description" content="Transparent pricing for AI projects: AI Opportunity Assessment from €4,900, Automation projects, EU AI Act Compliance Sprints, Fractional AI Officer and retainer packages. Fixed price, no surprises."/>
+  <title>AI Project Pricing &amp; Compliance Packages | Ventari</title>
+  <meta name="description" content="Transparent fixed pricing for AI assessments, automation projects, EU AI Act compliance sprints, fractional AI officer and retainers."/>
+  <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://ventari.eu/pricing"/>
     <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pricing &amp; Packages – Ventari AI Automation &amp; Compliance Studio">
-  <meta property="og:description" content="Transparent pricing for AI projects: AI Opportunity Assessment from €4,900, Automation projects, EU AI Act Compliance Sprints, Fractional AI Officer and retainer packages. Fixed price, no surprises.">
+  <meta property="og:title" content="AI Project Pricing &amp; Compliance Packages | Ventari">
+  <meta property="og:description" content="Transparent fixed pricing for AI assessments, automation projects, EU AI Act compliance sprints, fractional AI officer and retainers.">
   <meta property="og:url" content="https://ventari.eu/pricing">
   <meta property="og:image" content="https://ventari.eu/og-image.png">
   <meta property="og:site_name" content="Ventari">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Pricing &amp; Packages – Ventari AI Automation &amp; Compliance Studio">
-  <meta name="twitter:description" content="Transparent pricing for AI projects: AI Opportunity Assessment from €4,900, Automation projects, EU AI Act Compliance Sprints, Fractional AI Officer and retainer packages. Fixed price, no surprises.">
+  <meta name="twitter:title" content="AI Project Pricing &amp; Compliance Packages | Ventari">
+  <meta name="twitter:description" content="Transparent fixed pricing for AI assessments, automation projects, EU AI Act compliance sprints, fractional AI officer and retainers.">
   <meta name="twitter:image" content="https://ventari.eu/og-image.png">
 <link rel="alternate" hreflang="de" href="https://ventari.eu/preise"/>
   <link rel="alternate" hreflang="en" href="https://ventari.eu/pricing"/>
@@ -40,7 +41,8 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; }
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 2px; }
@@ -55,7 +57,7 @@
     .nav-cta:hover { opacity: 0.85; }
 
     /* HERO */
-    .pricing-hero { padding: 9rem 6vw 5rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+    .pricing-hero { padding: 9rem 6vw 5rem; max-width: 1200px; margin: 0 auto; text-align: center; min-width: 0; }
     .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
     .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
     h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 400; line-height: 1.1; max-width: 700px; margin: 0 auto 1.5rem; }
@@ -65,7 +67,7 @@
     .hero-note-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
 
     /* SECTION */
-    section { padding: 5rem 6vw; max-width: 1200px; margin: 0 auto; }
+    section { padding: 5rem 6vw; max-width: 1200px; margin: 0 auto; min-width: 0; }
     .section-title { font-family: 'DM Serif Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 0.5rem; }
     .section-sub { color: var(--muted2); font-size: 0.9rem; font-weight: 300; margin-bottom: 3rem; max-width: 520px; }
     .section-eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; }
@@ -98,7 +100,7 @@
     .cta-secondary:hover { border-color: var(--blue); color: var(--white); }
 
     /* AUTOMATION PROJECTS */
-    .project-table { width: 100%; border-collapse: collapse; }
+    .project-table { width: 100%; max-width: 100%; border-collapse: collapse; }
     .project-table th { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.8rem 1.2rem; text-align: left; border-bottom: 1px solid var(--border2); }
     .project-table td { padding: 1.1rem 1.2rem; font-size: 0.86rem; color: var(--muted2); border-bottom: 1px solid var(--border2); vertical-align: top; }
     .project-table tr:last-child td { border-bottom: none; }
@@ -113,6 +115,7 @@
 
     /* COMPLIANCE SPRINTS */
     .sprint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .sprint-grid.three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .sprint-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.25s; }
     .sprint-card:hover { border-color: rgba(74,140,255,0.3); }
     .sprint-icon { font-size: 1.5rem; margin-bottom: 1rem; }
@@ -149,7 +152,7 @@
     .pfaq-a p { padding: 0 0 1.2rem; font-size: 0.86rem; color: var(--muted2); line-height: 1.75; font-weight: 300; }
 
     /* CTA BOX */
-    .bottom-cta { background: linear-gradient(135deg, rgba(74,140,255,0.1), rgba(93,216,232,0.05)); border: 1px solid rgba(74,140,255,0.25); border-radius: 16px; padding: 3.5rem; text-align: center; margin: 0 6vw 5rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+    .bottom-cta { background: linear-gradient(135deg, rgba(74,140,255,0.1), rgba(93,216,232,0.05)); border: 1px solid rgba(74,140,255,0.25); border-radius: 16px; padding: 3.5rem; text-align: center; margin: 0 6vw 5rem; max-width: 1200px; margin-left: auto; margin-right: auto; min-width: 0; }
     .bottom-cta h2 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 1rem; }
     .bottom-cta p { color: var(--muted2); font-size: 0.92rem; font-weight: 300; max-width: 480px; margin: 0 auto 2rem; line-height: 1.8; }
     .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -172,6 +175,7 @@
       .pricing-hero, section { padding-left: 2rem; padding-right: 2rem; }
       .entry-grid { grid-template-columns: 1fr; }
       .sprint-grid { grid-template-columns: 1fr; }
+      .sprint-grid.three-col { grid-template-columns: 1fr; }
       .retainer-grid { grid-template-columns: 1fr; }
       .bottom-cta { margin-left: 2rem; margin-right: 2rem; padding: 2.5rem 2rem; }
     }
@@ -181,6 +185,20 @@
     .schnellcheck-price-note { font-size: 0.78rem; color: var(--muted2); margin-top: 0.3rem; }
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
+      nav { padding: 1rem 1.2rem; }
+      .nav-cta { display: none; }
+      .nav-back { min-width: 0; max-width: 52vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .pricing-hero { padding: 8rem 1.2rem 4rem; }
+      h1, .hero-sub { max-width: 100%; }
+      h1 .accent { overflow-wrap: anywhere; }
+      .hero-note { max-width: 100%; white-space: normal; overflow-wrap: anywhere; justify-content: center; text-align: center; border-radius: 12px; }
+      .early-partner-banner { padding: 1.3rem 1.2rem !important; gap: 1rem !important; border-radius: 10px !important; }
+      .early-partner-text { min-width: 0 !important; flex-basis: 100% !important; }
+      .early-partner-cta { width: 100%; text-align: center; white-space: normal !important; }
+      .sprint-card, .retainer-card, .entry-card { min-width: 0; }
+      .project-price { white-space: normal; }
+      .schnellcheck-box { padding: 1.4rem 1.2rem; gap: 1.2rem; }
+      .schnellcheck-price-big { font-size: 2.25rem; }
       .project-table thead { display: none; }
       .project-table td { display: block; padding: 0.5rem 0; border: none; }
       .project-table tr { padding: 1rem; border-bottom: 1px solid var(--border2); display: block; }
@@ -192,48 +210,113 @@
   "@graph": [
     {
       "@type": "Service",
-      "name": "AI Opportunity Assessment",
-      "serviceType": "AI Opportunity Assessment",
-      "description": "The low-risk starting point. In 2–3 days, you know where AI helps, what it costs and how to get started.",
+      "@id": "https://ventari.eu/pricing#service",
+      "name": "AI Automation and Compliance Services",
+      "serviceType": [
+        "AI Opportunity Assessment",
+        "AI Automation",
+        "EU AI Act Compliance",
+        "AI Governance"
+      ],
+      "url": "https://ventari.eu/pricing",
       "provider": {
         "@id": "https://ventari.eu/#organization"
+      },
+      "areaServed": [
+        "Germany",
+        "Poland",
+        "Austria",
+        "Switzerland",
+        "Europe"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Ventari AI project packages",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "AI Quick Check",
+            "price": "2500",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/pricing",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Assessment S",
+            "price": "4900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/pricing",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Assessment M",
+            "price": "9900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/pricing",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Assessment L",
+            "price": "17500",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/pricing",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "EU AI Act Compliance Sprint",
+            "price": "11900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/pricing",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "AI Strategy Day",
+            "price": "3900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/pricing",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Fractional AI Officer Essential",
+            "price": "1900",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/pricing",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Maintenance Retainer Core",
+            "price": "2200",
+            "priceCurrency": "EUR",
+            "url": "https://ventari.eu/pricing",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
       }
     },
     {
-      "@type": "Service",
-      "name": "AI Automation & Integration",
-      "serviceType": "AI Automation & Integration",
-      "description": "Fixed-price projects by complexity. Every project starts after an assessment – no implementation without strategy.",
-      "provider": {
-        "@id": "https://ventari.eu/#organization"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "AI Governance & Compliance Sprints",
-      "serviceType": "AI Governance & Compliance Sprints",
-      "description": "Legal certainty as a package, not an open-ended mandate. Our legal expert (Dr. iur., specialised in EU AI Act) delivers in clearly defined sprints.",
-      "provider": {
-        "@id": "https://ventari.eu/#organization"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "Fractional AI Officer",
-      "serviceType": "Fractional AI Officer",
-      "description": "EU AI Act Art. 4 requires demonstrable AI competence in your organisation – but not a full-time hire. Our Fractional AI Officer takes over governance, training and compliance responsibility on a monthly basis.",
-      "provider": {
-        "@id": "https://ventari.eu/#organization"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "Wartung & Weiterentwicklung",
-      "serviceType": "Wartung & Weiterentwicklung",
-      "description": "After implementation, AI systems need maintenance. Our retainer packages keep your solution performant, secure and compliant.",
-      "provider": {
-        "@id": "https://ventari.eu/#organization"
-      }
+      "@type": "BreadcrumbList",
+      "@id": "https://ventari.eu/pricing#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ventari",
+          "item": "https://ventari.eu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Pricing",
+          "item": "https://ventari.eu/pricing"
+        }
+      ]
     }
   ]
 }
@@ -308,13 +391,13 @@
 </div>
 
 <!-- EARLY PARTNER BANNER -->
-<div style="background:linear-gradient(135deg,rgba(74,140,255,0.08) 0%,rgba(93,216,232,0.06) 100%);border:1px solid rgba(74,140,255,0.25);border-radius:14px;padding:1.5rem 2rem;margin-bottom:0;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-  <div style="flex:1;min-width:260px;">
+<div class="early-partner-banner" style="background:linear-gradient(135deg,rgba(74,140,255,0.08) 0%,rgba(93,216,232,0.06) 100%);border:1px solid rgba(74,140,255,0.25);border-radius:14px;padding:1.5rem 2rem;margin-bottom:0;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+  <div class="early-partner-text" style="flex:1;min-width:260px;">
     <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:var(--cyan);text-transform:uppercase;margin-bottom:0.4rem;">Pilot allocation for selected projects</div>
     <div style="font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;">Reduced project phase for initial <span style="color:var(--cyan);">anonymised reference cases.</span></div>
     <div style="font-size:0.84rem;color:var(--muted2);line-height:1.6;">Selected companies receive a <strong style="color:var(--white);">30&thinsp;% discount</strong> on defined services if the project may later be used as an anonymised case study. Scope, approvals and confidentiality are agreed in writing upfront.</div>
   </div>
-  <a href="https://ventari.eu/#contact" style="background:var(--blue);color:#fff;text-decoration:none;padding:0.7rem 1.4rem;border-radius:8px;font-size:0.88rem;font-weight:600;white-space:nowrap;flex-shrink:0;">Apply now →</a>
+  <a href="https://ventari.eu/#contact" class="early-partner-cta" style="background:var(--blue);color:#fff;text-decoration:none;padding:0.7rem 1.4rem;border-radius:8px;font-size:0.88rem;font-weight:600;white-space:nowrap;flex-shrink:0;">Apply now →</a>
 </div>
 
 <hr class="divider"/>
@@ -433,7 +516,7 @@
           </td>
           <td>Email triage, document processing, CRM updates</td>
           <td><div class="project-price">18.000 – 32.000 €</div></td>
-          <td><div class="project-duration">4–6 Wochen</div></td>
+          <td><div class="project-duration">4–6 weeks</div></td>
           <td><span class="complexity-dot c1"></span>Low</td>
         </tr>
         <tr>
@@ -443,7 +526,7 @@
           </td>
           <td>Internal knowledge base, FAQ automation, support bot</td>
           <td><div class="project-price">22.000 – 42.000 €</div></td>
-          <td><div class="project-duration">6–8 Wochen</div></td>
+          <td><div class="project-duration">6–8 weeks</div></td>
           <td><span class="complexity-dot c2"></span>Medium</td>
         </tr>
         <tr>
@@ -453,8 +536,8 @@
           </td>
           <td>Lead qualification, proposal generation, follow-up automation</td>
           <td><div class="project-price">28.000 – 55.000 €</div></td>
-          <td><div class="project-duration">8–12 Wochen</div></td>
-          <td><span class="complexity-dot c2"></span>Mittel</td>
+          <td><div class="project-duration">8–12 weeks</div></td>
+          <td><span class="complexity-dot c2"></span>Medium</td>
         </tr>
         <tr>
           <td>
@@ -463,13 +546,13 @@
           </td>
           <td>Company-wide AI infrastructure, ERP/CRM integration, multi-agent</td>
           <td><div class="project-price">55.000 – 120.000 €</div></td>
-          <td><div class="project-duration">3–6 Monate</div></td>
+          <td><div class="project-duration">3–6 months</div></td>
           <td><span class="complexity-dot c3"></span>High</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <p style="font-size:0.75rem;color:var(--muted);margin-top:1rem;">All prices are fixed after assessment. Individuelle Komplexität kann abweichen – wir kalkulieren transparent nach dem Assessment.</p>
+  <p style="font-size:0.75rem;color:var(--muted);margin-top:1rem;">All prices are fixed after assessment. Individual complexity can vary; we calculate transparently once the assessment is complete.</p>
 </section>
 
 <hr class="divider"/>
@@ -484,7 +567,7 @@
     <div class="sprint-card">
       <div class="sprint-icon">🛡️</div>
       <div class="sprint-name">EU AI Act Compliance Sprint</div>
-      <div class="sprint-tagline">Vollständige Bestandsaufnahme & Risikobewertung</div>
+      <div class="sprint-tagline">Complete inventory & risk assessment</div>
       <div class="sprint-price">11.900 €</div>
       <div class="sprint-duration">Fixed price · 2–3 weeks</div>
       <ul class="sprint-bullets">
@@ -504,20 +587,20 @@
       <ul class="sprint-bullets">
         <li>AI policy for your company</li>
         <li>GDPR-compliant data protection concepts</li>
-        <li>Rollen & Verantwortlichkeiten (AI Officer)</li>
+        <li>Roles & responsibilities (AI Officer)</li>
         <li>Risk management processes</li>
         <li>Employee training (half-day)</li>
       </ul>
     </div>
     <div class="sprint-card">
       <div class="sprint-icon">⚡</div>
-      <div class="sprint-name">KI-Strategietag</div>
+      <div class="sprint-name">AI Strategy Day</div>
       <div class="sprint-tagline">Fast-track for decision-makers</div>
       <div class="sprint-price">3.900 €</div>
       <div class="sprint-duration">Fixed price · 1 day on-site</div>
       <ul class="sprint-bullets">
-        <li>Halbtagsworkshop mit Strategie & Tech</li>
-        <li>Halbtagsworkshop mit Legal & Compliance</li>
+        <li>Half-day workshop with strategy & tech</li>
+        <li>Half-day workshop with legal & compliance</li>
         <li>Decision matrix: make vs. buy</li>
         <li>Initial EU AI Act relevance assessment</li>
         <li>Written summary</li>
@@ -525,15 +608,15 @@
     </div>
     <div class="sprint-card" style="border-color:rgba(74,140,255,0.25);">
       <div class="sprint-icon">🔄</div>
-      <div class="sprint-name">NIS2 + EU AI Act Kombi-Sprint</div>
+      <div class="sprint-name">NIS2 + EU AI Act Combined Sprint</div>
       <div class="sprint-tagline">Both regulations in one pass</div>
       <div class="sprint-price">on request</div>
       <div class="sprint-duration">Individual calculation · typically cheaper than two separate sprints</div>
       <ul class="sprint-bullets">
-        <li>NIS2-Betroffenheitsprüfung & Gap-Analyse</li>
+        <li>NIS2 scope assessment & gap analysis</li>
         <li>EU AI Act risk assessment</li>
-        <li>Kombimaßnahmen (ISMS & AI Governance)</li>
-        <li>BSI-Registrierung & Dokumentation</li>
+        <li>Combined measures (ISMS & AI governance)</li>
+        <li>BSI registration & documentation</li>
         <li>Management training (personal liability)</li>
       </ul>
     </div>
@@ -542,13 +625,13 @@
 
 <hr class="divider"/>
 
-<!-- KI-BEAUFTRAGTER -->
+<!-- FRACTIONAL AI OFFICER -->
 <section>
   <div class="section-eyebrow">Fractional Service</div>
   <h2 class="section-title">Fractional AI Officer</h2>
   <p class="section-sub">EU AI Act Art. 4 requires demonstrable AI competence in your organisation – but not a full-time hire. Our Fractional AI Officer takes over governance, training and compliance responsibility on a monthly basis.</p>
 
-  <div class="sprint-grid" style="grid-template-columns: repeat(3, 1fr);">
+  <div class="sprint-grid three-col">
     <div class="sprint-card">
       <div class="sprint-icon">🎯</div>
       <div class="sprint-name">Basic</div>
@@ -599,7 +682,7 @@
 <!-- RETAINER -->
 <section>
   <div class="section-eyebrow">Ongoing Support</div>
-  <h2 class="section-title">Wartung & Weiterentwicklung</h2>
+  <h2 class="section-title">Maintenance & Development</h2>
   <p class="section-sub">After implementation, AI systems need maintenance. Our retainer packages keep your solution performant, secure and compliant.</p>
 
   <div class="retainer-grid">
@@ -623,7 +706,7 @@
       <div class="retainer-name">Evolve</div>
       <div style="font-size:0.82rem;color:var(--muted2);font-weight:300;">For actively used systems requiring optimisation</div>
       <div class="retainer-price">3.500 €</div>
-      <div class="retainer-interval">pro Monat · flexibel kündbar</div>
+      <div class="retainer-interval">per month · cancellable monthly</div>
       <hr class="retainer-sep"/>
       <ul class="retainer-bullets">
         <li>Everything in Monitor</li>
@@ -639,7 +722,7 @@
       <div class="retainer-name">Scale</div>
       <div style="font-size:0.82rem;color:var(--muted2);font-weight:300;">For growing solutions with expansion needs</div>
       <div class="retainer-price">5.000 €</div>
-      <div class="retainer-interval">pro Monat · flexibel kündbar</div>
+      <div class="retainer-interval">per month · cancellable monthly</div>
       <hr class="retainer-sep"/>
       <ul class="retainer-bullets">
         <li>Everything in Evolve</li>
@@ -658,7 +741,7 @@
 <!-- PREIS-FAQ -->
 <section>
   <div class="section-eyebrow">Frequently Asked Questions</div>
-  <h2 class="section-title" style="margin-bottom:2rem;">Preise & Konditionen</h2>
+  <h2 class="section-title" style="margin-bottom:2rem;">Pricing & Terms</h2>
 
   <div class="price-faq">
     <div class="pfaq-item" onclick="this.classList.toggle('open')">

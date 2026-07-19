@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kostenlose KI-Tools – Ventari | Rechner & Checks</title>
-  <meta name="description" content="6 kostenlose KI-Tools für Entscheider: Automatisierungspotenzial berechnen, Projektkosten schätzen, EU AI Act prüfen, Readiness Score ermitteln."/>
+  <title>Kostenlose KI-Tools für Unternehmen | Ventari</title>
+  <meta name="description" content="4 kostenlose KI-Tools für Entscheider: Automatisierungspotenzial berechnen, Projektkosten schätzen, AI Act prüfen und KI-Reife bewerten."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://ventari.eu/tools/"/>
+  <link rel="alternate" hreflang="de" href="https://ventari.eu/tools/"/>
+  <link rel="alternate" hreflang="x-default" href="https://ventari.eu/tools/"/>
     <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Kostenlose KI-Tools – Ventari | Rechner &amp; Checks">
-  <meta property="og:description" content="6 kostenlose KI-Tools für Entscheider: Automatisierungspotenzial berechnen, Projektkosten schätzen, EU AI Act prüfen, Readiness Score ermitteln.">
+  <meta property="og:title" content="Kostenlose KI-Tools für Unternehmen | Ventari">
+  <meta property="og:description" content="4 kostenlose KI-Tools für Entscheider: Automatisierungspotenzial berechnen, Projektkosten schätzen, AI Act prüfen und KI-Reife bewerten.">
   <meta property="og:url" content="https://ventari.eu/tools/">
   <meta property="og:image" content="https://ventari.eu/og-image.png">
   <meta property="og:site_name" content="Ventari">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kostenlose KI-Tools – Ventari | Rechner &amp; Checks">
-  <meta name="twitter:description" content="6 kostenlose KI-Tools für Entscheider: Automatisierungspotenzial berechnen, Projektkosten schätzen, EU AI Act prüfen, Readiness Score ermitteln.">
+  <meta name="twitter:title" content="Kostenlose KI-Tools für Unternehmen | Ventari">
+  <meta name="twitter:description" content="4 kostenlose KI-Tools für Entscheider: Automatisierungspotenzial berechnen, Projektkosten schätzen, AI Act prüfen und KI-Reife bewerten.">
   <meta name="twitter:image" content="https://ventari.eu/og-image.png">
 <script>
     // Auto-highlight correct language buttons + translate static strings
@@ -49,7 +51,8 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; min-height: 100vh; overflow-x: hidden; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; min-height: 100vh; }
     ::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 2px; }
 
     /* BG GLOW */
@@ -67,7 +70,7 @@
     @media (max-width: 600px) { nav { padding: 1rem 1.2rem; } }
 
     /* HERO */
-    .hero { padding: 9rem 3rem 4rem; max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+    .hero { padding: 9rem 3rem 4rem; max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 2; min-width: 0; }
     .eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.2rem; }
     .eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
     .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.1; margin-bottom: 1.2rem; }
@@ -75,13 +78,19 @@
     .hero p { color: var(--muted2); font-size: 1rem; max-width: 560px; margin: 0 auto; line-height: 1.75; }
 
     /* TOOLS GRID */
-    .tools-section { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 6rem; position: relative; z-index: 2; }
+    .tools-section { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 6rem; position: relative; z-index: 2; min-width: 0; }
     .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border2); }
-    .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
-    @media (max-width: 720px) { .tools-grid { grid-template-columns: 1fr; } .hero { padding: 8rem 1.5rem 3rem; } .tools-section { padding: 2rem 1.2rem 4rem; } }
+    .tools-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-bottom: 3rem; min-width: 0; }
+    @media (max-width: 720px) {
+      .tools-grid { grid-template-columns: minmax(0, 1fr); }
+      .hero { padding: 8rem 1.2rem 3rem; }
+      .hero h1 { max-width: 100%; font-size: clamp(1.8rem, 10vw, 2.3rem); overflow-wrap: anywhere; }
+      .hero p { max-width: 100%; overflow-wrap: anywhere; }
+      .tools-section { padding: 2rem 1.2rem 4rem; }
+    }
 
     /* TOOL CARD */
-    .tool-card { background: var(--bg2); border: 1px solid var(--border2); border-radius: 16px; padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.25s; display: flex; flex-direction: column; }
+    .tool-card { background: var(--bg2); border: 1px solid var(--border2); border-radius: 16px; padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.25s; display: flex; flex-direction: column; min-width: 0; }
     .tool-card::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top right, rgba(74,140,255,.05), transparent 60%); pointer-events: none; }
     .tool-card:hover { border-color: rgba(74,140,255,.35); transform: translateY(-3px); }
     .tool-card.featured { border-color: rgba(74,140,255,.3); background: linear-gradient(135deg, var(--bg2), rgba(74,140,255,.04)); }
@@ -92,15 +101,15 @@
     .badge-free { background: rgba(78,203,113,.1); color: var(--green); border: 1px solid rgba(78,203,113,.2); }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
     .tool-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
-    .tool-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 0.6rem; line-height: 1.25; }
-    .tool-card p { color: var(--muted2); font-size: 0.85rem; line-height: 1.7; margin-bottom: 1.2rem; flex: 1; }
+    .tool-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 0.6rem; line-height: 1.25; overflow-wrap: anywhere; }
+    .tool-card p { color: var(--muted2); font-size: 0.85rem; line-height: 1.7; margin-bottom: 1.2rem; flex: 1; overflow-wrap: anywhere; }
     .tool-highlights { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.5rem; }
-    .tool-highlight { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--muted2); }
+    .tool-highlight { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--muted2); min-width: 0; overflow-wrap: anywhere; }
     .tool-highlight::before { content: '✓'; color: var(--blue); font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
     .tool-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-    .btn-tool-de { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--blue); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; }
+    .btn-tool-de { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--blue); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; min-width: 0; }
     .btn-tool-de:hover { opacity: 0.85; }
-    .btn-tool-en { display: inline-flex; align-items: center; gap: 0.4rem; background: transparent; color: var(--muted2); border: 1px solid var(--border2); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
+    .btn-tool-en { display: inline-flex; align-items: center; gap: 0.4rem; background: transparent; color: var(--muted2); border: 1px solid var(--border2); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; transition: all 0.2s; min-width: 0; }
     .btn-tool-en:hover { color: var(--white); border-color: rgba(255,255,255,.2); }
     .btn-single { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--blue); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; }
     .btn-single:hover { opacity: 0.85; }
@@ -109,12 +118,60 @@
     .cta-banner { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-top: 1rem; }
     .cta-banner h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 0.4rem; }
     .cta-banner p { color: var(--muted2); font-size: 0.88rem; max-width: 460px; }
-    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--blue); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; white-space: nowrap; transition: opacity 0.2s; }
+    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--blue); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; white-space: normal; transition: opacity 0.2s; }
     .btn-cta:hover { opacity: 0.85; }
+    .tools-copy { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border2); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; min-width: 0; }
+    .tools-copy h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; line-height: 1.25; margin-bottom: .8rem; }
+    .tools-copy p { color: var(--muted2); font-size: .88rem; line-height: 1.8; margin-bottom: 1rem; }
+    .tools-copy a { color: var(--blue); text-decoration: none; }
+    @media (max-width: 720px) { .tools-copy { grid-template-columns: 1fr; } }
   </style>
+<script type="application/ld+json" data-schema="tools-collection">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://ventari.eu/tools/#webpage",
+  "url": "https://ventari.eu/tools/",
+  "name": "Kostenlose KI-Tools für Unternehmen",
+  "description": "Vier kostenlose KI-Tools für Automatisierungspotenzial, Projektkosten, EU AI Act Risiko und KI-Reifegrad.",
+  "inLanguage": "de",
+  "isPartOf": {
+    "@id": "https://ventari.eu/#website"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Automatisierungspotenzial-Rechner",
+        "url": "https://ventari.eu/automatisierungspotenzial-rechner"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "KI-Projektkosten-Schätzer",
+        "url": "https://ventari.eu/ki-projektkosten-schaetzer"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "KI-Readiness-Test",
+        "url": "https://ventari.eu/ki-readiness-test"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "EU AI Act Checker",
+        "url": "https://ventari.eu/eu-ai-act-checker"
+      }
+    ]
+  }
+}
+</script>
 </head>
 <body>
-<a href="#main" class="skip-link">Zum Inhalt springen</a>
+<a href="#main" class="skip-link" id="skip-link">Zum Inhalt springen</a>
 <div class="bg-glow"></div>
 
 <nav>
@@ -229,11 +286,25 @@
 
 </div>
 
+  <section class="tools-copy" aria-label="Tool-Auswahl und Methodik">
+    <div>
+      <h2 id="copy-title-1">Welches KI-Tool passt zu welcher Entscheidung?</h2>
+      <p id="copy-p1">Der Hub bündelt die vier häufigsten Einstiegsfragen vor einem KI-Projekt: Reifegrad, Automatisierungspotenzial, Projektbudget und regulatorisches Risiko. Alle Rechner sind anonym nutzbar und liefern eine erste Orientierung, bevor Budget oder interne Ressourcen gebunden werden.</p>
+      <p id="copy-p2">Von hier aus gelangen Sie direkt zu den passenden nächsten Schritten: dem <a href="/ki-readiness-test">KI-Readiness-Test</a>, dem <a href="/automatisierungspotenzial-rechner">Automatisierungspotenzial-Rechner</a>, dem <a href="/ki-projektkosten-schaetzer">KI-Projektkosten-Schätzer</a> und dem <a href="/eu-ai-act-checker">EU AI Act Checker</a>.</p>
+    </div>
+    <div>
+      <h2 id="copy-title-2">Von der Ersteinschätzung zur Roadmap</h2>
+      <p id="copy-p3">Die Ergebnisse ersetzen keine Beratung, helfen aber beim Priorisieren: Welche Prozesse haben den größten wirtschaftlichen Hebel, welche Voraussetzungen fehlen, und welche Compliance-Fragen müssen vor einer Umsetzung geklärt werden?</p>
+      <p id="copy-p4">Wenn ein Ergebnis relevant ist, führt der nächste Schritt in ein <a href="/preise">AI Opportunity Assessment</a>, in dem Use Cases, Datenlage, Aufwand und EU-AI-Act-Pflichten strukturiert geprüft werden.</p>
+    </div>
+  </section>
+
 </main>
 <script>
 const T = {
   de: {
     'nav-back-label': 'Zurück zur Website',
+    'skip-link': 'Zum Inhalt springen',
     'h-eyebrow': 'Kostenlose Tools',
     'h-title': 'Klarheit in Minuten.<br/> <span class="accent">Ohne Erstgespräch.</span>',
     'h-sub': 'Alle Tools sind kostenlos, anonym und sofort nutzbar – keine Anmeldung, keine E-Mail-Adresse erforderlich.',
@@ -260,9 +331,16 @@ const T = {
     'cta-title': 'Zahlen auf dem Tisch – was jetzt?',
     'cta-desc': 'Im kostenlosen 30-Minuten-Gespräch besprechen wir Ihre Ergebnisse und zeigen den konkreten nächsten Schritt für Ihr Unternehmen.',
     'cta-btn': 'Gespräch anfragen →',
+    'copy-title-1': 'Welches KI-Tool passt zu welcher Entscheidung?',
+    'copy-p1': 'Der Hub bündelt die vier häufigsten Einstiegsfragen vor einem KI-Projekt: Reifegrad, Automatisierungspotenzial, Projektbudget und regulatorisches Risiko. Alle Rechner sind anonym nutzbar und liefern eine erste Orientierung, bevor Budget oder interne Ressourcen gebunden werden.',
+    'copy-p2': 'Von hier aus gelangen Sie direkt zu den passenden nächsten Schritten: dem <a href="/ki-readiness-test">KI-Readiness-Test</a>, dem <a href="/automatisierungspotenzial-rechner">Automatisierungspotenzial-Rechner</a>, dem <a href="/ki-projektkosten-schaetzer">KI-Projektkosten-Schätzer</a> und dem <a href="/eu-ai-act-checker">EU AI Act Checker</a>.',
+    'copy-title-2': 'Von der Ersteinschätzung zur Roadmap',
+    'copy-p3': 'Die Ergebnisse ersetzen keine Beratung, helfen aber beim Priorisieren: Welche Prozesse haben den größten wirtschaftlichen Hebel, welche Voraussetzungen fehlen, und welche Compliance-Fragen müssen vor einer Umsetzung geklärt werden?',
+    'copy-p4': 'Wenn ein Ergebnis relevant ist, führt der nächste Schritt in ein <a href="/preise">AI Opportunity Assessment</a>, in dem Use Cases, Datenlage, Aufwand und EU-AI-Act-Pflichten strukturiert geprüft werden.',
   },
   en: {
     'nav-back-label': 'Back to website',
+    'skip-link': 'Skip to content',
     'h-eyebrow': 'Free Tools',
     'h-title': 'Clarity in minutes.<br/> <span class="accent">No intro call needed.</span>',
     'h-sub': 'All tools are free, anonymous and instantly usable – no sign-up, no email address required.',
@@ -289,43 +367,39 @@ const T = {
     'cta-title': 'Numbers on the table – what next?',
     'cta-desc': 'In a free 30-minute call we discuss your results and show the concrete next step for your business.',
     'cta-btn': 'Book a call →',
+    'copy-title-1': 'Which AI tool fits which decision?',
+    'copy-p1': 'This hub covers the four most common questions before an AI project: readiness, automation potential, project budget and regulatory risk. All calculators are anonymous and give a first orientation before budget or internal resources are committed.',
+    'copy-p2': 'From here you can move directly to the right next step: the <a href="/ai-readiness-test-en">AI Readiness Test</a>, the <a href="/automation-potential-calculator-en">Automation Potential Calculator</a>, the <a href="/ai-project-cost-estimator-en">AI Project Cost Estimator</a> and the <a href="/eu-ai-act-checker-en">EU AI Act Checker</a>.',
+    'copy-title-2': 'From first assessment to roadmap',
+    'copy-p3': 'The results are not a substitute for consulting, but they help prioritise: Which processes have the strongest economic leverage, which prerequisites are missing, and which compliance questions must be clarified before implementation?',
+    'copy-p4': 'When a result looks relevant, the next step is an <a href="/pricing">AI Opportunity Assessment</a>, where use cases, data readiness, effort and EU AI Act obligations are reviewed in a structured way.',
   }
 };
 
 let lang = 'de';
-function setLang(l) {
-  lang = l;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
-  const t = T[l];
+function applyToolLang(l) {
+  lang = T[l] ? l : 'de';
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  const t = T[lang];
   Object.keys(t).forEach(k => {
     const el = document.getElementById(k);
     if (el) el.innerHTML = t[k];
   });
-  document.documentElement.lang = l;
-  // Update CTA link text
+  document.documentElement.lang = lang;
   document.getElementById('cta-btn').textContent = t['cta-btn'];
+  document.querySelectorAll('.btn-tool-en').forEach(function(el){
+    el.style.opacity = lang === 'en' ? '1' : '';
+    el.style.fontWeight = lang === 'en' ? '600' : '';
+  });
+  document.querySelectorAll('.btn-tool-de').forEach(function(el){
+    el.style.opacity = lang === 'en' ? '0.45' : '';
+  });
 }
-</script>
-<script>
-(function(){
-  var lang = window._toolsLang || 'de';
-  if (lang === 'en') {
-    // Highlight EN buttons, dim DE buttons
-    document.querySelectorAll('.btn-tool-en').forEach(function(el){ el.style.opacity='1'; el.style.fontWeight='600'; });
-    document.querySelectorAll('.btn-tool-de').forEach(function(el){ el.style.opacity='0.45'; });
-    // Translate static strings
-    var nav = document.querySelector('.nav-back');
-    if (nav) nav.textContent = '← Back to website';
-    var cta = document.getElementById('cta-btn');
-    if (cta) { cta.textContent = 'Book a call →'; cta.href = 'https://ventari.eu/#contact'; }
-    var h1 = document.querySelector('h1');
-    if (h1) h1.innerHTML = 'Free AI Tools for<br/> <span class="accent">SMEs</span>';
-    var sub = document.querySelector('.tools-sub');
-    if (sub) sub.textContent = 'Practical tools to assess AI readiness, calculate automation potential and check EU AI Act compliance – free and without registration.';
-    var eyebrow = document.querySelector('.tools-eyebrow');
-    if (eyebrow) eyebrow.textContent = 'All tools';
-  }
-})();
+function setLang(l) {
+  try { localStorage.setItem('ventari_lang', l); } catch(e) {}
+  applyToolLang(l);
+}
+applyToolLang(window._toolsLang || 'de');
 </script>
 </body>
 </html>
