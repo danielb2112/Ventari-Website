@@ -142,6 +142,7 @@ function replaceOrganizationSchema(html, lang) {
         founder: {
           '@type': 'Person',
           name: 'Daniel Baran',
+          url: 'https://daniel-baran.com/',
           sameAs: ['https://www.linkedin.com/in/daniel-baran-5b14b2269'],
         },
         email: 'hello@ventari.eu',
