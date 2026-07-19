@@ -102,7 +102,7 @@ function replaceBodyTranslations(html, lang) {
 
 function replaceFaqSchema(html, lang) {
   const t = T[lang] || T.de;
-  const mainEntity = [1, 2, 3, 4, 5, 6].map(index => ({
+  const mainEntity = [1, 2, 3, 4, 5, 6, 7, 8].map(index => ({
     '@type': 'Question',
     name: stripTags(t[`faq.${index}.q`]),
     acceptedAnswer: {
@@ -142,6 +142,7 @@ function replaceOrganizationSchema(html, lang) {
         founder: {
           '@type': 'Person',
           name: 'Daniel Baran',
+          sameAs: ['https://www.linkedin.com/in/daniel-baran-5b14b2269'],
         },
         email: 'hello@ventari.eu',
         telephone: '+49 7172 7539490',
